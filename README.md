@@ -5,7 +5,7 @@
 This is a project where we are going to develop a new web application about the relationship beetween the food and our users. The main idea is that you will find recipes uploaded by other users, and you would save them to build your semanal food plan. In addition, you will have the opportunity to generate your own shopping list automatically, using the different elements that your daily food has. Let's take a deeper look about what are we planning to develop:
 
 
-**Food & U features**
+ ## **Food & U features**
 
 Which features will Food & U have? Our development team has planned to include:
 
@@ -17,7 +17,7 @@ Which features will Food & U have? Our development team has planned to include:
 - Every meal or recipe will include the principal nutritional information.
 - Food & U will provide information about your weekly menu: you will see how balanced is your diet, and how could you improve it around our standards.
 
-**Entities**
+ ## **Entities**
 
 Food & U will be working with four kind of entities, which they are:
 
@@ -28,16 +28,16 @@ Food & U will be working with four kind of entities, which they are:
 | Recipes | Every meal from the menu will be composed by its recipe. Every weekly menu will have 7 lunches and 7 dinners, so it will have 14 recipes. Also, users can upload their own recipes to the web app where it will be stored, and available to include in other menus.|
 | Shopping List | Every logged user will have an active menu. This mean that a shopping list can be generated from this. This also will be a component of the information stored from every user.|
 
-**Extra technology**
+ ## **Extra technology**
 
 Using Food & U will not requiere a full-time connection to check your menu or recipes. You will find the easiest way to download your menu and recipes: just pressing a button! It is as simple as that. Additionally, it may be developed the way to generate a menu which fits better with your idea of gain or lose weight. We know is not easy to start doing this, and sometimes you need help because the lack of ideas. Food & U provides help with this kind of issues.
 
 
-**Algorithms**
+ ## **Algorithms**
 
 Food & U will include an algorithm that recommend you recipes that is nutritionally similar to the ones you have chosed previously. We want to implement this to add variety to our users' menus. It will be based, of course, in the nutritional score of the previous meals used in the past week. In addition, we will be proud if the final version of the project is capable of making automatically a new diet based on the desires and goals of our users, but this would be included if time allows us to do so.
 
-**Graphics**
+## **Graphics**
 
 Food & U will provide to its users the possibility of compare their own menus with one which we consider appropiate and balanced. This will be shown as graphic as possible, trying to be clear and direct with the information. This information will be private for every user, because we can consider it as something personal.
 
