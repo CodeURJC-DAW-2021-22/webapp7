@@ -26,7 +26,7 @@ Food & U will be working with four kind of entities, which they are:
 | Users | People that will be using our app you will find four kinds: **logged users** allowed to upload and save content, **unlogged users** which only will be allowed to explore recipes, and **admin users** which are allowed to upload, save and delete content. |
 | Menus | Every user could save as many menus as wanted. Only one will be active, but you can save everyone you want according to your objetives: gain or lose weight|
 | Recipes | Every meal from the menu will be composed by its recipe. Every weekly menu will have 7 lunches and 7 dinners, so it will have 14 recipes. Also, users can upload their own recipes to the web app where it will be stored, and available to include in other menus.|
-| | |
+| Shopping List | Every logged user will have an active menu. This mean that a shopping list can be generated from this. This also will be a component of the information stored from every user.|
 
 **Extra technology**
 
@@ -35,4 +35,9 @@ Using Food & U will not requiere a full-time connection to check your menu or re
 
 **Algorithms**
 
+Food & U will include an algorithm that recommend you recipes that is nutritionally similar to the ones you have chosed previously. We want to implement this to add variety to our users' menus. It will be based, of course, in the nutritional score of the previous meals used in the past week. In addition, we will be proud if the final version of the project is capable of making automatically a new diet based on the desires and goals of our users, but this would be included if time allows us to do so.
+
+**Graphics**
+
+Food & U will provide to its users the possibility of compare their own menus with one which we consider appropiate and balanced. This will be shown as graphic as possible, trying to be clear and direct with the information. This information will be private for every user, because we can consider it as something personal.
 
