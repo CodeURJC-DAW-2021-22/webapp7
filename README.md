@@ -32,6 +32,11 @@ Food & U will be working with four kind of entities, which they are:
 
 Using Food & U will not requiere a full-time connection to check your menu or recipes. You will find the easiest way to download your menu and recipes: just pressing a button! It is as simple as that. Additionally, it may be developed the way to generate a menu which fits better with your idea of gain or lose weight. We know is not easy to start doing this, and sometimes you need help because the lack of ideas. Food & U provides help with this kind of issues.
 
+## **Web Navigation**
+
+You can find in the following image a very first look about how we, the development team, think that you can travel around the web application from a point of view of a logged user:
+![WebNavigation](webapp7\Imagenes README)
+
 
  ## **Algorithms**
 
