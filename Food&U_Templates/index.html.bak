@@ -30,7 +30,9 @@
 	 <h4><a href="index.html">Food & U</a></h4>
 	</div>
 	<div class="col-sm-3 header_right">
-	 <ul class="social-network social-circle"><li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li></ul>
+	 <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                    </ul>
 	</div>
    </div>
   </div>
