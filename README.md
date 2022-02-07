@@ -35,6 +35,8 @@ Using Food & U will not requiere a full-time connection to check your menu or re
 ## **Web Navigation**
 
 You can find in the following image a very first look about how we, the development team, think that you can travel around the web application from a point of view of a logged user:
+
+
 ![WebNavigation](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/First_Version.PNG)
 
 
