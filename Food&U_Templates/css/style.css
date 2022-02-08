@@ -26,9 +26,9 @@ a:hover{
   }
 /********************* header ****************/
 #header{
-border-top:4px solid #005512;
+border-top:4px solid #009933;
 padding-bottom:10px;
-}
+   }
 .header_left{
 padding:0;
 margin:0;
@@ -58,7 +58,7 @@ box-shadow:none!important;
 padding:9px 20px 9px 20px;
 font-size:12px;
 color:#FFFFFF;
-background:#005512;
+background:#333399;
 text-decoration:none;
 border-radius:5px;
 width: 107px;
@@ -107,7 +107,7 @@ ul.social-network li {
 
 /* footer social icons */
 .social-network a.icoRss:hover {
-	background-color: #747474;
+	background-color: #F56505;
 }
 .social-network a.icoFacebook:hover {
 	background-color:#3B5998;
@@ -169,29 +169,13 @@ a.socialIcon:hover, .socialHoverClass {
 	-ms-transition: all 0.8s;
 	transition: all 0.8s;
 }
-.header_right{
-   margin: auto;
-}
-.header_right ul li{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
-}
-.header_right ul li a{
-   font-size:16px;
-   text-decoration:none;
-   padding:12px 18px 12px 18px;
-   border: 3px solid #000000;
-   color:#FFFFFF;
-   background:#006600;
-}
-.header_right ul li a:hover{
-   background:#fff;
-   color:#006600;
-   border: 3px solid #006600;
-   }
 
+.header_right a {
+ background-color:#333399; 
+}
+.header_right{
+ padding-top:5px;
+ }
 /********************* header_end ****************/
 
 /********************* top ****************/
@@ -434,9 +418,8 @@ margin-bottom:20px;
 
 /********************* center ****************/
 #center{
-   background: url("../img/banner1.jpg");
-   background-size: cover;
-}
+background: url(../img/21.jpg);
+   }
 .center_m{
  background:#00000052; 
  padding-bottom:100px;
@@ -494,14 +477,13 @@ margin:10px;
 font-size:16px;
 text-decoration:none;
 padding:12px 18px 12px 18px;
-border:3px solid #FFFFFF;
+border:1px solid #FFFFFF;
 color:#FFFFFF;
 background:#006600;
    }
 .center_right ul li a:hover{
  background:#fff;
  color:#006600;
- border: 3px solid #006600 ;
  }
 /********************* center_end ****************/
 
@@ -995,7 +977,10 @@ border-radius:6px;
 width:100%;
    }
 .details_top_1{
-padding:0;
+padding-top: 10px;
+padding-right:0;
+padding-bottom:0;
+padding-left:0;
 margin:0;
    }
 .details_top_1_left{
@@ -1785,7 +1770,11 @@ padding:0;
 margin:0;
 padding-top:20px;
 padding-left:20px;
-}
+   }
+.header_right{
+padding:0;
+margin:0;
+     }
 
 .center_right h2{
 font-size:36px;
@@ -2115,7 +2104,13 @@ width:100%;
 .details_top_1 {
     padding-left: 30px;
 }
-
+.header_right ul li {
+    margin: 0px;
+}
+.header_right{
+padding:0;
+margin:0;
+   }
 .navbar{
  width:85%;
  }
@@ -2287,6 +2282,7 @@ line-height:30px;
 padding-left:20px;
 padding-right:20px; 
  }
+}
 
 
 @media (min-width:992px) and (max-width:1200px)  {
@@ -2309,6 +2305,9 @@ padding:10px;
   }
 .container {
     width: auto;
+}
+.header_right ul li {
+margin: 0px;
 }
 .top .navbar-nav {
 padding-left: 10px;
