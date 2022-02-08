@@ -19,13 +19,6 @@
  <div class="container">
   <div class="row">
    <div class="col-sm-12 header">
-    <div class="col-sm-5 header_left">
-	 <h4>Browser</h4> 
-	 <ul>
-	 <li class="zipper"><input title="zipper" type="text" name="GLOC" class="form-control store-locator-form__input" placeholder="Recipe"></li>
-	 <li class="zipper_1"><a href="#">Search</a></li>
-	 </ul>
-	</div>
 	<div class="col-sm-8 header_center">
         <a href="index.html">
             <img src="../Food&U_Templates/img/logo_1.jpg" alt="logo">
@@ -35,6 +28,13 @@
         <ul>
             <li><a href="login.html">Login/SignIn</a></li>
         </ul>
+	</div>
+	<div class="col-sm-5 header_left">
+	 <h4>Browser</h4> 
+	 <ul>
+	 <li class="zipper"><input title="zipper" type="text" name="GLOC" class="form-control store-locator-form__input" placeholder="Recipe"></li>
+	 <li class="zipper_1"><a href="#">Search</a></li>
+	 </ul>
 	</div>
    </div>
   </div>
