@@ -968,6 +968,12 @@ background: transparent url(img/34.png);
 /********************* footer_end ****************/
 
 /********************* details_top ****************/
+.btn .off,.btn.active .on {    			
+	display:block			
+}
+.btn.active .off,.btn .on  {				
+	display:none			
+}
 .detail_n{
  margin-bottom:20px;
  margin-top:10px;
@@ -1681,6 +1687,7 @@ display:inline-block;
 color:#000;
 padding:10px 30px 15px 30px;
 font-size:16px;
+margin-top:70px; 
 border-color:#fff;
   }
 .button:hover{
