@@ -13,13 +13,18 @@ body{
 }
 .main{
 	width: 350px;
-	height: 500px;
+	height: 600px;
 	background: red;
 	overflow: hidden;
 	background: linear-gradient(to bottom, #243e26, #2b6337, #0c291e);
 	border-radius: 30px;
 	box-shadow: 5px 20px 50px #000;
 }
+
+.goback_button{
+	padding: 3px;
+}
+
 #chk{
 	display: none;
 }
