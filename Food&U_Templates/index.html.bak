@@ -86,7 +86,7 @@
 			<li class="active_2"><a href="index.html">Home</a></li>
 			<li><a href="recipe.html">Recipes</a></li>
 			<li><a href="blog.html">About Us</a></li>
-			<li class="active_2"><a href="blog.html">Usuario</a></li>
+			<li><a href="blog.html">Usuario</a></li>
 		</ul>
 	</div><!-- /.nav-collapse -->
   </nav>

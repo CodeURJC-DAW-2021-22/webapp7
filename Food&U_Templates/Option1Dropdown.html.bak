@@ -17,33 +17,36 @@
 </head>
 
 <body>
-<section id="header">
-<div class="container">
-  <div class="row">
-   <div class="col-sm-12 header">
-   <!--<div class="col-sm-5 header_left">
-	 <h4>Browser</h4> 
-	 <ul>
-	 <li class="zipper"><input title="zipper" type="text" name="GLOC" class="form-control store-locator-form__input" placeholder="Recipe"></li>
-	 <li class="zipper_1"><a href="#">Search</a></li>
-	 </ul>
-	</div>-->
-	<div class="col-sm-8 header_center">
-        <a href="index.html">
-            <img src="../Food&U_Templates/img/logo_1.jpg" alt="logo">
-        </a>
-	 <!--<h4><a href="index.html">Food & U</a></h4>-->
-	</div>
-	<div class="col-sm-3 header_right">
-        <ul>
-            <li><a href="login.html">Login/SignIn</a></li>
-        </ul>
-	</div>
-   </div>
-  </div>
- </div>
-</section>
-<section id="top">
+	<section id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 header">
+					<div class="col-sm-5 header_left">
+						<h4>Dolor to sit</h4>
+						<ul>
+							<li class="zipper"><input title="Enter a 5 Digit Zip Code" type="text" name="GLOC"
+									class="form-control store-locator-form__input" placeholder="Zip Code"></li>
+							<li class="zipper_1"><a href="#">Libero</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-4 header_center">
+						<h4><a href="index.html">Green Valley<span class="header_center_1">ORGANIC</span></a></h4>
+					</div>
+					<div class="col-sm-3 header_right">
+						<ul class="social-network social-circle">
+							<li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+							<li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a>
+							</li>
+							<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="top">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 top">
