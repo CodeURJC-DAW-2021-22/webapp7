@@ -51,6 +51,33 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 ![AboutUs](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/AboutUs.PNG)
 
+**User Main Page**
+
+![User Main Page](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/User.PNG)
+
+**Active Menu**
+
+![Menu](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Menu%20semanal.PNG)
+
+**User Diets**
+
+![Stored Diets](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Stored%20Diets.PNG)
+
+**Sign Up & Log In**
+
+![SignUp](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/SingUp.PNG)
+
+![LogIn](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/LogIn.PNG)
+
+**Recipes Browser**
+
+![Recipes Browser](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Recetas.PNG)
+
+**Recipe Page**
+
+![Recipe](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Recipe.PNG)
+
+
 
 
  ## **Algorithms**
