@@ -1,8 +1,9 @@
-package com.example.demo;
+package com.example.foodanduapp;
 
-import org.springframework.boot.test.util.TestPropertyValues;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class ShoppingList {
     Map<String,Integer> numberofIntredients;

@@ -1,5 +1,4 @@
-package com.example.demo;
-
+package com.example.foodanduapp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -96,3 +95,4 @@ public class Recipe {
         this.preparation = preparation;
     }
 }
+
