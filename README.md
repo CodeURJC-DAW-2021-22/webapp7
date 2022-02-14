@@ -39,6 +39,19 @@ You can find in the following image a very first look about how we, the developm
 
 ![WebNavigation](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/First_Version.PNG)
 
+Down Below you will find some of the HTML pages that you may use in the final version of this project:
+
+**Index**
+
+![Index 1](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Index%201.PNG)
+
+![Index 2](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Index%202.PNG)
+
+**About Us** (the text is just one example)
+
+![AboutUs](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/AboutUs.PNG)
+
+
 
  ## **Algorithms**
 
