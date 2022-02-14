@@ -10,8 +10,8 @@ public class ShoppingList {
     ArrayList<String> list;
 
 
-    public ShoppingList(Set<Recipe> weeklyFoods) {
-        for(Recipe r : weeklyFoods){
+    public ShoppingList(Recipe[] weeklyPlan) {
+        for(Recipe r : weeklyPlan){
             for(String s : r.getIngredients()){
                 Integer n = numberofIntredients.get(s);
                 if (n==null)

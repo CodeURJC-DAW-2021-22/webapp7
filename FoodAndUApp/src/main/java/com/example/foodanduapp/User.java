@@ -8,6 +8,7 @@ public class User {
     String password;
     Menu activeMenu;
     Set<Menu> storedMenus;
+    ShoppingList list;
 
     public User(String mail, String username, String password) {
         this.mail = mail;
@@ -15,6 +16,13 @@ public class User {
         this.password = password;
         this.activeMenu = null;
         this.storedMenus = null;
+        this.list = null; // esto habria que generarlo una vez la base de datos devuelva un menu activo
+    }
+
+    public ShoppingList generateList(){
+        if(activeMenu!=null)
+            return new ShoppingList(this.activeMenu.getWeeklyPlan());
+        return null;
     }
 
     public String getMail() {

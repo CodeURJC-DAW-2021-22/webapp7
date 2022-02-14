@@ -6,6 +6,7 @@ public class Menu {
     public Menu() {
         weeklyPlan = new Recipe[14];
     }
+
     public void addDinner(Recipe meal, int n){
         weeklyPlan[n*2] = meal;
     }
