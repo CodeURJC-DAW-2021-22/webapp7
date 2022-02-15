@@ -1,23 +1,25 @@
 package com.example.demo.model;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+
+@Entity
 public class Diet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id = null;
 
-    ArrayList<Menu> dieta;
+
+    @OneToMany
+    private List<Menu> dieta;
 
 
 
 
-    public ArrayList<Menu> getDieta() {
+    public List<Menu> getDieta() {
         return dieta;
     }
 
@@ -36,4 +38,11 @@ public class Diet {
         dieta.remove(m);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

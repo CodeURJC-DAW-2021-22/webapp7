@@ -1,11 +1,10 @@
 package com.example.demo.model;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.*;
+import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import java.util.Set;
 
+@Entity
 public class User {
 
     @Id
@@ -15,9 +14,15 @@ public class User {
     String mail;
     String username;
     String password;
+
+    @OneToOne
     Menu activeMenu;
-    Set<Menu> storedMenus;
-    ShoppingList list;
+
+    @OneToMany
+    List<Menu> storedMenus;
+
+    @OneToOne
+    ShoppingList shoppingList;
 
     public User(String mail, String username, String password) {
         this.mail = mail;
@@ -25,7 +30,11 @@ public class User {
         this.password = password;
         this.activeMenu = null;
         this.storedMenus = null;
-        this.list = null; // esto habria que generarlo una vez la base de datos devuelva un menu activo
+        this.shoppingList = null; // esto habria que generarlo una vez la base de datos devuelva un menu activo
+    }
+
+    public User() {
+
     }
 
     public ShoppingList generateList(){
@@ -46,11 +55,11 @@ public class User {
         this.activeMenu = activeMenu;
     }
 
-    public Set<Menu> getStoredMenus() {
+    public List<Menu> getStoredMenus() {
         return storedMenus;
     }
 
-    public void setStoredMenus(Set<Menu> storedMenus) {
+    public void setStoredMenus(List<Menu> storedMenus) {
         this.storedMenus = storedMenus;
     }
 
@@ -72,5 +81,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
