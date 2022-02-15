@@ -1547,6 +1547,11 @@ margin:0;
 padding-top:50px;
 padding-bottom:80px;
     }
+.blog_center_4_main_top{
+   padding-top:50px;
+   padding-bottom:80px;
+   padding-left:50px;
+      }
 .blog_center_2_main_top_2 h2{
 padding:0;
 margin:0;
@@ -1607,7 +1612,9 @@ text-decoration:none;
 margin-left:10px;
 font-size:14px;
     }
-
+.blog_center_3_main_diets{
+  padding:50px;
+  margin:0px;
 /********************* blog_end ****************/
 
 /********************* contact_us ****************/
