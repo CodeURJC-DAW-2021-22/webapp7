@@ -1,15 +1,25 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+@Entity
 public class ShoppingList {
     Map<String, Integer> numberofIntredients;
-    ArrayList<String> list;
+    List<String> list;
+    private Long id;
 
 
-    public ShoppingList(Recipe[] weeklyPlan) {
+    public ShoppingList() {
+    }
+
+
+    public ShoppingList(List<Recipe> weeklyPlan){
+
+    }
+    /*public ShoppingList(Recipe[] weeklyPlan) {
         for (Recipe r : weeklyPlan) {
             for (String s : r.getIngredients()) {
                 Integer n = numberofIntredients.get(s);
@@ -24,5 +34,14 @@ public class ShoppingList {
             String s = e.getKey() + " -> " + String.valueOf(e.getValue());
             list.add(s);
         }
+    }*/
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    public Long getId() {
+        return id;
     }
 }

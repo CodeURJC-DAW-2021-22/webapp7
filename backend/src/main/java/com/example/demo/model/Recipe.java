@@ -1,29 +1,33 @@
 package com.example.demo.model;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
+
+@Entity
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id = null;
 
+    @Column(columnDefinition = "TEXT")
+    String preparation;
 
     String name;
     Integer cookTime;
     String difficulty;
     Date uploadDate;
-    User user;
-    ArrayList<String> ingredients;
-    boolean[] categories;
-    String preparation;
+    String ingredients;
+    String user;
 
-    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, User user, String ingredients, boolean[] categories, String preparation) {
+    @ElementCollection
+    List<Boolean> categories;
+
+
+    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String user, String ingredients, List<Boolean> categories, String preparation) {
         this.name = name;
         this.cookTime = cookTime;
         this.difficulty = difficulty;
@@ -32,12 +36,13 @@ public class Recipe {
 
         Scanner sc = new Scanner(ingredients);
         sc.useDelimiter(",");
-        this.ingredients = new ArrayList<String>();
-        while (sc.hasNext()){
-            this.ingredients.add(sc.next());
-        }
+        this.ingredients = ingredients;
         this.categories = categories;
         this.preparation = preparation;
+    }
+
+    public Recipe() {
+
     }
 
     public String getName() {
@@ -72,27 +77,27 @@ public class Recipe {
         this.uploadDate = uploadDate;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
-    public ArrayList<String> getIngredients() {
+    public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(ArrayList<String> ingredients) {
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
 
-    public boolean[] getCategories() {
+    public List<Boolean> getCategories() {
         return categories;
     }
 
-    public void setCategories(boolean[] categories) {
+    public void setCategories(List<Boolean> categories) {
         this.categories = categories;
     }
 
@@ -102,5 +107,13 @@ public class Recipe {
 
     public void setPreparation(String preparation) {
         this.preparation = preparation;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
