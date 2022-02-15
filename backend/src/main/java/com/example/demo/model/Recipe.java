@@ -1,10 +1,19 @@
 package com.example.demo.model;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Recipe {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id = null;
+
+
     String name;
     Integer cookTime;
     String difficulty;
