@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class DefaultModelAttributes {
     @ModelAttribute("headers")
     public void header(Model model){
-
+    
     }
 }
