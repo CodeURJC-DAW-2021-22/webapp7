@@ -1,14 +1,16 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 
 @Entity
 public class ShoppingList {
+    @ElementCollection
     Map<String, Integer> numberofIntredients;
+    @ElementCollection
     List<String> list;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
@@ -40,7 +42,6 @@ public class ShoppingList {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
     }
