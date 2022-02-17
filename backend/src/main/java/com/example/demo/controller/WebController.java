@@ -12,4 +12,8 @@ public class WebController {
     public String init() {
         return "index.html";
     }
+
+
+    @GetMapping("/Recipes")
+    public String getRecipes(){return "recipe.html";}
 }
