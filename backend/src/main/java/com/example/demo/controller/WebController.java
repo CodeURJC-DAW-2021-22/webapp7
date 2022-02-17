@@ -10,33 +10,33 @@ public class WebController {
 
     @GetMapping("/")
     public String init() {
-        return "index.html";
+        return "index";
     }
 
     @GetMapping("/Recipes")
-    public String getRecipes(){return "recipe.html";}
+    public String getRecipes(){return "recipe";}
 
     @GetMapping("/Recipe")
-    public String getRecipe(){return "details.html";}
+    public String getRecipe(){return "details";}
 
     @GetMapping("/LogIn")
-    public String getLogin(){return "login.html";}
+    public String getLogin(){return "login";}
 
     @GetMapping("/YourMenu")
-    public String getMenu_Activo(){return "Menu_Activo.html";}
+    public String getMenu_Activo(){return "Menu_Activo";}
 
     @GetMapping("/StoredRecipes")
-    public String getStored_Recipes(){return "Stored_Recipes.html";}
+    public String getStored_Recipes(){return "Stored_Recipes";}
 
     @GetMapping("/User")
-    public String getUser(){return "user.html";}
+    public String getUser(){return "user";}
 
     @GetMapping("/AboutUs")
-    public String getAboutUs(){return "AboutUs.html";}
+    public String getAboutUs(){return "AboutUs";}
 
     @GetMapping("/StoredDiets")
-    public String getStoredDiets(){return "DropDown.html";}
+    public String getStoredDiets(){return "DropDown";}
 
     @GetMapping("/AdminProfile")
-    public String getAdminProfile(){return "Admin.html";}
+    public String getAdminProfile(){return "Admin";}
 }
