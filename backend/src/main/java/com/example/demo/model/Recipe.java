@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -11,28 +10,28 @@ import java.util.Scanner;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id = null;
+    private Long id;
 
     @Column(columnDefinition = "TEXT")
-    String preparation;
+    private String preparation;
 
-    String name;
-    Integer cookTime;
-    String difficulty;
-    Date uploadDate;
-    String ingredients;
-    String user;
+    private String name;
+    private Integer cookTime;
+    private String difficulty;
+    private Date uploadDate;
+    private String ingredients;
+    private String bebeJefazo;
 
     @ElementCollection
     List<Boolean> categories;
 
 
-    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String user, String ingredients, List<Boolean> categories, String preparation) {
+    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String bebeJefazo, String ingredients, List<Boolean> categories, String preparation) {
         this.name = name;
         this.cookTime = cookTime;
         this.difficulty = difficulty;
         this.uploadDate = uploadDate;
-        this.user = user;
+        this.bebeJefazo = bebeJefazo;
 
         Scanner sc = new Scanner(ingredients);
         sc.useDelimiter(",");
@@ -77,12 +76,12 @@ public class Recipe {
         this.uploadDate = uploadDate;
     }
 
-    public String getUser() {
-        return user;
+    public String getBebeJefazo() {
+        return bebeJefazo;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setBebeJefazo(String user) {
+        this.bebeJefazo = user;
     }
 
     public String getIngredients() {

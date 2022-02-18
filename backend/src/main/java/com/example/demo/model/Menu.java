@@ -9,11 +9,14 @@ import java.util.List;
 @Entity
 public class Menu {
 
-
-    @OneToMany
-    List<Recipe> weeklyPlan;
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String nombre;
+    @OneToMany
+    private List<Recipe> weeklyPlan;
+
+
     public Menu() {
         weeklyPlan = new ArrayList<Recipe>();
     }
@@ -34,6 +37,14 @@ public class Menu {
         this.weeklyPlan = weeklyPlan;
     }
     public void setId(Long id) {this.id = id;}
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Long getId() {return id;}
 
