@@ -20,18 +20,18 @@ public class Recipe {
     private String difficulty;
     private Date uploadDate;
     private String ingredients;
-    private String bebeJefazo;
+    private String creator;
 
     @ElementCollection
     List<Boolean> categories;
 
 
-    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String bebeJefazo, String ingredients, List<Boolean> categories, String preparation) {
+    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String creator, String ingredients, List<Boolean> categories, String preparation) {
         this.name = name;
         this.cookTime = cookTime;
         this.difficulty = difficulty;
         this.uploadDate = uploadDate;
-        this.bebeJefazo = bebeJefazo;
+        this.creator = creator;
 
         Scanner sc = new Scanner(ingredients);
         sc.useDelimiter(",");
@@ -76,12 +76,12 @@ public class Recipe {
         this.uploadDate = uploadDate;
     }
 
-    public String getBebeJefazo() {
-        return bebeJefazo;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setBebeJefazo(String user) {
-        this.bebeJefazo = user;
+    public void setCreator(String user) {
+        this.creator = user;
     }
 
     public String getIngredients() {

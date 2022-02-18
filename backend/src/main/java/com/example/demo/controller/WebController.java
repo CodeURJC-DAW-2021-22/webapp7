@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -20,7 +23,13 @@ public class WebController {
     public String getRecipe(){return "details";}
 
     @GetMapping("/LogIn")
-    public String getLogin(){return "login";}
+    public String getLogin(Model model, String mail, String name, String password){
+        model.addAttribute("Email",mail);
+        model.addAttribute("userName", name);
+        model.addAttribute("userPassword",password);
+
+        return "login";
+    }
 
     @GetMapping("/YourMenu")
     public String getMenu_Activo(){return "Menu_Activo";}
