@@ -3,14 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 
@@ -23,11 +18,15 @@ public class WebController {
     @Autowired
     private UserService userService;
 
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        model.addAttribute("logged", false);
+    }
 
 
 
     @GetMapping("/")
-    public String init() {
+    public String init(Model model) {
         return "index";
     }
 
@@ -43,11 +42,12 @@ public class WebController {
     }
 
     @PostMapping("/processFormLogIn")
-    public String procesarFormulario(@RequestParam String name,@RequestParam String password){
+    public String procesarFormulario(Model model, @RequestParam String name,@RequestParam String password){
         Optional<User> tryUser = userService.findByName(name);
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
+                model.addAttribute("logged",true);
                 return "index";
             }
             else
