@@ -1,14 +1,29 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 
 @Controller
 public class WebController {
+
+
+    private User currentUser;
+
+    @Autowired
+    private UserService userService;
+
+
 
 
     @GetMapping("/")
@@ -23,12 +38,28 @@ public class WebController {
     public String getRecipe(){return "details";}
 
     @GetMapping("/LogIn")
-    public String getLogin(Model model, String mail, String name, String password){
-        model.addAttribute("Email",mail);
-        model.addAttribute("userName", name);
-        model.addAttribute("userPassword",password);
+    public String getLogin(){
+        return("login");
+    }
 
-        return "login";
+    @PostMapping("/processFormLogIn")
+    public String procesarFormulario(@RequestParam String name,@RequestParam String password){
+        Optional<User> tryUser = userService.findByName(name);
+        if (tryUser.isPresent()) {
+            if (tryUser.get().getPassword().equals(password)) {
+                currentUser = tryUser.get();
+                return "index";
+            }
+            else
+                return "loginerror";
+        }
+        else
+            return "loginerror";
+    }
+
+    @GetMapping("/LogInError")
+    public String getLoginError(){
+        return "loginerror";
     }
 
     @GetMapping("/YourMenu")
