@@ -13,14 +13,17 @@ import java.util.Optional;
 public class WebController {
 
 
-    private User currentUser;
+    private User currentUser=null;
 
     @Autowired
     private UserService userService;
 
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("logged", false);
+        if (currentUser==null)
+            model.addAttribute("logged", false);
+        else
+            model.addAttribute("logged",true);
     }
 
 
@@ -70,7 +73,7 @@ public class WebController {
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
-                model.addAttribute("logged",true);
+                //model.addAttribute("logged",true);
                 return "index";
             }
             else
