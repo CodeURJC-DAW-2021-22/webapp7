@@ -11,8 +11,11 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
 
         public Optional<User> findById(long id) {
             return repository.findById(id);
@@ -20,6 +23,9 @@ public class UserService {
         public Optional<User> findByName(String name) {
             return repository.findByName(name);
         }
+        public Optional<User> findByMail(String mail) {
+        return repository.findByMail(mail);
+    }
 
         public boolean exist(long id) {
             return repository.existsById(id);

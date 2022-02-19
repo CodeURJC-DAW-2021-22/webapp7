@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.Cascade;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +19,12 @@ public class User {
     private String name;
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name="ID_Menu", referencedColumnName = "id")
     private Menu activeMenu;
 
-    @OneToMany
+
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Diet> storedDiets;
 
     public User() {

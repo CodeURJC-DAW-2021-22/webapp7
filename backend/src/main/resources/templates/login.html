@@ -9,13 +9,13 @@
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
 			<div class="signup">
-				<form>
+				<form action="/processFormSignUp" method="post">
 					<button class="goback_button" value="Return" onClick="history.go(-1);">Go Back</button>
 					<label for="chk" aria-hidden="true">Sign up</label>
 					<input type="text" name="name" placeholder="User name" required="">
 					<input type="email" name="mail" placeholder="Email" required="">
 					<input type="password" name="password" placeholder="Password" required="">
-					<INPUT type="submit" placeholder="Sign up">
+					<input type="submit" placeholder="Sign up">
 				</form>
 			</div>
 

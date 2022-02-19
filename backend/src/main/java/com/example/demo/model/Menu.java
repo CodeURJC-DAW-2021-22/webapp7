@@ -13,7 +13,7 @@ public class Menu {
     private Long id;
 
     private String nombre;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Recipe> weeklyPlan;
 
 

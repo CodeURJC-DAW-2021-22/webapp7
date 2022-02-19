@@ -14,7 +14,8 @@ public class Diet {
 
 
     private String nombre;
-    @OneToMany
+
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Menu> dieta;
 
 
