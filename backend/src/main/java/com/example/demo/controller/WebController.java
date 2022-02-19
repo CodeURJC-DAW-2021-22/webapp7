@@ -31,15 +31,38 @@ public class WebController {
     }
 
     @GetMapping("/Recipes")
-    public String getRecipes(){return "recipe";}
+    public String getRecipes(Model model){return "recipe";}
 
     @GetMapping("/Recipe")
-    public String getRecipe(){return "details";}
+    public String getRecipe(Model model){return "details";}
 
     @GetMapping("/LogIn")
-    public String getLogin(){
+    public String getLogin(Model model){
         return("login");
     }
+
+    @GetMapping("/LogInError")
+    public String getLoginError(Model model){
+        return "loginerror";
+    }
+
+    @GetMapping("/YourMenu")
+    public String getMenu_Activo(Model model){return "Menu_Activo";}
+
+    @GetMapping("/StoredRecipes")
+    public String getStored_Recipes(Model model){return "Stored_Recipes";}
+
+    @GetMapping("/User")
+    public String getUser(Model model){return "user";}
+
+    @GetMapping("/AboutUs")
+    public String getAboutUs(Model model){return "AboutUs";}
+
+    @GetMapping("/StoredDiets")
+    public String getStoredDiets(Model model){return "DropDown";}
+
+    @GetMapping("/AdminProfile")
+    public String getAdminProfile(Model model){return "Admin";}
 
     @PostMapping("/processFormLogIn")
     public String procesarFormulario(Model model, @RequestParam String name,@RequestParam String password){
@@ -56,27 +79,4 @@ public class WebController {
         else
             return "loginerror";
     }
-
-    @GetMapping("/LogInError")
-    public String getLoginError(){
-        return "loginerror";
-    }
-
-    @GetMapping("/YourMenu")
-    public String getMenu_Activo(){return "Menu_Activo";}
-
-    @GetMapping("/StoredRecipes")
-    public String getStored_Recipes(){return "Stored_Recipes";}
-
-    @GetMapping("/User")
-    public String getUser(){return "user";}
-
-    @GetMapping("/AboutUs")
-    public String getAboutUs(){return "AboutUs";}
-
-    @GetMapping("/StoredDiets")
-    public String getStoredDiets(){return "DropDown";}
-
-    @GetMapping("/AdminProfile")
-    public String getAdminProfile(){return "Admin";}
 }
