@@ -2,10 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Diet;
 import com.example.demo.model.Menu;
+<<<<<<< HEAD
 import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
+=======
+import com.example.demo.model.User;
+import com.example.demo.repository.MenuRepository;
+>>>>>>> main
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -17,10 +22,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+<<<<<<< HEAD
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+=======
+import java.util.ArrayList;
+>>>>>>> main
 import java.util.List;
 import java.util.Optional;
 
@@ -35,9 +44,12 @@ public class WebController {
     private MenuRepository menuRepository;
 
     @Autowired
+<<<<<<< HEAD
     private RecipeRepository recipeRepository;
 
     @Autowired
+=======
+>>>>>>> main
     private UserService userService;
 
     @Autowired
@@ -95,6 +107,7 @@ public class WebController {
     @GetMapping("/RecipeMaker")
     public String getRecipeMaker(Model model){return "RecipeMaker";}
 
+<<<<<<< HEAD
     @PostMapping("/processFormRecipe")
     public String processRecipeMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam boolean vegetables, @RequestParam boolean protein, @RequestParam boolean hydrates, @RequestParam boolean carbohydrates, @RequestParam boolean highinfat){
         String creator = "creator";
@@ -109,6 +122,11 @@ public class WebController {
 
     @PostMapping("/processFormSignUp")
     public String processRegister(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
+=======
+
+    @PostMapping("/processFormSignUp")
+    public String procesarRegistro(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
+>>>>>>> main
         Menu menuVoid = new Menu();
         List<Diet> dietas = new ArrayList<Diet>();
         menuRepository.save(menuVoid);
@@ -127,7 +145,11 @@ public class WebController {
     }
 
     @PostMapping("/processFormLogIn")
+<<<<<<< HEAD
     public String processForm(Model model, @RequestParam String name,@RequestParam String password){
+=======
+    public String procesarFormulario(Model model, @RequestParam String name,@RequestParam String password){
+>>>>>>> main
         Optional<User> tryUser = userService.findByName(name);
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
