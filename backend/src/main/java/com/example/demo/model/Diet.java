@@ -10,13 +10,13 @@ public class Diet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id = null;
+    private Long id;
 
 
-    @OneToMany
+    private String nombre;
+
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Menu> dieta;
-
-
 
 
     public List<Menu> getDieta() {
@@ -44,5 +44,17 @@ public class Diet {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDieta(List<Menu> dieta) {
+        this.dieta = dieta;
     }
 }

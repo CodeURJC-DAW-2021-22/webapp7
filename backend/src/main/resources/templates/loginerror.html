@@ -9,13 +9,13 @@
 	<div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
 			<div class="signup">
-				<form action="/processFormSignUp" method="post">
+				<form action="/processFormLogIn" method="post">
 					<button class="goback_button" value="Return" onClick="history.go(-1);">Go Back</button>
 					<label for="chk" aria-hidden="true">Sign up</label>
 					<input type="text" name="name" placeholder="User name" required="">
 					<input type="email" name="mail" placeholder="Email" required="">
 					<input type="password" name="password" placeholder="Password" required="">
-					<input type="submit" placeholder="Sign up">
+					<button>Sign up</button>
 				</form>
 			</div>
 
@@ -24,7 +24,8 @@
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="text" name="name" placeholder="User name" required="">
 					<input type="password" name="password" placeholder="Password" required="">
-					<input type="submit" value="Log In">
+					<p style= "text-align: center;"> Error while you tried to log in</p>
+					<button>Login</button>
 				</form>
 			</div>
 	</div>

@@ -1,41 +1,42 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.Cascade;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity
+@Entity @Table(name="userTable")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id = null;
+    private Long id;
 
-    String mail;
-    String username;
-    String password;
+    private String mail;
+    private String name;
+    private String password;
 
-    @OneToOne
-    Menu activeMenu;
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name="ID_Menu", referencedColumnName = "id")
+    private Menu activeMenu;
 
-    @OneToMany
-    List<Menu> storedMenus;
 
-    @OneToOne
-    ShoppingList shoppingList;
-
-    public User(String mail, String username, String password) {
-        this.mail = mail;
-        this.username = username;
-        this.password = password;
-        this.activeMenu = null;
-        this.storedMenus = null;
-        this.shoppingList = null; // esto habria que generarlo una vez la base de datos devuelva un menu activo
-    }
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    private List<Diet> storedDiets;
 
     public User() {
 
     }
+    public User(String mail, String username, String password, Menu act, List<Diet> dietas) {
+        this.mail = mail;
+        this.name = username;
+        this.password = password;
+        this.activeMenu = act;
+        this.storedDiets = dietas;}
+
 
     public ShoppingList generateList(){
         if(activeMenu!=null)
@@ -55,12 +56,20 @@ public class User {
         this.activeMenu = activeMenu;
     }
 
-    public List<Menu> getStoredMenus() {
-        return storedMenus;
+    public String getName() {
+        return name;
     }
 
-    public void setStoredMenus(List<Menu> storedMenus) {
-        this.storedMenus = storedMenus;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Diet> getStoredDiets() {
+        return storedDiets;
+    }
+
+    public void setStoredDiets(List<Diet> storedDiets) {
+        this.storedDiets = storedDiets;
     }
 
     public void setMail(String mail) {
@@ -68,11 +77,11 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.name = username;
     }
 
     public String getPassword() {

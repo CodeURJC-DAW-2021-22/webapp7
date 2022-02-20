@@ -29,7 +29,12 @@
 					</div>
 					<div class="col-sm-3 header_right">
 						<ul>
-							<li><a href="/">Login/SignIn</a></li>
+							{{^logged}}
+							<li><a href="/LogIn">Login/SignIn</a></li>
+							{{/logged}}
+							{{#logged}}
+							<li><a href="/User">Logout</a></li>
+							{{/logged}}
 						</ul>
 					</div>
 				</div>
@@ -56,7 +61,10 @@
 								<li><a href="/">Home</a></li>
 								<li><a href="/Recipes">Recipe</a></li>
 								<li><a href="/AboutUs">About US</a></li>
+								{{#logged}}
 								<li class="active_2"><a href="/User">User</a></li>
+								{{/logged}}
+
 							</ul>
 						</div>
 					</nav>
