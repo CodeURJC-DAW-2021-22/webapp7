@@ -24,7 +24,6 @@ public class Recipe {
 
 
 
-<<<<<<< HEAD
     private boolean vegetables;
     private boolean protein;
     private boolean hydrates;
@@ -33,23 +32,17 @@ public class Recipe {
 
 
     public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String creator, String ingredients, boolean vegetables, boolean protein, boolean hydrates, boolean carbohydrates, boolean highinfat, String preparation) {
-=======
-    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String creator, String ingredients, List<Boolean> categories, String preparation) {
->>>>>>> main
         this.name = name;
         this.cookTime = cookTime;
         this.difficulty = difficulty;
         this.uploadDate = uploadDate;
         this.creator = creator;
-<<<<<<< HEAD
 
         this.vegetables = vegetables;
         this.protein = protein;
         this.hydrates = hydrates;
         this.carbohydrates = carbohydrates;
         this.highinfat = highinfat;
-=======
->>>>>>> main
 
         Scanner sc = new Scanner(ingredients);
         sc.useDelimiter(",");
