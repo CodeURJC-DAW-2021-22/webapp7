@@ -3,12 +3,16 @@ package com.example.demo.service;
 
 import com.example.demo.model.Diet;
 import com.example.demo.model.Menu;
+import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.repository.DietRepository;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.UserRepository;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -47,12 +51,18 @@ public class DatabaseInit {
         User user3 = new User("user3@gmail.com","user3","123",menuVoid,dietas);
         User user4 = new User("user4@gmail.com","user4","123",menuVoid,dietas);
         User admin = new User("admin@gmail.com","admin","123",menuVoid,dietas);
-
+        Recipe newRecipe= new Recipe();
         userRepository.save(user0);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
         userRepository.save(user4);
         userRepository.save(admin);
+
+    }
+    public void setRecipeImage (Recipe newRecipe, String classpathResource) throws IOException {
+        newRecipe.setHasPhoto(true);
+        Resource image = new ClassPathResource(classpathResource);
+        newRecipe.setRecipePhoto(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
     }
 }
