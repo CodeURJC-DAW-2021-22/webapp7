@@ -34,7 +34,7 @@ public class Recipe {
     private boolean highinfat;
 
 
-    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String ingredients, String creator, boolean vegetables, boolean protein, boolean hydrates, boolean carbohydrates, boolean highinfat, String preparation) {
+    public Recipe(String name, Integer cookTime, String difficulty, Date uploadDate, String creator, String ingredients, boolean vegetables, boolean protein, boolean hydrates, boolean carbohydrates, boolean highinfat, String preparation) {
         this.name = name;
         this.cookTime = cookTime;
         this.difficulty = difficulty;
