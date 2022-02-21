@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -41,26 +40,6 @@ public class DatabaseInit {
 
     @PostConstruct
     public void init() throws IOException, URISyntaxException{
-
-        //sample users
-        Menu menuVoid = new Menu();
-        menuRepository.save(menuVoid);
-        List<Menu> menuList = new ArrayList<Menu>();
-        List<Diet> dietas = new ArrayList<Diet>();
-        User user0 = new User("user0@gmail.com","user0","123",menuVoid,dietas);
-        User user1 = new User("user1@gmail.com","user1","123",menuVoid,dietas);
-        User user2 = new User("user2@gmail.com","user2","123",menuVoid,dietas);
-        User user3 = new User("user3@gmail.com","user3","123",menuVoid,dietas);
-        User user4 = new User("user4@gmail.com","user4","123",menuVoid,dietas);
-        User admin = new User("admin@gmail.com","admin","123",menuVoid,dietas);
-
-        userRepository.save(user0);
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
-        userRepository.save(user4);
-        userRepository.save(admin);
-
 
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -94,7 +73,6 @@ public class DatabaseInit {
         recipeRepository.save(recipe13);
 
 
-
         List listRecipes1 = new ArrayList<Recipe>();
         listRecipes1.add(recipe1);
         listRecipes1.add(recipe2);
@@ -111,6 +89,24 @@ public class DatabaseInit {
         listRecipes1.add(recipe13);
         Menu menu1 = new Menu("Menu1", listRecipes1);
         menuRepository.save(menu1);
+
+        List<Menu> menuList = new ArrayList<Menu>();
+        List<Diet> dietas = new ArrayList<Diet>();
+        User user0 = new User("user0@gmail.com","user0","123",menu1,dietas);
+        User user1 = new User("user1@gmail.com","user1","123",menu1,dietas);
+        User user2 = new User("user2@gmail.com","user2","123",menu1,dietas);
+        User user3 = new User("user3@gmail.com","user3","123",menu1,dietas);
+        User user4 = new User("user4@gmail.com","user4","123",menu1,dietas);
+        User admin = new User("admin@gmail.com","admin","123",menu1,dietas);
+
+        userRepository.save(user0);
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
+        userRepository.save(user4);
+        userRepository.save(admin);
+
+
     }
 
     public void setRecipeImage (Recipe newRecipe, String classpathResource) throws IOException {

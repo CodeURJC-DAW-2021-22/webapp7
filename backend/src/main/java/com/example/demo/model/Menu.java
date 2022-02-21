@@ -14,7 +14,8 @@ public class Menu {
 
     private String nombre;
 
-    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     private List<Recipe> weeklyPlan;
 
 
@@ -22,7 +23,10 @@ public class Menu {
         weeklyPlan = new ArrayList<Recipe>();
     }
 
-    public Menu(String nombre, List weeklyPlan){ this.weeklyPlan=weeklyPlan;}
+    public Menu(String nombre, List weeklyPlan){
+        this.weeklyPlan=weeklyPlan;
+        this.nombre=nombre;
+    }
 
 
 
