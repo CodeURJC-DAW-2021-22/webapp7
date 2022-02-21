@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Food & U: Recipe Name</title>
+<title>Food & U: {{recipe.name}}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-     <script type="text/javascript"  src="js/jquery-2.1.1.min.js"></script>
-     <script  type="text/javascript" src="js/bootstrap.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
-	 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+     <script type="text/javascript"  src="../js/jquery-2.1.1.min.js"></script>
+     <script  type="text/javascript" src="../js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+	 <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
 
  </head>
 
@@ -92,7 +92,7 @@
      <div class="detail_n clearfix" style="margin-top:40px;">
 	  <div class="col-sm-6 pad_l">
 	   <div class="detail_nl clearfix">
-	    <img src="img/23.jpg" class="iw" alt="abc">
+	    <img src="/recipe/{{recipe.id}}/image" class="iw" alt="abc">
 	   </div>
 	  </div>
 	  <div class="col-sm-5">
@@ -130,21 +130,7 @@
 		<div class="salad_5">
 		<div class="col-sm-12">
 		<h3>Categories</h3>
-			{{#recipe.vegetables}}
-			<h5> "Vegetables" </h5>
-			{{/recipe.vegetables}}
-			{{#recipe.protein}}
-			<h5> "Protein" </h5>
-			{{/recipe.protein}}
-			{{#recipe.hydrates}}
-			<h5> "Hydrates" </h5>
-			{{/recipe.hydrates}}
-			{{#recipe.carbohydrates}}
-			<h5> "Carbohydrates" </h5>
-			{{/recipe.carbohydrates}}
-			{{#recipe.highinfat}}
-			<h5> "High in fat"</h5>
-			{{/recipe.highinfat}}
+			<h5>{{#recipe.vegetables}} "Vegetables" {{/recipe.vegetables}} {{#recipe.protein}} "Protein" {{/recipe.protein}} {{#recipe.hydrates}} "Hydrates" {{/recipe.hydrates}} {{#recipe.carbohydrates}} "Carbohydrates" {{/recipe.carbohydrates}} {{#recipe.highinfat}} "High in fat" {{/recipe.highinfat}}</h5>
 		</div>
 	 </div>
 	</div>
@@ -156,13 +142,13 @@
  <div class="container">
   <div class="row">
    <div class="bp_1 clearfix">
-     <h1>Popular Dishes</h1>
+     <h1>Similar Dishes</h1>
    </div>
    <div class="bp_2 clearfix">
      <div class="col-sm-3 space_all">
 	  <div class="bp_2m clearfix">
 			<div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
-							<img style="height:250px;" src="img/3.jpg" class="iw mgt" alt="abc">
+							<img style="height:250px;" src="../img/3.jpg" class="iw mgt" alt="abc">
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
@@ -176,7 +162,7 @@
 	 <div class="col-sm-3 space_all">
 	  <div class="bp_2m clearfix">
 			<div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
-							<img style="height:250px;" src="img/13.jpg" class="iw mgt" alt="abc">
+							<img style="height:250px;" src="../img/13.jpg" class="iw mgt" alt="abc">
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
@@ -190,7 +176,7 @@
 	 <div class="col-sm-3 space_all">
 	  <div class="bp_2m clearfix">
 			<div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
-							<img style="height:250px;" src="img/40.jpg" class="iw mgt" alt="abc">
+							<img style="height:250px;" src="../img/40.jpg" class="iw mgt" alt="abc">
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
@@ -205,7 +191,7 @@
 	 <div class="col-sm-3 space_all">
 	  <div class="bp_2m clearfix">
 			<div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
-							<img style="height:250px;" src="img/41.jpg" class="iw mgt" alt="abc">
+							<img style="height:250px;" src="../img/41.jpg" class="iw mgt" alt="abc">
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
@@ -235,6 +221,7 @@
 	 </div>
    </div>
   </div>
+ </div>
  </div>
 </section>
 </body>

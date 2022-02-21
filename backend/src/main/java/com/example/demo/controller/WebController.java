@@ -11,6 +11,10 @@ import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,17 +40,11 @@ public class WebController {
     @Autowired
     private MenuRepository menuRepository;
 
-    //@Autowired
-    //private RecipeRepository recipeRepository;
-
     @Autowired
     private UserService userService;
 
     @Autowired
     private RecipeService recipeService;
-
-    //@Autowired
-    //private UserRepository userRepository;
 
     @ModelAttribute
     public void addAttributes(Model model) {
@@ -173,5 +172,21 @@ public class WebController {
         }
         else
             return "loginerror";
+    }
+
+    @GetMapping("/recipe/{id}/image")
+    public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+
+        Optional<Recipe> recipe = recipeService.findById(id);
+        if (recipe.isPresent() && recipe.get().getRecipeImage() != null) {
+
+            Resource file = new InputStreamResource(recipe.get().getRecipeImage().getBinaryStream());
+
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpg")
+                    .contentLength(recipe.get().getRecipeImage().length()).body(file);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
