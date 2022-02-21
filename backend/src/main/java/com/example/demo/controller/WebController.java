@@ -85,7 +85,11 @@ public class WebController {
     public String getStored_Recipes(Model model){return "Stored_Recipes";}
 
     @GetMapping("/User")
-    public String getUser(Model model){return "user";}
+    public String getUser(Model model){
+        model.addAttribute("username",currentUser.getUsername());
+        model.addAttribute("mail",currentUser.getMail());
+        model.addAttribute("password",currentUser.getPassword());
+        return "user";}
 
     @GetMapping("/AboutUs")
     public String getAboutUs(Model model){return "AboutUs";}
@@ -130,6 +134,12 @@ public class WebController {
         else {
             return "singuperror";
         }
+    }
+    @PostMapping("/LogOut")
+    public String LogOut(Model model){
+        currentUser=null;
+        model.addAttribute("logged",false);
+        return "index";
     }
 
     @PostMapping("/processFormLogIn")

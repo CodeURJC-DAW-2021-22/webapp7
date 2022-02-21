@@ -82,11 +82,10 @@
 	  <div class="col-sm-6 pad_l">
 	  </div>
 	   <div class="detail_nr clearfix">
-	    <h1 style= "text-align: center;">USER: USER NAME</h1>
+	    <h1 style= "text-align: center;">USER: {{username}}</h1>
 	   </div>
-		<p>User Data 1</p>
-		<p>User Data 2</p>
-		<p>...</p>
+		<p>e-mail: {{mail}}</p>
+		<p>password: {{password}}</p>
 		<ul class= "User Links" style= "text-align: center; list-style-type: none;">
 			<li><a href="/YourMenu"><h4>Active Menu</h4></a></li>
 			<li><a href="/StoredDiets"><h4>Stored Diets</h4></a></li>
@@ -94,11 +93,10 @@
 			<li><a href="/StoredRecipes"><h4>Stored Recipes</h4></a></li>
 		</ul>
 		<div class="btn-group-lg" data-toggle="buttons">
-			 <label class="btn btn-success active">
-				<input type="checkbox" autocomplete="off" checked>
-					<span class='on'>Log Out</span>
-					<span class='off'>Log In</span>
-				</label>
+			 <!--<label class="btn btn-success active">-->
+				<!--<input type="checkbox" autocomplete="off" checked>-->
+                 <button><a href="/LogOut">Log Out</a></button>
+				<!--</label>-->
 			 </div>
 		  </div>
 		</div>
