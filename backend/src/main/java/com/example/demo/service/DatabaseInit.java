@@ -46,6 +46,7 @@ public class DatabaseInit {
         Date date = new Date(18/07/2021);
 
         Recipe recipe1 = new Recipe("Huevos revueltos", 5, "Fácil", date, "2 huevos", "Rodri_Chef", false, true, false, false,false, "A la sartén y remover");
+        setRecipeImage(recipe1,"fotoscomida/huevosRevueltos.jpg");
         recipeRepository.save(recipe1);
         Recipe recipe2 = new Recipe("Ensalada de tomate", 7, "Fácil", date, "2 tomates, mozarella y especias al gusto", "Rodri_Chef", true, true, false, false,false, "Cortar los tomates y alinear al gusto junto con la mozarella");
         recipeRepository.save(recipe2);
