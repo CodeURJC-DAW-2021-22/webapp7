@@ -7,5 +7,5 @@ import java.math.BigInteger;
 import java.util.Optional;
 
 public interface MenuRepository extends JpaRepository<Menu,Long> {
-    Optional<Menu> findMenuById(BigInteger id);
+    Optional<Menu> findMenuById(Long id);
 }

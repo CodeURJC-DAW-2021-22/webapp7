@@ -35,8 +35,8 @@ public class UserService {
             return repository.findAll();
         }
 
-        public void save(User book) {
-            repository.save(book);
+        public void save(User user) {
+            repository.save(user);
         }
 
         public void delete(long id) {

@@ -7,6 +7,7 @@ import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,17 @@ public class WebController {
     @Autowired
     private MenuRepository menuRepository;
 
-    @Autowired
-    private RecipeRepository recipeRepository;
+    //@Autowired
+    //private RecipeRepository recipeRepository;
 
     @Autowired
     private UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
+    private RecipeService recipeService;
+
+    //@Autowired
+    //private UserRepository userRepository;
 
     @ModelAttribute
     public void addAttributes(Model model) {
@@ -103,6 +107,19 @@ public class WebController {
     @GetMapping("/RecipeMaker")
     public String getRecipeMaker(Model model){return "RecipeMaker";}
 
+    @GetMapping("/Recipe/{id}")
+    public String showRecipe(Model model, @PathVariable long id) {
+
+        Optional<Recipe> recipe = recipeService.findById(id);
+        if (recipe.isPresent()) {
+            model.addAttribute("recipe", recipe.get());
+            return "recipeLoaded";
+        } else {
+            return "recipe";
+        }
+
+    }
+
     @PostMapping("/processFormRecipe")
     public String processRecipeMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam boolean vegetables, @RequestParam boolean protein, @RequestParam boolean hydrates, @RequestParam boolean carbohydrates, @RequestParam boolean highinfat){
         String creator = "creator";
@@ -111,7 +128,7 @@ public class WebController {
 
         Recipe recipe = new Recipe(name, time, difficulty, date, creator, ingredients, vegetables, protein, hydrates, carbohydrates, highinfat, preparation);
 
-        recipeRepository.save(recipe);
+        recipeService.save(recipe);
         return "Admin";
     }
 
@@ -126,7 +143,7 @@ public class WebController {
         Optional<User> tryUser = userService.findByName(user.getName());
         Optional<User> tryMail = userService.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
-            userRepository.save(user);
+            userService.save(user);
             model.addAttribute("logged",true);
             currentUser=user;
             return "index";

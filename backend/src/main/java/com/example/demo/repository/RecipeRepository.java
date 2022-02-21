@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.math.BigInteger;
 import java.util.Optional;
 
-public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
-    Optional<Recipe> findRecipeById(BigInteger id);
+public interface RecipeRepository extends JpaRepository<Recipe,Long> {
+    Optional<Recipe> findRecipeById(Long id);
 }
