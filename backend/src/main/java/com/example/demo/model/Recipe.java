@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -21,6 +22,11 @@ public class Recipe {
     private Date uploadDate;
     private String ingredients;
     private String creator;
+
+    @Lob
+    Blob recipeImage;
+
+    private boolean hasPhoto;
 
 
 
@@ -52,6 +58,22 @@ public class Recipe {
 
     public Recipe() {
 
+    }
+
+    public Blob getRecipeImage() {
+        return recipeImage;
+    }
+
+    public void setRecipeImage(Blob recipeImage) {
+        this.recipeImage = recipeImage;
+    }
+
+    public boolean isHasPhoto() {
+        return hasPhoto;
+    }
+
+    public void setHasPhoto(boolean hasPhoto) {
+        this.hasPhoto = hasPhoto;
     }
 
     public String getName() {

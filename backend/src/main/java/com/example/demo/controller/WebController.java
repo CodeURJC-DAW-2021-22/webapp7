@@ -73,6 +73,10 @@ public class WebController {
     public String getLoginError(Model model){
         return "loginerror";
     }
+    @GetMapping("/SingUpError")
+    public String getSignUpError(Model model){
+        return "singuperror";
+    }
 
     @GetMapping("/YourMenu")
     public String getMenu_Activo(Model model){return "Menu_Activo";}
@@ -119,10 +123,12 @@ public class WebController {
         Optional<User> tryMail = userService.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
             userRepository.save(user);
-            return "logIn";
+            model.addAttribute("logged",true);
+            currentUser=user;
+            return "index";
         }
         else {
-            return "loginerror";
+            return "singuperror";
         }
     }
 
@@ -132,7 +138,7 @@ public class WebController {
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
-                //model.addAttribute("logged",true);
+                model.addAttribute("logged",true);
                 return "index";
             }
             else
