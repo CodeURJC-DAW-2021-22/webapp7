@@ -37,7 +37,7 @@ public class DatabaseInit {
     public void init() throws IOException, URISyntaxException{
 
         //sample users
-        Menu menuVoid= new Menu();
+        Menu menuVoid = new Menu();
         menuRepository.save(menuVoid);
         List<Menu> menuList = new ArrayList<Menu>();
         List<Diet> dietas = new ArrayList<Diet>();
@@ -58,8 +58,12 @@ public class DatabaseInit {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
 
-        Recipe recipe0 = new Recipe("Tortilla de patatas", 30, "Intermedia", formatter.format(date), "5 patatas, 3 huevos y 1 cebolleta", "Rodri_Chef", false, true, true, false, "Cortar, batir, pochar y cuajar poco")
-        Recipe recipe1 = new Recipe("Huevos revueltos", 5, "Fácil", formatter.format(date), "2 huevos", "Rodri_Chef", false, true, false, false, "A la sartén y remover")
-        Recipe recipe2 = new Recipe("Ensalada de tomate", 7, "Fácil", formatter.format(date), "2 tomates, mozarella y especias al gusto", "Rodri_Chef", true, true, false, false, "Cortar los tomates y alinear al gusto junto con la mozarella")
+        Recipe recipe0 = new Recipe("Tortilla de patatas", 30, "Intermedia", formatter.format(date), "5 patatas, 3 huevos y 1 cebolleta", "Rodri_Chef", false, true, true, false, "Cortar, batir, pochar y cuajar poco");
+        Recipe recipe1 = new Recipe("Huevos revueltos", 5, "Fácil", formatter.format(date), "2 huevos", "Rodri_Chef", false, true, false, false, "A la sartén y remover");
+        Recipe recipe2 = new Recipe("Ensalada de tomate", 7, "Fácil", formatter.format(date), "2 tomates, mozarella y especias al gusto", "Rodri_Chef", true, true, false, false, "Cortar los tomates y alinear al gusto junto con la mozarella");
+
+        RecipesList listReceips1 = ArrayList<Recipe>;
+        listReceips1 = = (recipe0, recipe1, recipe2, recipe3, recipe4, recipe5, recipe6, recipe7, recipe8,recipe9, recipe10, recipe11, recipe12, recipe0);
+        Menu menu0 = new Menu(listReceips1);
     }
 }
