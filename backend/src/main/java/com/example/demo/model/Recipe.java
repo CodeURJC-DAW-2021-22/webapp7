@@ -24,8 +24,11 @@ public class Recipe {
     private String creator;
 
     @Lob
-    private Blob recipePhoto;
+    Blob recipeImage;
+
     private boolean hasPhoto;
+
+
 
     private boolean vegetables;
     private boolean protein;
@@ -57,11 +60,20 @@ public class Recipe {
 
     }
 
-    public Blob getRecipePhoto() {
-        return recipePhoto;
+    public Blob getRecipeImage() {
+        return recipeImage;
     }
-    public void setRecipePhoto(Blob recipePhoto) {
-        this.recipePhoto = recipePhoto;
+
+    public void setRecipeImage(Blob recipeImage) {
+        this.recipeImage = recipeImage;
+    }
+
+    public boolean isHasPhoto() {
+        return hasPhoto;
+    }
+
+    public void setHasPhoto(boolean hasPhoto) {
+        this.hasPhoto = hasPhoto;
     }
 
     public String getName() {
@@ -166,13 +178,5 @@ public class Recipe {
 
     public Long getId() {
         return id;
-    }
-
-    public boolean isHasPhoto() {
-        return hasPhoto;
-    }
-
-    public void setHasPhoto(boolean hasPhoto) {
-        this.hasPhoto = hasPhoto;
     }
 }
