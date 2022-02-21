@@ -60,27 +60,59 @@ public class DatabaseInit {
         userRepository.save(user3);
         userRepository.save(user4);
         userRepository.save(admin);
+
+
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date(18/07/2021);
 
-        Recipe recipe1 = new Recipe("Huevos revueltos", 5, "Fácil", formatter.format(date), "2 huevos", "Rodri_Chef", false, true, false, false, "A la sartén y remover");
-        Recipe recipe2 = new Recipe("Ensalada de tomate", 7, "Fácil", formatter.format(date), "2 tomates, mozarella y especias al gusto", "Rodri_Chef", true, true, false, false, "Cortar los tomates y alinear al gusto junto con la mozarella");
-        Recipe recipe3 = new Recipe("Pechuga a la plancha", 5, "Fácil", formatter.format(date), "Filete de pechuga de pollo", "Rodri_Chef", false, true, false, false, "Vuelta y vuelta en la plancha");
-        Recipe recipe4 = new Recipe("Espaguetis sencillos", 10, "Fácil", formatter.format(date), "150g de pasta larga, especias provenzales y aceite aromatizado", "Rodri_Chef", false, false, true, false, "Cocer la pasta según el fabriante, servir con nuestro aceite aromatizado y las hierbas provenzales");
-        Recipe recipe5 = new Recipe("Arroz con pollo", 10, "Fácil", formatter.format(date), "100g de arroz, 1 pechuga de pollo", "Rodri_Chef", false, true, true, false, "Poner a cocer el arroz, cocinar el pollo en la sartén y añadir el arroz al final con toque de salsa de soja");
-        Recipe recipe6 = new Recipe("Ensalada de canónigos", 5, "Fácil", formatter.format(date), "150g de canónigos", "Rodri_Chef", true, false, false, false, "Alinear los canónigos al gusto");
-        Recipe recipe7 = new Recipe("Sandwich mixto", 8, "Posibilidad de lesión", formatter.format(date), "Pan de molde, jamón york y queso al gusto", "Rodri_Chef", false, true, true, false, "Montar un sandwich puta madre y dale vuelta y vuelta en la sartén");
-        Recipe recipe8 = new Recipe("Papitas fritas", 15, "Intermedia", formatter.format(date), "4 patatas", "Rodri_Chef", false, false, true, true, "Cortar patatas, lavar en agua fría para eliminar almidón y freir en abundante aceite");
-        Recipe recipe9 = new Recipe("Papitas fritas: Versión Airfryer", 15, "Fácil", formatter.format(date), "4 patatas y 1 airfryer", "Rodri_Chef", false, false, true, false, "Cortar patatas, lavar en agua fría para eliminar almidón y meter al airfryer");
-        Recipe recipe10 = new Recipe("Tomahawk a la brasa", 40, "Intermedia", formatter.format(date), "1 Tomahawk de ternera", "Rodri_Chef", false, true, false, false, "Poner a fuego indirecto durante 20 minutos, 10 a cada lado, y 4, 2 a cada lado, a fuego directo");
-        Recipe recipe11 = new Recipe("Cebolla caramelizada", 10 mins, "Fácil", formatter.format(date), "1 cebolleta", "Rodri_Chef", true, false, false, true, "Cortar cebolleta el juliana, y a la sartén con una pizca de azúcar moreno y removiendo constantemente a fuego bajo");
-        Recipe recipe12 = new Recipe("Ensalada mixta", 10, "Fácil", formatter.format(date), "Lechuga iceberg, atún, aceitunas negras, tomate", "Rodri_Chef", true, true, false, false, "Hacer una ensalada, no tiene mucho más");
-        Recipe recipe0 = new Recipe("Tortilla de patatas", 30, "Intermedia", formatter.format(date), "5 patatas, 3 huevos y 1 cebolleta", "Rodri_Chef", false, true, true, false, "Cortar, batir, pochar y cuajar poco");
+        Recipe recipe1 = new Recipe("Huevos revueltos", 5, "Fácil", date, "2 huevos", "Rodri_Chef", false, true, false, false,false, "A la sartén y remover");
+        recipeRepository.save(recipe1);
+        Recipe recipe2 = new Recipe("Ensalada de tomate", 7, "Fácil", date, "2 tomates, mozarella y especias al gusto", "Rodri_Chef", true, true, false, false,false, "Cortar los tomates y alinear al gusto junto con la mozarella");
+        recipeRepository.save(recipe2);
+        Recipe recipe3 = new Recipe("Pechuga a la plancha", 5, "Fácil", date, "Filete de pechuga de pollo", "Rodri_Chef", false, true, false, false,false, "Vuelta y vuelta en la plancha");
+        recipeRepository.save(recipe3);
+        Recipe recipe4 = new Recipe("Espaguetis sencillos", 10, "Fácil", date, "150g de pasta larga, especias provenzales y aceite aromatizado", "Rodri_Chef", false, false, true, false,false, "Cocer la pasta según el fabriante, servir con nuestro aceite aromatizado y las hierbas provenzales");
+        recipeRepository.save(recipe4);
+        Recipe recipe5 = new Recipe("Arroz con pollo", 10, "Fácil", date, "100g de arroz, 1 pechuga de pollo", "Rodri_Chef", false, true, true, false,true, "Poner a cocer el arroz, cocinar el pollo en la sartén y añadir el arroz al final con toque de salsa de soja");
+        recipeRepository.save(recipe5);
+        Recipe recipe6 = new Recipe("Ensalada de canónigos", 5, "Fácil", date, "150g de canónigos", "Rodri_Chef", true, false, false, false,false, "Alinear los canónigos al gusto");
+        recipeRepository.save(recipe6);
+        Recipe recipe7 = new Recipe("Sandwich mixto", 8, "Posibilidad de lesión", date, "Pan de molde, jamón york y queso al gusto", "Rodri_Chef", false, true, true, false,false, "Montar un sandwich puta madre y dale vuelta y vuelta en la sartén");
+        recipeRepository.save(recipe7);
+        Recipe recipe8 = new Recipe("Papitas fritas", 15, "Intermedia", date, "4 patatas", "Rodri_Chef", false, false, true, true,true, "Cortar patatas, lavar en agua fría para eliminar almidón y freir en abundante aceite");
+        recipeRepository.save(recipe8);
+        Recipe recipe9 = new Recipe("Papitas fritas: Versión Airfryer", 15, "Fácil", date, "4 patatas y 1 airfryer", "Rodri_Chef", false, false, true, false,true, "Cortar patatas, lavar en agua fría para eliminar almidón y meter al airfryer");
+        recipeRepository.save(recipe9);
+        Recipe recipe10 = new Recipe("Tomahawk a la brasa", 40, "Intermedia", date, "1 Tomahawk de ternera", "Rodri_Chef", false, true, false, false,true, "Poner a fuego indirecto durante 20 minutos, 10 a cada lado, y 4, 2 a cada lado, a fuego directo");
+        recipeRepository.save(recipe10);
+        Recipe recipe11 = new Recipe("Cebolla caramelizada", 10, "Fácil", date, "1 cebolleta", "Rodri_Chef", true, false, false, true,false, "Cortar cebolleta el juliana, y a la sartén con una pizca de azúcar moreno y removiendo constantemente a fuego bajo");
+        recipeRepository.save(recipe11);
+        Recipe recipe12 = new Recipe("Ensalada mixta", 10, "Fácil", date, "Lechuga iceberg, atún, aceitunas negras, tomate", "Rodri_Chef", true, true, false, false,false, "Hacer una ensalada, no tiene mucho más");
+        recipeRepository.save(recipe12);
+        Recipe recipe13 = new Recipe("Tortilla de patatas", 30, "Intermedia", date, "5 patatas, 3 huevos y 1 cebolleta", "Rodri_Chef", false, true, true, false,true, "Cortar, batir, pochar y cuajar poco");
+        recipeRepository.save(recipe13);
 
-        RecipesList listReceips1 = ArrayList<Recipe>;
-        listReceips1 = = (recipe0, recipe1, recipe2, recipe3, recipe4, recipe5, recipe6, recipe7, recipe8,recipe9, recipe10, recipe11, recipe12, recipe0);
-        Menu menu0 = new Menu(listReceips1);
+
+
+        List listRecipes1 = new ArrayList<Recipe>();
+        listRecipes1.add(recipe1);
+        listRecipes1.add(recipe2);
+        listRecipes1.add(recipe3);
+        listRecipes1.add(recipe4);
+        listRecipes1.add(recipe5);
+        listRecipes1.add(recipe6);
+        listRecipes1.add(recipe7);
+        listRecipes1.add(recipe8);
+        listRecipes1.add(recipe9);
+        listRecipes1.add(recipe10);
+        listRecipes1.add(recipe11);
+        listRecipes1.add(recipe12);
+        listRecipes1.add(recipe13);
+        Menu menu1 = new Menu("Menu1", listRecipes1);
+        menuRepository.save(menu1);
     }
+
     public void setRecipeImage (Recipe newRecipe, String classpathResource) throws IOException {
         newRecipe.setHasPhoto(true);
         Resource image = new ClassPathResource(classpathResource);

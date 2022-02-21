@@ -42,17 +42,13 @@ public class Recipe {
         this.cookTime = cookTime;
         this.difficulty = difficulty;
         this.uploadDate = uploadDate;
+        this.ingredients = ingredients;
         this.creator = creator;
-
         this.vegetables = vegetables;
         this.protein = protein;
         this.hydrates = hydrates;
         this.carbohydrates = carbohydrates;
         this.highinfat = highinfat;
-
-        Scanner sc = new Scanner(ingredients);
-        sc.useDelimiter(",");
-        this.ingredients = ingredients;
         this.preparation = preparation;
     }
 

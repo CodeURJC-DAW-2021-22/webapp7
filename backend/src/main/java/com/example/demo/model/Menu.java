@@ -13,6 +13,7 @@ public class Menu {
     private Long id;
 
     private String nombre;
+
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Recipe> weeklyPlan;
 
@@ -20,6 +21,8 @@ public class Menu {
     public Menu() {
         weeklyPlan = new ArrayList<Recipe>();
     }
+
+    public Menu(String nombre, List weeklyPlan){ this.weeklyPlan=weeklyPlan;}
 
 
 
@@ -30,6 +33,8 @@ public class Menu {
     public void addLunch(Recipe meal, int n){
         weeklyPlan.add(n,meal);
     }
+    public void getLunch(int n){weeklyPlan.get(n);}
+    public void getDinner(int n){weeklyPlan.get(n*2);}
     public List<Recipe> getWeeklyPlan() {
         return weeklyPlan;
     }
