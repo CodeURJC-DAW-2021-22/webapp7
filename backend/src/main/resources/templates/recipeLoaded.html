@@ -16,17 +16,23 @@
 		<p>Cook Time: {{recipe.cookTime}}</p>
 		<p>Dificulty: {{recipe.difficulty}}</p>
 		<h5>{{recipe.uploadDate}} | {{recipe.creator}}</h5>
-		<div class="btn-group-lg" data-toggle="buttons">
-			 <label class="btn btn-success active">
-				<input type="checkbox" autocomplete="off" checked>
-					<span class='on'>Save</span>
-					<span class='off'>Remove</span>
-			 </label>
-			 <label class="btn btn-success active" >
-					<span>Delete</span>
-			 </label>
-		</div>
-	</div>
+		  <form action="/processAddRecipe" method="post">
+			  {{#user}}
+			  	<input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}} >
+				<input type="submit" class="btn btn-danger" onclick="addRecipe()" id="btnSaveRecipe" value="Save Recipe"/>
+			  {{/user}}
+		  </form>
+
+			  {{#disable}}
+				<input type="submit" class="btn btn-danger" id="btnDisable" value="Already Saved" disabled/>
+			  {{/disable}}
+
+		  <form action="/processFormRecipe" method="post">
+			  {{#admin}}
+				<input type="submit" class="btn btn-danger" onclick="deleteRecipe()" id="btnDeleteRecipe" value="Delete Recipe"/>
+			  {{/admin}}
+		  </form>
+	  </div>
 	</div>
 	 </div>
 	 <div class="salad_5">
