@@ -13,15 +13,23 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,6 +54,9 @@ public class WebController {
     @Autowired
     private RecipeService recipeService;
 
+    @Autowired
+    private RecipeRepository recipeRepository;
+
     @ModelAttribute
     public void addAttributes(Model model) {
         if (currentUser==null)
@@ -60,9 +71,6 @@ public class WebController {
     public String init(Model model) {
         return "index";
     }
-
-    @GetMapping("/Recipes")
-    public String getRecipes(Model model){return "recipe";}
 
     @GetMapping("/Recipe")
     public String getRecipe(Model model){return "details";}
@@ -123,6 +131,18 @@ public class WebController {
             return "recipe";
         }
 
+    }
+
+    @GetMapping("/Recipes")
+    public String getAllRecipes(Model model){
+        Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0,12,Sort.by("id").descending()));
+        List<Recipe> recipesModels = new ArrayList<>();
+        for (Recipe recipe: recipes){
+            recipesModels.add(recipe);
+        }
+        model.addAttribute("recipe", recipes.getContent());
+
+        return "recipe";
     }
 
     @PostMapping("/processAddRecipe")

@@ -5,6 +5,11 @@ Author: Templates On Web
 Author URI: http://templateonweb.com/
 Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
 */
+
+.prueba{
+    margin-bottom: 20px;
+}
+
 body{
 font-family: 'Sen', sans-serif;
    }
@@ -1783,7 +1788,7 @@ text-align:center;
   display:inline-block;
   }
 .footer_end .parag p{
-padding:10px; 
+padding:0px;
  }
 /********************* header ****************/
 .header{
@@ -2355,7 +2360,6 @@ margin-bottom:10px;
         padding-left: 20px;
         padding-right: 20px;
     }
-
 
     @media (min-width: 992px) and (max-width: 1200px) {
         .social-circle li a {

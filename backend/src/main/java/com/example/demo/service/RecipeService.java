@@ -2,8 +2,9 @@ package com.example.demo.service;
 
 
 import com.example.demo.model.Recipe;
-import com.example.demo.model.User;
 import com.example.demo.repository.RecipeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -26,8 +27,6 @@ public class RecipeService {
 
     public boolean exist(long id) {
         return repository.existsById(id);}
-
-    public List<Recipe> findAll(){return repository.findAll();}
 
     public void save(Recipe recipe){
         repository.save(recipe);
