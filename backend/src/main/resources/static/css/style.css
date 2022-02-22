@@ -12,8 +12,12 @@ a:hover{
  text-decoration:none; 
   }
 .iw{
- width:100%; 
+    width: 100%
   }
+.fotoReceta{
+    width: 400px;
+    height: 400px;
+}
 .pad_l{
   padding-left:0;
   }
@@ -962,7 +966,7 @@ width: 100%;
 .footer_main{
 position:absolute;
 top:-290px;
-background: transparent url(img/34.png);
+background: transparent url(static/img/34.png);
 
 }   
 /********************* footer_end ****************/
