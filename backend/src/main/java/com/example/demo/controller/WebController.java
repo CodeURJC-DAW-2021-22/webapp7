@@ -151,9 +151,9 @@ public class WebController {
             return "singuperror";
         }
     }
-    @PostMapping("/LogOut")
+    @GetMapping("/processLogOut")
     public String LogOut(Model model){
-        currentUser=null;
+        this.currentUser=null;
         model.addAttribute("logged",false);
         return "index";
     }
