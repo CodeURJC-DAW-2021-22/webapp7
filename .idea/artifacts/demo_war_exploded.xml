@@ -16,7 +16,6 @@
         <element id="directory" name="lib">
           <element id="archive" name="demo-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="demo" />
-            <element id="module-output" name="demo" />
           </element>
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:2.6.3" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:2.6.3" />
