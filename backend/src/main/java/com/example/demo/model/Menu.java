@@ -15,7 +15,7 @@ public class Menu {
     private String nombre;
 
     //@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
-    @OneToMany
+    @ManyToMany
     private List<Recipe> weeklyPlan;
 
 

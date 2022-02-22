@@ -193,7 +193,7 @@ public class DatabaseInit {
         listRecipesCheapBuy.add(recipe13);
         listRecipesCheapBuy.add(recipe3);
         listRecipesCheapBuy.add(recipe13);
-        listRecipesCheapBuy.add(recipe11)
+        listRecipesCheapBuy.add(recipe11);
         listRecipesCheapBuy.add(recipe4);
         listRecipesCheapBuy.add(recipe3);
         listRecipesCheapBuy.add(recipe8);
