@@ -56,6 +56,7 @@ public class Recipe {
 
     }
 
+
     public Blob getRecipeImage() {
         return recipeImage;
     }

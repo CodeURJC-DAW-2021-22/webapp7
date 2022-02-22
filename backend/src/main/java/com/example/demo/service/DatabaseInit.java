@@ -255,12 +255,16 @@ public class DatabaseInit {
 
         List<Menu> menuList = new ArrayList<Menu>();
         List<Diet> dietas = new ArrayList<Diet>();
-        User user0 = new User("user0@gmail.com","user0","123",menu1,dietas);
-        User user1 = new User("user1@gmail.com","user1","123",menu1,dietas);
-        User user2 = new User("user2@gmail.com","user2","123",menu1,dietas);
-        User user3 = new User("user3@gmail.com","user3","123",menu1,dietas);
-        User user4 = new User("user4@gmail.com","user4","123",menu1,dietas);
-        User admin = new User("admin@gmail.com","admin","123",menu1,dietas);
+        List<Recipe> recipes = new ArrayList<Recipe>();
+        List<Recipe> recipesadd = new ArrayList<Recipe>();
+        recipesadd.add(recipe1);
+
+        User user0 = new User("user0@gmail.com","user0","123",recipesadd,menu1,dietas);
+        User user1 = new User("user1@gmail.com","user1","123",recipes,menu1,dietas);
+        User user2 = new User("user2@gmail.com","user2","123",recipes,menu1,dietas);
+        User user3 = new User("user3@gmail.com","user3","123",recipes,menu1,dietas);
+        User user4 = new User("user4@gmail.com","user4","123",recipes,menu1,dietas);
+        User admin = new User("admin@gmail.com","admin","123",recipes,menu1,dietas);
 
         userRepository.save(user0);
         userRepository.save(user1);

@@ -109,6 +109,12 @@ public class WebController {
     @GetMapping("/Recipe/{id}")
     public String showRecipe(Model model, @PathVariable long id) {
 
+        if(currentUser != null && currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)){
+            model.addAttribute("disable", true);
+        }else{
+            model.addAttribute("user", currentUser != null);
+        }
+
         Optional<Recipe> recipe = recipeService.findById(id);
         if (recipe.isPresent()) {
             model.addAttribute("recipe", recipe.get());
@@ -117,6 +123,15 @@ public class WebController {
             return "recipe";
         }
 
+    }
+
+    @PostMapping("/processAddRecipe")
+    public String processAddRecipe(Model model, @RequestParam String id_Recipe){
+        long id=Long.parseLong(id_Recipe);
+        Optional<Recipe> recipe = recipeService.findById(id);
+        currentUser.getStoredRecipes().add(recipe.get());
+
+        return "recipe";
     }
 
     @PostMapping("/processFormRecipe")
@@ -135,9 +150,10 @@ public class WebController {
     public String processRegister(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
         Menu menuVoid = new Menu();
         List<Diet> dietas = new ArrayList<Diet>();
+        List<Recipe> recipes = new ArrayList<Recipe>();
         menuRepository.save(menuVoid);
 
-        User user = new User(mail, name, password, menuVoid, dietas);
+        User user = new User(mail, name, password, recipes, menuVoid, dietas);
 
         Optional<User> tryUser = userService.findByName(user.getName());
         Optional<User> tryMail = userService.findByMail(user.getMail());

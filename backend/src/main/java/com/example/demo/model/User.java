@@ -23,6 +23,8 @@ public class User {
     @JoinColumn(name="ID_Menu", referencedColumnName = "id")
     private Menu activeMenu;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Recipe> storedRecipes;
 
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Diet> storedDiets;
@@ -30,10 +32,11 @@ public class User {
     public User() {
 
     }
-    public User(String mail, String username, String password, Menu act, List<Diet> dietas) {
+    public User(String mail, String username, String password, List<Recipe> recipes, Menu act, List<Diet> dietas) {
         this.mail = mail;
         this.name = username;
         this.password = password;
+        this.storedRecipes = recipes;
         this.activeMenu = act;
         this.storedDiets = dietas;}
 
@@ -42,6 +45,16 @@ public class User {
         if(activeMenu!=null)
             return new ShoppingList(this.activeMenu.getWeeklyPlan());
         return null;
+    }
+
+    public List<Recipe> getStoredRecipes() {
+        return storedRecipes;
+    }
+
+    public void addStoredRecipes(Recipe recipe){this.storedRecipes.add(recipe);}
+
+    public void setStoredRecipes(List<Recipe> storedRecipes) {
+        this.storedRecipes = storedRecipes;
     }
 
     public String getMail() {
