@@ -15,9 +15,17 @@ public class Diet {
 
     private String nombre;
 
-    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany
     private List<Menu> dieta;
 
+    public Diet() {
+        this.dieta=new ArrayList<Menu>();
+    }
+    public Diet(String nombre, List<Menu> listaMenus){
+        this.dieta=listaMenus;
+        this.nombre=nombre;
+    }
 
     public List<Menu> getDieta() {
         return dieta;
@@ -27,9 +35,6 @@ public class Diet {
         this.dieta = dieta;
     }
 
-    public Diet() {
-        this.dieta=new ArrayList<Menu>();
-    }
     public void addtoDiet(Menu newMenu){
         dieta.add(newMenu);
     }

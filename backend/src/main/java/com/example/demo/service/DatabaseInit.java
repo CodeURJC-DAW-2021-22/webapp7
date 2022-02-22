@@ -253,6 +253,36 @@ public class DatabaseInit {
         Menu menu3 = new Menu("Menu 3", listRecipes3);
         menuRepository.save(menu3);
 
+        List listMenuHealthy = new ArrayList<Menu>();
+        listMenuHealthy.add(menuHealthy1);
+        listMenuHealthy.add(menuHealthy2);
+        Diet dietHealthy = new Diet("Healthy Diet", listMenuHealthy);
+        dietRepository.save(dietHealthy);
+
+        List listMenuVegetable = new ArrayList<Menu>();
+        listMenuVegetable.add(menuVegan);
+        listMenuVegetable.add(menuVegetarian);
+        Diet dietVegetable = new Diet("Vegetable Diet", listMenuVegetable);
+        dietRepository.save(dietVegetable);
+
+        List listMenuGym = new ArrayList<Menu>();
+        listMenuGym.add(menuHighVolumeGym);
+        Diet dietGym = new Diet("Gym Diet", listMenuGym);
+        dietRepository.save(dietGym);
+
+        List listCheapBuy = new ArrayList<Menu>();
+        listCheapBuy.add(menuCheapBuy);
+        Diet dietCheapBuy = new Diet("Cheap Diets for shop in the supermarket", listCheapBuy);
+        dietRepository.save(dietCheapBuy);
+
+        List listMenuStandard = new ArrayList<Menu>();
+        listMenuStandard.add(menu1);
+        listMenuStandard.add(menu2);
+        listMenuStandard.add(menu3);
+        Diet dietStandard = new Diet("Standard Diet", listMenuStandard);
+        dietRepository.save(dietStandard);
+
+
         List<Menu> menuList = new ArrayList<Menu>();
         List<Diet> dietas = new ArrayList<Diet>();
         List<Recipe> recipes = new ArrayList<Recipe>();
