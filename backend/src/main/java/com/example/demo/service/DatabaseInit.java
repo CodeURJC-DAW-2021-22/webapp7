@@ -320,6 +320,9 @@ public class DatabaseInit {
         List<Recipe> recipes = new ArrayList<Recipe>();
         List<Recipe> recipesadd = new ArrayList<Recipe>();
         recipesadd.add(recipe1);
+        recipesadd.add(recipe2);
+        recipesadd.add(recipe3);
+        recipesadd.add(recipe4);
 
         User user0 = new User("user0@gmail.com","user0","123",recipesadd,menu1,dietas);
         User user1 = new User("user1@gmail.com","user1","123",recipes,menu1,dietas);

@@ -95,9 +95,6 @@ public class WebController {
         return "singuperror";
     }
 
-    @GetMapping("/StoredRecipes")
-    public String getStored_Recipes(Model model){return "Stored_Recipes";}
-
     @GetMapping("/User")
     public String getUser(Model model){
         model.addAttribute("username",currentUser.getUsername());
@@ -213,6 +210,13 @@ public class WebController {
             return "loginerror";
     }
 
+    @GetMapping("/StoredRecipes")
+    public String getAllYourRecipes(Model model){
+        List<Recipe> recipes = currentUser.getStoredRecipes();
+        model.addAttribute("yourRecipe", recipes);
+
+        return "Stored_Recipes";
+    }
 
     @GetMapping("/YourMenu")
     public String getMenu_Activo(Model model){
