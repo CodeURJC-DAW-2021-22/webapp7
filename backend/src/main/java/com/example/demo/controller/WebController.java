@@ -19,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -88,9 +89,6 @@ public class WebController {
     public String getSignUpError(Model model){
         return "singuperror";
     }
-
-    @GetMapping("/YourMenu")
-    public String getMenu_Activo(Model model){return "Menu_Activo";}
 
     @GetMapping("/StoredRecipes")
     public String getStored_Recipes(Model model){return "Stored_Recipes";}
@@ -209,6 +207,14 @@ public class WebController {
         else
             return "loginerror";
     }
+
+
+    @GetMapping("/YourMenu") @Transactional
+    public String getMenu_Activo(Model model){
+        model.addAttribute("menu",currentUser.getActiveMenu());
+        model.addAttribute("lunchs",currentUser.getActiveMenu().getLunchs());
+        model.addAttribute("dinners",currentUser.getActiveMenu().getDinners());
+        return "Menu_Activo";}
 
     @GetMapping("/recipe/{id}/image")
     public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {

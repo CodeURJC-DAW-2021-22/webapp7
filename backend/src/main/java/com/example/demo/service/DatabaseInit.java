@@ -294,6 +294,7 @@ public class DatabaseInit {
 
         List listMenuGym = new ArrayList<Menu>();
         listMenuGym.add(menuHighVolumeGym);
+        listMenuGym.add(menuVegetarian);
         Diet dietGym = new Diet("Gym Diet", listMenuGym);
         dietRepository.save(dietGym);
 
@@ -312,6 +313,9 @@ public class DatabaseInit {
 
         List<Menu> menuList = new ArrayList<Menu>();
         List<Diet> dietas = new ArrayList<Diet>();
+        dietas.add(dietCheapBuy);
+        dietas.add(dietStandard);
+        dietas.add(dietGym);
         List<Recipe> recipes = new ArrayList<Recipe>();
         List<Recipe> recipesadd = new ArrayList<Recipe>();
         recipesadd.add(recipe1);

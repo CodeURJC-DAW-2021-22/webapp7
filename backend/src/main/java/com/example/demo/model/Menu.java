@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +17,7 @@ public class Menu {
 
     private String nombre;
 
-    //@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Recipe> weeklyPlan;
 
 
@@ -37,8 +39,26 @@ public class Menu {
     public void addLunch(Recipe meal, int n){
         weeklyPlan.add(n,meal);
     }
-    public void getLunch(int n){weeklyPlan.get(n);}
-    public void getDinner(int n){weeklyPlan.get(n*2);}
+    public List<Recipe> getLunchs(){
+        List l = new ArrayList();
+        int n = weeklyPlan.size()-1;
+        int i=0;
+        while(i<n){
+            l.add(this.weeklyPlan.get(i));
+            i=i+2;
+        }
+        return l;
+    }
+    public List<Recipe> getDinners(){
+        List l = new ArrayList();
+        int n = weeklyPlan.size()-1;
+        int i=1;
+        while(i<=n){
+            l.add(this.weeklyPlan.get(i));
+            i=i+2;
+        }
+        return l;
+    }
     public List<Recipe> getWeeklyPlan() {
         return weeklyPlan;
     }
@@ -46,7 +66,6 @@ public class Menu {
         this.weeklyPlan = weeklyPlan;
     }
     public void setId(Long id) {this.id = id;}
-
     public String getNombre() {
         return nombre;
     }

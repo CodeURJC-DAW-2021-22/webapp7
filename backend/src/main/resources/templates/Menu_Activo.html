@@ -41,7 +41,7 @@
   </div>
  </div>
 </section>
-<section id="top"><!-- Barra de menu -->
+<section id="top">
  <div class="container">
   <div class="row">
      <div class="col-sm-12 top">
@@ -91,7 +91,7 @@
   </div>
   </div>
   <div class="blog_main">
-   <h1>Your weekly menu</h1>
+   <h1>Your active menu: {{menu.nombre}}</h1>
   </div>
  </div>
  <div class="blog_center_1 clearfix"><!-- Texto introductorio  -->
@@ -115,22 +115,14 @@
 		  </thead>
 		  <tbody class="table-hover">
 		  <tr>
-			  <td class="text-left"><a href="/Recipes">Lunch Recipe 1</a></td>
-			  <td class="text-left"><a href="/Recipes">Lunch Recipe 2</a></td>
-			  <td class="text-left"><a href="/Recipes">Lunch Recipe 4</a></td>
-			  <td class="text-left"><a href="/Recipes">Lunch Recipe 5</a></td>
-			  <td class="text-left"><a href="/Recipes">Lunch Recipe 3</a></td>
-			  <td class="text-left"><a href="/Recipes">Lunch Recipe 6</a></td>
-			  <td class="text-left"><a href="/Recipes">Lunch Recipe 7</a></td>
+              {{#lunchs}}
+			  <td class="text-left"><a href="/Recipe/{{{id}}}">{{name}}</a></td>
+              {{/lunchs}}
 		  </tr>
 		  <tr>
-			  <td class="text-left"><a href="/Recipes">Diner Recipe 1</a></td>
-			  <td class="text-left"><a href="/Recipes">Diner Recipe 2</a></td>
-			  <td class="text-left"><a href="/Recipes">Diner Recipe 3</a></td>
-			  <td class="text-left"><a href="/Recipes">Diner Recipe 4</a></td>
-			  <td class="text-left"><a href="/Recipes">Diner Recipe 5</a></td>
-			  <td class="text-left"><a href="/Recipes">Diner Recipe 6</a></td>
-			  <td class="text-left"><a href="/Recipes">Diner Recipe 7</a></td>
+              {{#dinners}}
+			  <td class="text-left"><a href="/Recipe/{{{id}}}">{{name}}</a></td>
+              {{/dinners}}
 		  </tr>
 		  </tbody>
 		  </table>

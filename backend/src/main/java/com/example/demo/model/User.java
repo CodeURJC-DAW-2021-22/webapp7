@@ -19,14 +19,15 @@ public class User {
     private String name;
     private String password;
 
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     @JoinColumn(name="ID_Menu", referencedColumnName = "id")
     private Menu activeMenu;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Recipe> storedRecipes;
 
-    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany
     private List<Diet> storedDiets;
 
     public User() {
