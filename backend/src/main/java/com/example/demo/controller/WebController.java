@@ -11,6 +11,8 @@ import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -43,7 +45,6 @@ import java.util.Optional;
 @Controller
 public class WebController {
 
-
     private User currentUser=null;
 
     @Autowired
@@ -57,6 +58,7 @@ public class WebController {
 
     @Autowired
     private RecipeRepository recipeRepository;
+
 
     @ModelAttribute
     public void addAttributes(Model model) {
@@ -209,11 +211,14 @@ public class WebController {
     }
 
 
-    @GetMapping("/YourMenu") @Transactional
+    @GetMapping("/YourMenu")
     public String getMenu_Activo(Model model){
         model.addAttribute("menu",currentUser.getActiveMenu());
-        model.addAttribute("lunchs",currentUser.getActiveMenu().getLunchs());
-        model.addAttribute("dinners",currentUser.getActiveMenu().getDinners());
+
+        List<Recipe> lunches = currentUser.getActiveMenu().getLunchs();
+        List<Recipe> dinners = currentUser.getActiveMenu().getDinners();
+        model.addAttribute("lunchs",lunches);
+        model.addAttribute("dinners",dinners);
         return "Menu_Activo";}
 
     @GetMapping("/recipe/{id}/image")

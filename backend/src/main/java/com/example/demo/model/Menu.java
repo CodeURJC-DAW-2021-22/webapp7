@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,8 @@ public class Menu {
 
     private String nombre;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name="ID_Recipe", referencedColumnName = "id")
     private List<Recipe> weeklyPlan;
 
 

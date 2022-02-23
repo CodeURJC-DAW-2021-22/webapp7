@@ -133,6 +133,7 @@ public class DatabaseInit {
         listRecipes1.add(recipe11);
         listRecipes1.add(recipe12);
         listRecipes1.add(recipe13);
+        listRecipes1.add(recipe14);
         Menu menu1 = new Menu("Menu1", listRecipes1);
         menuRepository.save(menu1);
 
