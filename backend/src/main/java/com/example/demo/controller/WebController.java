@@ -7,6 +7,7 @@ import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.MenuService;
 import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -56,6 +57,8 @@ public class WebController {
     @Autowired
     private RecipeService recipeService;
 
+    @Autowired
+    private MenuService menuService;
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -213,10 +216,16 @@ public class WebController {
 
     @GetMapping("/YourMenu")
     public String getMenu_Activo(Model model){
-        model.addAttribute("menu",currentUser.getActiveMenu());
 
-        List<Recipe> lunches = currentUser.getActiveMenu().getLunchs();
-        List<Recipe> dinners = currentUser.getActiveMenu().getDinners();
+        List<Recipe> lunches = new ArrayList<>();
+        List<Recipe> dinners = new ArrayList<>();
+        Optional<Menu> tryMenu = menuService.findById(currentUser.getActiveMenu().getId());
+        if(tryMenu.isPresent()){
+            lunches = tryMenu.get().getLunchs();
+            dinners = tryMenu.get().getDinners();
+            model.addAttribute("menu",tryMenu.get());
+        }
+
         model.addAttribute("lunchs",lunches);
         model.addAttribute("dinners",dinners);
         return "Menu_Activo";}

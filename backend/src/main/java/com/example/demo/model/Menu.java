@@ -15,7 +15,6 @@ public class Menu {
     private String nombre;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name="ID_Recipe", referencedColumnName = "id")
     private List<Recipe> weeklyPlan;
 
 
