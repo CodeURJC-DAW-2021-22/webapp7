@@ -17,10 +17,10 @@
 		<p>Dificulty: {{recipe.difficulty}}</p>
 		<h5>{{recipe.uploadDate}} | {{recipe.creator}}</h5>
 		  <form action="/processAddRecipe" method="post">
-			  {{#user}}
+			  {{#userRecipe}}
 			  	<input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}} >
 				<input type="submit" class="btn btn-danger" onclick="addRecipe()" id="btnSaveRecipe" value="Save Recipe"/>
-			  {{/user}}
+			  {{/userRecipe}}
 		  </form>
 
 			  {{#disable}}
@@ -28,9 +28,9 @@
 			  {{/disable}}
 
 		  <form action="/processFormRecipe" method="post">
-			  {{#admin}}
+			  {{#adminDelete}}
 				<input type="submit" class="btn btn-danger" onclick="deleteRecipe()" id="btnDeleteRecipe" value="Delete Recipe"/>
-			  {{/admin}}
+			  {{/adminDelete}}
 		  </form>
 	  </div>
 	</div>

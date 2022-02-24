@@ -66,9 +66,15 @@ public class WebController {
     @ModelAttribute
     public void addAttributes(Model model) {
         if (currentUser==null)
-            model.addAttribute("logged", false);
-        else
-            model.addAttribute("logged",true);
+            model.addAttribute("loggedUser", false);
+        else if (currentUser.getAdmin()) {
+            model.addAttribute("admin", true);
+            model.addAttribute("logged", true);
+        }
+        else {
+            model.addAttribute("loggedUser", true);
+            model.addAttribute("logged", true);
+        }
     }
 
 
@@ -95,9 +101,6 @@ public class WebController {
         return "singuperror";
     }
 
-    @GetMapping("/StoredRecipes")
-    public String getStored_Recipes(Model model){return "Stored_Recipes";}
-
     @GetMapping("/User")
     public String getUser(Model model){
         model.addAttribute("username",currentUser.getUsername());
@@ -112,7 +115,11 @@ public class WebController {
     public String getStoredDiets(Model model){return "DropDown";}
 
     @GetMapping("/AdminProfile")
-    public String getAdminProfile(Model model){return "Admin";}
+    public String getAdminProfile(Model model){
+        List<User> users = userService.findAll();
+        model.addAttribute("usersAll", users.size());
+
+        return "Admin";}
 
     @GetMapping("/RecipeMaker")
     public String getRecipeMaker(Model model){return "RecipeMaker";}
@@ -122,8 +129,10 @@ public class WebController {
 
         if(currentUser != null && currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)){
             model.addAttribute("disable", true);
+        }else if(currentUser.getAdmin()){
+            model.addAttribute("adminDelete", true);
         }else{
-            model.addAttribute("user", currentUser != null);
+            model.addAttribute("userRecipe", currentUser != null);
         }
 
         Optional<Recipe> recipe = recipeService.findById(id);
@@ -176,13 +185,19 @@ public class WebController {
         List<Recipe> recipes = new ArrayList<Recipe>();
         menuRepository.save(menuVoid);
 
-        User user = new User(mail, name, password, recipes, menuVoid, dietas);
+        User user = new User(mail, name, password, recipes, menuVoid, dietas, false);
 
         Optional<User> tryUser = userService.findByName(user.getName());
         Optional<User> tryMail = userService.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
             userService.save(user);
-            model.addAttribute("logged",true);
+            if(!user.getAdmin()) {
+                model.addAttribute("loggedUser", true);
+                model.addAttribute("logged",true);
+            }else if(user.getAdmin()){
+                model.addAttribute("admin", true);
+                model.addAttribute("logged",true);
+            }
             currentUser=user;
             return "index";
         }
@@ -193,7 +208,9 @@ public class WebController {
     @GetMapping("/processLogOut")
     public String LogOut(Model model){
         this.currentUser=null;
+        model.addAttribute("loggedUser",false);
         model.addAttribute("logged",false);
+        model.addAttribute("admin", false);
         return "index";
     }
 
@@ -203,7 +220,13 @@ public class WebController {
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
-                model.addAttribute("logged",true);
+                if(!currentUser.getAdmin()) {
+                    model.addAttribute("loggedUser", true);
+                    model.addAttribute("logged",true);
+                }else if(currentUser.getAdmin()){
+                    model.addAttribute("admin", true);
+                    model.addAttribute("logged",true);
+                }
                 return "index";
             }
             else
@@ -213,6 +236,13 @@ public class WebController {
             return "loginerror";
     }
 
+    @GetMapping("/StoredRecipes")
+    public String getAllYourRecipes(Model model){
+        List<Recipe> recipes = currentUser.getStoredRecipes();
+        model.addAttribute("yourRecipe", recipes);
+
+        return "Stored_Recipes";
+    }
 
     @GetMapping("/YourMenu")
     public String getMenu_Activo(Model model){

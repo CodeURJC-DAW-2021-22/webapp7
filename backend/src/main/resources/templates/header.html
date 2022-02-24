@@ -31,9 +31,12 @@
                         {{^logged}}
                         <li><a href="/LogIn">Login/SignIn</a></li>
                         {{/logged}}
-                        {{#logged}}
+                        {{#loggedUser}}
                         <li><a href="/User">Logout</a></li>
-                        {{/logged}}
+                        {{/loggedUser}}
+                        {{#admin}}
+                        <li><a href="/AdminProfile">Logout</a></li>
+                        {{/admin}}
                     </ul>
                 </div>
             </div>
@@ -58,9 +61,12 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="/Recipes">Recipes</a></li>
                             <li><a href="/AboutUs">About US</a></li>
-                            {{#logged}}
+                            {{#loggedUser}}
                             <li><a href="/User">User</a></li>
-                            {{/logged}}
+                            {{/loggedUser}}
+                            {{#admin}}
+                            <li><a href="/AdminProfile">User</a></li>
+                            {{/admin}}
                         </ul>
                     </div>
                 </nav>

@@ -18,6 +18,7 @@ public class User {
     private String mail;
     private String name;
     private String password;
+    private boolean admin;
 
     @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     @JoinColumn(name="ID_Menu", referencedColumnName = "id")
@@ -33,13 +34,14 @@ public class User {
     public User() {
 
     }
-    public User(String mail, String username, String password, List<Recipe> recipes, Menu act, List<Diet> dietas) {
+    public User(String mail, String username, String password, List<Recipe> recipes, Menu act, List<Diet> dietas, boolean admin) {
         this.mail = mail;
         this.name = username;
         this.password = password;
         this.storedRecipes = recipes;
         this.activeMenu = act;
-        this.storedDiets = dietas;}
+        this.storedDiets = dietas;
+        this.admin = admin;}
 
 
     public ShoppingList generateList(){
@@ -64,6 +66,14 @@ public class User {
 
     public Menu getActiveMenu() {
         return activeMenu;
+    }
+
+    public boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     public void setActiveMenu(Menu activeMenu) {
