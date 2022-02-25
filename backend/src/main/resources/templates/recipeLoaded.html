@@ -32,7 +32,6 @@
 			  {{#adminDelete}}
 				<input type="submit" class="btn btn-danger" onclick="deleteRecipe()" id="btnDeleteRecipe" value="Delete Recipe"/>
 		  <form action="/processDeleteRecipe" method="post">
-			  {{#adminDelete}}
 			    <input type="hidden" id="id_RecipeDelete" name="id_RecipeDelete" value={{recipe.id}} >
 				<input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
 			  {{/adminDelete}}
