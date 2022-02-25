@@ -19,11 +19,8 @@
 		  <form action="/processAddRecipe" method="post">
 			  {{#userRecipe}}
 			  	<input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}} >
-<<<<<<< Updated upstream
 				<input type="submit" class="btn btn-danger" onclick="addRecipe()" id="btnSaveRecipe" value="Save Recipe"/>
-=======
 				<input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Save Recipe"/>
->>>>>>> Stashed changes
 			  {{/userRecipe}}
 		  </form>
 
@@ -31,16 +28,13 @@
 				<input type="submit" class="btn btn-danger" id="btnDisable" value="Already Saved" disabled/>
 			  {{/disable}}
 
-<<<<<<< Updated upstream
 		  <form action="/processFormRecipe" method="post">
 			  {{#adminDelete}}
 				<input type="submit" class="btn btn-danger" onclick="deleteRecipe()" id="btnDeleteRecipe" value="Delete Recipe"/>
-=======
 		  <form action="/processDeleteRecipe" method="post">
 			  {{#adminDelete}}
 			    <input type="hidden" id="id_RecipeDelete" name="id_RecipeDelete" value={{recipe.id}} >
 				<input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
->>>>>>> Stashed changes
 			  {{/adminDelete}}
 		  </form>
 	  </div>
