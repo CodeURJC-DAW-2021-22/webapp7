@@ -114,7 +114,7 @@
  <div class="container">
   <div class="row">
    <div class="col-sm-12 dish">
-	<h4>Are you looking for healthy meals?</h4>
+	<h4>Are you looking for different meals?</h4>
 	<div class="row">
         <div class="row">
             <div class="col-sm-12 dish_1">
@@ -129,23 +129,24 @@
             <div class="carousel-inner">
                 <div class="item">
                     <div class="row">
+						{{#recipeCarrousel1}}
                         <div class="col-sm-4">
                             <div class="col-item">
 								<div class="cuadro_intro_hover " style="background-color:#cccccc;">
 										<p style="text-align:center;">
-												<img src="img/25.jpg" class="img-responsive" alt="a">
+											<img style="height:250px;width: 370px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
 										</p>
 										<div class="caption">
 											<div class="blur"></div>
 											<div class="caption-text" style="margin-top:90px;">
-												<p><a href="/Recipe">Show Recipe</a></p>
+												<p><a href="/Recipe/{{{id}}}">Show Recipe</a></p>
 											</div>
 										</div>
 								</div>
                                 <div class="info">
                                     <div class="row">
 										<div class="price_1 col-sm-12">
-                                            <h4><a href="/Recipe">Nombre Receta</a></h4>
+                                            <h4><a href="/Recipe/{{{id}}}">{{name}}</a></h4>
                                         </div>
                                     </div>
                                     <div class="clearfix">
@@ -153,10 +154,37 @@
                                 </div>
                             </div>
                         </div>
+						{{/recipeCarrousel1}}
                     </div>
                 </div>
                 <div class="item active">
-
+					<div class="row">
+						{{#recipeCarrousel2}}
+						<div class="col-sm-4">
+							<div class="col-item">
+								<div class="cuadro_intro_hover " style="background-color:#cccccc;">
+									<p style="text-align:center;">
+										<img style="height:250px;width: 370px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
+									</p>
+									<div class="caption">
+										<div class="blur"></div>
+										<div class="caption-text" style="margin-top:90px;">
+											<p><a href="/Recipe/{{{id}}}">Show Recipe</a></p>
+										</div>
+									</div>
+								</div>
+								<div class="info">
+									<div class="row">
+										<div class="price_1 col-sm-12">
+											<h4><a href="/Recipe/{{{id}}}">{{name}}</a></h4>
+										</div>
+									</div>
+									<div class="clearfix">
+									</div>
+								</div>
+							</div>
+						</div>
+						{{/recipeCarrousel2}}
                 </div>
             </div>
         </div>
