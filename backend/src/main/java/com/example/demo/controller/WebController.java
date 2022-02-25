@@ -75,6 +75,18 @@ public class WebController {
 
     @GetMapping("/")
     public String init(Model model) {
+        Optional<Recipe> outstandingRecipes = recipeService.findById(20);
+        Optional<Recipe> outstandingRecipes1 = recipeService.findById(22);
+        List<Recipe> outstandingRecipesAux = recipeRepository.findAll();
+        int contRecipes = 0;
+        for(Recipe recipe: outstandingRecipesAux){
+            contRecipes = contRecipes + 1;
+        }
+        Optional<Recipe> outstandingRecipes2 = recipeService.findById((long)(Math.random() * contRecipes));
+
+        model.addAttribute("recipe1", outstandingRecipes.get());
+        model.addAttribute("recipe2", outstandingRecipes1.get());
+        model.addAttribute("recipeWeekly", outstandingRecipes2.get());
         return "index";
     }
 

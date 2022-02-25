@@ -52,36 +52,36 @@
    </div>
    <div class="col-sm-12 middle_1">
     <div class="col-sm-1"></div>
+	   {{#recipe1}}
 	<div class="col-sm-6 middle_1_left">
 				<div class="[ info-card ]">
-					<img style="width: 100%" src="img/22.jpg">
+					<img style="height:300px;width: 550px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
 					<div class="[ info-card-details ] animate">
 						<div class="[ info-card-header ]">
-							<h4> Nombre Receta</h4>
+							<h4>{{name}}</h4>
 						</div>
 						<div class="[ info-card-detail ]">
-							<!-- Description -->
-							<h5>Descripcion</h5>
-							<p><a href="/Recipe">Learn More</a></p>
+							<p><a href="/Recipe/{{{id}}}">Learn More</a></p>
 						</div>
 					</div>
 				</div>
 	</div>
+	   {{/recipe1}}
+	   {{#recipe2}}
 	<div class="col-sm-4 middle_1_left">
 	 <div class="[ info-card ]">
-					<img style="width: 100%" src="img/23.jpg">
+		 <img style="height:400px;width: 400px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
 					<div class="[ info-card-details ] animate">
 						<div class="[ info-card-header ]">
-							<h4>Nombre Receta</h4>
+							<h4>{{name}}</h4>
 						</div>
 						<div class="[ info-card-detail ]">
-							<!-- Description -->
-							<h5>Descripcion</h5>
-							<p><a href="/Recipe">Learn More</a></p>
+							<p><a href="/Recipe/{{{id}}}">Learn More</a></p>
 						</div>
 					</div>
 				</div>
 	</div>
+	   {{/recipe2}}
 	<div class="col-sm-1"></div>
    </div>
    <div class="col-sm-12 middle">
@@ -90,21 +90,21 @@
    </div>
    <div class="col-sm-12 middle_1">
     <div class="col-sm-1"></div>
+	   {{#recipeWeekly}}
 	<div class="col-sm-10 middle_1_left">
 				<div class="[ info-card ]">
-					<img style="width: 100%" src="img/24.jpg">
+					<img style="height:350px;width: 950px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
 					<div class="[ info-card-details ] animate">
 						<div class="[ info-card-header ]">
-							<h4> Nombre Receta </h4>
+							<h4> {{name}} </h4>
 						</div>
 						<div class="[ info-card-detail ]">
-							<!-- Description -->
-							<h5> Descripcion</h5>
-							<p><a href="/Recipe">Learn More</a></p>
+							<p><a href="/Recipe/{{{id}}}">Learn More</a></p>
 						</div>
 					</div>
 				</div>
 	</div>
+	   {{/recipeWeekly}}
 	<div class="col-sm-1"></div>
    </div>
   </div>
@@ -153,131 +153,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-								<div class="cuadro_intro_hover " style="background-color:#cccccc;">
-										<p style="text-align:center;">
-												<img src="img/26.jpg" class="img-responsive" alt="a">
-										</p>
-										<div class="caption">
-											<div class="blur"></div>
-											<div class="caption-text" style="margin-top:90px;">
-												<p><a href="/Recipe">Show Recipe</a></p>
-											</div>
-										</div>
-								</div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price_1 col-sm-12">
-                                            <h4><a href="/Recipe">Nombre Receta</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-								<div class="cuadro_intro_hover " style="background-color:#cccccc;">
-										<p style="text-align:center;">
-												<img src="img/27.jpg" class="img-responsive" alt="a">
-										</p>
-										<div class="caption">
-											<div class="blur"></div>
-											<div class="caption-text" style="margin-top:90px;">
-												<p><a href="/Recipe">Show Recipe</a></p>
-											</div>
-										</div>
-								</div>	
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price_1 col-sm-12">
-                                            <h4><a href="/Recipe">Nombre Receta</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="item active">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="col-item">
-								<div class="cuadro_intro_hover " style="background-color:#cccccc;">
-										<p style="text-align:center;">
-												<img src="img/28.jpg" class="img-responsive" alt="a">
-										</p>
-										<div class="caption">
-											<div class="blur"></div>
-											<div class="caption-text" style="margin-top:90px;">
-												<p><a href="/Recipe">Show Recipe</a></p>
-											</div>
-										</div>
-								</div>	
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price_1 col-sm-12">
-                                            <h4><a href="/Recipe">Nombre Receta</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-								<div class="cuadro_intro_hover " style="background-color:#cccccc;">
-										<p style="text-align:center;">
-												<img src="img/29.jpg" class="img-responsive" alt="a">
-										</p>
-										<div class="caption">
-											<div class="blur"></div>
-											<div class="caption-text" style="margin-top:90px;">
-												<p><a href="/Recipe">Show Recipe</a></p>
-											</div>
-										</div>
-								</div>	
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price_1 col-sm-12">
-                                            <h4><a href="#">Nombre Receta</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-item">
-								<div class="cuadro_intro_hover " style="background-color:#cccccc;">
-										<p style="text-align:center;">
-												<img src="img/30.jpg" class="img-responsive" alt="a">
-										</p>
-										<div class="caption">
-											<div class="blur"></div>
-											<div class="caption-text" style="margin-top:90px;">
-												<p><a href="/Recipe">Show Recipe</a></p>
-											</div>
-										</div>
-								</div>	
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price_1 col-sm-12">
-                                            <h4><a href="#">Nombre Receta </a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
