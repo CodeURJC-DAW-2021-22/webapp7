@@ -38,7 +38,7 @@ public class DatabaseInit {
     @Autowired
     private DietRepository dietRepository;
 
-    @PostConstruct
+
     public void init() throws IOException, URISyntaxException{
 
 

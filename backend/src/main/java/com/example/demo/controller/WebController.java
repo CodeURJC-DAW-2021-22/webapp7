@@ -6,6 +6,7 @@ import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.service.DatabaseInit;
 import com.example.demo.service.MenuService;
 import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,8 +49,12 @@ public class WebController {
 
     @Autowired
     private MenuService menuService;
+
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private DatabaseInit dataService;
 
 
     @ModelAttribute
@@ -68,6 +75,12 @@ public class WebController {
 
     @GetMapping("/")
     public String init(Model model) {
+        return "index";
+    }
+
+    @GetMapping("/inicio")
+    public String bbdd(Model model) throws IOException, URISyntaxException {
+        dataService.init();
         return "index";
     }
 
