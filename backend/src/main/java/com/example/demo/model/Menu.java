@@ -14,7 +14,7 @@ public class Menu {
 
     private String nombre;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
     private List<Recipe> weeklyPlan;
 
 

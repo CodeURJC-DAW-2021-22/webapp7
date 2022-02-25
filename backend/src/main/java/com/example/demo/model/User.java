@@ -27,8 +27,8 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Recipe> storedRecipes;
 
-    //@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
-    @ManyToMany
+    //@OneToMany
+    @ManyToMany(cascade=CascadeType.REMOVE)
     private List<Diet> storedDiets;
 
     public User() {

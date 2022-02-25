@@ -6,14 +6,10 @@ import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.MenuService;
 import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -22,21 +18,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -126,6 +113,7 @@ public class WebController {
 
     @GetMapping("/Recipe/{id}")
     public String showRecipe(Model model, @PathVariable long id) {
+<<<<<<< Updated upstream
 
         if(currentUser != null && currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)){
             model.addAttribute("disable", true);
@@ -133,8 +121,17 @@ public class WebController {
             model.addAttribute("adminDelete", true);
         }else{
             model.addAttribute("userRecipe", currentUser != null);
+=======
+        if(currentUser != null) {
+            if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
+                model.addAttribute("disable", true);
+            } else if (currentUser.getAdmin()) {
+                model.addAttribute("adminDelete", true);
+            } else {
+                model.addAttribute("userRecipe", currentUser != null);
+            }
+>>>>>>> Stashed changes
         }
-
         Optional<Recipe> recipe = recipeService.findById(id);
         if (recipe.isPresent()) {
             model.addAttribute("recipe", recipe.get());
@@ -157,13 +154,32 @@ public class WebController {
         return "recipe";
     }
 
+    @PostMapping("/processRemoveRecipe")
+    public ModelAndView processRemoveRecipe(Model model, @RequestParam String id_Recipe){
+        long id=Long.parseLong(id_Recipe);
+        Optional<Recipe> recipe = recipeService.findById(id);
+        currentUser.getStoredRecipes().remove(recipe);
+        userService.save(currentUser);
+
+        return new ModelAndView(new RedirectView("/StoredRecipes", true));
+    }
+
+    @PostMapping("/processDeleteRecipe")
+    public ModelAndView processDeleteRecipe(Model model, @RequestParam String id_RecipeDelete){
+        long id=Long.parseLong(id_RecipeDelete);
+        recipeService.delete(id);
+
+        return new ModelAndView(new RedirectView("/Recipes", true));
+    }
+
     @PostMapping("/processAddRecipe")
-    public String processAddRecipe(Model model, @RequestParam String id_Recipe){
+    public ModelAndView processAddRecipe(Model model, @RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipe = recipeService.findById(id);
         currentUser.getStoredRecipes().add(recipe.get());
+        userService.save(currentUser);
 
-        return "recipe";
+        return new ModelAndView(new RedirectView("/Recipe/"+id_Recipe, true));
     }
 
     @PostMapping("/processFormRecipe")
