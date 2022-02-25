@@ -87,11 +87,16 @@ public class WebController {
         Page<Recipe> recipeCarrousel1 = recipeRepository.findAll(PageRequest.of(0,3,Sort.by("id").descending()));
         Page<Recipe> recipeCarrousel2 = recipeRepository.findAll(PageRequest.of(1,3,Sort.by("id").descending()));
 
+        Optional<Recipe> tryRecipes1 = recipeService.findById((long)(Math.random() * contRecipes));
+        Optional<Recipe> tryRecipes2 = recipeService.findById((long)(Math.random() * contRecipes));
+
         model.addAttribute("recipe1", outstandingRecipes.get());
         model.addAttribute("recipe2", outstandingRecipes1.get());
         model.addAttribute("recipeWeekly", outstandingRecipes2.get());
         model.addAttribute("recipeCarrousel1", recipeCarrousel1.getContent());
         model.addAttribute("recipeCarrousel2", recipeCarrousel2.getContent());
+        model.addAttribute("tryRecipes1", tryRecipes1.get());
+        model.addAttribute("tryRecipes2", tryRecipes2.get());
         return "index";
     }
 
