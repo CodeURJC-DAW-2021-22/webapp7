@@ -113,15 +113,6 @@ public class WebController {
 
     @GetMapping("/Recipe/{id}")
     public String showRecipe(Model model, @PathVariable long id) {
-<<<<<<< Updated upstream
-
-        if(currentUser != null && currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)){
-            model.addAttribute("disable", true);
-        }else if(currentUser.getAdmin()){
-            model.addAttribute("adminDelete", true);
-        }else{
-            model.addAttribute("userRecipe", currentUser != null);
-=======
         if(currentUser != null) {
             if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
                 model.addAttribute("disable", true);
@@ -130,7 +121,6 @@ public class WebController {
             } else {
                 model.addAttribute("userRecipe", currentUser != null);
             }
->>>>>>> Stashed changes
         }
         Optional<Recipe> recipe = recipeService.findById(id);
         if (recipe.isPresent()) {
