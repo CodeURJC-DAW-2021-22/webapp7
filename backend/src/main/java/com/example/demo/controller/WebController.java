@@ -6,14 +6,11 @@ import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.service.DatabaseInit;
 import com.example.demo.service.MenuService;
 import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -24,6 +21,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,22 +49,60 @@ public class WebController {
 
     @Autowired
     private MenuService menuService;
+
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private DatabaseInit dataService;
 
 
     @ModelAttribute
     public void addAttributes(Model model) {
         if (currentUser==null)
-            model.addAttribute("logged", false);
-        else
-            model.addAttribute("logged",true);
+            model.addAttribute("loggedUser", false);
+        else if (currentUser.getAdmin()) {
+            model.addAttribute("admin", true);
+            model.addAttribute("logged", true);
+        }
+        else {
+            model.addAttribute("loggedUser", true);
+            model.addAttribute("logged", true);
+        }
     }
 
 
 
     @GetMapping("/")
     public String init(Model model) {
+        Optional<Recipe> outstandingRecipes = recipeService.findById(20);
+        Optional<Recipe> outstandingRecipes1 = recipeService.findById(22);
+        List<Recipe> outstandingRecipesAux = recipeRepository.findAll();
+        int contRecipes = 0;
+        for(Recipe recipe: outstandingRecipesAux){
+            contRecipes = contRecipes + 1;
+        }
+        Optional<Recipe> outstandingRecipes2 = recipeService.findById((long)(Math.random() * contRecipes));
+
+        Page<Recipe> recipeCarrousel1 = recipeRepository.findAll(PageRequest.of(0,3,Sort.by("id").descending()));
+        Page<Recipe> recipeCarrousel2 = recipeRepository.findAll(PageRequest.of(1,3,Sort.by("id").descending()));
+
+        Optional<Recipe> tryRecipes1 = recipeService.findById((long)(Math.random() * contRecipes));
+        Optional<Recipe> tryRecipes2 = recipeService.findById((long)(Math.random() * contRecipes));
+
+        model.addAttribute("recipe1", outstandingRecipes.get());
+        model.addAttribute("recipe2", outstandingRecipes1.get());
+        model.addAttribute("recipeWeekly", outstandingRecipes2.get());
+        model.addAttribute("recipeCarrousel1", recipeCarrousel1.getContent());
+        model.addAttribute("recipeCarrousel2", recipeCarrousel2.getContent());
+        model.addAttribute("tryRecipes1", tryRecipes1.get());
+        model.addAttribute("tryRecipes2", tryRecipes2.get());
+        return "index";
+    }
+
+    @GetMapping("/inicio")
+    public String bbdd(Model model) throws IOException, URISyntaxException {
+        dataService.init();
         return "index";
     }
 
@@ -97,20 +137,26 @@ public class WebController {
     public String getStoredDiets(Model model){return "DropDown";}
 
     @GetMapping("/AdminProfile")
-    public String getAdminProfile(Model model){return "Admin";}
+    public String getAdminProfile(Model model){
+        List<User> users = userService.findAll();
+        model.addAttribute("usersAll", users.size());
+
+        return "Admin";}
 
     @GetMapping("/RecipeMaker")
     public String getRecipeMaker(Model model){return "RecipeMaker";}
 
     @GetMapping("/Recipe/{id}")
     public String showRecipe(Model model, @PathVariable long id) {
-
-        if(currentUser != null && currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)){
-            model.addAttribute("disable", true);
-        }else{
-            model.addAttribute("user", currentUser != null);
+        if(currentUser != null) {
+            if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
+                model.addAttribute("disable", true);
+            } else if (currentUser.getAdmin()) {
+                model.addAttribute("adminDelete", true);
+            } else {
+                model.addAttribute("userRecipe", currentUser != null);
+            }
         }
-
         Optional<Recipe> recipe = recipeService.findById(id);
         if (recipe.isPresent()) {
             model.addAttribute("recipe", recipe.get());
@@ -133,13 +179,32 @@ public class WebController {
         return "recipe";
     }
 
+    @PostMapping("/processRemoveRecipe")
+    public ModelAndView processRemoveRecipe(Model model, @RequestParam String id_Recipe){
+        long id=Long.parseLong(id_Recipe);
+        Optional<Recipe> recipe = recipeService.findById(id);
+        currentUser.getStoredRecipes().remove(recipe);
+        userService.save(currentUser);
+
+        return new ModelAndView(new RedirectView("/StoredRecipes", true));
+    }
+
+    @PostMapping("/processDeleteRecipe")
+    public ModelAndView processDeleteRecipe(Model model, @RequestParam String id_RecipeDelete){
+        long id=Long.parseLong(id_RecipeDelete);
+        recipeService.delete(id);
+
+        return new ModelAndView(new RedirectView("/Recipes", true));
+    }
+
     @PostMapping("/processAddRecipe")
-    public String processAddRecipe(Model model, @RequestParam String id_Recipe){
+    public ModelAndView processAddRecipe(Model model, @RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipe = recipeService.findById(id);
         currentUser.getStoredRecipes().add(recipe.get());
+        userService.save(currentUser);
 
-        return "recipe";
+        return new ModelAndView(new RedirectView("/Recipe/"+id_Recipe, true));
     }
 
     @PostMapping("/processFormRecipe")
@@ -161,13 +226,19 @@ public class WebController {
         List<Recipe> recipes = new ArrayList<Recipe>();
         menuRepository.save(menuVoid);
 
-        User user = new User(mail, name, password, recipes, menuVoid, dietas);
+        User user = new User(mail, name, password, recipes, menuVoid, dietas, false);
 
         Optional<User> tryUser = userService.findByName(user.getName());
         Optional<User> tryMail = userService.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
             userService.save(user);
-            model.addAttribute("logged",true);
+            if(!user.getAdmin()) {
+                model.addAttribute("loggedUser", true);
+                model.addAttribute("logged",true);
+            }else if(user.getAdmin()){
+                model.addAttribute("admin", true);
+                model.addAttribute("logged",true);
+            }
             currentUser=user;
             return "index";
         }
@@ -178,7 +249,9 @@ public class WebController {
     @GetMapping("/processLogOut")
     public String LogOut(Model model){
         this.currentUser=null;
+        model.addAttribute("loggedUser",false);
         model.addAttribute("logged",false);
+        model.addAttribute("admin", false);
         return "index";
     }
 
@@ -188,7 +261,13 @@ public class WebController {
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
-                model.addAttribute("logged",true);
+                if(!currentUser.getAdmin()) {
+                    model.addAttribute("loggedUser", true);
+                    model.addAttribute("logged",true);
+                }else if(currentUser.getAdmin()){
+                    model.addAttribute("admin", true);
+                    model.addAttribute("logged",true);
+                }
                 return "index";
             }
             else
