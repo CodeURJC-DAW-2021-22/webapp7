@@ -22,21 +22,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -228,6 +216,37 @@ public class WebController {
             lunches = tryMenu.get().getLunchs();
             dinners = tryMenu.get().getDinners();
             model.addAttribute("menu",tryMenu.get());
+
+            ArrayList<Integer> l = new ArrayList<>();
+            for (int i=15; i>=0;i=i-5){
+                l.add(i);
+            }
+            model.addAttribute("indexGraphic",l);
+
+            int[] scoreArray = tryMenu.get().getMenuScore();
+
+            model.addAttribute("number of bars",14);
+
+            float score = (scoreArray[0] / 15)*100;
+            model.addAttribute("vegetablesStandard",score);
+            score = (scoreArray[1] / 15)*100;
+            model.addAttribute("vegetablesMenu",score);
+            score = (scoreArray[2] / 15)*100;
+            model.addAttribute("proteinStandard",score);
+            score = (scoreArray[3] / 15)*100;
+            model.addAttribute("proteinMenu",score);
+            score = (scoreArray[4] / 15)*100;
+            model.addAttribute("hydratesStandard",score);
+            score = (scoreArray[5] / 15)*100;
+            model.addAttribute("hydratesMenu",score);
+            score = (scoreArray[6] / 15)*100;
+            model.addAttribute("carboHydratesStandard",score);
+            score = (scoreArray[7] / 15)*100;
+            model.addAttribute("carboHydratesMenu",score);
+            score = (scoreArray[8] / 15)*100;
+            model.addAttribute("highInFatStandard",score);
+            score = (scoreArray[9] / 15)*100;
+            model.addAttribute("highInFatMenu",score);
         }
 
         model.addAttribute("lunchs",lunches);

@@ -28,7 +28,44 @@ public class Menu {
     }
 
 
+    public int[] getMenuScore(){
+        int[] score = new int[10];
 
+        //vegetables
+        score[0]=8;
+        score[1]=0;
+
+        //protein
+        score[2]=5;
+        score[3]=0;
+
+        //hydrates
+        score[4]=3;
+        score[5]=0;
+
+        //carbohydrates
+        score[6]=2;
+        score[7]=0;
+
+        //high in fat
+        score[8]=1;
+        score[9]=0;
+
+
+        for(Recipe r : this.weeklyPlan){
+            if (r.getVegetables())
+                score[1]=score[1]+1;
+            if(r.getProtein())
+                score[3]=score[3]+1;
+            if(r.getHydrates())
+                score[5]=score[5]+1;
+            if(r.getCarbohydrates())
+                score[7]=score[7]+1;
+            if(r.getHighinfat())
+                score[9]=score[9]+1;
+        }
+        return score;
+    }
 
     public void addDinner(Recipe meal, int n){
         weeklyPlan.add(n*2,meal);

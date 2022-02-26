@@ -136,14 +136,20 @@
 	   </div>
 	   <br><br><br>
     <div class="col-sm-8 blog_center_2_main_top_1">
-	   <a href="#" class="btn">Download </a>
+	   <a href="#" class="btn">Shopping List </a>
 
 	</div>
 	<br><br><br><br><br>
-	<div class="col-sm-8 blog_center_2_main_top_2"><!-- Texto Imagen 1 -->
-	 <h2>How healthy your menu is?? (Insert Graphics here)</h2>
-     
-	</div>
+	<div class="col-sm-8 blog_center_2_main_top_2">
+        <table class="charts-css column show-heading" id="my-chart">
+            <caption> How healthy your menu is?? </caption>
+            <tr>
+                <td> {{highInFatMenu}} </td>
+                <td> {{highInFatStandard}} </td>
+            </tr>
+        </table>
+
+    </div>
    </div>
   </div>
  </div>
