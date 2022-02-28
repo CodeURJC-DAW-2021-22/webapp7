@@ -10,6 +10,7 @@ import com.example.demo.service.DatabaseInit;
 import com.example.demo.service.MenuService;
 import com.example.demo.service.RecipeService;
 import com.example.demo.service.UserService;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -21,16 +22,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 
 @Controller
@@ -208,19 +213,22 @@ public class WebController {
     }
 
     @PostMapping("/processFormRecipe")
-    public String processRecipeMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam boolean vegetables, @RequestParam boolean protein, @RequestParam boolean hydrates, @RequestParam boolean carbohydrates, @RequestParam boolean highinfat){
-        String creator = "creator";
+    public ModelAndView processRecipeMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam boolean vegetables, @RequestParam boolean protein, @RequestParam boolean hydrates, @RequestParam boolean carbohydrates, @RequestParam boolean highinfat, @RequestParam MultipartFile imageRecipe) throws IOException {
+        String creator = currentUser.getUsername();
 
         Date date = new Date();
 
         Recipe recipe = new Recipe(name, time, difficulty, date, creator, ingredients, vegetables, protein, hydrates, carbohydrates, highinfat, preparation);
 
         recipeService.save(recipe);
-        return "Admin";
+        if(imageRecipe != null) {
+            uploadImage(recipe.getId(), imageRecipe);
+        }
+        return new ModelAndView(new RedirectView("/AdminProfile", true));
     }
 
     @PostMapping("/processFormSignUp")
-    public String processRegister(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
+    public ModelAndView processRegister(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
         Menu menuVoid = new Menu();
         List<Diet> dietas = new ArrayList<Diet>();
         List<Recipe> recipes = new ArrayList<Recipe>();
@@ -240,10 +248,10 @@ public class WebController {
                 model.addAttribute("logged",true);
             }
             currentUser=user;
-            return "index";
+            return new ModelAndView(new RedirectView("/", true));
         }
         else {
-            return "singuperror";
+            return new ModelAndView(new RedirectView("/SingUpError", true));
         }
     }
     @GetMapping("/processLogOut")
@@ -256,25 +264,18 @@ public class WebController {
     }
 
     @PostMapping("/processFormLogIn")
-    public String processForm(Model model, @RequestParam String name,@RequestParam String password){
+    public ModelAndView processForm(Model model, @RequestParam String name, @RequestParam String password){
         Optional<User> tryUser = userService.findByName(name);
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
-                if(!currentUser.getAdmin()) {
-                    model.addAttribute("loggedUser", true);
-                    model.addAttribute("logged",true);
-                }else if(currentUser.getAdmin()){
-                    model.addAttribute("admin", true);
-                    model.addAttribute("logged",true);
-                }
-                return "index";
+                return new ModelAndView(new RedirectView("/", true));
             }
             else
-                return "loginerror";
+                return new ModelAndView(new RedirectView("/LogInError", true));
         }
         else
-            return "loginerror";
+            return new ModelAndView(new RedirectView("/LogInError", true));
     }
 
     @GetMapping("/StoredRecipes")
@@ -331,6 +332,19 @@ public class WebController {
         model.addAttribute("lunchs",lunches);
         model.addAttribute("dinners",dinners);
         return "Menu_Activo";}
+
+    @PostMapping("/processFormRecipe/{id}/image")
+    public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageRecipe) throws IOException {
+        Recipe recipe = recipeService.findById(id).orElseThrow();
+
+        URI location = fromCurrentRequest().build().toUri();
+        recipe.setHasPhoto(true);
+        recipe.setRecipeImage(BlobProxy.generateProxy(imageRecipe.getInputStream(), imageRecipe.getSize()));
+
+        recipeService.save(recipe);
+
+        return ResponseEntity.created(location).build();
+    }
 
     @GetMapping("/recipe/{id}/image")
     public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {

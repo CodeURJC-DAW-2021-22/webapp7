@@ -10,7 +10,7 @@
 <section id="blog" class="clearfix">
 	<div class="blog_center_1 clearfix">
 		<div class="col-sm-2"></div>
-			<form action="/processFormRecipe" method="post">
+			<form action="/processFormRecipe" method="post" enctype="multipart/form-data">
 				<div class="col-sm-8">
 					<h2>Recipe</h2>
 					<p>Name:</p>
@@ -48,27 +48,15 @@
 						<p><label><input type="checkbox" id="highinfat" name="highinfat"> High in fat</label><br></p>
 					</div>
 					<div class="col-sm-12">
+						<input type="file" id="imageRecipe" name="imageRecipe">
+					</div>
+					<div class="col-sm-12">
 						<input type="submit" placeholder="Finish Recipe">
 					</div>
-				</div>
 			</form>
 		</div>
 	</div>
 
-	</div>
-	<div class="col-sm-12 blog_center_2">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-9 blog_center_2_main">
-			<div class="col-sm-12 blog_center_2_main_top">
-				<div class="btn-group-lg" data-toggle="buttons">
-					<label class="btn btn-success active">Finish Recipe</label>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	<div class="col-sm-1"></div>
-	</div>
 </section>
 
 {{>footer}}

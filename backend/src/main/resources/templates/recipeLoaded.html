@@ -19,7 +19,6 @@
 		  <form action="/processAddRecipe" method="post">
 			  {{#userRecipe}}
 			  	<input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}} >
-				<input type="submit" class="btn btn-danger" onclick="addRecipe()" id="btnSaveRecipe" value="Save Recipe"/>
 				<input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Save Recipe"/>
 			  {{/userRecipe}}
 		  </form>
@@ -28,9 +27,7 @@
 				<input type="submit" class="btn btn-danger" id="btnDisable" value="Already Saved" disabled/>
 			  {{/disable}}
 
-		  <form action="/processFormRecipe" method="post">
 			  {{#adminDelete}}
-				<input type="submit" class="btn btn-danger" onclick="deleteRecipe()" id="btnDeleteRecipe" value="Delete Recipe"/>
 		  <form action="/processDeleteRecipe" method="post">
 			    <input type="hidden" id="id_RecipeDelete" name="id_RecipeDelete" value={{recipe.id}} >
 				<input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
