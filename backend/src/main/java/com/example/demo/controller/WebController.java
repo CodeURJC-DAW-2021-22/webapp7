@@ -6,10 +6,7 @@ import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
-import com.example.demo.service.DatabaseInit;
-import com.example.demo.service.MenuService;
-import com.example.demo.service.RecipeService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.*;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -54,6 +51,9 @@ public class WebController {
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private DietService dietService;
 
     @Autowired
     private RecipeRepository recipeRepository;
@@ -148,7 +148,17 @@ public class WebController {
     public String getAboutUs(Model model){return "AboutUs";}
 
     @GetMapping("/StoredDiets")
-    public String getStoredDiets(Model model){return "DropDown";}
+    public String getStoredDiets(Model model){
+        List<Diet> dietas = this.currentUser.getStoredDiets();
+        //Optional<List<Diet>> diets = dietService.findById(this.currentUser.getStoredDiets());
+       /* List<List<Menu>> listaMenus = new ArrayList<>();
+        for(Diet d : dietas){
+            listaMenus.add(d.getDieta());
+        }
+        model.addAttribute("menus",listaMenus);*/
+        model.addAttribute("diets",dietas);
+        return "DropDown";
+    }
 
     @GetMapping("/AdminProfile")
     public String getAdminProfile(Model model){
