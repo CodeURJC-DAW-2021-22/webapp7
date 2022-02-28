@@ -213,13 +213,15 @@ public class WebController {
     }
 
     @PostMapping("/processFormRecipe")
-    public ModelAndView processRecipeMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam boolean vegetables, @RequestParam boolean protein, @RequestParam boolean hydrates, @RequestParam boolean carbohydrates, @RequestParam boolean highinfat, @RequestParam MultipartFile imageRecipe) throws IOException {
+    public ModelAndView processRecipeMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
         String creator = currentUser.getUsername();
-
         Date date = new Date();
-
+        boolean vegetables=booleanos.contains("vegetables");
+        boolean protein=booleanos.contains("protein");
+        boolean hydrates=booleanos.contains("hydrates");
+        boolean carbohydrates=booleanos.contains("carbohydrates");
+        boolean highinfat=booleanos.contains("highinfat");
         Recipe recipe = new Recipe(name, time, difficulty, date, creator, ingredients, vegetables, protein, hydrates, carbohydrates, highinfat, preparation);
-
         recipeService.save(recipe);
         if(imageRecipe != null) {
             uploadImage(recipe.getId(), imageRecipe);
