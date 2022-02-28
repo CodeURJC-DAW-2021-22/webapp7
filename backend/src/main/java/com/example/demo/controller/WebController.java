@@ -84,16 +84,18 @@ public class WebController {
         Optional<Recipe> outstandingRecipes1 = recipeService.findById(22);
         List<Recipe> outstandingRecipesAux = recipeRepository.findAll();
         int contRecipes = 0;
-        for(Recipe recipe: outstandingRecipesAux){
-            contRecipes = contRecipes + 1;
-        }
-        Optional<Recipe> outstandingRecipes2 = recipeService.findById((long)(Math.random() * contRecipes));
+        for (Recipe recipe : outstandingRecipesAux)
+            contRecipes++;
+        double rnd = Math.random()*contRecipes;
+        if (rnd==0)
+            rnd=rnd+1;
+        Optional<Recipe> outstandingRecipes2 = recipeService.findById((long)rnd);
 
         Page<Recipe> recipeCarrousel1 = recipeRepository.findAll(PageRequest.of(0,3,Sort.by("id").descending()));
         Page<Recipe> recipeCarrousel2 = recipeRepository.findAll(PageRequest.of(1,3,Sort.by("id").descending()));
 
-        Optional<Recipe> tryRecipes1 = recipeService.findById((long)(Math.random() * contRecipes));
-        Optional<Recipe> tryRecipes2 = recipeService.findById((long)(Math.random() * contRecipes));
+        Optional<Recipe> tryRecipes1 = recipeService.findById((long)(rnd));
+        Optional<Recipe> tryRecipes2 = recipeService.findById((long)(rnd));
 
         model.addAttribute("recipe1", outstandingRecipes.get());
         model.addAttribute("recipe2", outstandingRecipes1.get());
