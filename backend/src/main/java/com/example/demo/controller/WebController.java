@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -276,12 +277,13 @@ public class WebController {
         }
     }
     @GetMapping("/processLogOut")
-    public String LogOut(Model model){
+    public void LogOut(Model model, HttpServletResponse response) throws IOException {
         this.currentUser=null;
         model.addAttribute("loggedUser",false);
         model.addAttribute("logged",false);
         model.addAttribute("admin", false);
-        return "index";
+        
+        response.sendRedirect("/");
     }
 
     @PostMapping("/processFormLogIn")
