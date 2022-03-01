@@ -13,6 +13,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -202,6 +203,11 @@ public class WebController {
         model.addAttribute("recipe", recipes.getContent());
 
         return "recipe";
+    }
+
+    @GetMapping("/Recipes/getMoreRecipes")
+    public Page<Recipe> getMoreProducts(Pageable page){
+        return recipeRepository.findAll(page);
     }
 
     @PostMapping("/processRemoveRecipe")
