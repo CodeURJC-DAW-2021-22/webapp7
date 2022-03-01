@@ -239,7 +239,7 @@ public class WebController {
     }
 
     @PostMapping("/processFormRecipe")
-    public ModelAndView processRecipeMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
+    public ModelAndView processMenuMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
         String creator = currentUser.getUsername();
         Date date = new Date();
         boolean vegetables=booleanos.contains("vegetables");
@@ -247,12 +247,43 @@ public class WebController {
         boolean hydrates=booleanos.contains("hydrates");
         boolean carbohydrates=booleanos.contains("carbohydrates");
         boolean highinfat=booleanos.contains("highinfat");
-        Recipe recipe = new Recipe(name, time, difficulty, date, creator, ingredients, vegetables, protein, hydrates, carbohydrates, highinfat, preparation);
+        Recipe recipe = new Recipe(name, time, difficulty, date, ingredients, creator, vegetables, protein, hydrates, carbohydrates, highinfat, preparation);
         recipeService.save(recipe);
         if(imageRecipe != null) {
             uploadImage(recipe.getId(), imageRecipe);
         }
         return new ModelAndView(new RedirectView("/AdminProfile", true));
+    }
+
+    @PostMapping("/processFormMenu")
+    public ModelAndView processRecipeMaker(Model model, @RequestParam String name, @RequestParam long lunchMonday, @RequestParam long lunchTuesday, @RequestParam long lunchWednesday, @RequestParam long lunchThursday, @RequestParam long lunchFriday, @RequestParam long lunchSaturday, @RequestParam long lunchSunday, @RequestParam long dinnerMonday, @RequestParam long dinnerTuesday, @RequestParam long dinnerWednesday, @RequestParam long dinnerThursday, @RequestParam long dinnerFriday, @RequestParam long dinnerSaturday, @RequestParam long dinnerSunday){
+        List<Recipe> weekRecipes = new ArrayList<>();
+
+        weekRecipes.add(recipeService.findById(lunchMonday).get());
+        weekRecipes.add(recipeService.findById(dinnerMonday).get());
+
+        weekRecipes.add(recipeService.findById(lunchTuesday).get());
+        weekRecipes.add(recipeService.findById(dinnerTuesday).get());
+
+        weekRecipes.add(recipeService.findById(lunchWednesday).get());
+        weekRecipes.add(recipeService.findById(dinnerWednesday).get());
+
+        weekRecipes.add(recipeService.findById(lunchThursday).get());
+        weekRecipes.add(recipeService.findById(dinnerThursday).get());
+
+        weekRecipes.add(recipeService.findById(lunchFriday).get());
+        weekRecipes.add(recipeService.findById(dinnerFriday).get());
+
+        weekRecipes.add(recipeService.findById(lunchSaturday).get());
+        weekRecipes.add(recipeService.findById(dinnerSaturday).get());
+
+        weekRecipes.add(recipeService.findById(lunchSunday).get());
+        weekRecipes.add(recipeService.findById(dinnerSunday).get());
+
+        Menu menu = new Menu(name, weekRecipes);
+        menuService.save(menu);
+
+        return new ModelAndView(new RedirectView("/User", true));
     }
 
     @PostMapping("/processFormSignUp")
@@ -314,6 +345,74 @@ public class WebController {
 
         return "Stored_Recipes";
     }
+
+    @GetMapping("/MenuMaker")
+    public String getMenu_Maker(Model model){
+        List<Recipe> recipes = currentUser.getStoredRecipes();
+
+        model.addAttribute("recipe", recipes);
+
+        return "MenuMaker";
+    }
+
+    @GetMapping("/MenuAll")
+    public String getMenu_All(Model model){
+        Page<Menu> menus = menuRepository.findAll(PageRequest.of(0,12,Sort.by("id").descending()));
+        List<Menu> menusModels = new ArrayList<>();
+        for (Menu menu: menus){
+            menusModels.add(menu);
+        }
+        model.addAttribute("menu", menus.getContent());
+
+        return "menuAll";
+    }
+
+    @GetMapping("/Menu/{id}")
+    public String getMenu_Selected(Model model, @PathVariable long id){
+
+        List<Recipe> lunches = new ArrayList<>();
+        List<Recipe> dinners = new ArrayList<>();
+        Optional<Menu> selectedMenu = menuService.findById(id);
+        if(selectedMenu.isPresent()){
+            lunches = selectedMenu.get().getLunchs();
+            dinners = selectedMenu.get().getDinners();
+            model.addAttribute("menu",selectedMenu.get());
+
+            ArrayList<Integer> l = new ArrayList<>();
+            for (int i=15; i>=0;i=i-5){
+                l.add(i);
+            }
+            model.addAttribute("indexGraphic",l);
+
+            int[] scoreArray = selectedMenu.get().getMenuScore();
+
+            model.addAttribute("number of bars",14);
+
+            float score = (scoreArray[0] / 15)*100;
+            model.addAttribute("vegetablesStandard",score);
+            score = (scoreArray[1] / 15)*100;
+            model.addAttribute("vegetablesMenu",score);
+            score = (scoreArray[2] / 15)*100;
+            model.addAttribute("proteinStandard",score);
+            score = (scoreArray[3] / 15)*100;
+            model.addAttribute("proteinMenu",score);
+            score = (scoreArray[4] / 15)*100;
+            model.addAttribute("hydratesStandard",score);
+            score = (scoreArray[5] / 15)*100;
+            model.addAttribute("hydratesMenu",score);
+            score = (scoreArray[6] / 15)*100;
+            model.addAttribute("carboHydratesStandard",score);
+            score = (scoreArray[7] / 15)*100;
+            model.addAttribute("carboHydratesMenu",score);
+            score = (scoreArray[8] / 15)*100;
+            model.addAttribute("highInFatStandard",score);
+            score = (scoreArray[9] / 15)*100;
+            model.addAttribute("highInFatMenu",score);
+        }
+
+        model.addAttribute("lunchs",lunches);
+        model.addAttribute("dinners",dinners);
+        return "menuLoader";}
 
     @GetMapping("/YourMenu")
     public String getMenu_Activo(Model model){

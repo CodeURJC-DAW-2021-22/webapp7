@@ -14,6 +14,19 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
 }
+
+.table-fill-maker {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 150px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
  
 th {
   color:#D5DDE5;;
@@ -22,6 +35,20 @@ th {
   border-right: 1px solid #343a45;
   font-size:23px;
   font-weight: 100;
+  padding:24px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th.maker {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  height: 150px;
+  font-size:23px;
+  font-weight: 50;
   padding:24px;
   text-align:left;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -105,6 +132,16 @@ th.text-right {
 
 td.text-left {
   text-align: left;
+}
+
+td.text-left-maker {
+  text-align: left;
+  color: black;
+  padding:10px;
+  vertical-align:middle;
+  font-weight:200;
+  font-size:13px;
+  border-right: 1px solid #C1C3D1;
 }
 
 td.text-center {

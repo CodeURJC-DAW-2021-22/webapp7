@@ -12,7 +12,7 @@ public class Menu {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nombre;
+    private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
     private List<Recipe> weeklyPlan;
@@ -22,9 +22,9 @@ public class Menu {
         weeklyPlan = new ArrayList<Recipe>();
     }
 
-    public Menu(String nombre, List weeklyPlan){
+    public Menu(String name, List weeklyPlan){
         this.weeklyPlan=weeklyPlan;
-        this.nombre=nombre;
+        this.name=name;
     }
 
 
@@ -100,12 +100,12 @@ public class Menu {
         this.weeklyPlan = weeklyPlan;
     }
     public void setId(Long id) {this.id = id;}
-    public String getNombre() {
-        return nombre;
+    public String getname() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public Long getId() {return id;}

@@ -1,0 +1,71 @@
+{{>header}}
+<section id="blog" class="clearfix">
+    <div class="col-sm-12 blog clearfix"><!-- Imagenes de fondo + texto principal -->
+        <div class="blog_top">
+            <div class="col-sm-4 blog_left">
+                <img class="img-responsive" src="img/43.jpg" width="">
+            </div>
+            <div class="col-sm-4 blog_left">
+                <img class="" src="img/44.jpg" width="100%">
+            </div>
+            <div class="col-sm-4 blog_left">
+                <img class="img-responsive" src="img/45.jpg">
+            </div>
+        </div>
+        <div class="blog_main">
+            {{#menu}}
+            <h1>Your active menu: {{menu.name}}</h1>
+            {{/menu}}
+        </div>
+    </div>
+    <div class="blog_center_1 clearfix"><!-- Texto introductorio  -->
+    </div>
+    <div class="col-sm-12 blog_center_2">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-9 blog_center_2_main">
+            <div class="col-sm-12 blog_center_2_main_top">
+                <div>
+                    <table class="table-fill">
+                        <thead>
+                        <tr>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                            <th>Sunday</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-hover">
+                        <tr>
+                            {{#lunchs}}
+                            <td class="text-left"><a href="/Recipe/{{{id}}}">{{name}}</a></td>
+                            {{/lunchs}}
+                        </tr>
+                        <tr>
+                            {{#dinners}}
+                            <td class="text-left"><a href="/Recipe/{{{id}}}">{{name}}</a></td>
+                            {{/dinners}}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br><br><br>
+                <br><br><br><br><br>
+                <div class="col-sm-8 blog_center_2_main_top_2">
+                    <table class="charts-css column show-heading" id="my-chart">
+                        <caption> How healthy your menu is?? </caption>
+                        <tr>
+                            <td> {{highInFatMenu}} </td>
+                            <td> {{highInFatStandard}} </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{>footer}}
