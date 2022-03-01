@@ -207,7 +207,7 @@ public class WebController {
     public ModelAndView processRemoveRecipe(Model model, @RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipe = recipeService.findById(id);
-        currentUser.getStoredRecipes().remove(recipe);
+        currentUser.removeStoredRecipes(recipe.get().getId());
         userService.save(currentUser);
 
         return new ModelAndView(new RedirectView("/StoredRecipes", true));

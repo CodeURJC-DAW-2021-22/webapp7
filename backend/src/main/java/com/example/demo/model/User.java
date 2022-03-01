@@ -54,6 +54,18 @@ public class User {
         return storedRecipes;
     }
 
+    public void removeStoredRecipes(long id){
+        int position = 0;
+        int solution = -1;
+        for(Recipe recipe: this.storedRecipes) {
+            if(recipe.getId().equals(id)){
+                solution = position;
+            }
+            position++;
+        }
+        this.storedRecipes.remove(solution);
+    }
+
     public void addStoredRecipes(Recipe recipe){this.storedRecipes.add(recipe);}
 
     public void setStoredRecipes(List<Recipe> storedRecipes) {
