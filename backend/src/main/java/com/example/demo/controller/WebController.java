@@ -168,7 +168,8 @@ public class WebController {
         model.addAttribute("diets",dietas);
         return "DropDown";
     }
-
+    @GetMapping("/diet")
+    public String getDietPage(){return "diet";}
     @GetMapping("/AdminProfile")
     public String getAdminProfile(Model model){
         List<User> users = userService.findAll();
