@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import javax.persistence.*;
@@ -28,7 +30,7 @@ public class User {
     private List<Recipe> storedRecipes;
 
     @ManyToMany
-    @JoinColumn(name="id_stored_diets",referencedColumnName = "stored_diets_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Diet> storedDiets;
 
     public User() {
