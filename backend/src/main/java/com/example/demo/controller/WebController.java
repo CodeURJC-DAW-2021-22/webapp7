@@ -172,9 +172,14 @@ public class WebController {
     @GetMapping("/diet/{id}/{nombre}")
     public String getDietPage(Model model, @PathVariable long id){
         Optional<Diet> d = dietService.findById(id);
+        List<Menu> menuList = new ArrayList<>();
         if (d.isPresent())
+            for (Menu m : d.get().getDieta()){
+                if (!menuList.contains(m))
+                    menuList.add(m);
+            }
             model.addAttribute("DietName",d.get().getNombre());
-            model.addAttribute("menuList",d.get().getDieta());
+            model.addAttribute("menuList",menuList);
         return "diet";
     }
 
