@@ -319,6 +319,8 @@ public class DatabaseInit {
 
         List<Diet> dietas0 = new ArrayList<Diet>();
         dietas0.add(dietStandard);
+        dietas0.add(dietVegetable);
+        dietas0.add(dietGym);
 
         List<Diet> dietas1 = new ArrayList<Diet>();
         dietas1.add(dietGym);

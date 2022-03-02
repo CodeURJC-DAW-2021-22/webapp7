@@ -12,12 +12,12 @@ public class Diet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     private String nombre;
 
-    //@OneToMany
+
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
     private List<Menu> dieta;
+
 
     public Diet() {
         this.dieta=new ArrayList<Menu>();

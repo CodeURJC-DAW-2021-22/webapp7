@@ -168,8 +168,16 @@ public class WebController {
         model.addAttribute("diets",dietas);
         return "DropDown";
     }
-    @GetMapping("/diet")
-    public String getDietPage(){return "diet";}
+
+    @GetMapping("/diet/{id}/{nombre}")
+    public String getDietPage(Model model, @PathVariable long id){
+        Optional<Diet> d = dietService.findById(id);
+        if (d.isPresent())
+            model.addAttribute("DietName",d.get().getNombre());
+            model.addAttribute("menuList",d.get().getDieta());
+        return "diet";
+    }
+
     @GetMapping("/AdminProfile")
     public String getAdminProfile(Model model){
         List<User> users = userService.findAll();

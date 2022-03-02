@@ -2,7 +2,7 @@
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<title>Food & U: Diet</title>
+<title>Food & U: Diet {{DietName}}</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
@@ -81,9 +81,9 @@
 				
 				<div class="col-sm-12 footer_end">
 					<ul class= "User Links" style= "text-align: center; list-style-type: none;">
-						{{#diets}}
-						<li><a href="/YourMenu"><h4>{{nombre}}</h4></a></li>
-						{{/diets}}
+						{{#menuList}}
+						<li><a href="/YourMenu"><h4>{{name}}</h4></a></li>
+						{{/menuList}}
 					</ul>
 				</div>
 				</div>
