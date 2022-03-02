@@ -313,10 +313,33 @@ public class DatabaseInit {
 
 
         List<Menu> menuList = new ArrayList<Menu>();
+
         List<Diet> dietas = new ArrayList<Diet>();
         dietas.add(dietCheapBuy);
-        dietas.add(dietStandard);
-        dietas.add(dietGym);
+
+        List<Diet> dietas0 = new ArrayList<Diet>();
+        dietas0.add(dietStandard);
+
+        List<Diet> dietas1 = new ArrayList<Diet>();
+        dietas1.add(dietGym);
+
+        List<Diet> dietas2 = new ArrayList<Diet>();
+        dietas2.add(dietVegetable);
+
+        List<Diet> dietas3 = new ArrayList<Diet>();
+        dietas3.add(dietHealthy);
+
+        List<Diet> dietas4 = new ArrayList<Diet>();
+        dietas4.add(dietCheapBuy);
+        dietas4.add(dietStandard);
+        dietas4.add(dietGym);
+
+        List<Diet> dietasAdmin = new ArrayList<Diet>();
+        dietasAdmin.add(dietCheapBuy);
+        dietasAdmin.add(dietStandard);
+        dietasAdmin.add(dietGym);
+        dietasAdmin.add(dietHealthy);
+
         List<Recipe> recipes = new ArrayList<Recipe>();
         List<Recipe> recipesadd = new ArrayList<Recipe>();
         recipesadd.add(recipe1);
@@ -325,12 +348,12 @@ public class DatabaseInit {
         recipesadd.add(recipe4);
 
 
-        User user0 = new User("user0@gmail.com","user0","123",recipesadd,menu1,dietas,false);
-        User user1 = new User("user1@gmail.com","user1","123",recipes,menu1,dietas,false);
-        User user2 = new User("user2@gmail.com","user2","123",recipes,menu1,dietas,false);
-        User user3 = new User("user3@gmail.com","user3","123",recipes,menu1,dietas,false);
-        User user4 = new User("user4@gmail.com","user4","123",recipes,menu1,dietas,false);
-        User admin = new User("admin@gmail.com","admin","123",recipes,menu1,dietas,true);
+        User user0 = new User("user0@gmail.com","user0","123",recipesadd,menu1,dietas0,false);
+        User user1 = new User("user1@gmail.com","user1","123",recipes,menu1,dietas1,false);
+        User user2 = new User("user2@gmail.com","user2","123",recipes,menu1,dietas2,false);
+        User user3 = new User("user3@gmail.com","user3","123",recipes,menu1,dietas3,false);
+        User user4 = new User("user4@gmail.com","user4","123",recipes,menu1,dietas4,false);
+        User admin = new User("admin@gmail.com","admin","123",recipes,menu1,dietasAdmin,true);
 
 
         userRepository.save(user0);

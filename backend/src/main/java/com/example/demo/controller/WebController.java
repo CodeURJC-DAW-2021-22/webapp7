@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -151,13 +152,19 @@ public class WebController {
 
     @GetMapping("/StoredDiets")
     public String getStoredDiets(Model model){
-        List<Diet> dietas = this.currentUser.getStoredDiets();
-        //Optional<List<Diet>> diets = dietService.findById(this.currentUser.getStoredDiets());
-       /* List<List<Menu>> listaMenus = new ArrayList<>();
-        for(Diet d : dietas){
-            listaMenus.add(d.getDieta());
+        List<Diet> idDietas= this.currentUser.getStoredDiets();
+        List<Diet> dietas = new ArrayList<>();
+
+        for (Diet d : idDietas){
+            long id = d.getId();
+            System.out.println(d.getNombre());
+            Optional<Diet> tryDiet = dietService.findById(id);
+            if (tryDiet.isPresent())
+                dietas.add(tryDiet.get());
         }
-        model.addAttribute("menus",listaMenus);*/
+        for (Diet d : dietas){
+            System.out.println(d.getNombre());
+        }
         model.addAttribute("diets",dietas);
         return "DropDown";
     }
@@ -342,7 +349,6 @@ public class WebController {
     public String getAllYourRecipes(Model model){
         List<Recipe> recipes = currentUser.getStoredRecipes();
         model.addAttribute("yourRecipe", recipes);
-
         return "Stored_Recipes";
     }
 

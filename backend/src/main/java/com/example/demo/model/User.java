@@ -27,8 +27,8 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Recipe> storedRecipes;
 
-    //@OneToMany
-    @ManyToMany(cascade=CascadeType.REMOVE)
+    @ManyToMany
+    @JoinColumn(name="id_stored_diets",referencedColumnName = "stored_diets_id")
     private List<Diet> storedDiets;
 
     public User() {
