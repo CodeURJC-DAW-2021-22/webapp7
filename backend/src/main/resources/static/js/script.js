@@ -40,9 +40,9 @@ $('.cargarRecetas').on("click", function (){
 
             });
             if (nextPage + 1 < result.totalPages) {
-                var button = "<div class='loadMoreButton'>\n" +
-                    "\t   \t\t<button type='button' class='cargarRecetas'>Load more</button>\n" +
-                    "\t\t</div>";
+                var button = "<div class='loadMoreButton'>";
+                button = button.concat("<button type='button' class='cargarRecetas'>Load more</button>");
+                button = button.concat("</div>");
                 $(".impresion").append(button);
                 nextPage++;
             }else{
