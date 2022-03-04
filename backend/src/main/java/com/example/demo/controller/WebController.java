@@ -363,6 +363,7 @@ public class WebController {
     public String getAllYourRecipes(Model model){
         List<Recipe> recipes = currentUser.getStoredRecipes();
         model.addAttribute("yourRecipe", recipes);
+
         return "Stored_Recipes";
     }
 
@@ -387,8 +388,23 @@ public class WebController {
         return "menuAll";
     }
 
+    @PostMapping("/processActiveMenu")
+    public ModelAndView processActiveMenu(Model model, @RequestParam String id_Menu){
+        long id=Long.parseLong(id_Menu);
+        Optional<Menu> menu = menuService.findById(id);
+        currentUser.setActiveMenu(menu.get());
+        userService.save(currentUser);
+
+        return new ModelAndView(new RedirectView("/YourMenu", true));
+    }
+
     @GetMapping("/Menu/{id}")
     public String getMenu_Selected(Model model, @PathVariable long id){
+        if (currentUser.getActiveMenu().getId().equals(id)) {
+            model.addAttribute("disable", true);
+        } else {
+            model.addAttribute("userMenu", currentUser != null);
+        }
 
         List<Recipe> lunches = new ArrayList<>();
         List<Recipe> dinners = new ArrayList<>();
