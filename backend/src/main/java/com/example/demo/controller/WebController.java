@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Diet;
-import com.example.demo.model.Menu;
-import com.example.demo.model.Recipe;
-import com.example.demo.model.User;
+import com.example.demo.model.*;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.service.*;
