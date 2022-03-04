@@ -226,8 +226,8 @@ public class WebController {
         return "recipe";
     }
 
-    @GetMapping("/Recipes/getMoreRecipes")
-    public Page<Recipe> getMoreProducts(Pageable page){
+    @GetMapping("/getMoreRecipes")
+    public @ResponseBody Page<Recipe> getMoreProducts(Pageable page){
         return recipeRepository.findAll(page);
     }
 

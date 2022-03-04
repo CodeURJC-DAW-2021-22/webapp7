@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Date;
@@ -24,6 +26,7 @@ public class Recipe {
     private String creator;
 
     @Lob
+    @JsonIgnore
     Blob recipeImage;
 
     private boolean hasPhoto;
