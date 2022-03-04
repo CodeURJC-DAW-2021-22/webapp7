@@ -3,6 +3,10 @@ var totalPages;
 var recipeList = [];
 
 $('.cargarRecetas').on("click", function (){
+    var spinner = "<div class='spinner'></div>";
+    $(".impresion").append(spinner);
+    $(".loadMoreButton").remove();
+    setTimeout(   function()    {
     console.log("Entro")
     size = 12;
     sort = "id";
@@ -12,7 +16,9 @@ $('.cargarRecetas').on("click", function (){
         url: ("/getMoreRecipes?page=" + nextPage + "&size=" + size + "&sort=" + sort + ",desc"),
         success: function (result){
             console.log(result)
+            $(".spinner").remove();
             $.each(result.content, function (id,value){
+
                 console.log(value)
                 var base = "<div class='col-sm-3 space_all prueba'>";
                 base = base.concat("<div class='bp_2m clearfix'>");
@@ -34,10 +40,15 @@ $('.cargarRecetas').on("click", function (){
 
             });
             if (nextPage + 1 < result.totalPages) {
+                var button = "<div class='loadMoreButton'>\n" +
+                    "\t   \t\t<button type='button' class='cargarRecetas'>Load more</button>\n" +
+                    "\t\t</div>";
+                $(".impresion").append(button);
                 nextPage++;
             }else{
                 $(".loadMoreButton").remove();
             }
         }
     });
+    }, 3500);
 });
