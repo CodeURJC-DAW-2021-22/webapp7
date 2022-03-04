@@ -9,6 +9,27 @@ Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152
 */
 
 .impresion{
+    justify-content: center;
+    align-items: center;
+}
+
+.cargarRecetas{
+    align-items: center;
+    font-size:16px;
+    text-decoration:none;
+    padding:12px 18px 12px 18px;
+    border: 3px solid #000000;
+    color:#FFFFFF;
+    background:#006600;
+}
+
+.cargarRecetas:hover {
+    background:#fff;
+    color:#006600;
+    border: 3px solid #006600;
+}
+
+.impresion{
     align-items: center;
 }
 

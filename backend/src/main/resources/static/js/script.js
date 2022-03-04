@@ -35,7 +35,7 @@ $('.cargarRecetas').on("click", function (){
                 base = base.concat("</div>");
                 base = base.concat("</div>");
 
-                $(".impresion").append(base);
+                $(".impresionRecipes").append(base);
 
 
             });
