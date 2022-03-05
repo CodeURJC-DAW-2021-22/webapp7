@@ -101,6 +101,13 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+    public List<String> getRoles(){
+        List<String> toReturn = new ArrayList();
+        toReturn.add("USER");
+        if (this.admin)
+            toReturn.add("ADMIN");
+        return toReturn;
+    }
 
     public List<Diet> getStoredDiets() {
         return storedDiets;

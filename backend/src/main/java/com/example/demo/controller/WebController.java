@@ -394,7 +394,7 @@ public class WebController {
         long id=Long.parseLong(id_Menu);
         Optional<Menu> menu = menuService.findById(id);
         currentUser.setActiveMenu(menu.get());
-        userService.save(currentUser);
+        userRepository.save(currentUser);
 
         return new ModelAndView(new RedirectView("/YourMenu", true));
     }
