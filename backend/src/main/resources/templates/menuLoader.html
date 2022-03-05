@@ -54,6 +54,7 @@
                 <br><br><br>
                 <form action="/processActiveMenu" method="post">
                     {{#userMenu}}
+                        <input type="hidden" name="_csrf" value="{{token}}">
                         <input type="hidden" id="id_Menu" name="id_Menu" value={{menu.id}} >
                         <input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Active Menu"/>
                     {{/userMenu}}
