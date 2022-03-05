@@ -52,6 +52,15 @@
                     </table>
                 </div>
                 <br><br><br>
+                <form action="/processActiveMenu" method="post">
+                    {{#userMenu}}
+                        <input type="hidden" id="id_Menu" name="id_Menu" value={{menu.id}} >
+                        <input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Active Menu"/>
+                    {{/userMenu}}
+                </form>
+                {{#disable}}
+                    <input type="submit" class="btn btn-danger" id="btnDisable" value="Already Active" disabled/>
+                {{/disable}}
                 <br><br><br><br><br>
                 <div class="col-sm-8 blog_center_2_main_top_2">
                     <table class="charts-css column show-heading" id="my-chart">

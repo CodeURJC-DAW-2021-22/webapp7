@@ -29,7 +29,6 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Recipe> storedRecipes;
 
-
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Diet> storedDiets;
@@ -102,14 +101,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public List<String> getRoles (){
-        List<String> toReturn = new ArrayList<>();
-        if (this.admin){
-            toReturn.add("ADMIN");
-        }
-        toReturn.add("USER");
-        return toReturn;
-    }
+
     public List<Diet> getStoredDiets() {
         return storedDiets;
     }

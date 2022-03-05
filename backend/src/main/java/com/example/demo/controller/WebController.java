@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Diet;
-import com.example.demo.model.Menu;
-import com.example.demo.model.Recipe;
-import com.example.demo.model.User;
+import com.example.demo.model.*;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.service.*;
+import org.apache.commons.io.IOUtils;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -27,15 +25,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -44,6 +40,9 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 public class WebController {
 
     private User currentUser=null;
+
+    @Autowired
+    private ExportPdfService exportPdfService;
 
     @Autowired
     private MenuRepository menuRepository;
@@ -228,8 +227,8 @@ public class WebController {
         return "recipe";
     }
 
-    @GetMapping("/Recipes/getMoreRecipes")
-    public Page<Recipe> getMoreProducts(Pageable page){
+    @GetMapping("/getMoreRecipes")
+    public @ResponseBody Page<Recipe> getMoreProducts(Pageable page){
         return recipeRepository.findAll(page);
     }
 
@@ -365,6 +364,7 @@ public class WebController {
     public String getAllYourRecipes(Model model){
         List<Recipe> recipes = currentUser.getStoredRecipes();
         model.addAttribute("yourRecipe", recipes);
+
         return "Stored_Recipes";
     }
 
@@ -389,8 +389,23 @@ public class WebController {
         return "menuAll";
     }
 
+    @PostMapping("/processActiveMenu")
+    public ModelAndView processActiveMenu(Model model, @RequestParam String id_Menu){
+        long id=Long.parseLong(id_Menu);
+        Optional<Menu> menu = menuService.findById(id);
+        currentUser.setActiveMenu(menu.get());
+        userService.save(currentUser);
+
+        return new ModelAndView(new RedirectView("/YourMenu", true));
+    }
+
     @GetMapping("/Menu/{id}")
     public String getMenu_Selected(Model model, @PathVariable long id){
+        if (currentUser.getActiveMenu().getId().equals(id)) {
+            model.addAttribute("disable", true);
+        } else {
+            model.addAttribute("userMenu", currentUser != null);
+        }
 
         List<Recipe> lunches = new ArrayList<>();
         List<Recipe> dinners = new ArrayList<>();
@@ -435,6 +450,43 @@ public class WebController {
         model.addAttribute("lunchs",lunches);
         model.addAttribute("dinners",dinners);
         return "menuLoader";}
+
+    @GetMapping("/downloadReceipt")
+    public void downloadReceipt(HttpServletResponse response) throws IOException {
+        Map<String, Object> data = new HashMap<>();
+        User user = currentUser;
+        data.put("client", user);
+
+        Menu menu = currentUser.getActiveMenu();
+        ArrayList<ReceiptItem> receiptItems = new ArrayList<ReceiptItem>();
+        List<Recipe> recipesMenu = menu.getWeeklyPlan();
+
+        for (int i=0; i<=13;i=i+1) {
+            Recipe recipe = recipesMenu.get(i);
+            ReceiptItem item = new ReceiptItem();
+            item.setName(recipe.getName());
+
+            String allIngredientsRecipe = recipe.getIngredients();
+            String[] strArr = allIngredientsRecipe.split(",\\s+");
+            ArrayList<String> list = new ArrayList<String>(Arrays.asList(strArr));
+            String ultimo = list.get(list.size() - 1);
+            list.remove(list.size() - 1);
+
+            String[] strArrWithY = ultimo.split("\\s+y\\s+");
+            ArrayList<String> listWithY = new ArrayList<String>(Arrays.asList(strArrWithY));
+            list.addAll(listWithY);
+
+            item.setIngredients(list);
+            receiptItems.add(item);
+        }
+        data.put("item", receiptItems);
+
+
+        ByteArrayInputStream exportedData = exportPdfService.exportReceiptPdf("Receipt", data);
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=receipt.pdf");
+        IOUtils.copy(exportedData, response.getOutputStream());
+    }
 
     @GetMapping("/YourMenu")
     public String getMenu_Activo(Model model){

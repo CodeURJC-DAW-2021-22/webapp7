@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<h1>Receipt</h1>
+<div>
+    <table class="receipt-header">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <th>Bill To:</th>
+                    </tr>
+                    <tr>
+                        <td th:text="'Company Name: ' + ${client.name}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Email: ' + ${client.mail}"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<br />
+    <table>
+        <tr>Ingredients</tr>
+        <tr th:each="item:${item}">
+            <td>[[${item.name}]]</td>
+            <td>[[${item.ingredients}]]</td>
+        </tr>
+    </table>
+</body>
+</html>
