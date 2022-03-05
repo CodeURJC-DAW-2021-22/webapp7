@@ -355,12 +355,12 @@ public class DatabaseInit {
         recipesadd.add(recipe4);
 
 
-        User user0 = new User("user0@gmail.com","user0", "123", recipesadd,menu1,dietas0,false);
-        User user1 = new User("user1@gmail.com","user1","123",recipes,menu1,dietas1,false);
-        User user2 = new User("user2@gmail.com","user2","123",recipes,menu1,dietas2,false);
-        User user3 = new User("user3@gmail.com","user3","123",recipes,menu1,dietas3,false);
-        User user4 = new User("user4@gmail.com","user4","123",recipes,menu1,dietas4,false);
-        User admin = new User("admin@gmail.com","admin","123",recipes,menu1,dietasAdmin,true);
+        User user0 = new User("user0@gmail.com","user0", passwordEncoder.encode("123"), recipesadd,menu1,dietas0,false);
+        User user1 = new User("user1@gmail.com","user1",passwordEncoder.encode("123"),recipes,menu1,dietas1,false);
+        User user2 = new User("user2@gmail.com","user2",passwordEncoder.encode("123"),recipes,menu1,dietas2,false);
+        User user3 = new User("user3@gmail.com","user3",passwordEncoder.encode("123"),recipes,menu1,dietas3,false);
+        User user4 = new User("user4@gmail.com","user4",passwordEncoder.encode("123"),recipes,menu1,dietas4,false);
+        User admin = new User("admin@gmail.com","admin",passwordEncoder.encode("123admin"),recipes,menu1,dietasAdmin,true);
 
 
         userRepository.save(user0);

@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/removebook/*").hasAnyRole("ADMIN");*/
 
         // Login form
-        http.formLogin().loginPage("/ProcessFormLogIn");
+        http.formLogin().loginPage("/LogIn");
         http.formLogin().usernameParameter("name");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/");

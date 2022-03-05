@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -67,20 +70,20 @@ public class WebController {
 
 
     @ModelAttribute
-    public void addAttributes(Model model) {
-        if (currentUser==null)
-            model.addAttribute("loggedUser", false);
-        else if (currentUser.getAdmin()) {
-            model.addAttribute("admin", true);
-            model.addAttribute("logged", true);
-        }
+    public void addAttributes(Model model, HttpServletRequest request) {
+
+        Principal principal = request.getUserPrincipal();
+
+        if (principal==null)
+            model.addAttribute("logged", false);
         else {
-            model.addAttribute("loggedUser", true);
             model.addAttribute("logged", true);
+            model.addAttribute("admin", request.isUserInRole("ADMIN"));
+            Optional<User> tryUser = userRepository.findByName(principal.getName());
+            if (tryUser.isPresent())
+                currentUser = tryUser.get();
         }
     }
-
-
 
     @GetMapping("/")
     public String init(Model model) {
@@ -336,12 +339,12 @@ public class WebController {
         }
     }
     @GetMapping("/processLogOut")
-    public void LogOut(Model model, HttpServletResponse response) throws IOException {
+    public void LogOut(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         this.currentUser=null;
         model.addAttribute("loggedUser",false);
         model.addAttribute("logged",false);
         model.addAttribute("admin", false);
-        
+        request.logout();
         response.sendRedirect("/");
     }
 
