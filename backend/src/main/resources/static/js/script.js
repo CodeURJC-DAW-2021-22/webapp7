@@ -3,9 +3,9 @@ var totalPages;
 var recipeList = [];
 
 $('.cargarRecetas').on("click", function (){
+    $(".cargarRecetas").hide();
     var spinner = "<div class='spinner'></div>";
     $(".impresion").append(spinner);
-    $(".loadMoreButton").remove();
     setTimeout(   function()    {
     console.log("Entro")
     size = 12;
@@ -40,10 +40,7 @@ $('.cargarRecetas').on("click", function (){
 
             });
             if (nextPage + 1 < result.totalPages) {
-                var button = "<div class='loadMoreButton'>";
-                button = button.concat("<button type='button' class='cargarRecetas'>Load more</button>");
-                button = button.concat("</div>");
-                $(".impresion").append(button);
+                $(".cargarRecetas").show();
                 nextPage++;
             }else{
                 $(".loadMoreButton").remove();
