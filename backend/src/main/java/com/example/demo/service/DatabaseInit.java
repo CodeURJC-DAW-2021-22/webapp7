@@ -13,6 +13,7 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +26,10 @@ import java.util.List;
 
 @Component
 public class DatabaseInit {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Autowired
     private UserRepository userRepository;
@@ -350,7 +355,7 @@ public class DatabaseInit {
         recipesadd.add(recipe4);
 
 
-        User user0 = new User("user0@gmail.com","user0","123",recipesadd,menu1,dietas0,false);
+        User user0 = new User("user0@gmail.com","user0", "123", recipesadd,menu1,dietas0,false);
         User user1 = new User("user1@gmail.com","user1","123",recipes,menu1,dietas1,false);
         User user2 = new User("user2@gmail.com","user2","123",recipes,menu1,dietas2,false);
         User user3 = new User("user3@gmail.com","user3","123",recipes,menu1,dietas3,false);

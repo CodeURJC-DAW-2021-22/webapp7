@@ -18,6 +18,7 @@
 		<h5>{{recipe.uploadDate}} | {{recipe.creator}}</h5>
 		  <form action="/processAddRecipe" method="post">
 			  {{#userRecipe}}
+			  	<input type="hidden" name="_csrf" value="{{token}}"/>
 			  	<input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}} >
 				<input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Save Recipe"/>
 			  {{/userRecipe}}
@@ -29,6 +30,7 @@
 
 			  {{#adminDelete}}
 		  <form action="/processDeleteRecipe" method="post">
+			  	<input type="hidden" name="_csrf" value="{{token}}"/>
 			    <input type="hidden" id="id_RecipeDelete" name="id_RecipeDelete" value={{recipe.id}} >
 				<input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
 			  {{/adminDelete}}

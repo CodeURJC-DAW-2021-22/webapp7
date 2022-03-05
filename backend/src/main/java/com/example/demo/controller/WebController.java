@@ -6,6 +6,7 @@ import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.service.*;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,7 +49,7 @@ public class WebController {
     private MenuRepository menuRepository;
 
     @Autowired
-    private UserService userService;
+    private RepositoryUserDetailsService userRepository;
 
     @Autowired
     private RecipeService recipeService;
@@ -185,7 +187,7 @@ public class WebController {
 
     @GetMapping("/AdminProfile")
     public String getAdminProfile(Model model){
-        List<User> users = userService.findAll();
+        List<User> users = userRepository.findAll();
         model.addAttribute("usersAll", users.size());
 
         return "Admin";}
@@ -236,7 +238,7 @@ public class WebController {
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipe = recipeService.findById(id);
         currentUser.removeStoredRecipes(recipe.get().getId());
-        userService.save(currentUser);
+        userRepository.save(currentUser);
 
         return new ModelAndView(new RedirectView("/StoredRecipes", true));
     }
@@ -254,7 +256,7 @@ public class WebController {
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipe = recipeService.findById(id);
         currentUser.getStoredRecipes().add(recipe.get());
-        userService.save(currentUser);
+        userRepository.save(currentUser);
 
         return new ModelAndView(new RedirectView("/Recipe/"+id_Recipe, true));
     }
@@ -316,10 +318,10 @@ public class WebController {
 
         User user = new User(mail, name, password, recipes, menuVoid, dietas, false);
 
-        Optional<User> tryUser = userService.findByName(user.getName());
-        Optional<User> tryMail = userService.findByMail(user.getMail());
+        Optional<User> tryUser = userRepository.findByName(user.getName());
+        Optional<User> tryMail = userRepository.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
-            userService.save(user);
+            userRepository.save(user);
             if(!user.getAdmin()) {
                 model.addAttribute("loggedUser", true);
                 model.addAttribute("logged",true);
@@ -346,7 +348,7 @@ public class WebController {
 
     @PostMapping("/processFormLogIn")
     public ModelAndView processForm(Model model, @RequestParam String name, @RequestParam String password){
-        Optional<User> tryUser = userService.findByName(name);
+        Optional<User> tryUser = userRepository.findByName(name);
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
