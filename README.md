@@ -114,7 +114,7 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [Functional Log In](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/571a2d4faf21f6626fde8961c4ec933b09ee5615)
   - [Setting Up DB](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/56dc0fbdcc84f7cbe08a322c924592ee902f1c33)
   - [Graphics added, Part 1](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/4d9603244e85f3c06389d51cfd1497acb5620b38)
-  - [Grephics added, Part 2](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/36fa83a632c04306b57983183ff848dedb0b8722)
+  - [Graphics added, Part 2](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/36fa83a632c04306b57983183ff848dedb0b8722)
   
     And now I will add some links to explore some of the most edited files by me:
   - [Menu JAVA class](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/model/Menu.java)
@@ -122,6 +122,20 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
   - [Web Security Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/security/WebSecurityConfig.java)
   - [Database Initializer](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/DatabaseInit.java)
-- **Hugo Coto González**
+  
+- **Hugo Coto González**: My work has consisted in the development of many of the controllers that were related with getting information from the DB along with the correct display in the frontend set through the use of Mustache (the complete fill of the index and recipes pages). Also, I implemented the whole structure to page objects, so my teammates could replicate it without any extremely complex change and save time on their own implementations that required this method. Moreover, the toughest task I had to deal with, without any doubt, was the AJAX script in addition to the correct display of the paginated objects. The most important commits I've made are shown below: 
+  - [Functional AJAX button](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/1ca6cbedfce9b57e85d9bfe6f29be29e99f90ded)
+  - [AJAX Related, Part 1](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/c5a07863c4f81fb8bc219ea34e31fb34313b90c2)
+  - [AJAX Related, Part 2](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/77431b4afebbfcd4e93c7022dd37df4c65ae86d2)
+  - [Index loaded from DB](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/4fb87287d80986a605bf15ee1c49a47f93dfa10e)
+  - [Load paginated objects method (/Recipes)](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/d9af423294269fc8ff398c44784da4c283b15910)
+  - [Header + Footer with Mustache](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/8a95ff2b4af4d9693455f1c3e49f1116344b1b72)
+
+    You can check below the files where I mostly took part on:
+  - [Recipe JAVA class](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/model/Recipe.java)
+  - [Script](backend/src/main/resources/static/js/script.js)
+  - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
+  - [Web Security Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/security/WebSecurityConfig.java)
+  - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
 - **Carlos Rodríguez Gómez**
 - **Carlos Alejandro Álvarez**
