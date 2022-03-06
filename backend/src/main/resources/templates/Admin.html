@@ -15,22 +15,19 @@
 	  <div class="col-sm-6 pad_l">
 	  </div>
 	   <div class="detail_nr clearfix">
-	    <h1 style= "text-align: center;">ADMIN:ADMIN NAME</h1>
+	    <h1 style= "text-align: center;">ADMIN: {{adminName}}</h1>
 	   </div>
 		<ul class= "User Links" style= "text-align: center; list-style-type: none;">
 			<li><a href="/RecipeMaker"><h4>Make Recipe</h4></a></li>
-			<li><a href="/StoredDiets"><h4>Stored Diets</h4></a></li>
-			<li><h4>Shopping List</h4></li>
-			<li><a href="/StoredRecipes"><h4>Stored Recipes</h4></a></li>
             <li> <p>Users data:</p>
                         <p>Total Users: {{usersAll}}  </p>
-                        <p>Healthy Users: y </p>
-                        <p>UnHealthy Users: x </p>
+                        <p>Healthy Users: {{numberOfHealthyUsers}} </p>
+                        <p>UnHealthy Users: {{numberOfUnhealthyUsers}} </p>
             </li>
 		</ul>
          <div class="btn-group-lg">
              <ul class= "User Links">
-                 <li><a href="/processLogOut"><h4>Log Out</h4></a></li>
+                 <button><a href="/processLogOut"><h4>Log Out</h4></a></button>
              </ul>
          </div>
      </div>

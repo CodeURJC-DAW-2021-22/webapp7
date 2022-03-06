@@ -27,7 +27,9 @@ public class Menu {
         this.name=name;
     }
 
-
+    public boolean isHealthy(){
+        return false;
+    }
     public int[] getMenuScore(){
         int[] score = new int[10];
 

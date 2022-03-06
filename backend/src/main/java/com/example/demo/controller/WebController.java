@@ -191,7 +191,22 @@ public class WebController {
     public String getAdminProfile(Model model){
         List<User> users = userRepository.findAll();
         model.addAttribute("usersAll", users.size());
+        model.addAttribute("adminName", this.currentUser.getName());
 
+        int healthyUsers=0;
+        int unhealthyUsers=0;
+        for (User u : users){
+            Optional<Menu> tryMenu = menuService.findById(u.getActiveMenu().getId());
+            if (tryMenu.isPresent()){
+                Menu menu = tryMenu.get();
+                if (menu.isHealthy())
+                    healthyUsers++;
+                else
+                    unhealthyUsers++;
+            }
+        }
+        model.addAttribute("numberOfHealthyUsers", healthyUsers);
+        model.addAttribute("numberOfUnhealthyUsers",unhealthyUsers);
         return "Admin";}
 
     @GetMapping("/RecipeMaker")

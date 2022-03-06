@@ -360,7 +360,7 @@ public class DatabaseInit {
         User user2 = new User("user2@gmail.com","user2",passwordEncoder.encode("123"),recipes,menu1,dietas2,false);
         User user3 = new User("user3@gmail.com","user3",passwordEncoder.encode("123"),recipes,menu1,dietas3,false);
         User user4 = new User("user4@gmail.com","user4",passwordEncoder.encode("123"),recipes,menu1,dietas4,false);
-        User admin = new User("admin@gmail.com","admin",passwordEncoder.encode("123admin"),recipes,menu1,dietasAdmin,true);
+        User admin = new User("admin@gmail.com","admin",passwordEncoder.encode("123"),recipes,menu1,dietasAdmin,true);
 
 
         userRepository.save(user0);
