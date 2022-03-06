@@ -26,9 +26,23 @@ public class Menu {
         this.weeklyPlan=weeklyPlan;
         this.name=name;
     }
+    public int getScore(){
+        int[] score = this.getMenuScore();
+        int pointsVegetables = score[0]-8;
+        int pointsProtein = score[1]-5;
+        int pointsHydrates= 3-score[2];
+        int pointsCHydrates= score[3]-2;
+        int pointsFat = 1-score[4];
+        int totalScore = 12-(Math.abs(pointsVegetables+pointsProtein+pointsHydrates+pointsCHydrates+pointsFat));
+        return totalScore;
+    }
 
     public boolean isHealthy(){
-        return false;
+        int score = this.getScore();
+        if (score>=5)
+            return true;
+        else
+            return false;
     }
 
 

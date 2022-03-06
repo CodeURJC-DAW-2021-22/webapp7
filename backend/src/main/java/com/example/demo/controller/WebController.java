@@ -449,9 +449,6 @@ public class WebController {
                 }
             }
 
-
-
-
             model.addAttribute("vegetablesStandard",8);
             model.addAttribute("vegetablesMenu",scoreArray[0]);
             model.addAttribute("proteinStandard",5);
@@ -462,6 +459,11 @@ public class WebController {
             model.addAttribute("carboHydratesMenu",scoreArray[3]);
             model.addAttribute("highInFatStandard",1);
             model.addAttribute("highInFatMenu",scoreArray[4]);
+
+
+
+            model.addAttribute("IsMenuHealthy",tryMenuForScore.get().isHealthy());
+            model.addAttribute("menuScore",tryMenuForScore.get().getScore());
         }
 
         model.addAttribute("lunchs",lunches);
@@ -543,6 +545,9 @@ public class WebController {
             model.addAttribute("carboHydratesMenu",scoreArray[3]);
             model.addAttribute("highInFatStandard",1);
             model.addAttribute("highInFatMenu",scoreArray[4]);
+
+            model.addAttribute("IsMenuHealthy",tryMenuForScore.get().isHealthy());
+            model.addAttribute("menuScore",tryMenuForScore.get().getScore());
         }
 
         model.addAttribute("lunchs",lunches);
