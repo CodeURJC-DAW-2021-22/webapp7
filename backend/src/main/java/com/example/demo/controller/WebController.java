@@ -514,42 +514,39 @@ public class WebController {
 
         List<Recipe> lunches = new ArrayList<>();
         List<Recipe> dinners = new ArrayList<>();
+
         Optional<Menu> tryMenu = menuService.findById(currentUser.getActiveMenu().getId());
         if(tryMenu.isPresent()){
             lunches = tryMenu.get().getLunchs();
             dinners = tryMenu.get().getDinners();
             model.addAttribute("menu",tryMenu.get());
 
-            ArrayList<Integer> l = new ArrayList<>();
-            for (int i=15; i>=0;i=i-5){
-                l.add(i);
+            int[] scoreArray = new int[5];
+
+            Optional<Menu> tryMenuForScore = menuService.findById(tryMenu.get().getId());
+
+            if (tryMenuForScore.isPresent()) {
+                int cont=0;
+                for (int i :tryMenuForScore.get().getMenuScore()){
+                    scoreArray[cont] = i;
+                    System.out.println(scoreArray[cont]);
+                    cont++;
+                }
             }
-            model.addAttribute("indexGraphic",l);
 
-            int[] scoreArray = tryMenu.get().getMenuScore();
 
-            model.addAttribute("number of bars",14);
 
-            float score = (scoreArray[0] / 15)*100;
-            model.addAttribute("vegetablesStandard",score);
-            score = (scoreArray[1] / 15)*100;
-            model.addAttribute("vegetablesMenu",score);
-            score = (scoreArray[2] / 15)*100;
-            model.addAttribute("proteinStandard",score);
-            score = (scoreArray[3] / 15)*100;
-            model.addAttribute("proteinMenu",score);
-            score = (scoreArray[4] / 15)*100;
-            model.addAttribute("hydratesStandard",score);
-            score = (scoreArray[5] / 15)*100;
-            model.addAttribute("hydratesMenu",score);
-            score = (scoreArray[6] / 15)*100;
-            model.addAttribute("carboHydratesStandard",score);
-            score = (scoreArray[7] / 15)*100;
-            model.addAttribute("carboHydratesMenu",score);
-            score = (scoreArray[8] / 15)*100;
-            model.addAttribute("highInFatStandard",score);
-            score = (scoreArray[9] / 15)*100;
-            model.addAttribute("highInFatMenu",score);
+
+            model.addAttribute("vegetablesStandard",8);
+            model.addAttribute("vegetablesMenu",scoreArray[0]);
+            model.addAttribute("proteinStandard",5);
+            model.addAttribute("proteinMenu",scoreArray[1]);
+            model.addAttribute("hydratesStandard",3);
+            model.addAttribute("hydratesMenu",scoreArray[2]);
+            model.addAttribute("carboHydratesStandard",2);
+            model.addAttribute("carboHydratesMenu",scoreArray[3]);
+            model.addAttribute("highInFatStandard",1);
+            model.addAttribute("highInFatMenu",scoreArray[4]);
         }
 
         model.addAttribute("lunchs",lunches);

@@ -30,41 +30,38 @@ public class Menu {
     public boolean isHealthy(){
         return false;
     }
+
+
     public int[] getMenuScore(){
-        int[] score = new int[10];
+        int[] score = new int[5];
 
         //vegetables
-        score[0]=8;
-        score[1]=0;
+        score[0]=0;
 
         //protein
-        score[2]=5;
-        score[3]=0;
+        score[1]=0;
 
         //hydrates
-        score[4]=3;
-        score[5]=0;
+        score[2]=0;
 
         //carbohydrates
-        score[6]=2;
-        score[7]=0;
+        score[3]=0;
 
         //high in fat
-        score[8]=1;
-        score[9]=0;
+        score[4]=0;
 
 
         for(Recipe r : this.weeklyPlan){
             if (r.getVegetables())
-                score[1]=score[1]+1;
+                score[0]=score[0]+1;
             if(r.getProtein())
-                score[3]=score[3]+1;
+                score[1]=score[1]+1;
             if(r.getHydrates())
-                score[5]=score[5]+1;
+                score[2]=score[2]+1;
             if(r.getCarbohydrates())
-                score[7]=score[7]+1;
+                score[3]=score[3]+1;
             if(r.getHighinfat())
-                score[9]=score[9]+1;
+                score[4]=score[4]+1;
         }
         return score;
     }
