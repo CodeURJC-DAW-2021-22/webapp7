@@ -122,7 +122,7 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
   - [Web Security Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/security/WebSecurityConfig.java)
   - [Database Initializer](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/DatabaseInit.java)
-  
+
 - **Hugo Coto González**: My work has consisted in the development of many of the controllers that were related with getting information from the DB along with the correct display in the frontend set through the use of Mustache (the complete fill of the index and recipes pages). Also, I implemented the whole structure to page objects, so my teammates could replicate it without any extremely complex change and save time on their own implementations that required this method. Moreover, the toughest task I had to deal with, without any doubt, was the AJAX script in addition to the correct display of the paginated objects. The most important commits I've made are shown below: 
   - [Functional AJAX button](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/1ca6cbedfce9b57e85d9bfe6f29be29e99f90ded)
   - [AJAX Related, Part 1](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/c5a07863c4f81fb8bc219ea34e31fb34313b90c2)
@@ -137,5 +137,23 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
   - [Web Security Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/security/WebSecurityConfig.java)
   - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
-- **Carlos Rodríguez Gómez**
-- **Carlos Alejandro Álvarez**
+- 
+**Carlos Rodríguez Gómez**
+
+
+- **Carlos Alejandro Álvarez**: I developed the most part of the DB item creations and applications, I helped with the class in the model. I also helped my partners by giving them ideas for the project. Finally, the most problematic tasks I had to deal with was get the recipe maker to save the image in the DB and the creation of the PDF file.  You will find some of my more important commits that I have done:
+  - [Dowload the pdf for the ingredients from the active menu](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/df577f4428fbf761504f5a67186e2fa31b63d742)
+  - [User register to the DB and recipe maker](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/6cfd079d8ca7354c57d45303e18167f5db3fcce1)
+  - [Menu maker, users can see all the menus and the content of the menu](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/7d24a6f05db42f628ecd4d3efc1e5efce492a7c2)
+  - [User can save recipes and Admin can remove them](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/2ba1463bddcc9513be372d95213d232610034c40)
+  - [Admin can make recipes with image](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/7f0d746db5da43a77fa7025220809397624a9fd7)
+  
+     And now I will add some links to explore some of the most edited files by me:
+  - [Recipe JAVA class](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/model/Recipe.java)
+  - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
+  - [User JAVA class](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/model/User.java)
+  - [ExportPdfService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/ExportPdfService.java)
+  - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
+
+
+  
