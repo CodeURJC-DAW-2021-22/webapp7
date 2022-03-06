@@ -401,7 +401,10 @@ public class WebController {
 
         return new ModelAndView(new RedirectView("/YourMenu", true));
     }
-
+    @GetMapping("/error")
+    public String error(Model model){
+        return "error";
+    }
     @GetMapping("/Menu/{id}")
     public String getMenu_Selected(Model model, @PathVariable long id){
         if (currentUser.getActiveMenu().getId().equals(id)) {
