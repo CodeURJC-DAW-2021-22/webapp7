@@ -45,7 +45,7 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 ![Index](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/IndexLogged.png)
 
-**About Us** (the text is just one example)
+**About Us**
 
 ![AboutUs](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/AboutUs.PNG)
 
