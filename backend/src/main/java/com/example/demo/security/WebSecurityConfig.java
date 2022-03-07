@@ -73,9 +73,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().defaultSuccessUrl("/");
         http.formLogin().failureUrl("/LogInError");
 
-        // Logout
-        /*http.logout().logoutUrl("/processLogOut");
-        http.logout().logoutSuccessUrl("/processLogOut");*/
     }
 }
 
