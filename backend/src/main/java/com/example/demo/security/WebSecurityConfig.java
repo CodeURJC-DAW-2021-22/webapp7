@@ -34,40 +34,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/inicio").permitAll();
-        http.authorizeRequests().antMatchers("/Recipe").permitAll();
         http.authorizeRequests().antMatchers("/LogIn").permitAll();
         http.authorizeRequests().antMatchers("/LogInError").permitAll();
         http.authorizeRequests().antMatchers("/SingUpError").permitAll();
-        http.authorizeRequests().antMatchers("/User").permitAll();
         http.authorizeRequests().antMatchers("/AboutUs").permitAll();
-        http.authorizeRequests().antMatchers("/StoredDiets").permitAll();
-        http.authorizeRequests().antMatchers("/diet/*").permitAll();
-        http.authorizeRequests().antMatchers("/AdminProfile").permitAll();
-        http.authorizeRequests().antMatchers("/RecipeMaker").permitAll();
         http.authorizeRequests().antMatchers("/Recipe/*").permitAll();
         http.authorizeRequests().antMatchers("/Recipes").permitAll();
         http.authorizeRequests().antMatchers("/Recipes/*").permitAll();
-        http.authorizeRequests().antMatchers("/processRemoveRecipe").permitAll();
-        http.authorizeRequests().antMatchers("/processDeleteRecipe").permitAll();
-        http.authorizeRequests().antMatchers("/processAddRecipe").permitAll();
-        http.authorizeRequests().antMatchers("/processFormRecipe").permitAll();
-        http.authorizeRequests().antMatchers("/processFormMenu").permitAll();
         http.authorizeRequests().antMatchers("/processFormSignUp").permitAll();
         http.authorizeRequests().antMatchers("/processLogOut").permitAll();
         http.authorizeRequests().antMatchers("/processFormLogIn").permitAll();
-        http.authorizeRequests().antMatchers("/StoredRecipes").permitAll();
-        http.authorizeRequests().antMatchers("/MenuMaker").permitAll();
-        http.authorizeRequests().antMatchers("/MenuAll").permitAll();
-        http.authorizeRequests().antMatchers("/Menu/*").permitAll();
-        http.authorizeRequests().antMatchers("/YourMenu").permitAll();
-        http.authorizeRequests().antMatchers("/processFormRecipe/*").permitAll();
         http.authorizeRequests().antMatchers("/recipe/*").permitAll();
 
-
         // Private pages
-        /*http.authorizeRequests().antMatchers("/newbook").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/editbook/*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/removebook/*").hasAnyRole("ADMIN");*/
+        http.authorizeRequests().antMatchers("/User").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/StoredDiets").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/diet/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/StoredRecipes").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/MenuMaker").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/MenuAll").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/Menu/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/AdminProfile").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/RecipeMaker").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/YourMenu").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/processFormRecipe/*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/processFormMenu").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/processRemoveRecipe").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/processDeleteRecipe").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/processAddRecipe").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/processFormRecipe").hasAnyRole("ADMIN");
+
+
 
         // Login form
         http.formLogin().loginPage("/LogIn");
@@ -76,9 +73,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().defaultSuccessUrl("/");
         http.formLogin().failureUrl("/LogInError");
 
-        // Logout
-        /*http.logout().logoutUrl("/processLogOut");
-        http.logout().logoutSuccessUrl("/processLogOut");*/
     }
 }
 

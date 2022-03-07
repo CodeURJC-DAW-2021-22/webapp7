@@ -127,9 +127,6 @@ public class WebController {
         return "index";
     }
 
-    @GetMapping("/Recipe")
-    public String getRecipe(Model model){return "details";}
-
     @GetMapping("/LogIn")
     public String getLogin(Model model){
         return("login");
