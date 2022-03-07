@@ -108,6 +108,15 @@ Then, everything you must do is start your favourite navigator and paste this li
 
 ## **Developing Part by every member**
 
+
+| Name    | Mail | Github User    |
+|---------|--------|----------------|
+| Rodrigo Marqués Buil|r.marques.2018@alumnos.urjc.es| Larrivey       |
+| Hugo Coto González|h.coto.2018@alumnos.urjc.es| hugocg6        |
+| Carlos Rodríguez Gómez|c.roriguezgo.2018@alumnos.urjc.es| carlitosrogo   |
+| Carlos Alejandro Álvarez|c.alejandro.2019@alumnos.urjc.es| CalejandroURJC |
+
+
 - **Rodrigo Marqués Buil**: I developed the most important part of the DB structure and its relations, the package of security was also part of the job I have done, and the more difficult methods of every class in the model. In the other hand, I helped my partners to work trying to solve their problems, knowing that I mostly designed the structure of the project. You will find some of my more important commits that I have done:
   - [Security Package added (not finished but mostly)](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/740276f31e60420935c3af79c2c396899e4e946f)
   - [Photos can be added and stored in the DB](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/5bbd0e40fe6098ff8cdf1b3e280e31c46d43dbd1)
@@ -137,9 +146,19 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
   - [Web Security Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/security/WebSecurityConfig.java)
   - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
-- 
-**Carlos Rodríguez Gómez**
 
+- **Carlos Rodríguez Gómez**:Certainly in this phase my colleagues have done a greater workload during it, so my work has been less. Even so, they have been able to update me on all the details so that I do not lose the thread. Regarding the tasks that I have been in charge of are: some templates, data entry in the database and the creation of the diagrams for the documentation. In the next phase I will be more active and I will try to balance the work that I have not done during this phase. My most important commits are shown below::
+  - [Menu DataBase](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/87a43cc34e7fbec99475ad37eac1e5aa2bb7bd35)
+  - [Diets DataBase](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/87a43cc34e7fbec99475ad37eac1e5aa2bb7bd35)
+  - [Creation of Class and DataBase Diagrams](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/c6709920dea7dfcc70cea286530f3604df1c1a26)
+  - [Creation of Menu](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/6745a61304543aa63e4c267b3432d0b3604251e1)
+  - [Creation of DropDown](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/ae5dee3aec17b27a1f6d399cf3d9cacd713fd6fa)
+
+    Here are the links of the most used files:
+  - [Database Initializer](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/DatabaseInit.java)
+  - [Js button](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Food%26U_Templates/js/download.js)
+  - [Image_README](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/Imagenes_README)
+  - [Some templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
 
 - **Carlos Alejandro Álvarez**: I developed the most part of the DB item creations and applications, I helped with the class in the model. I also helped my partners by giving them ideas for the project. Finally, the most problematic tasks I had to deal with was get the recipe maker to save the image in the DB and the creation of the PDF file.  You will find some of my more important commits that I have done:
   - [Dowload the pdf for the ingredients from the active menu](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/df577f4428fbf761504f5a67186e2fa31b63d742)
@@ -154,6 +173,5 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [User JAVA class](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/model/User.java)
   - [ExportPdfService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/ExportPdfService.java)
   - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
-
 
   
