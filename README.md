@@ -55,11 +55,11 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 **Active Menu**
 
-![Menu](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Menu%20semanal.PNG)
+![Menu](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/YourMenuAdmin.png)
 
 **User Diets**
 
-![Stored Diets](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Stored%20Diets.PNG)
+![Stored Diets](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/StoredDiets.png)
 
 **Sign Up & Log In**
 
@@ -69,14 +69,37 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 **Recipes Browser**
 
-![Recipes Browser](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Recetas.PNG)
+![Recipes Browser](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Recipes.png)
 
-**Recipe Page**
+**Recipe Page** ( The red button will depends on the type of the user, save for a registrated user, delete for admin and no button for not registered user)
 
-![Recipe](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Recipe.PNG)
+![Recipe](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Recipe1.png)
 
+**Your Recipes** 
 
+![Your Recipes](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/YourRecipes%20user.png)
 
+**Admin Profile**
+
+![Admin Profile](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/AdminProfile.png)
+
+**Menu All**
+
+![Menu All](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/MenuAllAdmin.png)
+
+**Menu Maker**
+
+![Menu Maker](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/MenuMakerAdmin.png)
+
+## **Diagrams**
+
+**Class Diagram**
+
+![Class Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Class%20Diagram.png)
+
+**DataBase Diagram**
+
+![DataBase Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/DataBase%20Diagram.png)
 
  ## **Algorithms**
 
