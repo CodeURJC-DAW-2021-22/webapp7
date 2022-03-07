@@ -165,8 +165,8 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [Recipe JAVA class](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/model/Recipe.java)
   - [Script](backend/src/main/resources/static/js/script.js)
   - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
-  - [Web Security Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/security/WebSecurityConfig.java)
-  - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
+  - [DataBaseInit](backend/src/main/java/com/example/demo/service/DatabaseInit.java)
+  - [Most of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
 
 - **Carlos Rodríguez Gómez**:Certainly in this phase my colleagues have done a greater workload during it, so my work has been less. Even so, they have been able to update me on all the details so that I do not lose the thread. Regarding the tasks that I have been in charge of are: some templates, data entry in the database and the creation of the diagrams for the documentation. In the next phase I will be more active and I will try to balance the work that I have not done during this phase. My most important commits are shown below::
   - [Menu DataBase](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/87a43cc34e7fbec99475ad37eac1e5aa2bb7bd35)

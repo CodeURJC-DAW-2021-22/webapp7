@@ -549,7 +549,7 @@ public class WebController {
 
         model.addAttribute("lunchs",lunches);
         model.addAttribute("dinners",dinners);
-        return "Menu_Activo";}
+        return "ActiveMenu";}
 
     @PostMapping("/processFormRecipe/{id}/image")
     public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageRecipe) throws IOException {
