@@ -10,10 +10,7 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -231,14 +228,13 @@ public class WebController {
     }
 
     @GetMapping("/Recipes")
-    public String getAllRecipes(Model model){
-        Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0,12,Sort.by("id").descending()));
+    public String getAllRecipes(Model model) {
+        Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
         List<Recipe> recipesModels = new ArrayList<>();
-        for (Recipe recipe: recipes){
-            recipesModels.add(recipe);
-        }
+        for (Recipe recipe : recipes) {
+                recipesModels.add(recipe);
+            }
         model.addAttribute("recipe", recipes.getContent());
-
         return "recipe";
     }
 
@@ -260,6 +256,17 @@ public class WebController {
     @PostMapping("/processDeleteRecipe")
     public ModelAndView processDeleteRecipe(Model model, @RequestParam String id_RecipeDelete){
         long id=Long.parseLong(id_RecipeDelete);
+        Recipe toRemove = recipeService.findById(id).get();
+
+
+        List<User> userList = userRepository.findAll();
+        for (User u : userList){
+            List<Recipe> recipeList = u.getStoredRecipes();
+            if (recipeList.contains(toRemove)){
+                u.removeStoredRecipes(toRemove.getId());
+            }
+        }
+
         recipeService.delete(id);
 
         return new ModelAndView(new RedirectView("/Recipes", true));

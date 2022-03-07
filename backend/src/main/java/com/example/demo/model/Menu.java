@@ -3,6 +3,7 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ public class Menu {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Recipe> weeklyPlan;
 
 
@@ -35,6 +36,13 @@ public class Menu {
         int pointsFat = 1-score[4];
         int totalScore = 12-(Math.abs(pointsVegetables+pointsProtein+pointsHydrates+pointsCHydrates+pointsFat));
         return totalScore;
+    }
+
+    public void deleteRecipe (int position){
+        Date date = new Date(23/07/2000);
+        Recipe defaultRecipe = new Recipe("-", 0, "-", date, "-", "-", false, false, false, false,false, "-");
+        weeklyPlan.remove(position);
+        weeklyPlan.add(position,defaultRecipe);
     }
 
     public boolean isHealthy(){
