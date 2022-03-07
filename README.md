@@ -43,9 +43,7 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 **Index**
 
-![Index 1](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Index%201.PNG)
-
-![Index 2](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Index%202.PNG)
+![Index](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/IndexLogged.png)
 
 **About Us** (the text is just one example)
 
