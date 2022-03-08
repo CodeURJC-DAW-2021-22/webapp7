@@ -315,17 +315,36 @@ public class WebController {
     @PostMapping("/processDeleteRecipe")
     public ModelAndView processDeleteRecipe(Model model, @RequestParam String id_RecipeDelete){
         long id=Long.parseLong(id_RecipeDelete);
+        long longIDAux = 2;
+
         Recipe toRemove = recipeService.findById(id).get();
+
+        Recipe toChange;
+        if (id==longIDAux)
+            toChange = recipeService.findById(longIDAux).get();
+        else
+            toChange = recipeService.findById(1).get();
 
 
         List<User> userList = userRepository.findAll();
-        for (User u : userList){
+        List<Menu> menuList = menuRepository.findAll();
+
+
+        for (User u : userList) {
             List<Recipe> recipeList = u.getStoredRecipes();
-            if (recipeList.contains(toRemove)){
+            if (recipeList.contains(toRemove)) {
                 u.removeStoredRecipes(toRemove.getId());
             }
         }
-
+        for (Menu m : menuList){
+            Menu menu = menuRepository.findById(m.getId()).get();
+            if (menu.getWeeklyPlan().contains(toRemove)){
+                int index = menu.getWeeklyPlan().indexOf(toRemove);
+                menu.getWeeklyPlan().remove(toRemove);
+                menu.getWeeklyPlan().add(index,toChange);
+                menuRepository.save(menu);
+            }
+        }
         recipeService.delete(id);
 
         return new ModelAndView(new RedirectView("/Recipes", true));
@@ -590,13 +609,9 @@ public class WebController {
                 int cont=0;
                 for (int i :tryMenuForScore.get().getMenuScore()){
                     scoreArray[cont] = i;
-                    System.out.println(scoreArray[cont]);
                     cont++;
                 }
             }
-
-
-
 
             model.addAttribute("vegetablesStandard",8);
             model.addAttribute("vegetablesMenu",scoreArray[0]);

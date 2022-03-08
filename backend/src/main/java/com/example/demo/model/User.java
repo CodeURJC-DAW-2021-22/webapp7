@@ -22,11 +22,11 @@ public class User {
     private String password;
     private boolean admin;
 
-    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ID_Menu", referencedColumnName = "id")
     private Menu activeMenu;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Recipe> storedRecipes;
 
     @ManyToMany

@@ -15,7 +15,7 @@ public class Diet {
     private String nombre;
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Menu> dieta;
 
 
