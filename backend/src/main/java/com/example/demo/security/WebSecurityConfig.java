@@ -55,13 +55,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/MenuAll").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/Menu/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/AdminProfile").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/DietMaker").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/processFormDiet").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/processAddDiet/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/processRemoveDiet/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/RecipeMaker").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/YourMenu").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/processFormRecipe/*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/processFormMenu").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/processRemoveRecipe").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/processDeleteRecipe").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/processAddRecipe").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/processAddRecipe").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/processFormRecipe").hasAnyRole("ADMIN");
 
 

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.*;
+import com.example.demo.repository.DietRepository;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.security.RepositoryUserDetailsService;
@@ -10,11 +11,14 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.*;
-import org.springframework.data.jpa.repository.Query;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +43,8 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @Controller
 public class WebController {
 
+	private List<Menu> dietCreate = new ArrayList<>();
+
     private User currentUser=null;
 
     @Autowired
@@ -48,10 +54,14 @@ public class WebController {
     private MenuRepository menuRepository;
 
     @Autowired
+    private DietRepository dietRepository;
+
+    @Autowired
     private RepositoryUserDetailsService userRepository;
 
     @Autowired
     private RecipeService recipeService;
+
 
     @Autowired
     private MenuService menuService;
@@ -150,21 +160,70 @@ public class WebController {
 
     @GetMapping("/StoredDiets")
     public String getStoredDiets(Model model){
-        List<Diet> idDietas= this.currentUser.getStoredDiets();
-        List<Diet> dietas = new ArrayList<>();
-
-        for (Diet d : idDietas){
-            long id = d.getId();
-            System.out.println(d.getNombre());
-            Optional<Diet> tryDiet = dietService.findById(id);
-            if (tryDiet.isPresent())
-                dietas.add(tryDiet.get());
+        List<Diet> dietas = this.currentUser.getStoredDiets();
+        //Optional<List<Diet>> diets = dietService.findById(this.currentUser.getStoredDiets());
+       /* List<List<Menu>> listaMenus = new ArrayList<>();
+        for(Diet d : dietas){
+            listaMenus.add(d.getDieta());
         }
-        for (Diet d : dietas){
-            System.out.println(d.getNombre());
-        }
+        model.addAttribute("menus",listaMenus);*/
         model.addAttribute("diets",dietas);
         return "DropDown";
+    }
+
+	@GetMapping("/DietMaker")
+    public String getDiet_Maker(Model model){
+        List<Menu> menuAll = menuRepository.findAll();
+        List<Menu> menuContains = new ArrayList<>();
+        for (Menu menu: menuAll){
+            boolean conteins = false;
+            for(Menu diet: dietCreate) {
+                if(diet.getId().equals(menu.getId())){
+                    conteins = true;
+                }
+            }
+            if(!conteins){
+                menuContains.add(menu);
+            }
+        }
+        model.addAttribute("menuList", dietCreate);
+        model.addAttribute("menuContains", menuContains);
+
+        return "DietMaker";
+    }
+
+    @PostMapping("/processRemoveDiet/{id}")
+    public ModelAndView processRemoveDiet(Model model, @PathVariable long id){
+        int position = 0;
+        int positionDiet = -1;
+        for(Menu diet: dietCreate) {
+            if(diet.getId().equals(id)){
+                positionDiet = position;
+            }
+            position++;
+        }
+        dietCreate.remove(positionDiet);
+        return new ModelAndView(new RedirectView("/DietMaker", true));
+    }
+
+    @PostMapping("/processAddDiet/{id}")
+    public ModelAndView processAddDiet(Model model, @PathVariable long id){
+        Menu menu = menuRepository.findMenuById(id).get();
+        dietCreate.add(menu);
+        return new ModelAndView(new RedirectView("/DietMaker", true));
+    }
+
+    @PostMapping("/processFormDiet")
+    public ModelAndView processFormDiet(Model model, @RequestParam String name){
+
+        Diet dietNew = new Diet(name, dietCreate);
+        dietRepository.save(dietNew);
+        currentUser.addStoredDiets(dietNew);
+        userRepository.save(currentUser);
+
+        dietCreate.removeAll(dietCreate);
+
+        return new ModelAndView(new RedirectView("/", true));
     }
 
     @GetMapping("/diet/{id}/{nombre}")

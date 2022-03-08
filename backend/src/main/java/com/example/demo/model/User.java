@@ -69,6 +69,7 @@ public class User {
     }
 
     public void addStoredRecipes(Recipe recipe){this.storedRecipes.add(recipe);}
+    public void addStoredDiets(Diet diet){this.storedDiets.add(diet);}
 
     public void setStoredRecipes(List<Recipe> storedRecipes) {
         this.storedRecipes = storedRecipes;
