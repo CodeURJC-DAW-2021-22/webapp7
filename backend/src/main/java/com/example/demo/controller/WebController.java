@@ -328,6 +328,7 @@ public class WebController {
 
         List<User> userList = userRepository.findAll();
         List<Menu> menuList = menuRepository.findAll();
+        List<Diet> dietList = dietRepository.findAll();
 
 
         for (User u : userList) {
@@ -338,11 +339,21 @@ public class WebController {
         }
         for (Menu m : menuList){
             Menu menu = menuRepository.findById(m.getId()).get();
+            List<Diet> dietsToModify = new ArrayList<>();
+            for (Diet d : dietList){
+                if (d.getDieta().contains(menu))
+                    dietsToModify.add(d);
+            }
             if (menu.getWeeklyPlan().contains(toRemove)){
                 int index = menu.getWeeklyPlan().indexOf(toRemove);
                 menu.getWeeklyPlan().remove(toRemove);
                 menu.getWeeklyPlan().add(index,toChange);
+                for (Diet d : dietsToModify)
+                    dietService.delete(d.getId());
+                menuRepository.delete(menu);
                 menuRepository.save(menu);
+                for (Diet d : dietsToModify)
+                    dietService.save(d);
             }
         }
         recipeService.delete(id);
