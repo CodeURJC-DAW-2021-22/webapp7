@@ -139,7 +139,7 @@ public class DatabaseInit {
         listRecipes1.add(recipe12);
         listRecipes1.add(recipe13);
         listRecipes1.add(recipe14);
-        Menu menu1 = new Menu("Menu1", listRecipes1);
+        Menu menu1 = new Menu("Menu 1", listRecipes1);
         menuRepository.save(menu1);
 
         List listRecipesHealthy1 = new ArrayList<Recipe>();
@@ -317,8 +317,6 @@ public class DatabaseInit {
         dietRepository.save(dietStandard);
 
 
-        List<Menu> menuList = new ArrayList<Menu>();
-
         List<Diet> dietas = new ArrayList<Diet>();
         dietas.add(dietCheapBuy);
 
@@ -347,20 +345,49 @@ public class DatabaseInit {
         dietasAdmin.add(dietGym);
         dietasAdmin.add(dietHealthy);
 
-        List<Recipe> recipes = new ArrayList<Recipe>();
-        List<Recipe> recipesadd = new ArrayList<Recipe>();
-        recipesadd.add(recipe1);
-        recipesadd.add(recipe2);
-        recipesadd.add(recipe3);
-        recipesadd.add(recipe4);
+
+        List<Recipe> recipesadd1 = new ArrayList<Recipe>();
+        recipesadd1.add(recipe1);
+        recipesadd1.add(recipe2);
+        recipesadd1.add(recipe3);
+        recipesadd1.add(recipe4);
+
+        List<Recipe> recipesadd2 = new ArrayList<Recipe>();
+        recipesadd2.add(recipe1);
+        recipesadd2.add(recipe2);
+        recipesadd2.add(recipe3);
+        recipesadd2.add(recipe4);
+
+        List<Recipe> recipesadd3 = new ArrayList<Recipe>();
+        recipesadd3.add(recipe1);
+        recipesadd3.add(recipe2);
+        recipesadd3.add(recipe3);
+        recipesadd3.add(recipe4);
+
+        List<Recipe> recipesadd4 = new ArrayList<Recipe>();
+        recipesadd4.add(recipe1);
+        recipesadd4.add(recipe2);
+        recipesadd4.add(recipe3);
+        recipesadd4.add(recipe4);
+
+        List<Recipe> recipesadd5 = new ArrayList<Recipe>();
+        recipesadd5.add(recipe1);
+        recipesadd5.add(recipe2);
+        recipesadd5.add(recipe3);
+        recipesadd5.add(recipe4);
+
+        List<Recipe> recipesadd6 = new ArrayList<Recipe>();
+        recipesadd6.add(recipe1);
+        recipesadd6.add(recipe2);
+        recipesadd6.add(recipe4);
 
 
-        User user0 = new User("user0@gmail.com","user0", passwordEncoder.encode("123"), recipesadd,menu1,dietas0,false);
-        User user1 = new User("user1@gmail.com","user1",passwordEncoder.encode("123"),recipes,menu1,dietas1,false);
-        User user2 = new User("user2@gmail.com","user2",passwordEncoder.encode("123"),recipes,menu1,dietas2,false);
-        User user3 = new User("user3@gmail.com","user3",passwordEncoder.encode("123"),recipes,menu1,dietas3,false);
-        User user4 = new User("user4@gmail.com","user4",passwordEncoder.encode("123"),recipes,menu1,dietas4,false);
-        User admin = new User("admin@gmail.com","admin",passwordEncoder.encode("123"),recipes,menu1,dietasAdmin,true);
+        User user0 = new User("user0@gmail.com","user0", passwordEncoder.encode("123"),recipesadd1,menu1,dietas0,false);
+        User user1 = new User("user1@gmail.com","user1",passwordEncoder.encode("123"),recipesadd2,menu2,dietas1,false);
+        User user2 = new User("user2@gmail.com","user2",passwordEncoder.encode("123"),recipesadd3,menu3,dietas2,false);
+        User user3 = new User("user3@gmail.com","user3",passwordEncoder.encode("123"),recipesadd4,menuVegan,dietas3,false);
+        User user4 = new User("user4@gmail.com","user4",passwordEncoder.encode("123"),recipesadd5,menuVegetarian,dietas4,false);
+        User admin = new User("admin@gmail.com","admin",passwordEncoder.encode("123"),recipesadd6,menuCheapBuy,dietasAdmin,true);
 
         userRepository.save(user0);
         userRepository.save(user1);

@@ -26,7 +26,7 @@ public class User {
     @JoinColumn(name="ID_Menu", referencedColumnName = "id")
     private Menu activeMenu;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Recipe> storedRecipes;
 
     @ManyToMany

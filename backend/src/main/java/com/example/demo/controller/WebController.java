@@ -17,6 +17,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -312,48 +315,46 @@ public class WebController {
         return new ModelAndView(new RedirectView("/StoredRecipes", true));
     }
 
+
+
     @PostMapping("/processDeleteRecipe")
     public ModelAndView processDeleteRecipe(Model model, @RequestParam String id_RecipeDelete){
         long id=Long.parseLong(id_RecipeDelete);
-        long longIDAux = 2;
+        long longIDAux1 = 1;
+        long longIDAux2 = 2;
 
         Recipe toRemove = recipeService.findById(id).get();
 
         Recipe toChange;
-        if (id==longIDAux)
-            toChange = recipeService.findById(longIDAux).get();
+        if (id==longIDAux1)
+            toChange = recipeService.findById(longIDAux2).get();
         else
-            toChange = recipeService.findById(1).get();
+            toChange = recipeService.findById(longIDAux1).get();
 
 
         List<User> userList = userRepository.findAll();
         List<Menu> menuList = menuRepository.findAll();
-        List<Diet> dietList = dietRepository.findAll();
-
 
         for (User u : userList) {
-            List<Recipe> recipeList = u.getStoredRecipes();
+            User uLoaded = userRepository.findById(u.getId()).get();
+            List<Recipe> recipeList = uLoaded.getStoredRecipes();
             if (recipeList.contains(toRemove)) {
                 u.removeStoredRecipes(toRemove.getId());
             }
+            u = uLoaded;
+            userRepository.save(u);
         }
+
         for (Menu m : menuList){
-            Menu menu = menuRepository.findById(m.getId()).get();
-            List<Diet> dietsToModify = new ArrayList<>();
-            for (Diet d : dietList){
-                if (d.getDieta().contains(menu))
-                    dietsToModify.add(d);
-            }
-            if (menu.getWeeklyPlan().contains(toRemove)){
-                int index = menu.getWeeklyPlan().indexOf(toRemove);
-                menu.getWeeklyPlan().remove(toRemove);
-                menu.getWeeklyPlan().add(index,toChange);
-                for (Diet d : dietsToModify)
-                    dietService.delete(d.getId());
-                menuRepository.delete(menu);
-                menuRepository.save(menu);
-                for (Diet d : dietsToModify)
-                    dietService.save(d);
+            Menu menuLoaded = menuRepository.findById(m.getId()).get();
+            while(menuLoaded.getWeeklyPlan().contains(toRemove)){
+                List<Recipe> oldWeeklyPlan = menuLoaded.getWeeklyPlan();
+                List<Recipe> newWeeklyPlan = menuLoaded.getWeeklyPlan();
+                int index = newWeeklyPlan.indexOf(toRemove);
+                newWeeklyPlan.remove(index);
+                newWeeklyPlan.add(index,toChange);
+                menuRepository.updateBeforeDelete(newWeeklyPlan, oldWeeklyPlan);
+                menuRepository.save(m);
             }
         }
         recipeService.delete(id);
