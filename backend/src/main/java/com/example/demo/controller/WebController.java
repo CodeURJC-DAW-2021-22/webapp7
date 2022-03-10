@@ -158,12 +158,6 @@ public class WebController {
     @GetMapping("/StoredDiets")
     public String getStoredDiets(Model model){
         List<Diet> dietas = this.currentUser.getStoredDiets();
-        //Optional<List<Diet>> diets = dietService.findById(this.currentUser.getStoredDiets());
-       /* List<List<Menu>> listaMenus = new ArrayList<>();
-        for(Diet d : dietas){
-            listaMenus.add(d.getDieta());
-        }
-        model.addAttribute("menus",listaMenus);*/
         model.addAttribute("diets",dietas);
         return "DropDown";
     }
@@ -325,7 +319,6 @@ public class WebController {
         else
             toChange = recipeService.findById(longIDAux1).get();
 
-
         menuRepository.updateBeforeDelete(toChange.getId(), toRemove.getId());
 
         List<User> userList = userRepository.findAll();
@@ -338,6 +331,8 @@ public class WebController {
             u = uLoaded;
             userRepository.save(u);
         }
+
+
         recipeService.delete(id);
 
         return new ModelAndView(new RedirectView("/Recipes", true));
@@ -534,9 +529,6 @@ public class WebController {
             model.addAttribute("carboHydratesMenu",scoreArray[3]);
             model.addAttribute("highInFatStandard",1);
             model.addAttribute("highInFatMenu",scoreArray[4]);
-
-
-
             model.addAttribute("IsMenuHealthy",tryMenuForScore.get().isHealthy());
             model.addAttribute("menuScore",tryMenuForScore.get().getScore());
         }
@@ -616,7 +608,6 @@ public class WebController {
             model.addAttribute("carboHydratesMenu",scoreArray[3]);
             model.addAttribute("highInFatStandard",1);
             model.addAttribute("highInFatMenu",scoreArray[4]);
-
             model.addAttribute("IsMenuHealthy",tryMenuForScore.get().isHealthy());
             model.addAttribute("menuScore",tryMenuForScore.get().getScore());
         }
