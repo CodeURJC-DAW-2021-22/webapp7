@@ -259,10 +259,10 @@ public class WebController {
     @GetMapping("/Recipe/{id}")
     public String showRecipe(Model model, @PathVariable long id) {
         if(currentUser != null) {
-            if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
-                model.addAttribute("disable", true);
-            } else if (currentUser.getAdmin()) {
+            if (currentUser.getAdmin()) {
                 model.addAttribute("adminDelete", true);
+            } else if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
+                model.addAttribute("disable", true);
             } else {
                 model.addAttribute("userRecipe", currentUser != null);
             }
