@@ -7,8 +7,10 @@ import com.example.demo.repository.RecipeRepository;
 import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.service.*;
 import org.apache.commons.io.IOUtils;
+import org.hibernate.Transaction;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 
@@ -29,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -332,30 +335,17 @@ public class WebController {
             toChange = recipeService.findById(longIDAux1).get();
 
 
-        List<User> userList = userRepository.findAll();
-        List<Menu> menuList = menuRepository.findAll();
+        menuRepository.updateBeforeDelete(toChange.getId(), toRemove.getId());
 
+        List<User> userList = userRepository.findAll();
         for (User u : userList) {
             User uLoaded = userRepository.findById(u.getId()).get();
             List<Recipe> recipeList = uLoaded.getStoredRecipes();
             if (recipeList.contains(toRemove)) {
-                u.removeStoredRecipes(toRemove.getId());
+                uLoaded.removeStoredRecipes(toRemove.getId());
             }
             u = uLoaded;
             userRepository.save(u);
-        }
-
-        for (Menu m : menuList){
-            Menu menuLoaded = menuRepository.findById(m.getId()).get();
-            while(menuLoaded.getWeeklyPlan().contains(toRemove)){
-                List<Recipe> oldWeeklyPlan = menuLoaded.getWeeklyPlan();
-                List<Recipe> newWeeklyPlan = menuLoaded.getWeeklyPlan();
-                int index = newWeeklyPlan.indexOf(toRemove);
-                newWeeklyPlan.remove(index);
-                newWeeklyPlan.add(index,toChange);
-                menuRepository.updateBeforeDelete(newWeeklyPlan, oldWeeklyPlan);
-                menuRepository.save(m);
-            }
         }
         recipeService.delete(id);
 
