@@ -89,7 +89,7 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 **Menu Maker**
 
-![Menu Maker](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/MenuMakerAdmin.png)
+![Menu Maker](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/MenuMaker.png)
 
 ## **Diagrams**
 
