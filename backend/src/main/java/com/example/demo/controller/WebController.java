@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,9 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 @Controller
 public class WebController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 	private List<Menu> dietCreate = new ArrayList<>();
 
@@ -259,10 +263,10 @@ public class WebController {
     @GetMapping("/Recipe/{id}")
     public String showRecipe(Model model, @PathVariable long id) {
         if(currentUser != null) {
-            if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
-                model.addAttribute("disable", true);
-            } else if (currentUser.getAdmin()) {
+            if (currentUser.getAdmin()) {
                 model.addAttribute("adminDelete", true);
+            } else if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
+                model.addAttribute("disable", true);
             } else {
                 model.addAttribute("userRecipe", currentUser != null);
             }
@@ -398,12 +402,11 @@ public class WebController {
 
     @PostMapping("/processFormSignUp")
     public ModelAndView processRegister(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
-        Menu menuVoid = new Menu();
+        Menu menu = menuRepository.findAll().get(1);
         List<Diet> dietas = new ArrayList<Diet>();
         List<Recipe> recipes = new ArrayList<Recipe>();
-        menuRepository.save(menuVoid);
 
-        User user = new User(mail, name, password, recipes, menuVoid, dietas, false);
+        User user = new User(mail, name, passwordEncoder.encode(password), recipes, menu, dietas, false);
 
         Optional<User> tryUser = userRepository.findByName(user.getName());
         Optional<User> tryMail = userRepository.findByMail(user.getMail());
