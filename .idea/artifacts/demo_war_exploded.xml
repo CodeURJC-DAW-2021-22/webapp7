@@ -1,11 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="demo:war exploded">
-    <output-path>$PROJECT_DIR$/backend/target/demo-0.0.1-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/backend/target/webapp7</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
         <module>demo</module>
         <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -15,6 +16,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="archive" name="demo-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="demo" />
             <element id="module-output" name="demo" />
           </element>
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:2.6.3" />
@@ -75,16 +77,29 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:5.3.15" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-mustache:2.6.3" />
           <element id="library" level="project" name="Maven: com.samskivert:jmustache:1.15" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-security:2.6.3" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.6.1" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.6.1" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-crypto:5.6.1" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.6.1" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:2.6.3" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring5:3.0.14.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:3.0.14.RELEASE" />
           <element id="library" level="project" name="Maven: org.attoparser:attoparser:2.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.unbescape:unbescape:1.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.xhtmlrenderer:flying-saucer-pdf:9.1.22" />
+          <element id="library" level="project" name="Maven: com.lowagie:itext:2.1.7" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcmail-jdk14:1.64" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcpkix-jdk14:1.64" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bctsp-jdk14:1.46" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk14:1.64" />
+          <element id="library" level="project" name="Maven: org.xhtmlrenderer:flying-saucer-core:9.1.22" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.11.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/backend/target/demo-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/backend/target/webapp7/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="demo/web/Web" />
     </root>
