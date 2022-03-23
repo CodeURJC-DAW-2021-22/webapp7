@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="FoodAndUExecutable">
+  <artifact type="jar" name="FoodAndUExecutable">
     <output-path>$PROJECT_DIR$/backend/target/FoodAndUExecutable</output-path>
     <root id="archive" name="webapp7.jar">
       <element id="directory" name="META-INF">

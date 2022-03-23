@@ -1,4 +1,5 @@
 FROM openjdk:17
+COPY . *.war /usr/app/
+WORKDIR /usr/app
 EXPOSE 8443
-ADD target webapp7.war
-ENTRYPOINT ["java","-jar","webapp7.war"]
+CMD ["java","-jar","webapp7urjc.war"]

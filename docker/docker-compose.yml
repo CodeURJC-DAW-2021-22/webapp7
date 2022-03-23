@@ -1,0 +1,25 @@
+# Use postgres/example user/password credentials
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD = password
+      - POSTGRES_DB = public
+    ports:
+      - 8080:5432
+
+
+  web:
+    ports:
+      - "8443:8443"
+    environment:
+      spring_datasource_url: jdbc:postgresql://localhost:5432/postgres
+      spring_datasource_username: postgres
+      spring_datasource_password: password
+      spring_jpa_hibernate_ddl-auto: create-drop
+    image: 'hugocg6/ab685e2b809e'
+    depends_on:
+      - db
