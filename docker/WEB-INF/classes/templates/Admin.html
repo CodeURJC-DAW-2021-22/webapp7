@@ -1,0 +1,39 @@
+{{>header}}
+<section id="mini">
+ <div class="container">
+  <div class="row">
+     <div class="col-sm-12 top">
+	 </div>
+  </div>
+ </div>
+</section>
+<section id="details_top">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12 details_top_1">
+     <div class="detail_n clearfix" style="margin-top:40px;">
+	  <div class="col-sm-6 pad_l">
+	  </div>
+	   <div class="detail_nr clearfix">
+	    <h1 style= "text-align: center;">ADMIN: {{adminName}}</h1>
+	   </div>
+		<ul class= "User Links" style= "text-align: center; list-style-type: none;">
+			<li><a href="/RecipeMaker"><h4>Make Recipe</h4></a></li>
+            <li> <p>Users data:</p>
+                        <p>Total Users: {{usersAll}}  </p>
+                        <p>Healthy Users: {{numberOfHealthyUsers}} </p>
+                        <p>UnHealthy Users: {{numberOfUnhealthyUsers}} </p>
+            </li>
+		</ul>
+         <div class="btn-group-lg">
+             <ul class= "User Links">
+                 <button><a href="/processLogOut"><h4>Log Out</h4></a></button>
+             </ul>
+         </div>
+     </div>
+	 </div>
+	</div>
+	</div>
+   </div>
+</section>
+{{>footer}}

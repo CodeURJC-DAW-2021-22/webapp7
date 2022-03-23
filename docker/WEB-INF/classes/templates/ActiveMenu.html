@@ -1,0 +1,89 @@
+{{>header}}
+
+<section id="blog" class="clearfix">
+    <ul class="User Links" style= "text-align: center;">
+        {{#menu}}
+        <h1>Your active menu: {{name}}</h1>
+        {{/menu}}
+    </ul>
+ <div class="col-sm-12 blog_center_2">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-9 blog_center_2_main">
+   <div class="col-sm-12 blog_center_2_main_top">
+	<div>
+		<table class="table-fill">
+		  <thead>
+		  <tr>
+			  <th>Monday</th>
+			  <th>Tuesday</th>
+			  <th>Wednesday</th>
+			  <th>Thursday</th>
+			  <th>Friday</th>
+			  <th>Saturday</th>
+			  <th>Sunday</th>
+		  </tr>
+		  </thead>
+		  <tbody class="table-hover">
+		  <tr>
+              {{#lunchs}}
+			  <td class="text-left"><a href="/Recipe/{{{id}}}">{{name}}</a></td>
+              {{/lunchs}}
+		  </tr>
+		  <tr>
+              {{#dinners}}
+			  <td class="text-left"><a href="/Recipe/{{{id}}}">{{name}}</a></td>
+              {{/dinners}}
+		  </tr>
+		  </tbody>
+		  </table>
+	   </div>
+	   <br><br><br>
+       <form action="/downloadReceipt" method="get">
+    <div class="col-sm-8 blog_center_2_main_top_1">
+        <input type="submit" value="Click Here to Download Your Receipt">
+	</div>
+       </form>
+	<br><br><br><br><br>
+	<div class="col-sm-8 blog_center_2_main_top_2">
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <script>
+            var xValues = ["Your vegetables", "Usual Vegetables", "Your Proteins", "Usual Protein", "Your Hydrates", "Usual Hydrates", "Your c.Hydrates", "Usual c.Hydrates", "Your Fat", "Usual Fat"];
+            var yValues = [{{vegetablesMenu}}, {{vegetablesStandard}}, {{proteinMenu}}, {{proteinStandard}},{{hydratesMenu}},{{hydratesStandard}},{{carboHydratesMenu}},{{carboHydratesStandard}},{{highInFatMenu}},{{highInFatStandard}}];
+            var barColors = ["red", "red","blue","blue","brown","brown","yellow","yellow","green","green"];
+            new Chart("myChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: {display: false},
+                    title: {
+                        display: true,
+                        text: "How healthy is your menu?"
+                    }
+                }
+            });
+        </script>
+        <p>The score we consider for this menu is {{menuScore}} / 10</p>
+        {{#IsMenuHealthy}}
+        <p> so, it seems helathy!</p>
+        {{/IsMenuHealthy}}
+        {{^IsMenuHealthy}}
+        <p> we strongly believe you should try something more healthy</p>
+        {{/IsMenuHealthy}}
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+{{>footer}}

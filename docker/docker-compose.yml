@@ -3,23 +3,22 @@ version: '3.9'
 
 services:
   db:
-    image: postgres
-    restart: always
+    image: postgres:14.2
     environment:
-      - POSTGRES_PASSWORD = password
-      - POSTGRES_DB = public
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB : "DBDaw"
     ports:
-      - 8080:5432
+      - "5433:5432"
 
 
   web:
     ports:
       - "8443:8443"
     environment:
-      spring_datasource_url: jdbc:postgresql://localhost:5432/postgres
-      spring_datasource_username: postgres
-      spring_datasource_password: password
-      spring_jpa_hibernate_ddl-auto: create-drop
-    image: 'hugocg6/ab685e2b809e'
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/DBDaw"
+      SPRING_DATASOURCE_PASSWORD: "password"
+      SPRING_JPA_HIBERNATE_DDL-AUTO: create-drop
+    image: 'ed5f2b51eef2'
     depends_on:
       - db

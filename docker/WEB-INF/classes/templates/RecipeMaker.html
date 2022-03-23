@@ -1,0 +1,59 @@
+{{>header}}
+<section id="mini">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 top">
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog" class="clearfix">
+	<div class="blog_center_1 clearfix">
+		<div class="col-sm-2"></div>
+			<form action="/processFormRecipe" method="post" enctype="multipart/form-data">
+				<div class="col-sm-8">
+					<h2>Recipe</h2>
+					<p>Name:</p>
+					<p><input type="text" id="name" name="name" ></p>
+
+					<p>Cooktime:</p>
+					<p><input type="number" id="time" name="time"> Minutes</p>
+
+					<p>Difficulty:</p>
+					<p><select id="difficulty" name="difficulty">
+						<option value="easy">Easy</option>
+						<option value="medium">Medium</option>
+						<option value="hard">Hard</option>
+					</select></p>
+
+					<p>Preparation:</p>
+					<p><textarea id="preparation" name="preparation" cols="40" rows="5"></textarea></p>
+
+					<p>Ingredients:</p>
+					<p><textarea id="ingredients" name="ingredients" cols="20" rows="2"></textarea></p>
+
+					<p>Categories:</p>
+					<div class="col-sm-6">
+						<p><label><input type="checkbox" id="vegetables" name="booleanos" value="vegetables"> Vegetables</label><br></p>
+						<p><label><input type="checkbox" id="protein" name="booleanos" value="protein"> Protein</label><br></p>
+						<p><label><input type="checkbox" id="hydrates" name="booleanos" value="hydrates"> Hydrates</label><br></p>
+					</div>
+					<div class="col-sm-6">
+						<p><label><input type="checkbox" id="carbohydrates" name="booleanos" value="carbohydrates"> Carbohydrates</label><br></p>
+						<p><label><input type="checkbox" id="highinfat" name="booleanos" value="highinfat"> High in fat</label><br></p>
+					</div>
+					<div class="col-sm-12">
+						<input type="file" id="imageRecipe" name="imageRecipe">
+					</div>
+					<div class="col-sm-12">
+						<input type="hidden" name="_csrf" value="{{token}}"/>
+						<input type="submit" placeholder="Finish Recipe">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</section>
+
+{{>footer}}

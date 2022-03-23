@@ -1,0 +1,63 @@
+{{>header}}
+<section id="details_top">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12 details_top_1">
+     <div class="detail_n clearfix" style="margin-top:40px;">
+	  <div class="col-sm-6 pad_l">
+	   <div class="detail_nl clearfix">
+	    <img src="/recipe/{{recipe.id}}/image" class="fotoReceta" alt="abc">
+	   </div>
+	  </div>
+	  <div class="col-sm-5">
+	   <div class="detail_nr clearfix">
+	    <h1>{{recipe.name}}</h1>
+	   </div>
+		<p>Cook Time: {{recipe.cookTime}}</p>
+		<p>Dificulty: {{recipe.difficulty}}</p>
+		<h5>{{recipe.uploadDate}} | {{recipe.creator}}</h5>
+		  <form action="/processAddRecipe" method="post">
+			  {{#userRecipe}}
+			  	<input type="hidden" name="_csrf" value="{{token}}"/>
+			  	<input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}} >
+				<input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Save Recipe"/>
+			  {{/userRecipe}}
+		  </form>
+
+			  {{#disable}}
+				<input type="submit" class="btn btn-danger" id="btnDisable" value="Already Saved" disabled/>
+			  {{/disable}}
+
+			  {{#adminDelete}}
+		  <form action="/processDeleteRecipe" method="post">
+			  	<input type="hidden" name="_csrf" value="{{token}}"/>
+			    <input type="hidden" id="id_RecipeDelete" name="id_RecipeDelete" value={{recipe.id}} >
+				<input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
+			  {{/adminDelete}}
+		  </form>
+	  </div>
+	</div>
+	 </div>
+	 <div class="salad_5">
+	  <div class="col-sm-5">
+	  <h3>Preparation</h3>
+	   <h4>{{recipe.preparation}}</h4>
+	   </div>
+		<div class="col-sm-7">
+		  <h3>Ingredients</h3>
+		  <ul class="salad_6">
+			<li>{{recipe.ingredients}}</li>
+		  </ul>
+	  </div>
+	  	 </div>
+		<div class="salad_5">
+		<div class="col-sm-12">
+		<h3>Categories</h3>
+			<h4>{{#recipe.vegetables}} "Vegetables" {{/recipe.vegetables}} {{#recipe.protein}} "Protein" {{/recipe.protein}} {{#recipe.hydrates}} "Hydrates" {{/recipe.hydrates}} {{#recipe.carbohydrates}} "Carbohydrates" {{/recipe.carbohydrates}} {{#recipe.highinfat}} "High in fat" {{/recipe.highinfat}}</h4>
+		</div>
+	 </div>
+	</div>
+	</div>
+   </div>
+</section>
+{{>footer}}

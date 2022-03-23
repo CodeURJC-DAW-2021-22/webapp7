@@ -1,0 +1,20 @@
+{{>header}}
+	<section id="mini">
+	</section>
+	<section id="blog" class="clearfix">
+		<div class="col-sm-12 blog_center_4_main_top">
+			<ul>
+				<div class="blog_center_3_main_diets">
+				
+				<div class="col-sm-12 footer_end">
+					<ul class= "User Links" style= "text-align: center; list-style-type: none;">
+						{{#diets}}
+						<li><a href="/diet/{{{id}}}/{{{nombre}}}"><h4>{{nombre}}</h4></a></li>
+						{{/diets}}
+					</ul>
+				</div>
+				</div>
+			</ul>
+		</div>
+	</section>
+{{>footer}}

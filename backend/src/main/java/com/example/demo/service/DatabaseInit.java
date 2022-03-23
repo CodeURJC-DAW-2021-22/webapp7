@@ -75,7 +75,7 @@ public class DatabaseInit {
         setRecipeImage(recipe8,"fotoscomida/patatasFritas.jpg");
         recipeRepository.save(recipe8);
         Recipe recipe9 = new Recipe("Papitas fritas: Versión Airfryer", 15, "Fácil", date, "4 patatas y 1 airfryer", "Rodri_Chef", false, false, true, false,true, "Cortar patatas, lavar en agua fría para eliminar almidón y meter al airfryer");
-        setRecipeImage(recipe9,"fotoscomida/patatasFritasAirFryer.jpg");
+        setRecipeImage(recipe9,"fotoscomida/patatasFritasAirfryer.jpg");
         recipeRepository.save(recipe9);
         Recipe recipe10 = new Recipe("Tomahawk a la brasa", 40, "Intermedia", date, "1 Tomahawk de ternera", "Rodri_Chef", false, true, false, false,true, "Poner a fuego indirecto durante 20 minutos, 10 a cada lado, y 4, 2 a cada lado, a fuego directo");
         setRecipeImage(recipe10,"fotoscomida/tomahawk.jpg");

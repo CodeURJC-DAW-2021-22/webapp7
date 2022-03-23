@@ -1,0 +1,155 @@
+{{>header}}
+<section id="blog" class="clearfix">
+    <div class="col-sm-12 blog clearfix">
+        <div class="blog_top">
+            {{#menu}}
+            <h1>Your menu: {{menu.name}}</h1>
+            {{/menu}}
+        </div>
+    </div>
+    <div class="blog_center_1 clearfix"><!-- Texto introductorio  -->
+    </div>
+    <form action="/processFormMenu" method="post" enctype="multipart/form-data">
+    <div class="col-sm-12 blog_center_2">
+            <div class="col-sm-12 blog_center_2_main_top">
+                <div>
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-11">
+                        <h2>Menu</h2>
+                        <p>Name:</p>
+                        <p><input type="text" id="name" name="name" ></p>
+                    </div>
+
+                    <table class="table-fill">
+                        <thead>
+                        <tr>
+                            <th class="maker">Monday</th>
+                            <th class="maker">Tuesday</th>
+                            <th class="maker">Wednesday</th>
+                            <th class="maker">Thursday</th>
+                            <th class="maker">Friday</th>
+                            <th class="maker">Saturday</th>
+                            <th class="maker">Sunday</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-hover">
+                        <tr>
+                            <td class="text-left-maker">
+                                <select name="lunchMonday" id="lunchMonday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="lunchTuesday" id="lunchTuesday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="lunchWednesday" id="lunchWednesday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="lunchThursday" id="lunchThursday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="lunchFriday" id="lunchFriday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="lunchSaturday" id="lunchSaturday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="lunchSunday" id="lunchSunday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left-maker">
+                                <select name="dinnerMonday" id="dinnerMonday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="dinnerTuesday" id="dinnerTuesday">
+                                    {{#recipe}}
+                                    <option value={{{id}}} style="color:black">{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="dinnerWednesday" id="dinnerWednesday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="dinnerThursday" id="dinnerThursday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="dinnerFriday" id="dinnerFriday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="dinnerSaturday" id="dinnerSaturday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                            <td class="text-left-maker">
+                                <select name="dinnerSunday" id="dinnerSunday">
+                                    {{#recipe}}
+                                    <option value={{{id}}}>{{name}}</option>
+                                    {{/recipe}}
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br><br><br>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-11">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <p><input type="submit" placeholder="Finish Menu"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+
+{{>footer}}

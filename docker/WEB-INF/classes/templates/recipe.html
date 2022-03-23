@@ -1,0 +1,44 @@
+{{>header}}
+<section id="brand_page" class="clearfix">
+ <div class="container">
+  <div class="row">
+   <div class="bp_1 clearfix" style="margin-top:40px;">
+     
+	 <h1><i class='fas fa-sliders-h'></i> Recipe Search<br></h1>
+     <p>Build your own search by selecting your specific meal, dietary requirements, meat, desired method, or season!</p>
+   </div>
+   <div class="bp_2 clearfix">
+   {{#recipe}}
+     <div class="col-sm-3 space_all prueba">
+	  <div class="bp_2m clearfix">
+		<div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
+							<img style="height:250px;width: 300px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
+						<div class="caption">
+							<div class="blur"></div>
+							<div class="caption-text">
+								<h3 style="border-top:2px solid white; padding-top:20px;"><a href="#">{{name}}</a></h3>
+								<p style="margin-top:50px;"><a href="/Recipe/{{{id}}}">Show Recipe</a></p>
+							</div>
+						</div>
+					</div>
+	  </div>
+	 </div>
+   {{/recipe}}
+	<div class="impresionRecipes"></div>
+   </div>
+
+  </div>
+ </div>
+	<div class="container">
+		<div class="col-sm-5"></div>
+			<div class="col-sm-5">
+				<div class="impresion">
+					<div class="loadMoreButton">
+						<button type="button" class="cargarRecetas">Load more</button>
+					</div>
+				</div>
+			</div>
+	</div>
+</section>
+
+{{>footer}}
