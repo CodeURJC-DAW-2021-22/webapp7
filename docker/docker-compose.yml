@@ -6,7 +6,7 @@ services:
     image: postgres:14.2
     environment:
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "password"
+      POSTGRES_PASSWORD: "1234"
       POSTGRES_DB : "DBDaw"
     ports:
       - "5433:5432"
@@ -17,9 +17,9 @@ services:
       - "8443:8443"
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/DBDaw"
-      SPRING_DATASOURCE_PASSWORD: "password"
+      SPRING_DATASOURCE_PASSWORD: "1234"
       SPRING_JPA_HIBERNATE_DDL-AUTO: create-drop
     image: 'ed5f2b51eef2'
-    restart:always
+    restart: always
     depends_on:
       - db
