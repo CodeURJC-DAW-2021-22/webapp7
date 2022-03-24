@@ -127,6 +127,37 @@ Now, everything is ready to start. Find the .java file known as "BackendApplicat
 
 Then, everything you must do is start your favourite navigator and paste this link in the browser [https://localhost:8443](https://localhost:8443) and the only thing to do now is enjoy using Food & U!
 
+## **How to dockerize Food & U**
+
+First of all, you must now about docker, [here](https://www.docker.com/blog/tag/docker-desktop-2/) you could find more information about what this technology provides you.
+
+Once you have understood this technology, let's start talking about the pre-requirements to dockerize out app. We will show you how to do this in Windows:
+ - [Java 17 installed](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-microsoft-windows-platforms.html)
+ - [Maven 3.8.5 downloaded](https://maven.apache.org/download.cgi)
+ - [Set maven as a System Variable ](https://stackoverflow.com/questions/45119595/how-to-add-maven-to-the-path-variable)
+ - [Set JAVA_HOME as a System Variable correctly with jdk 17.0.2](https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html)
+ - Set Path References correctly: Once you have setted JAVA_HOME and Maven as System Enviroment variables, you should add both paths to Path variable in the same screen by double-clicking it.
+ - [Sign Up your Docker Hub account](https://hub.docker.com/signup)
+ - [Download and install Docker Desktop to understand what are you doing](https://www.docker.com/products/docker-desktop/)
+ - Download WSL 2 components to run proper command in Windows Powershell: Once you have installed Docker Desktop, by oppening it you will find the option to install these components automatically.
+ - [OPTIONAL: Download Notepad++](https://notepad-plus-plus.org/downloads/)
+
+Once everything is correctly done, let's start about generating the needed Docker images.
+  - **1) PostgreSQL Image:** You must download the official PostgreSQL image. You can find how to it easily [here](https://hub.docker.com/_/postgres) or just running the command: " docker run --name some-postgres -e POSTGRES_PASSWORD=\<Your password> -d postgres ".
+    You can find if you have correctly generated the image locally by using the command " docker ls " and you will see a image running with the name postgres. If you want, you can stop it to improve your PC performance.
+  - **2) WAR generation and relocation:** Now you must have downloaded the project, and unzip it. We will follow the steps as if you have unzipped it in your Desktop, but if have decided unzip it into another folder, you only need to find the folder in the Windows Powershell. If you have the folder containing the code in the Desktop, write the next command in the Powershell: " cd Desktop/webapp7/webapp7/backend ". Now by using the command " ls ", you must see the pom.xml file. That's where you must be to run " mvn package -o " to generate the .war file. This file also can be used to execute the application locally. The process to generate the file must dure a bit less than one minute.
+
+    Now that you have generated the webapp7urjc.war, you must find it at webapp7/webapp7/backend/target/webapp7urjc.war. You must move it to webapp7/webapp7/docker, in the same folder where docker-compose.yml and Dockerfile are located. Now there are many ways to generate the docker image of the application. But we are going to show you how to do it with IntelliJ Idea. First, load the project. Once it has been done, go to docker/DockerFile. You could see that you can Execute in the First line of the file where a button is present. But before doing it, you should configure your IDE to send the image to the correct Docker account. In IntelliJ IDEA, go to File>Setting>Build,Execution,Deployment>Docker and delete the existing connection config to generate a new one. The only thing you must to change is the Docker Registry, don't touch the address, but add your Docker Hub username and password in the fields behind it. Now you are ready to generate the docker image of the project! Just comeback to Dockerfile to execute it, and a image and a container will be created automatically. Once done, we recommend you to delete the new container, because IntelliJ Idea is going to try to execute it constantly, and is going to fail because is not in the same container with the PostgreSQL image generated previously.
+
+  - **3) Docker-Compose Execution:** Now that both images are created you must modify the docker-compose.yml to connect them in the same container. To do it, you can use Notepad++ or IntelliJ. Opening docker-compose.yml, you must write the credentials used to open your database in the "db" service known as POSTGRES_USER (postgres superuser name), POSTGRES_PASSWORD, POSTGRES_DB (name of the Database you want to use to deploy the app). While installing PostgreSQL Server you must specify the ports that you want it to listen to by default. Change it in the second field of "ports" in db service if needed. Now you must specify again the password of the superuser in the field SPRING_DATASOURCE_PASSWORD. The last thing to do is to change the "image" field in web service. It contains the id of the web image generated in the previous step. So, go to Docker Desktop, and in Images you will find it, just copy and paste it in the docker-compose field.
+
+    Now, everything is ready to execute. So go to Windows Powershell, and again, enter in Docker folder. if you have the application in the desktop, use the command "cd Desktop/webapp7/webapp7/docker" and now, using the command "ls" you must see that the folder contains docker-compose.yml. Now the only thing to do is run the command "docker-compose up" and wait till the process its over. If you have followed the steps correctly, you must see the container with two images inside in Docker Desktop. And in your favourite browser, typing [https://localhost:8443](https://localhost:8443) you will find Food & U app.
+
+## **Creating Food & U docker image using the script provided**
+
+## **How to deploy Food & U in Heroku**
+
+
 ## **Developing Part by every member**
 
 
@@ -137,6 +168,7 @@ Then, everything you must do is start your favourite navigator and paste this li
 | Carlos Rodríguez Gómez|c.roriguezgo.2018@alumnos.urjc.es| carlitosrogo   |
 | Carlos Alejandro Álvarez|c.alejandro.2019@alumnos.urjc.es| CalejandroURJC |
 
+**Phase 2:**
 
 - **Rodrigo Marqués Buil**: I developed the most important part of the DB structure and its relations, the package of security was also part of the job I have done, and the more difficult methods of every class in the model. In the other hand, I helped my partners to work trying to solve their problems, knowing that I mostly designed the structure of the project. You will find some of my more important commits that I have done:
   - [Security Package added (not finished but mostly)](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/740276f31e60420935c3af79c2c396899e4e946f)
@@ -195,4 +227,8 @@ Then, everything you must do is start your favourite navigator and paste this li
   - [ExportPdfService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/ExportPdfService.java)
   - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
 
-  
+  **Phase 3:**
+- **Rodrigo Marqués Buil**:
+- **Hugo Coto González**:
+- **Carlos Alejandro Álvarez**:
+- **Carlos Rodríguez Gómez**:
