@@ -255,12 +255,17 @@ public class RestController {
     }
 
     @GetMapping("/Recipes")
-    public ResponseEntity<Recipe> getAllRecipes(HttpServletRequest request) {
-        Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
-        List<Recipe> recipesModels = new ArrayList<>();
+    public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
 
-        for (Recipe recipe : recipes) {
-            recipesModels.add(recipe);
+        if (userPrincipal.isPresent()) {
+            Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
+            List<Recipe> recipesModels = new ArrayList<>();
+            for (Recipe recipe : recipes) {
+                recipesModels.add(recipe);
+            }
+            return recipesModels;
         }
         return null;
     }
@@ -270,7 +275,7 @@ public class RestController {
 
         return recipeRepository.findAll(page);
     }
-
+    
     @DeleteMapping("/processRemoveRecipe")
     public ResponseEntity<Recipe> processRemoveRecipe(@RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
