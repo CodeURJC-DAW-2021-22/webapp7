@@ -79,25 +79,37 @@ public class RestController {
 
 
     @ModelAttribute
-    public void addAttributes(Model model, HttpServletRequest request) {
+    public ResponseEntity<User> addAttributes(HttpServletRequest request) {
 
         Principal principal = request.getUserPrincipal();
 
         if (principal==null)
-            model.addAttribute("logged", false);
+            return ResponseEntity.notFound().build();
         else {
-            model.addAttribute("logged", true);
-            model.addAttribute("admin", request.isUserInRole("ADMIN"));
             Optional<User> tryUser = userRepository.findByName(principal.getName());
             if (tryUser.isPresent())
                 currentUser = tryUser.get();
+                return ResponseEntity.ok(currentUser);
         }
     }
 
     @GetMapping("/")
-    public String init(Model model) {
+    public Collection<Recipe> init() {
+        List<Recipe> recipesModels = new ArrayList<>();
         Optional<Recipe> outstandingRecipes = recipeService.findById(20);
+        if(outstandingRecipes.isPresent()){
+            recipesModels.add(outstandingRecipes.get());
+        }else{
+            return null;
+        }
+
         Optional<Recipe> outstandingRecipes1 = recipeService.findById(22);
+        if(outstandingRecipes1.isPresent()){
+            recipesModels.add(outstandingRecipes1.get());
+        }else{
+            return null;
+        }
+
         List<Recipe> outstandingRecipesAux = recipeRepository.findAll();
         int contRecipes = 0;
         for (Recipe recipe : outstandingRecipesAux)
@@ -106,34 +118,46 @@ public class RestController {
         if ((int) rnd==0)
             rnd=rnd+1;
         Optional<Recipe> outstandingRecipes2 = recipeService.findById((long)rnd);
+        if(outstandingRecipes2.isPresent()){
+            recipesModels.add(outstandingRecipes2.get());
+        }else{
+            return null;
+        }
 
         Page<Recipe> recipeCarrousel1 = recipeRepository.findAll(PageRequest.of(0,3,Sort.by("id").descending()));
         Page<Recipe> recipeCarrousel2 = recipeRepository.findAll(PageRequest.of(1,3,Sort.by("id").descending()));
+        for(Recipe recipe1 : recipeCarrousel1){
+            recipesModels.add(recipe1);
+        }
+        for(Recipe recipe2 : recipeCarrousel2){
+            recipesModels.add(recipe2);
+        }
 
         double rnd1 = Math.random()*contRecipes;
         if ((int) rnd1==0)
             rnd1=rnd1+1;
         Optional<Recipe> tryRecipes1 = recipeService.findById((long)rnd1);
+        if(tryRecipes1.isPresent()){
+            recipesModels.add(tryRecipes1.get());
+        }else{
+            return null;
+        }
 
         double rnd2= Math.random()*contRecipes;
         if ((int)rnd2==0)
             rnd2=rnd2+1;
         Optional<Recipe> tryRecipes2 = recipeService.findById((long)rnd2);
-
-        model.addAttribute("recipe1", outstandingRecipes.get());
-        model.addAttribute("recipe2", outstandingRecipes1.get());
-        model.addAttribute("recipeWeekly", outstandingRecipes2.get());
-        model.addAttribute("recipeCarrousel1", recipeCarrousel1.getContent());
-        model.addAttribute("recipeCarrousel2", recipeCarrousel2.getContent());
-        model.addAttribute("tryRecipes1", tryRecipes1.get());
-        model.addAttribute("tryRecipes2", tryRecipes2.get());
-        return "index";
+        if(tryRecipes2.isPresent()){
+            recipesModels.add(tryRecipes2.get());
+        }else{
+            return null;
+        }
+        return recipesModels;
     }
 
     @GetMapping("/inicio")
-    public String bbdd(Model model) throws IOException, URISyntaxException {
+    public void bbdd() throws IOException, URISyntaxException {
         dataService.init();
-        return "index";
     }
 
     @GetMapping("/User")
@@ -395,6 +419,7 @@ public class RestController {
     }
 
     @PostMapping("/processFormSignUp")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail){
         Menu menu = menuRepository.findAll().get(1);
         List<Diet> dietas = new ArrayList<Diet>();
