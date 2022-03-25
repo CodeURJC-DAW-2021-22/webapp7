@@ -154,8 +154,49 @@ Once everything is correctly done, let's start about generating the needed Docke
     Now, everything is ready to execute. So go to Windows Powershell, and again, enter in Docker folder. if you have the application in the desktop, use the command "cd Desktop/webapp7/webapp7/docker" and now, using the command "ls" you must see that the folder contains docker-compose.yml. Now the only thing to do is run the command "docker-compose up" and wait till the process its over. If you have followed the steps correctly, you must see the container with two images inside in Docker Desktop. And in your favourite browser, typing [https://localhost:8443](https://localhost:8443) you will find Food & U app.
 
 ## **Creating Food & U docker image using the script provided**
+Now we are going to provide you information about how to create a docker image with the script included in the project step by step:
+
+**1) Download the project and unzip it in your Desktop:** Only do how it sounds. We are going to show you how to do this unzipping it in the Desktop, but if you prefer to do it in another folder, just check the folder in the " cd " command shown in the next step.
+
+**2) Execute the script:** Once the project is unzipped, open it, and go to webapp7/docker. Then you will find a file named as "create_image.sh", just double click it and the image of the project will be created.
+
+**3) Make sure it is created:** To understand that the image is correctly created, open windows powershell and run the next command: "docker images". You will find one named as < none >. That is the image of the webapp, and now you can relate it with your PostgreSQL Database.
 
 ## **How to deploy Food & U in Heroku**
+**Pre-requeriments**:
+  - [Have Docker Desktop installed](https://docs.docker.com/desktop/windows/install/)
+  - [Sign up you Heroku account](https://signup.heroku.com)
+  - [Download Heroku Client](https://devcenter.heroku.com/articles/heroku-cli)
+  - [Add Heroku/bin folder to the path in Path variable](https://stackoverflow.com/questions/44301515/heroku-cli-installation-error-path-not-updated-original-length-1585-1024)
+  - Try to run "heroku" in Windows Powershell to understand that you have succesfully installed heroku
+
+
+**1) Create the docker image of the project:** Open the project with IntelliJ Idea, and once it is indexed, open docker file folder, and Dockerfile file. Execute it to create the image of the web part properly.
+
+**2) Log In Heroku:** run the command "heroku login" in the Windows Powershell and follow the steps to log in with your account.
+
+**3) Create a Heroku app:** run the command "heroku create < app_name >" to create a Heroku app. The name of your application must be unique between every Heroku app, so choose well.
+
+**4) Add the docker tag to your Image:** you must run a command to add a tag to your image. First of all, copy the id of the image. You can find it in Docker Desktop, in the field of Images, or running the command "docker images". Once it is copied, you must run the next command in the Powershell: " docker tag < ID > registry.heroku.com/<app_name>/web". In Docker Desktop or running the command "docker images" you will find that the name of the image created previously has changed. This is the symtomph to understand you are doing it well.
+
+**5) Upload the docker image in your application:** You must run two command in this step: " heroku container:login
+" and " docker push registry.heroku.com/<heroku_app_name>/web ". These two command will push the web app to heroku.
+
+**6) Config the PostgreSQL database in Heroku:** Run the command " heroku addons:create heroku-postgresql --app <heroku_app_name> ". This will allow your webapp to use PostgreSQL database. The project is already configured, so just doing this should work correctly.
+
+**7) Config the SSL certifcations to false:** Run the next command: heroku config:set SERVER_SSL_ENABLED=false --app < heroku_app_name >. This command allows you to run the webapp without an official certification.
+
+**8) Check everything is correct before deploying the app:** Access to Heroku in your browser, and log in with your account. In the dashboard tab you will find the heroku app you have created, so click on it to navigate to the manage page of it. Then, in the resources tab, you will must find the next configuration:
+
+![Heroku Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/heroku_well_config.png)
+
+**9) Deploy the app:** Run the next command: " heroku container:release web --app < heroku_app_name > " and the app should be deployed. If you want to see the logs while it is running in the PowerShell (extremely recommended but it is not necessary) you must run the following command: "  heroku logs --tail --app < heroku_app_name > "
+
+**10) Access to the page deployed:** Back to the Heroku dashboard, and select the app that has been deployed. Then, in the right part of the page, you should see a button named "Open App". So clicking on it you will open the app:
+
+![Heroku Open App](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/openapp_button.png)
+
+Right now you should understand the next problem: Heroku close the app if finds an inactivity period of 30 minutes, so if you find this situation, back to the step 9. But at this point, everything is done! The only thing left is to enjoy Food & U app.
 
 
 ## **Developing Part by every member**
@@ -227,8 +268,24 @@ Once everything is correctly done, let's start about generating the needed Docke
   - [ExportPdfService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/ExportPdfService.java)
   - [Mostly of the templates](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates)
 
+
   **Phase 3:**
-- **Rodrigo Marqués Buil**:
+
+- **Rodrigo Marqués Buil**: During this phase, I worked in the docker and Heroku engine until it worked correctly. It was hard to make everything run, because it is a technology that I never used before, but totally enjoyable. Also, I worked in README to help users to understand how to deploy the app in the way they prefer. Now you will find my principal five commits:
+  - [Database Config for Heroku](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/4c62167e12c66d376f7c18a02a9bad52f7804d13)
+  - [First preparation for Dockerize the app](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/6decabc269c11b07812e6a7cfaed07ae7dc4e080)
+  - [Dockerfile prepared, pom updated to generate correctly the war file](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/fa30ca53a01946fa2a4436950df226a91246fc6e)
+  - [Dockerfile ready to use and docker-compose advanced](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/7cca94bf5ef3180691c3065cdd109b5cd538b789)
+  - [Everything ready to dockerize](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/2c37eade4e8c2d8db679a90c080e0bb1a2125bb7)
+  
+  And now you will find the 5 file that I consider I worked in the most part of my time in this phase:
+  - [Dockerfile](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/Dockerfile)
+  - [Docker-compose](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/docker-compose.yml)
+  - [pom.xml](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/pom.xml)
+  - [README.md](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/README.md)
+  - [Database Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/DatabaseConfig.java)
+
+
 - **Hugo Coto González**:
 - **Carlos Alejandro Álvarez**:
 - **Carlos Rodríguez Gómez**:
