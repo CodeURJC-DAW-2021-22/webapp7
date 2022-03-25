@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -293,52 +292,61 @@ public class RestController {
 
 
 
-    @PostMapping("/processDeleteRecipe")
-    public ModelAndView processDeleteRecipe(Model model, @RequestParam String id_RecipeDelete){
+    @DeleteMapping("/processDeleteRecipe")
+    public ResponseEntity<Recipe> processDeleteRecipe(@RequestParam String id_RecipeDelete){
         long id=Long.parseLong(id_RecipeDelete);
         long longIDAux1 = 1;
         long longIDAux2 = 2;
 
-        Recipe toRemove = recipeService.findById(id).get();
+        Optional<Recipe> toRemoveOptional = recipeService.findById(id);
 
-        Recipe toChange;
-        if (id==longIDAux1)
-            toChange = recipeService.findById(longIDAux2).get();
-        else
-            toChange = recipeService.findById(longIDAux1).get();
+        if (toRemoveOptional.isPresent()) {
+            Recipe toRemove = toRemoveOptional.get();
+            Recipe toChange;
+            if (id == longIDAux1)
+                toChange = recipeService.findById(longIDAux2).get();
+            else
+                toChange = recipeService.findById(longIDAux1).get();
 
-        menuRepository.updateBeforeDelete(toChange.getId(), toRemove.getId());
+            menuRepository.updateBeforeDelete(toChange.getId(), toRemove.getId());
 
-        List<User> userList = userRepository.findAll();
-        for (User u : userList) {
-            User uLoaded = userRepository.findById(u.getId()).get();
-            List<Recipe> recipeList = uLoaded.getStoredRecipes();
-            if (recipeList.contains(toRemove)) {
-                uLoaded.removeStoredRecipes(toRemove.getId());
+            List<User> userList = userRepository.findAll();
+            for (User u : userList) {
+                User uLoaded = userRepository.findById(u.getId()).get();
+                List<Recipe> recipeList = uLoaded.getStoredRecipes();
+                if (recipeList.contains(toRemove)) {
+                    uLoaded.removeStoredRecipes(toRemove.getId());
+                }
+                u = uLoaded;
+                userRepository.save(u);
             }
-            u = uLoaded;
-            userRepository.save(u);
+
+            recipeService.delete(id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-
-        recipeService.delete(id);
-
-        return new ModelAndView(new RedirectView("/Recipes", true));
     }
 
 
     @PostMapping("/processAddRecipe")
-    public ModelAndView processAddRecipe(Model model, @RequestParam String id_Recipe){
+    public ResponseEntity<Recipe> processAddRecipe(@RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
-        Optional<Recipe> recipe = recipeService.findById(id);
-        currentUser.getStoredRecipes().add(recipe.get());
-        userRepository.save(currentUser);
+        Optional<Recipe> recipeOptional = recipeService.findById(id);
+        if(recipeOptional.isPresent()) {
+            Recipe recipe = recipeOptional.get();
+            currentUser.getStoredRecipes().add(recipe);
+            userRepository.save(currentUser);
 
-        return new ModelAndView(new RedirectView("/Recipe/"+id_Recipe, true));
+            return new ResponseEntity<>(recipe, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/processFormRecipe")
-    public ModelAndView processMenuMaker(Model model, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Recipe processMenuMaker(@RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
         String creator = currentUser.getUsername();
         Date date = new Date();
         boolean vegetables=booleanos.contains("vegetables");
@@ -351,11 +359,12 @@ public class RestController {
         if(imageRecipe != null) {
             uploadImage(recipe.getId(), imageRecipe);
         }
-        return new ModelAndView(new RedirectView("/AdminProfile", true));
+        return recipe;
     }
 
     @PostMapping("/processFormMenu")
-    public ModelAndView processRecipeMaker(Model model, @RequestParam String name, @RequestParam long lunchMonday, @RequestParam long lunchTuesday, @RequestParam long lunchWednesday, @RequestParam long lunchThursday, @RequestParam long lunchFriday, @RequestParam long lunchSaturday, @RequestParam long lunchSunday, @RequestParam long dinnerMonday, @RequestParam long dinnerTuesday, @RequestParam long dinnerWednesday, @RequestParam long dinnerThursday, @RequestParam long dinnerFriday, @RequestParam long dinnerSaturday, @RequestParam long dinnerSunday){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Menu processRecipeMaker(@RequestParam String name, @RequestParam long lunchMonday, @RequestParam long lunchTuesday, @RequestParam long lunchWednesday, @RequestParam long lunchThursday, @RequestParam long lunchFriday, @RequestParam long lunchSaturday, @RequestParam long lunchSunday, @RequestParam long dinnerMonday, @RequestParam long dinnerTuesday, @RequestParam long dinnerWednesday, @RequestParam long dinnerThursday, @RequestParam long dinnerFriday, @RequestParam long dinnerSaturday, @RequestParam long dinnerSunday){
         List<Recipe> weekRecipes = new ArrayList<>();
 
         weekRecipes.add(recipeService.findById(lunchMonday).get());
@@ -382,11 +391,11 @@ public class RestController {
         Menu menu = new Menu(name, weekRecipes);
         menuService.save(menu);
 
-        return new ModelAndView(new RedirectView("/User", true));
+        return menu;
     }
 
     @PostMapping("/processFormSignUp")
-    public ModelAndView processRegister(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
+    public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail){
         Menu menu = menuRepository.findAll().get(1);
         List<Diet> dietas = new ArrayList<Diet>();
         List<Recipe> recipes = new ArrayList<Recipe>();
@@ -397,43 +406,37 @@ public class RestController {
         Optional<User> tryMail = userRepository.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
             userRepository.save(user);
-            if(!user.getAdmin()) {
-                model.addAttribute("loggedUser", true);
-                model.addAttribute("logged",true);
-            }else if(user.getAdmin()){
-                model.addAttribute("admin", true);
-                model.addAttribute("logged",true);
-            }
             currentUser=user;
-            return new ModelAndView(new RedirectView("/", true));
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
         else {
-            return new ModelAndView(new RedirectView("/SingUpError", true));
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping("/processLogOut")
-    public void LogOut(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public ResponseEntity<User> LogOut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        User user = currentUser;
         this.currentUser=null;
-        model.addAttribute("loggedUser",false);
-        model.addAttribute("logged",false);
-        model.addAttribute("admin", false);
+
         request.logout();
         response.sendRedirect("/");
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/processFormLogIn")
-    public ModelAndView processForm(Model model, @RequestParam String name, @RequestParam String password){
-        Optional<User> tryUser = userRepository.findByName(name);
-        if (tryUser.isPresent()) {
-            if (tryUser.get().getPassword().equals(password)) {
-                currentUser = tryUser.get();
-                return new ModelAndView(new RedirectView("/", true));
+    public ResponseEntity<User> processForm(@RequestParam String name, @RequestParam String password){
+        Optional<User> tryUserOpcional = userRepository.findByName(name);
+        if (tryUserOpcional.isPresent()) {
+            User tryUser = tryUserOpcional.get();
+            if (tryUser.getPassword().equals(password)) {
+                currentUser = tryUser;
+                return new ResponseEntity<>(tryUser, HttpStatus.OK);
             }
             else
-                return new ModelAndView(new RedirectView("/LogInError", true));
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         else
-            return new ModelAndView(new RedirectView("/LogInError", true));
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/StoredRecipes")
@@ -477,13 +480,19 @@ public class RestController {
     }
 
     @PostMapping("/processActiveMenu")
-    public ModelAndView processActiveMenu(Model model, @RequestParam String id_Menu){
+    public ResponseEntity<Menu> processActiveMenu(@RequestParam String id_Menu){
         long id=Long.parseLong(id_Menu);
-        Optional<Menu> menu = menuService.findById(id);
-        currentUser.setActiveMenu(menu.get());
-        userRepository.save(currentUser);
+        Optional<Menu> menuOpcional = menuService.findById(id);
 
-        return new ModelAndView(new RedirectView("/YourMenu", true));
+        if(menuOpcional.isPresent()) {
+            Menu menu = menuOpcional.get();
+            currentUser.setActiveMenu(menu);
+            userRepository.save(currentUser);
+
+            return new ResponseEntity<>(menu, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/Menu/{id}")
