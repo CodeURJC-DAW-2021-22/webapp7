@@ -16,7 +16,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -255,18 +255,19 @@ public class RestController {
     }
 
     @GetMapping("/Recipes")
-    public String getAllRecipes(Model model) {
+    public ResponseEntity<Recipe> getAllRecipes(HttpServletRequest request) {
         Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
         List<Recipe> recipesModels = new ArrayList<>();
+
         for (Recipe recipe : recipes) {
             recipesModels.add(recipe);
         }
-        model.addAttribute("recipe", recipes.getContent());
-        return "recipe";
+        return null;
     }
 
     @GetMapping("/getMoreRecipes")
     public @ResponseBody Page<Recipe> getMoreProducts(Pageable page){
+
         return recipeRepository.findAll(page);
     }
 
@@ -431,32 +432,43 @@ public class RestController {
     }
 
     @GetMapping("/StoredRecipes")
-    public String getAllYourRecipes(Model model){
-        List<Recipe> recipes = currentUser.getStoredRecipes();
-        model.addAttribute("yourRecipe", recipes);
+    public Collection<Recipe> getAllYourRecipes(HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
 
-        return "Stored_Recipes";
+        if(userPrincipal.isPresent()) {
+            User user = userPrincipal.get();
+            return currentUser.getStoredRecipes();
+        }
+        return null;
     }
 
     @GetMapping("/MenuMaker")
-    public String getMenu_Maker(Model model){
-        List<Recipe> recipes = currentUser.getStoredRecipes();
+    public Collection<Recipe> getMenu_Maker(HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
 
-        model.addAttribute("recipe", recipes);
-
-        return "MenuMaker";
+        if(userPrincipal.isPresent()){
+            User user = userPrincipal.get();
+            return  currentUser.getStoredRecipes();
+        }
+        return null;
     }
 
     @GetMapping("/MenuAll")
-    public String getMenu_All(Model model){
-        Page<Menu> menus = menuRepository.findAll(PageRequest.of(0,12,Sort.by("id").descending()));
-        List<Menu> menusModels = new ArrayList<>();
-        for (Menu menu: menus){
-            menusModels.add(menu);
-        }
-        model.addAttribute("menu", menus.getContent());
+    public Collection<Menu> getMenu_All(HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
 
-        return "menuAll";
+        if (userPrincipal.isPresent()) {
+            Page<Menu> menus = menuRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
+            List<Menu> menusModels = new ArrayList<>();
+            for (Menu menu : menus) {
+                menusModels.add(menu);
+            }
+            return menus.getContent();
+        }
+        return null;
     }
 
     @PostMapping("/processActiveMenu")
