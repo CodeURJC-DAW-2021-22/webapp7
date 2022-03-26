@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.*;
-import com.example.demo.repository.DietRepository;
-import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.service.*;
@@ -52,26 +50,16 @@ public class WebController {
     private ExportPdfService exportPdfService;
 
     @Autowired
-    private MenuRepository menuRepository;
-
-    @Autowired
-    private DietRepository dietRepository;
-
-    @Autowired
-    private RepositoryUserDetailsService userRepository;
+    private RepositoryUserDetailsService userService;
 
     @Autowired
     private RecipeService recipeService;
-
 
     @Autowired
     private MenuService menuService;
 
     @Autowired
     private DietService dietService;
-
-    @Autowired
-    private RecipeRepository recipeRepository;
 
     @Autowired
     private DatabaseInit dataService;
@@ -87,7 +75,7 @@ public class WebController {
         else {
             model.addAttribute("logged", true);
             model.addAttribute("admin", request.isUserInRole("ADMIN"));
-            Optional<User> tryUser = userRepository.findByName(principal.getName());
+            Optional<User> tryUser = userService.findByName(principal.getName());
             if (tryUser.isPresent())
                 currentUser = tryUser.get();
         }
@@ -97,7 +85,7 @@ public class WebController {
     public String init(Model model) {
         Optional<Recipe> outstandingRecipes = recipeService.findById(20);
         Optional<Recipe> outstandingRecipes1 = recipeService.findById(22);
-        List<Recipe> outstandingRecipesAux = recipeRepository.findAll();
+        List<Recipe> outstandingRecipesAux = recipeService.findAll();
         int contRecipes = 0;
         for (Recipe recipe : outstandingRecipesAux)
             contRecipes++;
@@ -106,8 +94,8 @@ public class WebController {
             rnd=rnd+1;
         Optional<Recipe> outstandingRecipes2 = recipeService.findById((long)rnd);
 
-        Page<Recipe> recipeCarrousel1 = recipeRepository.findAll(PageRequest.of(0,3,Sort.by("id").descending()));
-        Page<Recipe> recipeCarrousel2 = recipeRepository.findAll(PageRequest.of(1,3,Sort.by("id").descending()));
+        Page<Recipe> recipeCarrousel1 = recipeService.findAll03(PageRequest.of(0,3,Sort.by("id").descending()));
+        Page<Recipe> recipeCarrousel2 = recipeService.findAll13(PageRequest.of(1,3,Sort.by("id").descending()));
 
         double rnd1 = Math.random()*contRecipes;
         if ((int) rnd1==0)
@@ -168,7 +156,7 @@ public class WebController {
 
 	@GetMapping("/DietMaker")
     public String getDiet_Maker(Model model){
-        List<Menu> menuAll = menuRepository.findAll();
+        List<Menu> menuAll = menuService.findAll();
         List<Menu> menuContains = new ArrayList<>();
         for (Menu menu: menuAll){
             boolean conteins = false;
@@ -203,7 +191,7 @@ public class WebController {
 
     @PostMapping("/processAddDiet/{id}")
     public ModelAndView processAddDiet(Model model, @PathVariable long id){
-        Menu menu = menuRepository.findMenuById(id).get();
+        Menu menu = menuService.findById(id).get();
         dietCreate.add(menu);
         return new ModelAndView(new RedirectView("/DietMaker", true));
     }
@@ -212,9 +200,9 @@ public class WebController {
     public ModelAndView processFormDiet(Model model, @RequestParam String name){
 
         Diet dietNew = new Diet(name, dietCreate);
-        dietRepository.save(dietNew);
+        dietService.save(dietNew);
         currentUser.addStoredDiets(dietNew);
-        userRepository.save(currentUser);
+        userService.save(currentUser);
 
         dietCreate.removeAll(dietCreate);
 
@@ -237,7 +225,7 @@ public class WebController {
 
     @GetMapping("/AdminProfile")
     public String getAdminProfile(Model model){
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.findAll();
         model.addAttribute("usersAll", users.size());
         model.addAttribute("adminName", this.currentUser.getName());
 
@@ -283,7 +271,7 @@ public class WebController {
 
     @GetMapping("/Recipes")
     public String getAllRecipes(Model model) {
-        Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
+        Page<Recipe> recipes = recipeService.findAll012(PageRequest.of(0, 12, Sort.by("id").descending()));
         List<Recipe> recipesModels = new ArrayList<>();
         for (Recipe recipe : recipes) {
                 recipesModels.add(recipe);
@@ -294,7 +282,7 @@ public class WebController {
 
     @GetMapping("/getMoreRecipes")
     public @ResponseBody Page<Recipe> getMoreProducts(Pageable page){
-        return recipeRepository.findAll(page);
+        return recipeService.findAll(page);
     }
 
     @PostMapping("/processRemoveRecipe")
@@ -302,7 +290,7 @@ public class WebController {
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipe = recipeService.findById(id);
         currentUser.removeStoredRecipes(recipe.get().getId());
-        userRepository.save(currentUser);
+        userService.save(currentUser);
 
         return new ModelAndView(new RedirectView("/StoredRecipes", true));
     }
@@ -323,17 +311,17 @@ public class WebController {
         else
             toChange = recipeService.findById(longIDAux1).get();
 
-        menuRepository.updateBeforeDelete(toChange.getId(), toRemove.getId());
+        menuService.updateBeforeDelete(toChange.getId(), toRemove.getId());
 
-        List<User> userList = userRepository.findAll();
+        List<User> userList = userService.findAll();
         for (User u : userList) {
-            User uLoaded = userRepository.findById(u.getId()).get();
+            User uLoaded = userService.findById(u.getId()).get();
             List<Recipe> recipeList = uLoaded.getStoredRecipes();
             if (recipeList.contains(toRemove)) {
                 uLoaded.removeStoredRecipes(toRemove.getId());
             }
             u = uLoaded;
-            userRepository.save(u);
+            userService.save(u);
         }
 
 
@@ -347,7 +335,7 @@ public class WebController {
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipe = recipeService.findById(id);
         currentUser.getStoredRecipes().add(recipe.get());
-        userRepository.save(currentUser);
+        userService.save(currentUser);
 
         return new ModelAndView(new RedirectView("/Recipe/"+id_Recipe, true));
     }
@@ -402,16 +390,16 @@ public class WebController {
 
     @PostMapping("/processFormSignUp")
     public ModelAndView processRegister(Model model, @RequestParam String name, @RequestParam String password, @RequestParam String mail){
-        Menu menu = menuRepository.findAll().get(1);
+        Menu menu = menuService.findAll().get(1);
         List<Diet> dietas = new ArrayList<Diet>();
         List<Recipe> recipes = new ArrayList<Recipe>();
 
         User user = new User(mail, name, passwordEncoder.encode(password), recipes, menu, dietas, false);
 
-        Optional<User> tryUser = userRepository.findByName(user.getName());
-        Optional<User> tryMail = userRepository.findByMail(user.getMail());
+        Optional<User> tryUser = userService.findByName(user.getName());
+        Optional<User> tryMail = userService.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
-            userRepository.save(user);
+            userService.save(user);
             if(!user.getAdmin()) {
                 model.addAttribute("loggedUser", true);
                 model.addAttribute("logged",true);
@@ -438,7 +426,7 @@ public class WebController {
 
     @PostMapping("/processFormLogIn")
     public ModelAndView processForm(Model model, @RequestParam String name, @RequestParam String password){
-        Optional<User> tryUser = userRepository.findByName(name);
+        Optional<User> tryUser = userService.findByName(name);
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
                 currentUser = tryUser.get();
@@ -470,7 +458,7 @@ public class WebController {
 
     @GetMapping("/MenuAll")
     public String getMenu_All(Model model){
-        Page<Menu> menus = menuRepository.findAll(PageRequest.of(0,12,Sort.by("id").descending()));
+        Page<Menu> menus = menuService.findAll(PageRequest.of(0,12,Sort.by("id").descending()));
         List<Menu> menusModels = new ArrayList<>();
         for (Menu menu: menus){
             menusModels.add(menu);
@@ -485,7 +473,7 @@ public class WebController {
         long id=Long.parseLong(id_Menu);
         Optional<Menu> menu = menuService.findById(id);
         currentUser.setActiveMenu(menu.get());
-        userRepository.save(currentUser);
+        userService.save(currentUser);
 
         return new ModelAndView(new RedirectView("/YourMenu", true));
     }

@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.*;
-import com.example.demo.repository.DietRepository;
-import com.example.demo.repository.MenuRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.service.*;
@@ -20,11 +18,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,16 +49,7 @@ public class RestController {
     private ExportPdfService exportPdfService;
 
     @Autowired
-    private MenuRepository menuRepository;
-
-    @Autowired
-    private DietRepository dietRepository;
-
-    @Autowired
-    private RepositoryUserDetailsService userRepository;
-
-    @Autowired
-    private RecipeRepository recipeRepository;
+    private RepositoryUserDetailsService userService;
 
     @Autowired
     private RecipeService recipeService;
@@ -86,7 +73,7 @@ public class RestController {
             return ResponseEntity.notFound().build();
         else {
 
-            Optional<User> tryUser = userRepository.findByName(principal.getName());
+            Optional<User> tryUser = userService.findByName(principal.getName());
             if (tryUser.isPresent())
                 currentUser = tryUser.get();
                 return ResponseEntity.ok(currentUser);
@@ -110,7 +97,7 @@ public class RestController {
             return null;
         }
 
-        List<Recipe> outstandingRecipesAux = recipeRepository.findAll();
+        List<Recipe> outstandingRecipesAux = recipeService.findAll();
         int contRecipes = 0;
         for (Recipe recipe : outstandingRecipesAux)
             contRecipes++;
@@ -124,8 +111,8 @@ public class RestController {
             return null;
         }
 
-        Page<Recipe> recipeCarrousel1 = recipeRepository.findAll(PageRequest.of(0,3,Sort.by("id").descending()));
-        Page<Recipe> recipeCarrousel2 = recipeRepository.findAll(PageRequest.of(1,3,Sort.by("id").descending()));
+        Page<Recipe> recipeCarrousel1 = recipeService.findAll03(PageRequest.of(0,3,Sort.by("id").descending()));
+        Page<Recipe> recipeCarrousel2 = recipeService.findAll13(PageRequest.of(1,3,Sort.by("id").descending()));
         for(Recipe recipe1 : recipeCarrousel1){
             recipesModels.add(recipe1);
         }
@@ -163,7 +150,7 @@ public class RestController {
     @GetMapping("/api/User")
     public ResponseEntity<User> getUser(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()) {
             User user = userPrincipal.get();
@@ -177,7 +164,7 @@ public class RestController {
     @GetMapping("/api/StoredDiets")
     public Collection<Diet> getStoredDiets(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()) {
             User user = userPrincipal.get();
@@ -226,9 +213,9 @@ public class RestController {
     public Diet processFormDiet(@RequestParam String name){
 
         Diet dietNew = new Diet(name, dietCreate);
-        dietRepository.save(dietNew);
+        dietService.save(dietNew);
         currentUser.addStoredDiets(dietNew);
-        userRepository.save(currentUser);
+        userService.save(currentUser);
 
         dietCreate.removeAll(dietCreate);
 
@@ -250,7 +237,7 @@ public class RestController {
     @GetMapping("/api/AdminProfile")
     public ResponseEntity<User> getAdminProfile(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()) {
             User user = userPrincipal.get();
@@ -280,10 +267,10 @@ public class RestController {
     @GetMapping("/api/Recipes")
     public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if (userPrincipal.isPresent()) {
-            Page<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
+            Page<Recipe> recipes = recipeService.findAll012(PageRequest.of(0, 12, Sort.by("id").descending()));
             List<Recipe> recipesModels = new ArrayList<>();
             for (Recipe recipe : recipes) {
                 recipesModels.add(recipe);
@@ -296,7 +283,7 @@ public class RestController {
     @GetMapping("/api/GetMoreRecipes")
     public @ResponseBody Page<Recipe> getMoreProducts(Pageable page){
 
-        return recipeRepository.findAll(page);
+        return recipeService.findAll(page);
     }
     
     @DeleteMapping("/api/ProcessRemoveRecipe")
@@ -306,7 +293,7 @@ public class RestController {
         try {
             Optional<Recipe> recipe = recipeService.findById(id);
             currentUser.removeStoredRecipes(recipe.get().getId());
-            userRepository.save(currentUser);
+            userService.save(currentUser);
             return new ResponseEntity<>(null, HttpStatus.OK);
 
         } catch (EmptyResultDataAccessException e) {
@@ -332,17 +319,17 @@ public class RestController {
             else
                 toChange = recipeService.findById(longIDAux1).get();
 
-            menuRepository.updateBeforeDelete(toChange.getId(), toRemove.getId());
+            menuService.updateBeforeDelete(toChange.getId(), toRemove.getId());
 
-            List<User> userList = userRepository.findAll();
+            List<User> userList = userService.findAll();
             for (User u : userList) {
-                User uLoaded = userRepository.findById(u.getId()).get();
+                User uLoaded = userService.findById(u.getId()).get();
                 List<Recipe> recipeList = uLoaded.getStoredRecipes();
                 if (recipeList.contains(toRemove)) {
                     uLoaded.removeStoredRecipes(toRemove.getId());
                 }
                 u = uLoaded;
-                userRepository.save(u);
+                userService.save(u);
             }
 
             recipeService.delete(id);
@@ -360,7 +347,7 @@ public class RestController {
         if(recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
             currentUser.getStoredRecipes().add(recipe);
-            userRepository.save(currentUser);
+            userService.save(currentUser);
 
             return new ResponseEntity<>(recipe, HttpStatus.OK);
         }else{
@@ -421,16 +408,16 @@ public class RestController {
     @PostMapping("/api/ProcessFormSignUp")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail){
-        Menu menu = menuRepository.findAll().get(1);
+        Menu menu = menuService.findAll().get(1);
         List<Diet> dietas = new ArrayList<Diet>();
         List<Recipe> recipes = new ArrayList<Recipe>();
 
         User user = new User(mail, name, passwordEncoder.encode(password), recipes, menu, dietas, false);
 
-        Optional<User> tryUser = userRepository.findByName(user.getName());
-        Optional<User> tryMail = userRepository.findByMail(user.getMail());
+        Optional<User> tryUser = userService.findByName(user.getName());
+        Optional<User> tryMail = userService.findByMail(user.getMail());
         if (!tryUser.isPresent() && !tryMail.isPresent()) {
-            userRepository.save(user);
+            userService.save(user);
             currentUser=user;
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
@@ -450,7 +437,7 @@ public class RestController {
 
     @PostMapping("/api/ProcessFormLogIn")
     public ResponseEntity<User> processForm(@RequestParam String name, @RequestParam String password){
-        Optional<User> tryUserOpcional = userRepository.findByName(name);
+        Optional<User> tryUserOpcional = userService.findByName(name);
         if (tryUserOpcional.isPresent()) {
             User tryUser = tryUserOpcional.get();
             if (tryUser.getPassword().equals(password)) {
@@ -467,7 +454,7 @@ public class RestController {
     @GetMapping("/api/StoredRecipes")
     public Collection<Recipe> getAllYourRecipes(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()) {
             User user = userPrincipal.get();
@@ -479,7 +466,7 @@ public class RestController {
     @GetMapping("/api/MenuMaker")
     public Collection<Recipe> getMenu_Maker(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()){
             User user = userPrincipal.get();
@@ -491,10 +478,10 @@ public class RestController {
     @GetMapping("/api/MenuAll")
     public Collection<Menu> getMenu_All(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if (userPrincipal.isPresent()) {
-            Page<Menu> menus = menuRepository.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
+            Page<Menu> menus = menuService.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
             List<Menu> menusModels = new ArrayList<>();
             for (Menu menu : menus) {
                 menusModels.add(menu);
@@ -512,7 +499,7 @@ public class RestController {
         if(menuOpcional.isPresent()) {
             Menu menu = menuOpcional.get();
             currentUser.setActiveMenu(menu);
-            userRepository.save(currentUser);
+            userService.save(currentUser);
 
             return new ResponseEntity<>(menu, HttpStatus.OK);
         }else{
@@ -571,7 +558,7 @@ public class RestController {
     @GetMapping("/api/YourMenu")
     public ResponseEntity<Menu> getMenu_Activo(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userRepository.findByName(principal.getName());
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()) {
             User user = userPrincipal.get();

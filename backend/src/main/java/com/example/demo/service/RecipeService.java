@@ -5,6 +5,8 @@ import com.example.demo.model.Recipe;
 import com.example.demo.repository.RecipeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -24,6 +26,16 @@ public class RecipeService {
     public Optional<Recipe> findById(long id) {
         return repository.findRecipeById(id);
     }
+
+    public List<Recipe> findAll(){return repository.findAll();}
+
+    public Page<Recipe> findAll13(PageRequest pageRequest){return repository.findAll(pageRequest.of(1,3, Sort.by("id").descending()));}
+
+    public Page<Recipe> findAll03(PageRequest pageRequest){return repository.findAll(pageRequest.of(0,3, Sort.by("id").descending()));}
+
+    public Page<Recipe> findAll012(PageRequest pageRequest){return repository.findAll(pageRequest.of(0,12, Sort.by("id").descending()));}
+
+    public Page<Recipe> findAll(Pageable page){return repository.findAll(page);}
 
     public boolean exist(long id) {
         return repository.existsById(id);}
