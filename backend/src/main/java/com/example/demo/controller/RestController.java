@@ -62,17 +62,16 @@ public class RestController {
     private RepositoryUserDetailsService userRepository;
 
     @Autowired
-    private RecipeService recipeService;
+    private RecipeRepository recipeRepository;
 
+    @Autowired
+    private RecipeService recipeService;
 
     @Autowired
     private MenuService menuService;
 
     @Autowired
     private DietService dietService;
-
-    @Autowired
-    private RecipeRepository recipeRepository;
 
     @Autowired
     private DatabaseInit dataService;
@@ -86,6 +85,7 @@ public class RestController {
         if (principal==null)
             return ResponseEntity.notFound().build();
         else {
+
             Optional<User> tryUser = userRepository.findByName(principal.getName());
             if (tryUser.isPresent())
                 currentUser = tryUser.get();
@@ -155,12 +155,12 @@ public class RestController {
         return recipesModels;
     }
 
-    @GetMapping("/apiInicio")
+    @GetMapping("/api/Inicio")
     public void bbdd() throws IOException, URISyntaxException {
         dataService.init();
     }
 
-    @GetMapping("/apiUser")
+    @GetMapping("/api/User")
     public ResponseEntity<User> getUser(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -174,7 +174,7 @@ public class RestController {
         }
     }
 
-    @GetMapping("/apiStoredDiets")
+    @GetMapping("/api/StoredDiets")
     public Collection<Diet> getStoredDiets(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -187,7 +187,7 @@ public class RestController {
     }
 
 
-    @DeleteMapping("/apiProcessRemoveDiet/{id}")
+    @DeleteMapping("/api/ProcessRemoveDiet/{id}")
     public ResponseEntity<Menu> processRemoveDiet(@PathVariable long id){
 
         int position = 0;
@@ -208,7 +208,7 @@ public class RestController {
         }
     }
 
-    @PutMapping("/apiProcessAddDiet/{id}")
+    @PutMapping("/api/ProcessAddDiet/{id}")
     public ResponseEntity<Menu> processAddDiet(@PathVariable long id){
 
         Optional<Menu> menuId = menuService.findById(id);
@@ -222,7 +222,7 @@ public class RestController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/apiProcessFormDiet")
+    @PostMapping("/api/ProcessFormDiet")
     public Diet processFormDiet(@RequestParam String name){
 
         Diet dietNew = new Diet(name, dietCreate);
@@ -235,7 +235,7 @@ public class RestController {
         return dietNew;
     }
 
-    @GetMapping("/apiDiet/{id}/{nombre}")
+    @GetMapping("/api/Diet/{id}/{nombre}")
     public ResponseEntity<Diet> getDietPage(@PathVariable long id){
 
         Optional<Diet> dietId = dietService.findById(id);
@@ -247,7 +247,7 @@ public class RestController {
         }
     }
 
-    @GetMapping("/apiAdminProfile")
+    @GetMapping("/api/AdminProfile")
     public ResponseEntity<User> getAdminProfile(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -264,7 +264,7 @@ public class RestController {
         }
     }
 
-    @GetMapping("/apiRecipe/{id}")
+    @GetMapping("/api/Recipe/{id}")
     public ResponseEntity<Recipe> showRecipe(@PathVariable long id) {
 
         Optional<Recipe> recipeId = recipeService.findById(id);
@@ -277,7 +277,7 @@ public class RestController {
 
     }
 
-    @GetMapping("/apiRecipes")
+    @GetMapping("/api/Recipes")
     public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -293,13 +293,13 @@ public class RestController {
         return null;
     }
 
-    @GetMapping("/apiGetMoreRecipes")
+    @GetMapping("/api/GetMoreRecipes")
     public @ResponseBody Page<Recipe> getMoreProducts(Pageable page){
 
         return recipeRepository.findAll(page);
     }
     
-    @DeleteMapping("/apiProcessRemoveRecipe")
+    @DeleteMapping("/api/ProcessRemoveRecipe")
     public ResponseEntity<Recipe> processRemoveRecipe(@RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
 
@@ -316,7 +316,7 @@ public class RestController {
 
 
 
-    @DeleteMapping("/apiProcessDeleteRecipe")
+    @DeleteMapping("/api/ProcessDeleteRecipe")
     public ResponseEntity<Recipe> processDeleteRecipe(@RequestParam String id_RecipeDelete){
         long id=Long.parseLong(id_RecipeDelete);
         long longIDAux1 = 1;
@@ -353,7 +353,7 @@ public class RestController {
     }
 
 
-    @PostMapping("/apiProcessAddRecipe")
+    @PostMapping("/api/ProcessAddRecipe")
     public ResponseEntity<Recipe> processAddRecipe(@RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipeOptional = recipeService.findById(id);
@@ -368,7 +368,7 @@ public class RestController {
         }
     }
 
-    @PostMapping("/apiProcessFormRecipe")
+    @PostMapping("/api/ProcessFormRecipe")
     @ResponseStatus(HttpStatus.CREATED)
     public Recipe processMenuMaker(@RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
         String creator = currentUser.getUsername();
@@ -386,7 +386,7 @@ public class RestController {
         return recipe;
     }
 
-    @PostMapping("/apiProcessFormMenu")
+    @PostMapping("/api/ProcessFormMenu")
     @ResponseStatus(HttpStatus.CREATED)
     public Menu processRecipeMaker(@RequestParam String name, @RequestParam long lunchMonday, @RequestParam long lunchTuesday, @RequestParam long lunchWednesday, @RequestParam long lunchThursday, @RequestParam long lunchFriday, @RequestParam long lunchSaturday, @RequestParam long lunchSunday, @RequestParam long dinnerMonday, @RequestParam long dinnerTuesday, @RequestParam long dinnerWednesday, @RequestParam long dinnerThursday, @RequestParam long dinnerFriday, @RequestParam long dinnerSaturday, @RequestParam long dinnerSunday){
         List<Recipe> weekRecipes = new ArrayList<>();
@@ -418,7 +418,7 @@ public class RestController {
         return menu;
     }
 
-    @PostMapping("/apiProcessFormSignUp")
+    @PostMapping("/api/ProcessFormSignUp")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail){
         Menu menu = menuRepository.findAll().get(1);
@@ -438,7 +438,7 @@ public class RestController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/apiProcessLogOut")
+    @GetMapping("/api/ProcessLogOut")
     public ResponseEntity<User> LogOut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = currentUser;
         this.currentUser=null;
@@ -448,7 +448,7 @@ public class RestController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/apiProcessFormLogIn")
+    @PostMapping("/api/ProcessFormLogIn")
     public ResponseEntity<User> processForm(@RequestParam String name, @RequestParam String password){
         Optional<User> tryUserOpcional = userRepository.findByName(name);
         if (tryUserOpcional.isPresent()) {
@@ -464,7 +464,7 @@ public class RestController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/apiStoredRecipes")
+    @GetMapping("/api/StoredRecipes")
     public Collection<Recipe> getAllYourRecipes(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -476,7 +476,7 @@ public class RestController {
         return null;
     }
 
-    @GetMapping("/apiMenuMaker")
+    @GetMapping("/api/MenuMaker")
     public Collection<Recipe> getMenu_Maker(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -488,7 +488,7 @@ public class RestController {
         return null;
     }
 
-    @GetMapping("/apiMenuAll")
+    @GetMapping("/api/MenuAll")
     public Collection<Menu> getMenu_All(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -504,7 +504,7 @@ public class RestController {
         return null;
     }
 
-    @PostMapping("/apiProcessActiveMenu")
+    @PostMapping("/api/ProcessActiveMenu")
     public ResponseEntity<Menu> processActiveMenu(@RequestParam String id_Menu){
         long id=Long.parseLong(id_Menu);
         Optional<Menu> menuOpcional = menuService.findById(id);
@@ -520,7 +520,7 @@ public class RestController {
         }
     }
 
-    @GetMapping("/apiMenu/{id}")
+    @GetMapping("/api/Menu/{id}")
     public ResponseEntity<Menu> getMenu_Selected(@PathVariable long id){
         Optional<Menu> selectedMenu = menuService.findById(id);
         if(selectedMenu.isPresent()){
@@ -531,7 +531,7 @@ public class RestController {
         }
     }
 
-    @GetMapping("/apiDownloadReceipt")
+    @GetMapping("/api/DownloadReceipt")
     public void downloadReceipt(HttpServletResponse response) throws IOException {
         Map<String, Object> data = new HashMap<>();
         User user = currentUser;
@@ -568,7 +568,7 @@ public class RestController {
         IOUtils.copy(exportedData, response.getOutputStream());
     }
 
-    @GetMapping("/apiYourMenu")
+    @GetMapping("/api/YourMenu")
     public ResponseEntity<Menu> getMenu_Activo(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userRepository.findByName(principal.getName());
@@ -588,7 +588,7 @@ public class RestController {
         }
     }
 
-    @PostMapping("/apiProcessFormRecipe/{id}/image")
+    @PostMapping("/api/ProcessFormRecipe/{id}/image")
     public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageRecipe) throws IOException {
         Recipe recipe = recipeService.findById(id).orElseThrow();
 
@@ -601,7 +601,7 @@ public class RestController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping("/apiRecipe/{id}/image")
+    @GetMapping("/api/Recipe/{id}/image")
     public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
         Optional<Recipe> recipe = recipeService.findById(id);
