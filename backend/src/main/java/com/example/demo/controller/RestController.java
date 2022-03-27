@@ -4,11 +4,6 @@ import com.example.demo.model.*;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.service.*;
-import com.fasterxml.jackson.annotation.JsonView;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
 import org.apache.commons.io.IOUtils;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -268,17 +263,7 @@ public class RestController {
         }
 
     }
-    @Operation(summary = "Get all recipes")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Get all recipes",
-                    content = {@Content(mediaType = "application/json")
 
-                    }
-            )
-    })
-    @JsonView(Recipe.Common.class)
     @GetMapping("/api/Recipes")
     public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
