@@ -222,7 +222,7 @@ public class RestController {
         return dietNew;
     }
 
-    @GetMapping("/api/Diet/{id}/{nombre}")
+    @GetMapping("/api/Diet/{id}")
     public ResponseEntity<Diet> getDietPage(@PathVariable long id){
 
         Optional<Diet> dietId = dietService.findById(id);
