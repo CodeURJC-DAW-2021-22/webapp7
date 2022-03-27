@@ -3,7 +3,7 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:14.2
+    image: postgres
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "1234"
@@ -19,7 +19,7 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/DBDaw"
       SPRING_DATASOURCE_PASSWORD: "1234"
       SPRING_JPA_HIBERNATE_DDL-AUTO: create-drop
-    image: 'ed5f2b51eef2'
+    image: '13cc4f729dcd'
     restart: always
     depends_on:
       - db

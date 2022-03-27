@@ -6,6 +6,7 @@
         <exploded>true</exploded>
         <module>demo</module>
         <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -26,7 +27,6 @@
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-json:2.6.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.1" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.13.1" />
@@ -98,6 +98,20 @@
           <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk14:1.64" />
           <element id="library" level="project" name="Maven: org.xhtmlrenderer:flying-saucer-core:9.1.22" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.11.0" />
+          <element id="library" level="project" name="Maven: org.springdoc:springdoc-openapi-ui:1.5.12" />
+          <element id="library" level="project" name="Maven: org.springdoc:springdoc-openapi-webmvc-core:1.5.12" />
+          <element id="library" level="project" name="Maven: org.springdoc:springdoc-openapi-common:1.5.12" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-models:2.1.11" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-annotations:2.1.11" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-integration:2.1.11" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-core:2.1.11" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.1" />
+          <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" />
+          <element id="library" level="project" name="Maven: io.github.classgraph:classgraph:4.8.116" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.12.0" />
+          <element id="library" level="project" name="Maven: org.webjars:swagger-ui:3.52.5" />
+          <element id="library" level="project" name="Maven: org.webjars:webjars-locator-core:0.48" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
