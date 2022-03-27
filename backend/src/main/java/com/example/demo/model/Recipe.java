@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -11,32 +12,52 @@ import java.util.Scanner;
 
 @Entity
 public class Recipe {
+
+    public interface Common{}
+
+    public interface Complete{}
+
+    public interface RecipeComplete extends Recipe.Common, Recipe.Complete{}
+
+    @JsonView(Common.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @JsonView(Common.class)
     @Column(columnDefinition = "TEXT")
     private String preparation;
 
+    @JsonView(Common.class)
     private String name;
+    @JsonView(Common.class)
     private Integer cookTime;
+    @JsonView(Common.class)
     private String difficulty;
+    @JsonView(Common.class)
     private Date uploadDate;
+    @JsonView(Common.class)
     private String ingredients;
+    @JsonView(Common.class)
     private String creator;
 
     @Lob
     @JsonIgnore
     Blob recipeImage;
 
+    @JsonView(Common.class)
     private boolean hasPhoto;
 
 
-
+    @JsonView(Common.class)
     private boolean vegetables;
+    @JsonView(Common.class)
     private boolean protein;
+    @JsonView(Common.class)
     private boolean hydrates;
+    @JsonView(Common.class)
     private boolean carbohydrates;
+    @JsonView(Common.class)
     private boolean highinfat;
 
 
