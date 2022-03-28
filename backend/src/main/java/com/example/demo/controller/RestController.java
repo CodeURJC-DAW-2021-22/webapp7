@@ -3,6 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.model.*;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.security.RepositoryUserDetailsService;
+import com.example.demo.security.jwt.AuthResponse;
+import com.example.demo.security.jwt.LoginRequest;
+import com.example.demo.security.jwt.UserLoginService;
 import com.example.demo.service.*;
 import org.apache.commons.io.IOUtils;
 import org.hibernate.engine.jdbc.BlobProxy;
@@ -426,7 +429,7 @@ public class RestController {
     }
     @GetMapping("/api/ProcessLogOut")
     public ResponseEntity<AuthResponse> LogOut(HttpServletRequest request, HttpServletResponse response){
-        return ResponseEntity.ok(new AuthResponse(Status.SUCCESS, userServiceLogin.logout(request, response)));
+        return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userServiceLogin.logout(request, response)));
     }
 
     @PostMapping("/api/ProcessFormLogIn")

@@ -17,7 +17,7 @@
     <name>backend</name>
     <description>Backend webapp7</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
 
     <repositories>
@@ -116,7 +116,7 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+            <version>0.9.1</version>
         </dependency>
 
     </dependencies>
