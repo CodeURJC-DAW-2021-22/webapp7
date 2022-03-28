@@ -5,6 +5,7 @@ import com.example.demo.model.Recipe;
 import com.example.demo.repository.MenuRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,8 @@ public class MenuService {
     }
 
     public List<Menu> findAll(){return repository.findAll();}
+
+    public Page<Menu> findAllMenu(Pageable page){return repository.findAll(page);}
 
     public Page<Menu> findAll(PageRequest pageRequest){return repository.findAll(pageRequest.of(0, 12, Sort.by("id").descending()));}
 
