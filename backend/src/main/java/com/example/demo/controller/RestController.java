@@ -266,18 +266,14 @@ public class RestController {
 
     @GetMapping("/api/Recipes")
     public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
-        if (userPrincipal.isPresent()) {
             Page<Recipe> recipes = recipeService.findAll012(PageRequest.of(0, 12, Sort.by("id").descending()));
             List<Recipe> recipesModels = new ArrayList<>();
             for (Recipe recipe : recipes) {
                 recipesModels.add(recipe);
             }
             return recipesModels;
-        }
-        return null;
+
     }
 
     @GetMapping("/api/GetMoreRecipes")
@@ -477,18 +473,8 @@ public class RestController {
 
     @GetMapping("/api/MenuAll")
     public Collection<Menu> getMenu_All(HttpServletRequest request){
-        Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userService.findByName(principal.getName());
-
-        if (userPrincipal.isPresent()) {
-            Page<Menu> menus = menuService.findAll(PageRequest.of(0, 12, Sort.by("id").descending()));
-            List<Menu> menusModels = new ArrayList<>();
-            for (Menu menu : menus) {
-                menusModels.add(menu);
-            }
-            return menus.getContent();
-        }
-        return null;
+        List<Menu> menus = menuService.findAll();
+        return menus;
     }
 
     @PostMapping("/api/ProcessActiveMenu")
