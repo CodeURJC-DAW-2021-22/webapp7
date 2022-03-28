@@ -121,9 +121,6 @@ public class Menu {
         this.weeklyPlan = weeklyPlan;
     }
     public void setId(Long id) {this.id = id;}
-    public String getname() {
-        return name;
-    }
 
     public void setname(String name) {
         this.name = name;
