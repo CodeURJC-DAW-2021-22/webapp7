@@ -43,6 +43,9 @@ public class RestController {
 
     private List<Menu> dietCreate = new ArrayList<>();
 
+    @Autowired
+    private UserLoginService userServiceLogin;
+
     private User currentUser=null;
 
     @Autowired
@@ -422,29 +425,25 @@ public class RestController {
         }
     }
     @GetMapping("/api/ProcessLogOut")
-    public ResponseEntity<User> LogOut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        User user = currentUser;
-        this.currentUser=null;
-
-        request.logout();
-        response.sendRedirect("/");
-        return ResponseEntity.ok(user);
+    public ResponseEntity<AuthResponse> LogOut(HttpServletRequest request, HttpServletResponse response){
+        return ResponseEntity.ok(new AuthResponse(Status.SUCCESS, userServiceLogin.logout(request, response)));
     }
 
     @PostMapping("/api/ProcessFormLogIn")
-    public ResponseEntity<User> processForm(@RequestParam String name, @RequestParam String password){
-        Optional<User> tryUserOpcional = userService.findByName(name);
-        if (tryUserOpcional.isPresent()) {
-            User tryUser = tryUserOpcional.get();
-            if (tryUser.getPassword().equals(password)) {
-                currentUser = tryUser;
-                return new ResponseEntity<>(tryUser, HttpStatus.OK);
-            }
-            else
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        else
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    public ResponseEntity<AuthResponse> processForm(
+        @CookieValue(name = "accessToken", required = false) String accessToken,
+        @CookieValue(name = "refreshToken", required = false) String refreshToken,
+        @RequestBody LoginRequest loginRequest){
+
+            return userServiceLogin.login(loginRequest, accessToken, refreshToken);
+
+    }
+
+    @PostMapping("/api/ProcessRefresh")
+    public ResponseEntity<AuthResponse> refreshToken(
+            @CookieValue(name = "refreshToken", required = false) String refreshToken) {
+
+        return userServiceLogin.refresh(refreshToken);
     }
 
     @GetMapping("/api/StoredRecipes")
