@@ -465,19 +465,14 @@ public class RestController {
 
         if(userPrincipal.isPresent()){
             User user = userPrincipal.get();
-            return  user.getStoredRecipes();
+            return  currentUser.getStoredRecipes();
         }
         return null;
     }
 
     @GetMapping("/api/MenuAll")
-    public Collection<Menu> getMenu_All(HttpServletRequest request){
-        Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userService.findByName(principal.getName());
-        if(userPrincipal.isPresent()){
-            return menuService.findAll();
-        }
-        return null;
+    public Page<Menu> getMenu_All(HttpServletRequest request, Pageable page){
+        return menuService.findAllMenu(page);
     }
 
     @PostMapping("/api/ProcessActiveMenu")
