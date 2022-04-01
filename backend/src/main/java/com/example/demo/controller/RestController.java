@@ -146,16 +146,17 @@ public class RestController {
         }
     }
 
-    @GetMapping("/api/StoredDiets")//**500**//
-    public Collection<Diet> getStoredDiets(HttpServletRequest request){
+    @GetMapping("/api/StoredDiets")
+    public ResponseEntity<Collection<Diet>> getStoredDiets(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
-        Optional<User> userPrincipal = userService.findByName(principal.getName());
-
-        if(userPrincipal.isPresent()) {
-            User user = userPrincipal.get();
-            return user.getStoredDiets();
+        List<Diet> listDiets;
+        if(principal != null) {
+            User user = userService.findByName(principal.getName()).orElseThrow();
+            listDiets = user.getStoredDiets();
+        return new ResponseEntity<>(listDiets,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return null;
     }
 
 
