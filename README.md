@@ -198,6 +198,11 @@ Now we are going to provide you information about how to create a docker image w
 
 Right now you should understand the next problem: Heroku close the app if finds an inactivity period of 30 minutes, so if you find this situation, back to the step 9. But at this point, everything is done! The only thing left is to enjoy Food & U app.
 
+## **API REST Documentation**
+
+You can check the API REST documentation in the next links: 
+  - [HTML format](https://raw.githack.com/CodeURJC-DAW-2021-22/webapp7/main/backend/api-docs/api-docs.html)
+  - [YAML format](https://raw.githack.com/CodeURJC-DAW-2021-22/webapp7/main/backend/api-docs/api-docs.yaml)
 
 ## **Developing Part by every member**
 
