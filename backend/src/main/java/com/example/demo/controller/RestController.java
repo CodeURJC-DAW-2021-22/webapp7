@@ -184,7 +184,7 @@ public class RestController {
     }
 
 
-    @DeleteMapping("/api/ProcessRemoveDiet/{id}")
+    @DeleteMapping("/api/RemoveDiet/{id}")
     public ResponseEntity<Menu> processRemoveDiet(@PathVariable long id){
 
         int position = 0;
@@ -205,7 +205,7 @@ public class RestController {
         }
     }
 
-    @PutMapping("/api/ProcessAddDiet/{id}")
+    @PutMapping("/api/AddDiet/{id}")
     public ResponseEntity<Menu> processAddDiet(@PathVariable long id){
 
         Optional<Menu> menuId = menuService.findById(id);
@@ -219,7 +219,7 @@ public class RestController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/api/ProcessFormDiet")
+    @PostMapping("/api/FormDiet")
     public Diet processFormDiet(@RequestParam String name){
 
         Diet dietNew = new Diet(name, dietCreate);
@@ -284,13 +284,13 @@ public class RestController {
 
     }
 
-    @GetMapping("/api/GetMoreRecipes")
+    @GetMapping("/api/MoreRecipes")
     public @ResponseBody Page<Recipe> getMoreProducts(Pageable page){
 
         return recipeService.findAll(page);
     }
     
-    @DeleteMapping("/api/ProcessRemoveRecipe")
+    @DeleteMapping("/api/RemoveRecipe")
     public ResponseEntity<Recipe> processRemoveRecipe(@RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
 
@@ -307,7 +307,7 @@ public class RestController {
 
 
 
-    @DeleteMapping("/api/ProcessDeleteRecipe")
+    @DeleteMapping("/api/DeleteRecipe")
     public ResponseEntity<Recipe> processDeleteRecipe(@RequestParam String id_RecipeDelete){
         long id=Long.parseLong(id_RecipeDelete);
         long longIDAux1 = 1;
@@ -344,7 +344,7 @@ public class RestController {
     }
 
 
-    @PostMapping("/api/ProcessAddRecipe")
+    @PostMapping("/api/AddRecipe")
     public ResponseEntity<Recipe> processAddRecipe(@RequestParam String id_Recipe){
         long id=Long.parseLong(id_Recipe);
         Optional<Recipe> recipeOptional = recipeService.findById(id);
@@ -359,7 +359,7 @@ public class RestController {
         }
     }
 
-    @PostMapping("/api/ProcessFormRecipe")
+    @PostMapping("/api/FormRecipe")
     @ResponseStatus(HttpStatus.CREATED)
     public Recipe processMenuMaker(@RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
         String creator = currentUser.getUsername();
@@ -377,7 +377,7 @@ public class RestController {
         return recipe;
     }
 
-    @PostMapping("/api/ProcessFormMenu")
+    @PostMapping("/api/FormMenu")
     @ResponseStatus(HttpStatus.CREATED)
     public Menu processRecipeMaker(@RequestParam String name, @RequestParam long lunchMonday, @RequestParam long lunchTuesday, @RequestParam long lunchWednesday, @RequestParam long lunchThursday, @RequestParam long lunchFriday, @RequestParam long lunchSaturday, @RequestParam long lunchSunday, @RequestParam long dinnerMonday, @RequestParam long dinnerTuesday, @RequestParam long dinnerWednesday, @RequestParam long dinnerThursday, @RequestParam long dinnerFriday, @RequestParam long dinnerSaturday, @RequestParam long dinnerSunday){
         List<Recipe> weekRecipes = new ArrayList<>();
@@ -409,7 +409,7 @@ public class RestController {
         return menu;
     }
 
-    @PostMapping("/api/ProcessFormSignUp")
+    @PostMapping("/api/FormSignUp")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail){
         Menu menu = menuService.findAll().get(1);
@@ -429,12 +429,12 @@ public class RestController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/api/ProcessLogOut")
+    @GetMapping("/api/LogOut")
     public ResponseEntity<AuthResponse> LogOut(HttpServletRequest request, HttpServletResponse response){
         return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userServiceLogin.logout(request, response)));
     }
 
-    @PostMapping("/api/ProcessFormLogIn")
+    @PostMapping("/api/LogIn")
     public ResponseEntity<AuthResponse> processForm(
         @CookieValue(name = "accessToken", required = false) String accessToken,
         @CookieValue(name = "refreshToken", required = false) String refreshToken,
@@ -444,7 +444,7 @@ public class RestController {
 
     }
 
-    @PostMapping("/api/ProcessRefresh")
+    @PostMapping("/api/Refresh")
     public ResponseEntity<AuthResponse> refreshToken(
             @CookieValue(name = "refreshToken", required = false) String refreshToken) {
 
@@ -480,7 +480,7 @@ public class RestController {
         return menuService.findAllMenu(page);
     }
 
-    @PostMapping("/api/ProcessActiveMenu")
+    @PostMapping("/api/FormActiveMenu")
     public ResponseEntity<Menu> processActiveMenu(@RequestParam String id_Menu){
         long id=Long.parseLong(id_Menu);
         Optional<Menu> menuOpcional = menuService.findById(id);
@@ -507,7 +507,7 @@ public class RestController {
         }
     }
 
-    @GetMapping("/api/DownloadReceipt")//**500**//
+    @GetMapping("/api/Receipt")//**500**//
     public ResponseEntity<Map<String,Object>> downloadReceipt(HttpServletResponse response) throws IOException {
 
             Map<String, Object> data = new HashMap<>();
@@ -562,7 +562,7 @@ public class RestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/api/ProcessFormRecipe/{id}/image")
+    @PostMapping("/api/FormRecipe/{id}/image")
     public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageRecipe) throws IOException {
         Recipe recipe = recipeService.findById(id).orElseThrow();
 
