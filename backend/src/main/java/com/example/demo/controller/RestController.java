@@ -368,7 +368,7 @@ public class RestController {
         }
     }
 
-    @PostMapping("/api/ProcessUpdateRecipe/{id}")
+    @PostMapping("/api/UpdateRecipe/{id}")
     public Recipe processUpdateRecipe(@PathVariable long id, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
         Optional<Recipe> recipeOpt = recipeService.findById(id);
         if (recipeOpt.isPresent()) {
