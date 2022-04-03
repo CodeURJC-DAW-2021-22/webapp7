@@ -35,6 +35,9 @@
 				<input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
 			  {{/adminDelete}}
 		  </form>
+			  {{#adminUpdate}}
+		  <button class="btn btn-danger"><a href="/RecipeUpdater/{{recipe.id}}">Update Recipe</a></button>
+		      {{/adminUpdate}}
 	  </div>
 	</div>
 	 </div>

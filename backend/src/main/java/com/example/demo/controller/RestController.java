@@ -270,6 +270,17 @@ public class RestController {
 
     }
 
+    @GetMapping("/api/RecipeUpdater/{id}")
+    public ResponseEntity<Recipe> getRecipeMaker(@PathVariable long id) throws SQLException {
+        Optional<Recipe> recipeId = recipeService.findById(id);
+        if (recipeId.isPresent()) {
+            Recipe recipe = recipeId.get();
+            return new ResponseEntity<>(recipe, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/api/Recipes")
     public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
 
@@ -355,6 +366,38 @@ public class RestController {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/api/ProcessUpdateRecipe/{id}")
+    public Recipe processUpdateRecipe(@PathVariable long id, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
+        Optional<Recipe> recipeOpt = recipeService.findById(id);
+        if (recipeOpt.isPresent()) {
+            Recipe recipe = recipeOpt.get();
+            boolean vegetables = booleanos.contains("vegetables");
+            boolean protein = booleanos.contains("protein");
+            boolean hydrates = booleanos.contains("hydrates");
+            boolean carbohydrates = booleanos.contains("carbohydrates");
+            boolean highinfat = booleanos.contains("highinfat");
+
+            recipe.setName(name);
+            recipe.setCookTime(time);
+            recipe.setDifficulty(difficulty);
+            recipe.setPreparation(preparation);
+            recipe.setIngredients(ingredients);
+
+            recipe.setVegetables(vegetables);
+            recipe.setProtein(protein);
+            recipe.setHydrates(hydrates);
+            recipe.setCarbohydrates(carbohydrates);
+            recipe.setHighinfat(highinfat);
+
+            recipeService.save(recipe);
+            if (imageRecipe.getSize() != 0) {
+                uploadImage(recipe.getId(), imageRecipe);
+            }
+            return recipe;
+        }
+        return null;
     }
 
     @PostMapping("/api/ProcessFormRecipe")

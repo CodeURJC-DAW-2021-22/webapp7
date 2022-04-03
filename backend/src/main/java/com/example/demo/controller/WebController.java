@@ -248,11 +248,99 @@ public class WebController {
     @GetMapping("/RecipeMaker")
     public String getRecipeMaker(Model model){return "RecipeMaker";}
 
+
+    @GetMapping("/RecipeUpdater/{id}")
+    public String getRecipeMaker(Model model, @PathVariable long id) throws SQLException {
+        Optional<Recipe> recipe = recipeService.findById(id);
+        if (recipe.isPresent()) {
+            model.addAttribute("recipe", recipe.get());
+            Recipe recipeModel = recipe.get();
+            if(recipeModel.getDifficulty().equals("Intermedia")){
+                model.addAttribute("middle", true);
+                model.addAttribute("notHard", true);
+            }else if(recipeModel.getDifficulty().equals("Posibilidad de lesión")){
+                model.addAttribute("hard", true);
+                model.addAttribute("notMiddle", true);
+            }else{
+                model.addAttribute("notMiddle", true);
+                model.addAttribute("notHard", true);
+            }
+
+            if(recipeModel.getVegetables()){
+                model.addAttribute("vegetables", "checked");
+            }else{
+                model.addAttribute("vegetables", "unchecked");
+            }
+
+            if(recipeModel.getProtein()){
+                model.addAttribute("protein", "checked");
+            }else{
+                model.addAttribute("protein", "unchecked");
+            }
+
+            if(recipeModel.getHydrates()){
+                model.addAttribute("hydrates", "checked");
+            }else{
+                model.addAttribute("hydrates", "unchecked");
+            }
+
+            if(recipeModel.getCarbohydrates()){
+                model.addAttribute("carbohydrates", "checked");
+            }else{
+                model.addAttribute("carbohydrates", "unchecked");
+            }
+
+            if(recipeModel.getHighinfat()){
+                model.addAttribute("highinfat", "checked");
+            }else{
+                model.addAttribute("highinfat", "unchecked");
+            }
+
+            return "recipeUpdater";
+        } else {
+            return "recipe";
+        }
+    }
+
+    @PostMapping("/processUpdateRecipe/{id}")
+    public ModelAndView processUpdateRecipe(Model model, @PathVariable long id, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
+        Optional<Recipe> recipeOpt = recipeService.findById(id);
+        if (recipeOpt.isPresent()) {
+            Recipe recipe = recipeOpt.get();
+            boolean vegetables=booleanos.contains("vegetables");
+            boolean protein=booleanos.contains("protein");
+            boolean hydrates=booleanos.contains("hydrates");
+            boolean carbohydrates=booleanos.contains("carbohydrates");
+            boolean highinfat=booleanos.contains("highinfat");
+
+
+            recipe.setName(name);
+            recipe.setCookTime(time);
+            recipe.setDifficulty(difficulty);
+            recipe.setPreparation(preparation);
+            recipe.setIngredients(ingredients);
+
+            recipe.setVegetables(vegetables);
+            recipe.setProtein(protein);
+            recipe.setHydrates(hydrates);
+            recipe.setCarbohydrates(carbohydrates);
+            recipe.setHighinfat(highinfat);
+
+            recipeService.save(recipe);
+            if (imageRecipe.getSize() != 0) {
+                uploadImage(recipe.getId(), imageRecipe);
+            }
+            return new ModelAndView(new RedirectView("/Recipes", true));
+        }
+        return new ModelAndView(new RedirectView("/Recipes", true));
+    }
+
     @GetMapping("/Recipe/{id}")
     public String showRecipe(Model model, @PathVariable long id) {
         if(currentUser != null) {
             if (currentUser.getAdmin()) {
                 model.addAttribute("adminDelete", true);
+                model.addAttribute("adminUpdate", true);
             } else if (currentUser.getStoredRecipes().stream().anyMatch(r -> r.getId() == id)) {
                 model.addAttribute("disable", true);
             } else {

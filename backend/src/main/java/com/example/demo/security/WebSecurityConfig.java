@@ -67,6 +67,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/processDeleteRecipe").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/processAddRecipe").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/processFormRecipe").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/processUpdateRecipe/*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/RecipeUpdater/*").hasAnyRole("ADMIN");
+
 
 
 

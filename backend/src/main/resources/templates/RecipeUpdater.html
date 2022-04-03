@@ -10,7 +10,7 @@
 <section id="blog" class="clearfix">
 	<div class="blog_center_1 clearfix">
 		<div class="col-sm-2"></div>
-			<form action="/processFormRecipe" method="post" enctype="multipart/form-data">
+			<form action="/processUpdateRecipe/{{recipe.id}}" method="post" enctype="multipart/form-data">
 				<div class="col-sm-8">
 					<h2>Recipe</h2>
 					<p>Name:</p>
@@ -20,10 +20,20 @@
 					<p><input type="number" id="time" name="time" value="{{recipe.cookTime}}"> Minutes</p>
 
 					<p>Difficulty:</p>
-					<p><select id="difficulty" name="difficulty" value={{recipe.difficulty}}>
-						<option value="easy">Easy</option>
+					<p><select id="difficulty" name="difficulty">
+						{{#middle}}
 						<option value="medium">Medium</option>
+						{{/middle}}
+						{{#hard}}
 						<option value="hard">Hard</option>
+						{{/hard}}
+						<option value="easy">Easy</option>
+						{{#notMiddle}}
+						<option value="medium">Medium</option>
+						{{/notMiddle}}
+						{{#notHard}}
+						<option value="hard">Hard</option>
+						{{/notHard}}user_table
 					</select></p>
 
 					<p>Preparation:</p>
@@ -34,13 +44,13 @@
 
 					<p>Categories:</p>
 					<div class="col-sm-6">
-						<p><label><input type="checkbox" id="vegetables" name="booleanos" value="{{recipe.vegetables}}"> Vegetables</label><br></p>
-						<p><label><input type="checkbox" id="protein" name="booleanos" value="{{recipe.protein}}"> Protein</label><br></p>
-						<p><label><input type="checkbox" id="hydrates" name="booleanos" value="{{recipe.hydrates}}"> Hydrates</label><br></p>
+						<p><label><input type="checkbox" id="vegetables" name="booleanos" {{vegetables}} value="vegetables"> Vegetables</label><br></p>
+						<p><label><input type="checkbox" id="protein" name="booleanos" {{protein}} value="protein"> Protein</label><br></p>
+						<p><label><input type="checkbox" id="hydrates" name="booleanos" {{hydrates}} value="hydrates"> Hydrates</label><br></p>
 					</div>
 					<div class="col-sm-6">
-						<p><label><input type="checkbox" id="carbohydrates" name="booleanos" value="{{recipe.carbohydrates}}"> Carbohydrates</label><br></p>
-						<p><label><input type="checkbox" id="highinfat" name="booleanos" value="{{recipe.highinfat}}"> High in fat</label><br></p>
+						<p><label><input type="checkbox" id="carbohydrates" name="booleanos" {{carbohydrates}} value="carbohydrates"> Carbohydrates</label><br></p>
+						<p><label><input type="checkbox" id="highinfat" name="booleanos" {{highinfat}} value="highinfat"> High in fat</label><br></p>
 					</div>
 					<div class="col-sm-12">
 						<input type="file" id="imageRecipe" name="imageRecipe">
