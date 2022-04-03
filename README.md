@@ -286,6 +286,18 @@ Right now you should understand the next problem: Heroku close the app if finds 
   - [Database Config](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/DatabaseConfig.java)
 
 
-- **Hugo Coto González**:
+- **Hugo Coto González**: In this phase of the implementation, I mostly spent all my efforts with Rodrigo developing the docker and Heroku parts and making it work. It was new and something unseen for us, but the teamwork there made it successful. Also, I took care of the API REST documentation and the Postman requests. Down below you can check my principal commits:
+  - [Api Docs](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/616a175e9c37afb00f988a2a261fda497a088fc7)
+  - [Postman Collections](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/e31e43d76771193a8ffa73b03874cd80d00a089d)
+  - [Docker image creator script](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/1e63da2df8d799b1c3aedcd2c2c5843c06d04465)
+  - [First Heroku deploy](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/d65ea254cd789b5f5a9f7a7a8d808d844ef41b77)
+  - [First docker image creation](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/2558c802cab273a80ab4a3fd8385738b02edd738)
+  
+The links where I consider I worked the most on:
+  - [Application properties](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/application.properties)
+  - [create_image.sh](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/create_image.sh)
+  - [pom.xml](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/pom.xml)
+  - [Postman Collections](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Postman)
+  - [Dockerfile](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/Dockerfile)
 - **Carlos Alejandro Álvarez**:
 - **Carlos Rodríguez Gómez**:
