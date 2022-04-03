@@ -425,11 +425,12 @@ public class WebController {
     }
 
     @PostMapping("/processFormLogIn")
-    public ModelAndView processForm(Model model, @RequestParam String name, @RequestParam String password){
+    public ModelAndView processForm(HttpServletRequest request, Model model, @RequestParam String name, @RequestParam String password) throws ServletException {
         Optional<User> tryUser = userService.findByName(name);
         if (tryUser.isPresent()) {
             if (tryUser.get().getPassword().equals(password)) {
-                currentUser = tryUser.get();
+                request.login(currentUser.getUsername(),currentUser.getPassword());
+                currentUser = userService.findByName(request.getUserPrincipal().getName()).get();
                 return new ModelAndView(new RedirectView("/", true));
             }
             else
@@ -481,6 +482,8 @@ public class WebController {
     public String error(Model model){
         return "error";
     }
+
+
     @GetMapping("/Menu/{id}")
     public String getMenu_Selected(Model model, @PathVariable long id){
         if (currentUser.getActiveMenu().getId().equals(id)) {

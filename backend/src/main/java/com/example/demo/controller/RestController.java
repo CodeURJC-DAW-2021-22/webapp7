@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -137,21 +138,23 @@ public class RestController {
 
     @GetMapping("/api/User/{id}")
     public ResponseEntity<User> getProfile(@PathVariable long id) {
-        User user = userService.findById(id).orElseThrow();
 
+        User user = userService.findById(id).orElseThrow();
         if (user != null) {
+            Optional<Menu> tryMenu = menuService.findById(user.getActiveMenu().getId());
+            user.setActiveMenu(tryMenu.get());
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @GetMapping("/api/User/")
+    @GetMapping("/api/User")
     public ResponseEntity<User> getProfile(HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
 
-        if (principal != null) {
-            User user = userService.findByName(principal.getName()).orElseThrow();
+        User user = userService.findByName(request.getUserPrincipal().getName()).orElseThrow();
+        if (user!=null){
+            System.out.println("user encontrado");
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -165,6 +168,16 @@ public class RestController {
             User user = userService.findByName(principal.getName()).orElseThrow();
             List<Diet> listDiets = user.getStoredDiets();
         return new ResponseEntity<>(listDiets,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/api/{id}/StoredDiets")
+    public ResponseEntity<Collection<Diet>> getStoredDiets(HttpServletRequest request, @PathVariable long id){
+        Optional<User> user = userService.findById(id);
+        if(user.isPresent()) {
+            List<Diet> listDiets = user.get().getStoredDiets();
+            return new ResponseEntity<>(listDiets,HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -495,12 +508,15 @@ public class RestController {
     }
 
     @GetMapping("/api/DownloadReceipt")//**500**//
-    public void downloadReceipt(HttpServletResponse response) throws IOException {
+    public ResponseEntity<Map<String,Object>> downloadReceipt(HttpServletResponse response) throws IOException {
 
             Map<String, Object> data = new HashMap<>();
             User user = currentUser;
-            data.put("client", user);
+            if (user==null)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+
+            data.put("client", user);
             Menu menu = currentUser.getActiveMenu();
             ArrayList<ReceiptItem> receiptItems = new ArrayList<ReceiptItem>();
             List<Recipe> recipesMenu = menu.getWeeklyPlan();
@@ -530,24 +546,20 @@ public class RestController {
             response.setContentType("application/octet-stream");
             response.setHeader("Content-Disposition", "attachment; filename=receipt.pdf");
             IOUtils.copy(exportedData, response.getOutputStream());
+            return new ResponseEntity<>(data, HttpStatus.OK);
         }
 
-    @GetMapping("/api/YourMenu")
-    public ResponseEntity<Menu> getMenu_Activo(HttpServletRequest request){
-        Principal principal = request.getUserPrincipal();
-        if(principal != null) {
-            User user = userService.findByName(principal.getName()).orElseThrow();
-            Optional<Menu> tryMenu = menuService.findById(user.getActiveMenu().getId());
-
-            if(tryMenu.isPresent()){
-                Menu menu = tryMenu.get();
-                return new ResponseEntity<>(menu, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/api/{id}/YourMenu")
+    public ResponseEntity<Menu> getMenu_Activo(HttpServletRequest request, @PathVariable long idUser){
+            Optional<User> user = userService.findById(idUser);
+            if (user.isPresent()) {
+                Optional<Menu> tryMenu = menuService.findById(user.get().getActiveMenu().getId());
+                if(tryMenu.isPresent()) {
+                    Menu menu = tryMenu.get();
+                    return new ResponseEntity<>(menu, HttpStatus.OK);
+                }
             }
-        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @PostMapping("/api/ProcessFormRecipe/{id}/image")

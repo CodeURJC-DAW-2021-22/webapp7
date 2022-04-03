@@ -32,8 +32,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private JwtTokenProvider jwtTokenProvider;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         try {
             String token = getJwtToken(request, true);
@@ -54,7 +53,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         } catch (Exception ex) {
             LOG.error("Exception processing JWT Token",ex);
         }
-
         filterChain.doFilter(request, response);
     }
 

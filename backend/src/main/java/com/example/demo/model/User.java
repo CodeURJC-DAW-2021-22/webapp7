@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -23,6 +24,7 @@ public class User {
     private boolean admin;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name="ID_Menu", referencedColumnName = "id")
     private Menu activeMenu;
 
@@ -31,6 +33,7 @@ public class User {
 
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<Diet> storedDiets;
 
     public User() {
