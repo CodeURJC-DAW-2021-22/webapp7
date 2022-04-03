@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "5742105c-cc74-4197-9bc5-d1f0f8ab638b",
+		"name": "API REST HEROKU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/Recipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/Recipes",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"Recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/User",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"User"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Recipe/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/Recipe/7",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"Recipe",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/GetMoreRecipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/GetMoreRecipes",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"GetMoreRecipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/MenuAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/MenuAll",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"MenuAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/LogIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user0\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/ProcessFormLogin",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ProcessFormLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/LogOut",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/ProcessLogOut",
+					"protocol": "https",
+					"host": [
+						"codeurjc-daw-webapp07",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ProcessLogOut"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
