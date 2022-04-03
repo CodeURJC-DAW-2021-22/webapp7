@@ -21,7 +21,91 @@ paths:
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Menu'
+  /api/UpdateRecipe/{id}:
+    post:
+      tags:
+      - rest-controller
+      operationId: processUpdateRecipe
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: time
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: difficulty
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: preparation
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: ingredients
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: booleanos
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageRecipe
+              type: object
+              properties:
+                imageRecipe:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Recipe'
+  /api/ProcessRefresh:
+    post:
+      tags:
+      - rest-controller
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
   /api/ProcessFormSignUp:
     post:
       tags:
@@ -232,27 +316,39 @@ paths:
       responses:
         "201":
           description: Created
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Menu'
   /api/ProcessFormLogIn:
     post:
       tags:
       - rest-controller
       operationId: processForm
       parameters:
-      - name: name
-        in: query
-        required: true
+      - name: accessToken
+        in: cookie
+        required: false
         schema:
           type: string
-      - name: password
-        in: query
-        required: true
+      - name: refreshToken
+        in: cookie
+        required: false
         schema:
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
   /api/ProcessFormDiet:
     post:
       tags:
@@ -300,7 +396,10 @@ paths:
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Menu'
   /message:
     get:
       tags:
@@ -353,7 +452,10 @@ paths:
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Menu'
   /api/User:
     get:
       tags:
@@ -400,6 +502,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Recipe'
+  /api/RecipeUpdater/{id}:
+    get:
+      tags:
+      - rest-controller
+      operationId: getRecipeMaker
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Recipe'
   /api/Recipe/{id}:
     get:
       tags:
@@ -446,7 +567,10 @@ paths:
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
   /api/MenuMaker:
     get:
       tags:
@@ -466,10 +590,19 @@ paths:
       tags:
       - rest-controller
       operationId: getMenu_All
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Pageable'
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageMenu'
   /api/Menu/{id}:
     get:
       tags:
@@ -485,7 +618,10 @@ paths:
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Menu'
   /api/Inicio:
     get:
       tags:
@@ -578,7 +714,10 @@ paths:
       responses:
         "200":
           description: OK
-          content: {}
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Menu'
   /api/ProcessDeleteRecipe:
     delete:
       tags:
@@ -599,6 +738,36 @@ paths:
                 $ref: '#/components/schemas/Recipe'
 components:
   schemas:
+    Menu:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        weeklyPlan:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipe'
+        healthy:
+          type: boolean
+        lunchs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipe'
+        dinners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipe'
+        menuScore:
+          type: array
+          items:
+            type: integer
+            format: int32
+        score:
+          type: integer
+          format: int32
     Recipe:
       type: object
       properties:
@@ -633,6 +802,25 @@ components:
           type: boolean
         highinfat:
           type: boolean
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
     Pageable:
       type: object
       properties:
@@ -676,6 +864,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Recipe'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    PageMenu:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Menu'
         number:
           type: integer
           format: int32
