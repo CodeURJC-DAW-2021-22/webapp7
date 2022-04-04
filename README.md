@@ -319,4 +319,19 @@ You can check the API REST documentation in the next links:
     - [RecipeUpdater](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates/RecipeUpdater.html)
     - [recipeLoaded](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates/recipeLoaded.html)
     - [MenuService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/MenuService.java)
-    - **Carlos Rodríguez Gómez**:
+
+- **Carlos Rodríguez Gómez**: Throughout this phase I have been working on the development of the API REST controllers, I have also updated the class diagrams, below I leave the 5 most important commits:
+
+  - [Some methods of Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/0f7a73e87b9d3f5116df439c9f1bddbecb012ca4)
+  - [More methods Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/4b029f4dc07b5789de7a5c659d3ad494b9803004)
+  - [User method on RestController](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/3f89564e641303c92e93dab04ddd5afa8925e780)
+  - [Update of Class Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/52be3e6b415f096c67029fc984dd04266327f9b0)
+  - [First thoughts of Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/8c20285b950e7cb47f96b957975dffcaf2822d93)
+
+  Now attached the files I mostly work in:
+
+  - [RestController](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/RestController.java)
+  - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
+  - [Image_README](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/Imagenes_README)
+
+
