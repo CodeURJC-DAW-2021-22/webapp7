@@ -298,11 +298,25 @@ You can check the API REST documentation in the next links:
   - [First Heroku deploy](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/d65ea254cd789b5f5a9f7a7a8d808d844ef41b77)
   - [First docker image creation](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/2558c802cab273a80ab4a3fd8385738b02edd738)
   
-The links where I consider I worked the most on:
+  The links where I consider I worked the most on:
   - [Application properties](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/application.properties)
   - [create_image.sh](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/create_image.sh)
   - [pom.xml](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/pom.xml)
   - [Postman Collections](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Postman)
   - [Dockerfile](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/Dockerfile)
-- **Carlos Alejandro Álvarez**:
-- **Carlos Rodríguez Gómez**:
+  
+
+- **Carlos Alejandro Álvarez**: In this phase I worked in the Api Rest and in the functions we missed in the last phase. I also helped my team in all the things I could. In this phase one important aspect was the communication, and I think we really accomplished in that aspect. You will find some of my more important commits that I have done:
+    - [Part of Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/e91d79f5a3a11a23e966238c5b67aebf18d9ab9f)
+    - [Rest controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/2dbd87c85e1dc28209b083a9d9be982a656c40be)
+    - [Rest Controller Init, / y bdd](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/bbcf8ff2cd2568b9c2c0e21cb44af4a8405f7340)
+    - [RestController JWT](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/88e1832b37d58197d9c5157f96c8cbb2ba1e9562)
+    - [UpdateRecipe and rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/3b83117e3684d120028d675507a842be1130a677)
+    
+  The 5 file that I consider I worked in the most part of my time in this phase:
+    - [RestController](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/RestController.java)
+    - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
+    - [RecipeUpdater](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates/RecipeUpdater.html)
+    - [recipeLoaded](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates/recipeLoaded.html)
+    - [MenuService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/MenuService.java)
+    - **Carlos Rodríguez Gómez**:
