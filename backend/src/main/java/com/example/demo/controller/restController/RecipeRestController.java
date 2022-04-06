@@ -1,4 +1,4 @@
-package com.example.demo.controller.RestController;
+package com.example.demo.controller.restController;
 
 import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
@@ -9,16 +9,11 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -62,7 +57,7 @@ public class RecipeRestController {
         return recipeService.findAll();
     }
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public @ResponseBody
     Page<Recipe> getMoreRecipes(int page){
         if (page <= (int) Math.ceil(recipeService.count()/12)) {
@@ -73,7 +68,7 @@ public class RecipeRestController {
         } else {
             return null;
         }
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Recipe> processDeleteRecipe(@RequestParam String id_RecipeDelete){

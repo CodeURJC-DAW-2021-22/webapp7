@@ -1,4 +1,4 @@
-package com.example.demo.controller.RestController;
+package com.example.demo.controller.restController;
 
 import com.example.demo.model.Diet;
 import com.example.demo.model.Menu;
@@ -31,8 +31,6 @@ public class UserRestController {
     @Autowired
     private RepositoryUserDetailsService userService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(HttpServletRequest request){ return null;}
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,6 +49,16 @@ public class UserRestController {
         }
         else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUser(@RequestParam long id){
+        Optional<User> userPrincipal = userService.findById(id);
+        if (userPrincipal.isPresent()){
+            User user = userPrincipal.get();
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

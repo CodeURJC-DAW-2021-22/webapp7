@@ -1,4 +1,4 @@
-package com.example.demo.controller.RestController;
+package com.example.demo.controller.restController;
 
 import com.example.demo.model.Menu;
 import com.example.demo.service.MenuService;
