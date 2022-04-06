@@ -36,7 +36,7 @@ import java.util.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 
-@Controller
+
 public class WebController {
 
     @Autowired
