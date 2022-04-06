@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Diets")
+@RequestMapping("/api/diets")
 public class DietRestController {
 
     @Autowired

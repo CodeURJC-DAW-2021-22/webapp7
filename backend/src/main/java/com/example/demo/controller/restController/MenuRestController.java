@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Menus")
+@RequestMapping("/api/menus")
 public class MenuRestController {
 
     @Autowired

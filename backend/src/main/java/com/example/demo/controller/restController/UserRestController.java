@@ -1,6 +1,5 @@
 package com.example.demo.controller.restController;
 
-import com.example.demo.model.Diet;
 import com.example.demo.model.Menu;
 import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
@@ -13,13 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/User")
+@RequestMapping("/api/users")
 public class UserRestController {
 
     @Autowired
@@ -32,7 +30,7 @@ public class UserRestController {
     private RepositoryUserDetailsService userService;
 
 
-    @PostMapping("/")
+    /*@PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail){
         Menu menu = menuService.findAll().get(1);
@@ -50,9 +48,23 @@ public class UserRestController {
         else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+    }*/
+
+    @PostMapping("/")
+    public ResponseEntity<User> Register(@RequestBody User user) throws IOException {
+        if (user.getName().isBlank() || userService.findByName(user.getName()).isPresent()){
+            /*user.setName(user.getName());
+            user.setMail(user.getMail());
+            user.setPassword(user.getPassword());*/
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        } else {
+            User newUser = new User(user.getMail(), user.getName(), user.getPassword(),user.getStoredRecipes(), user.getActiveMenu(), user.getStoredDiets(), user.getAdmin() );
+            return new ResponseEntity<>(newUser,HttpStatus.CREATED);
+        }
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@RequestParam long id){
+    public ResponseEntity<User> getUser(@PathVariable long id){
         Optional<User> userPrincipal = userService.findById(id);
         if (userPrincipal.isPresent()){
             User user = userPrincipal.get();
@@ -62,12 +74,12 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/Recipes")
+    @GetMapping("/recipes")
     public Collection<Recipe> getAllYourRecipes(HttpServletRequest request){return null;}
 
-    @GetMapping("/Menu")
+    @GetMapping("/menu")
     public ResponseEntity<Menu> getMenu_Activo(HttpServletRequest request){return null;}
 
-    @PostMapping("/Menus/{id}")
+    @PostMapping("/menus/{id}")
     public ResponseEntity<Menu> processActiveMenu(@RequestParam String id_Menu){return null;}
 }
