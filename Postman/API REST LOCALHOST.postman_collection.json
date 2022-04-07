@@ -247,6 +247,32 @@
 			]
 		},
 		{
+			"name": "/menus",
+			"item": [
+				{
+					"name": "/menus/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/menus/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"menus",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "/recipes",
 			"request": {
 				"method": "GET",
