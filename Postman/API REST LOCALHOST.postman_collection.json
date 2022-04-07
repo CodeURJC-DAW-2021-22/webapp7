@@ -161,6 +161,93 @@
 		},
 		{
 			"name": "/recipes",
+			"item": [
+				{
+					"name": "/recipes/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/recipes/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Bacalao",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "35",
+									"type": "text"
+								},
+								{
+									"key": "difficulty",
+									"value": "Medium",
+									"type": "text"
+								},
+								{
+									"key": "preparation",
+									"value": "Cortar el pescado y sazonar a gusto, para luego freirlo",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "bacalado, especias a gusto",
+									"type": "text"
+								},
+								{
+									"key": "booleanos",
+									"value": "protein",
+									"type": "text"
+								},
+								{
+									"key": "imageRecipe",
+									"type": "file",
+									"src": "/Users/carlitosrrogo/Desktop/Work/webapp7/Postman/Bacalao"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/recipes",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -215,27 +302,6 @@
 					"path": [
 						"api",
 						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/recipes/{id}",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/api/recipes/3",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						"recipes",
-						"3"
 					]
 				}
 			},
