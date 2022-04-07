@@ -1,17 +1,17 @@
 {
 	"info": {
-		"_postman_id": "5b339afe-c291-49cf-ab38-93132a71533d",
+		"_postman_id": "3b0915d3-5f70-4122-a2f7-53da032786a9",
 		"name": "API REST LOCALHOST",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "/Recipes",
+			"name": "/recipes",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/Recipes/",
+					"raw": "https://localhost:8443/api/recipes/",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -19,7 +19,7 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"Recipes",
+						"recipes",
 						""
 					]
 				}
@@ -47,12 +47,12 @@
 			"response": []
 		},
 		{
-			"name": "/User",
+			"name": "/users",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/User",
+					"raw": "https://localhost:8443/api/users",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -60,19 +60,19 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"User"
+						"users"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/Recipe/{id}",
+			"name": "/recipes/{id}",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/Recipe/3",
+					"raw": "https://localhost:8443/api/recipes/3",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -80,7 +80,7 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"Recipe",
+						"recipes",
 						"3"
 					]
 				}
@@ -142,7 +142,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/ProcessFormLogIn",
+					"raw": "https://localhost:8443/api/LogIn",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -150,7 +150,7 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"ProcessFormLogIn"
+						"LogIn"
 					]
 				}
 			},
@@ -162,7 +162,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/ProcessLogOut",
+					"raw": "https://localhost:8443/api/LogOut",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -170,7 +170,156 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"ProcessLogOut"
+						"LogOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/me",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/me",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/menu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/users/menu",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/diets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/diets",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"diets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/recipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/users/recipes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "userr",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "userr@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/new",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"new"
 					]
 				}
 			},

@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,8 +32,21 @@ public class UserRestController {
     @Autowired
     private RepositoryUserDetailsService userService;
 
+    @PostMapping("/me")
+    public ResponseEntity<User> getProfile(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        Optional<User> userPrincipal = userService.findByName(principal.getName());
 
-    @PostMapping("/")
+        if(userPrincipal.isPresent()) {
+            User user = userPrincipal.get();
+            return new ResponseEntity<>(user,HttpStatus.OK);
+
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail) {
         Menu menu = menuService.findAll().get(1);
@@ -50,19 +62,6 @@ public class UserRestController {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PostMapping("/new")
-    public ResponseEntity<User> Register(@RequestBody User user) throws IOException {
-        if (user.getName().isBlank() || userService.findByName(user.getName()).isPresent()) {
-            /*user.setName(user.getName());
-            user.setMail(user.getMail());
-            user.setPassword(user.getPassword());*/
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } else {
-            User newUser = new User(user.getMail(), user.getName(), user.getPassword(), user.getStoredRecipes(), user.getActiveMenu(), user.getStoredDiets(), user.getAdmin());
-            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
         }
     }
 
