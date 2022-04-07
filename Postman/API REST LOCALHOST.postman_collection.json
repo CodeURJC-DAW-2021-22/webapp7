@@ -269,6 +269,107 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "/menus/new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "SoloHuevo",
+									"type": "text"
+								},
+								{
+									"key": "lunchMonday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchTuesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchWednesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchThursday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchFriday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchSaturday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchSunday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerMonday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerTuesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerWednesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerThursday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerFriday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerSaturday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerSunday",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/menus/new",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"menus",
+								"new"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
