@@ -32,14 +32,14 @@ public class UserRestController {
     @Autowired
     private RepositoryUserDetailsService userService;
 
-    @PostMapping("/me")
-    public ResponseEntity<User> getProfile(HttpServletRequest request) {
+    @GetMapping("/me")
+    public ResponseEntity<User> getProfile(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()) {
             User user = userPrincipal.get();
-            return new ResponseEntity<>(user,HttpStatus.OK);
+            return new ResponseEntity<>(user, HttpStatus.OK);
 
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
