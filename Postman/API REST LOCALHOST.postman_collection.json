@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3b0915d3-5f70-4122-a2f7-53da032786a9",
+		"_postman_id": "c6a466c1-ffc2-42ff-8c21-f290a4bc7c67",
 		"name": "API REST LOCALHOST",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -51,7 +51,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "userr",
+									"value": "newUser",
 									"type": "text"
 								},
 								{
@@ -61,7 +61,7 @@
 								},
 								{
 									"key": "mail",
-									"value": "userr@gmail.com",
+									"value": "newUser@gmail.com",
 									"type": "text"
 								}
 							]
@@ -184,7 +184,7 @@
 					"response": []
 				},
 				{
-					"name": "/recipes/",
+					"name": "/recipes/new",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -224,10 +224,61 @@
 								{
 									"key": "imageRecipe",
 									"type": "file",
-									"src": "/Users/carlitosrrogo/Desktop/Work/webapp7/Postman/Bacalao"
+									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
 								}
 							]
 						},
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/new",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/recipes DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
 						"url": {
 							"raw": "https://localhost:8443/api/recipes/",
 							"protocol": "https",
@@ -374,154 +425,87 @@
 			]
 		},
 		{
-			"name": "/recipes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/api/recipes/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						"recipes",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/api/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/users",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/api/users",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/GetMoreRecipes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/api/GetMoreRecipes",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						"GetMoreRecipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/MenuAll",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/api/MenuAll",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						"MenuAll"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "/LogIn",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"user0\",\r\n    \"password\": \"123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"item": [
+				{
+					"name": "/LogOut",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/LogOut",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"LogOut"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:8443/api/LogIn",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						"LogIn"
-					]
+				{
+					"name": "/LogIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user0\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/LogIn",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"LogIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/LogIn Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/LogIn",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"LogIn"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "/LogOut",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/api/LogOut",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"api",
-						"LogOut"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

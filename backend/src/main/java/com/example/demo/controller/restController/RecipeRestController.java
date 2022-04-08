@@ -71,44 +71,48 @@ public class RecipeRestController {
     }*/
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Recipe> processDeleteRecipe(@RequestParam String id_RecipeDelete){
-        long id=Long.parseLong(id_RecipeDelete);
-        long longIDAux1 = 1;
-        long longIDAux2 = 2;
+    public ResponseEntity<Recipe> processDeleteRecipe(HttpServletRequest request, @PathVariable long id){
+        Principal principal = request.getUserPrincipal();
+        Optional<User> currentUserOptional = userService.findByName(principal.getName());
 
-        Optional<Recipe> recipeOptions = recipeService.findById(id);
+        if (currentUserOptional.isPresent()) {
+            long longIDAux1 = 1;
+            long longIDAux2 = 2;
 
-        if(recipeOptions.isPresent()) {
-            Recipe toRemove = recipeOptions.get();
+            Optional<Recipe> recipeOptions = recipeService.findById(id);
 
-            Recipe toChange;
-            if (id == longIDAux1)
-                toChange = recipeService.findById(longIDAux2).get();
-            else
-                toChange = recipeService.findById(longIDAux1).get();
+            if (recipeOptions.isPresent()) {
+                Recipe toRemove = recipeOptions.get();
 
-            menuService.updateBeforeDelete(toChange.getId(), toRemove.getId());
+                Recipe toChange;
+                if (id == longIDAux1)
+                    toChange = recipeService.findById(longIDAux2).get();
+                else
+                    toChange = recipeService.findById(longIDAux1).get();
 
-            List<User> userList = userService.findAll();
-            for (User u : userList) {
-                User uLoaded = userService.findById(u.getId()).get();
-                List<Recipe> recipeList = uLoaded.getStoredRecipes();
-                if (recipeList.contains(toRemove)) {
-                    uLoaded.removeStoredRecipes(toRemove.getId());
+                menuService.updateBeforeDelete(toChange.getId(), toRemove.getId());
+
+                List<User> userList = userService.findAll();
+                for (User u : userList) {
+                    User uLoaded = userService.findById(u.getId()).get();
+                    List<Recipe> recipeList = uLoaded.getStoredRecipes();
+                    if (recipeList.contains(toRemove)) {
+                        uLoaded.removeStoredRecipes(toRemove.getId());
+                    }
+                    u = uLoaded;
+                    userService.save(u);
                 }
-                u = uLoaded;
-                userService.save(u);
-            }
 
-            recipeService.delete(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                recipeService.delete(id);
+                return new ResponseEntity<>(toRemove, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/")
-    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/new")
     public ResponseEntity<Recipe> createRecipe(HttpServletRequest request, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
         Principal principal = request.getUserPrincipal();
         Optional<User> currentUserOptional = userService.findByName(principal.getName());
@@ -127,7 +131,7 @@ public class RecipeRestController {
             if (imageRecipe != null) {
                 uploadImage(recipe.getId(), imageRecipe);
             }
-            return new ResponseEntity<>(recipe, HttpStatus.OK);
+            return new ResponseEntity<>(recipe, HttpStatus.CREATED);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
