@@ -17,7 +17,7 @@ public class LoginRestController {
     @Autowired
     private UserLoginService userLoginService;
 
-    @PostMapping("/LogIn")
+    @PostMapping("/login")
     public ResponseEntity<AuthResponse> processForm(
             @CookieValue(name = "AuthToken", required = false) String accessToken,
             @CookieValue(name = "RefreshToken", required = false) String refreshToken,
@@ -26,14 +26,14 @@ public class LoginRestController {
 
     }
 
-    @PostMapping("/Refresh")
+    @PostMapping("/refresh")
     public ResponseEntity<AuthResponse> refreshToken(
             @CookieValue(name = "RefreshToken", required = false) String refreshToken) {
 
         return userLoginService.refresh(refreshToken);
     }
 
-    @GetMapping("/LogOut")
+    @GetMapping("/logout")
     public ResponseEntity<AuthResponse> LogOut(HttpServletRequest request, HttpServletResponse response){
         return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userLoginService.logout(request, response)));
     }

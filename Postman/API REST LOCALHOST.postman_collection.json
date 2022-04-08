@@ -637,7 +637,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/LogOut",
+							"raw": "https://localhost:8443/api/logout",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -645,7 +645,7 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"LogOut"
+								"logout"
 							]
 						}
 					},
@@ -666,7 +666,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/LogIn",
+							"raw": "https://localhost:8443/api/login",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -674,7 +674,7 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"LogIn"
+								"login"
 							]
 						}
 					},
@@ -695,7 +695,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/LogIn",
+							"raw": "https://localhost:8443/api/login",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -703,7 +703,7 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"LogIn"
+								"login"
 							]
 						}
 					},
@@ -715,7 +715,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/Refresh",
+							"raw": "https://localhost:8443/api/refresh",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -723,7 +723,7 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"Refresh"
+								"refresh"
 							]
 						}
 					},
