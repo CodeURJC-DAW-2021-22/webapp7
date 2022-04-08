@@ -50,7 +50,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         http.antMatcher("/api/**");
 
         // URLs that need authentication to access to it
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/Inicio").hasAnyRole("ADMIN");
+        /*http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/Inicio").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/User/{id}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/User").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/StoredDiets").hasAnyRole("USER");
@@ -74,7 +74,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/Receipt").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/{id}/YourMenu").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/FormRecipe/{id}/image").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/Recipe/{id}/image").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/Recipe/{id}/image").hasAnyRole("USER");*/
 
         // Other URLs can be accessed without authentication
         http.authorizeRequests().anyRequest().permitAll();
