@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c6a466c1-ffc2-42ff-8c21-f290a4bc7c67",
+		"_postman_id": "5c668a64-8d71-42d4-819b-bca201d40c16",
 		"name": "API REST LOCALHOST",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "/users",
 			"item": [
 				{
-					"name": "/users/me",
+					"name": "Get Users Profile",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -42,7 +42,7 @@
 					"response": []
 				},
 				{
-					"name": "/users/new",
+					"name": "Create Users",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -83,7 +83,7 @@
 					"response": []
 				},
 				{
-					"name": "/users/recipes",
+					"name": "Get Users Recipes",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -104,7 +104,7 @@
 					"response": []
 				},
 				{
-					"name": "/users/menu",
+					"name": "Get Users Menus",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -125,7 +125,7 @@
 					"response": []
 				},
 				{
-					"name": "/users/diets",
+					"name": "Get Users Diets",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -505,7 +505,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Menu id",
+					"name": "Get Menu ID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -526,7 +526,7 @@
 					"response": []
 				},
 				{
-					"name": "/menus/new",
+					"name": "Create Menus",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -724,6 +724,127 @@
 							"path": [
 								"api",
 								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/diets",
+			"item": [
+				{
+					"name": "Add menu to diets (first)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/diets/menus/26",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"diets",
+								"menus",
+								"26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create diets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Ayuno",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/diets/new",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"diets",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get died by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/diets/34",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"diets",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get died by id recently created",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/diets/45",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"diets",
+								"45"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all diets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/diets/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"diets",
+								""
 							]
 						}
 					},
