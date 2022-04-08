@@ -15,8 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.security.Principal;
 import java.sql.SQLException;
@@ -56,19 +60,6 @@ public class RecipeRestController {
     public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
         return recipeService.findAll();
     }
-
-    /*@GetMapping("/")
-    public @ResponseBody
-    Page<Recipe> getMoreRecipes(int page){
-        if (page <= (int) Math.ceil(recipeService.count()/12)) {
-            return recipeService.findAll(PageRequest.of(page,12));
-        } else if ((int) (recipeService.count() % (12 * page)) > 0){
-            int resto = (int) (recipeService.count() % (12 * page));
-            return recipeService.findAll(PageRequest.of(page,resto));
-        } else {
-            return null;
-        }
-    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Recipe> processDeleteRecipe(HttpServletRequest request, @PathVariable long id){
@@ -137,8 +128,8 @@ public class RecipeRestController {
         }
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Recipe> updateRecipe(@PathVariable long id, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
+    @PutMapping("/{id}")
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable long id, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos) throws IOException {
         Optional<Recipe> recipeOpt = recipeService.findById(id);
         if (recipeOpt.isPresent()) {
             Recipe recipe = recipeOpt.get();
@@ -161,16 +152,13 @@ public class RecipeRestController {
             recipe.setHighinfat(highinfat);
 
             recipeService.save(recipe);
-            if (imageRecipe.getSize() != 0) {
-                uploadImage(recipe.getId(), imageRecipe);
-            }
             return new ResponseEntity<>(recipe, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/{id}/image")
-    public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageRecipe) throws IOException {
+    public ResponseEntity<Recipe> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageRecipe) throws IOException {
         Recipe recipe = recipeService.findById(id).orElseThrow();
 
         URI location = fromCurrentRequest().build().toUri();
@@ -179,18 +167,15 @@ public class RecipeRestController {
 
         recipeService.save(recipe);
 
-        return ResponseEntity.created(location).build();
+        return new ResponseEntity<>(recipe,HttpStatus.OK);
     }
 
     @GetMapping("/{id}/image")
-    public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+    public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException, IOException {
         Optional<Recipe> recipe = recipeService.findById(id);
-        if (recipe.isPresent() && recipe.get().getRecipeImage() != null) {
-
+        if (recipe.isPresent() && recipe.get().isHasPhoto()) {
             Resource file = new InputStreamResource(recipe.get().getRecipeImage().getBinaryStream());
-
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpg")
-                    .contentLength(recipe.get().getRecipeImage().length()).body(file);
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(recipe.get().getRecipeImage().length()).body(file);
 
         } else {
             return ResponseEntity.notFound().build();

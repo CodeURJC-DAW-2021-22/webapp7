@@ -163,7 +163,7 @@
 			"name": "/recipes",
 			"item": [
 				{
-					"name": "/recipes/{id}",
+					"name": "Get Recipe by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -184,7 +184,7 @@
 					"response": []
 				},
 				{
-					"name": "/recipes/new",
+					"name": "Create Recipe",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -245,7 +245,68 @@
 					"response": []
 				},
 				{
-					"name": "/recipes DELETE",
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Receta Modificada",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "35",
+									"type": "text"
+								},
+								{
+									"key": "difficulty",
+									"value": "Medium",
+									"type": "text"
+								},
+								{
+									"key": "preparation",
+									"value": "Cortar el pescado y sazonar a gusto, para luego freirlo",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "bacalado, especias a gusto",
+									"type": "text"
+								},
+								{
+									"key": "booleanos",
+									"value": "protein",
+									"type": "text"
+								},
+								{
+									"key": "imageRecipe",
+									"type": "file",
+									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Recipe",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -275,7 +336,7 @@
 					"response": []
 				},
 				{
-					"name": "/recipes",
+					"name": "Get All Recipes",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -290,6 +351,66 @@
 								"api",
 								"recipes",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/4/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"4",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageRecipe",
+									"type": "file",
+									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/4/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"4",
+								"image"
 							]
 						}
 					},
