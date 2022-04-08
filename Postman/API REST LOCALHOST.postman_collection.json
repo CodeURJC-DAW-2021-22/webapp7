@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5c668a64-8d71-42d4-819b-bca201d40c16",
+		"_postman_id": "a360d54a-519b-41b7-b689-9b50d6092984",
 		"name": "API REST LOCALHOST",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -281,12 +281,6 @@
 									"key": "booleanos",
 									"value": "protein",
 									"type": "text"
-								},
-								{
-									"key": "imageRecipe",
-									"type": "file",
-									"src": [],
-									"disabled": true
 								}
 							]
 						},
@@ -740,7 +734,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/diets/menus/26",
+							"raw": "https://localhost:8443/api/diets/menus/28",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -750,7 +744,7 @@
 								"api",
 								"diets",
 								"menus",
-								"26"
+								"28"
 							]
 						}
 					},

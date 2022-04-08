@@ -104,7 +104,7 @@ public class RecipeRestController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Recipe> createRecipe(HttpServletRequest request, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos, @RequestParam MultipartFile imageRecipe) throws IOException {
+    public ResponseEntity<Recipe> createRecipe(HttpServletRequest request, @RequestParam String name, @RequestParam int time, @RequestParam String difficulty, @RequestParam String preparation, @RequestParam String ingredients, @RequestParam List<String> booleanos) throws IOException {
         Principal principal = request.getUserPrincipal();
         Optional<User> currentUserOptional = userService.findByName(principal.getName());
 
@@ -119,9 +119,6 @@ public class RecipeRestController {
             boolean highinfat = booleanos.contains("highinfat");
             Recipe recipe = new Recipe(name, time, difficulty, date, ingredients, creator, vegetables, protein, hydrates, carbohydrates, highinfat, preparation);
             recipeService.save(recipe);
-            if (imageRecipe != null) {
-                uploadImage(recipe.getId(), imageRecipe);
-            }
             return new ResponseEntity<>(recipe, HttpStatus.CREATED);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

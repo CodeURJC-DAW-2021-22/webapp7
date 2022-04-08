@@ -1,187 +1,881 @@
 {
 	"info": {
-		"_postman_id": "5742105c-cc74-4197-9bc5-d1f0f8ab638b",
+		"_postman_id": "609608e6-15da-45f1-a18f-ee8e2ddb14e0",
 		"name": "API REST HEROKU",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "/Recipes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/Recipes",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"Recipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/User",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/User",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"User"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/Recipe/{id}",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/Recipe/7",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"Recipe",
-						"7"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/GetMoreRecipes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/GetMoreRecipes",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"GetMoreRecipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/MenuAll",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/MenuAll",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"MenuAll"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/LogIn",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"user0\",\r\n    \"password\": \"123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "/users Copy",
+			"item": [
+				{
+					"name": "Get Users Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/users/me",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/ProcessFormLogin",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"ProcessFormLogin"
-					]
+				{
+					"name": "Create Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "newUser",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "mail",
+									"value": "newUser@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/users/new",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/users/recipes",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users Menus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/users/menu",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users Diets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/users/diets",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"diets"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "/LogOut",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/ProcessLogOut",
-					"protocol": "https",
-					"host": [
-						"codeurjc-daw-webapp07",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"ProcessLogOut"
-					]
+			"name": "/recipes Copy",
+			"item": [
+				{
+					"name": "Get Recipe by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/3",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Bacalao",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "35",
+									"type": "text"
+								},
+								{
+									"key": "difficulty",
+									"value": "Medium",
+									"type": "text"
+								},
+								{
+									"key": "preparation",
+									"value": "Cortar el pescado y sazonar a gusto, para luego freirlo",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "bacalado, especias a gusto",
+									"type": "text"
+								},
+								{
+									"key": "booleanos",
+									"value": "protein",
+									"type": "text"
+								},
+								{
+									"key": "imageRecipe",
+									"type": "file",
+									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/new",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Recipe WithoutPhoto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Bacalao",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "35",
+									"type": "text"
+								},
+								{
+									"key": "difficulty",
+									"value": "Medium",
+									"type": "text"
+								},
+								{
+									"key": "preparation",
+									"value": "Cortar el pescado y sazonar a gusto, para luego freirlo",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "bacalado, especias a gusto",
+									"type": "text"
+								},
+								{
+									"key": "booleanos",
+									"value": "protein",
+									"type": "text"
+								},
+								{
+									"key": "imageRecipe",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/new",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Receta Modificada",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "35",
+									"type": "text"
+								},
+								{
+									"key": "difficulty",
+									"value": "Medium",
+									"type": "text"
+								},
+								{
+									"key": "preparation",
+									"value": "Cortar el pescado y sazonar a gusto, para luego freirlo",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "bacalado, especias a gusto",
+									"type": "text"
+								},
+								{
+									"key": "booleanos",
+									"value": "protein",
+									"type": "text"
+								},
+								{
+									"key": "imageRecipe",
+									"type": "file",
+									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/6",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/3",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/4/image",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"4",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageRecipe",
+									"type": "file",
+									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/4/image",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"4",
+								"image"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "/menus Copy",
+			"item": [
+				{
+					"name": "Get All Menus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/menus/",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"menus",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Menu ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/menus/26",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"menus",
+								"26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Menus",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "SoloHuevo",
+									"type": "text"
+								},
+								{
+									"key": "lunchMonday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchTuesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchWednesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchThursday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchFriday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchSaturday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lunchSunday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerMonday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerTuesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerWednesday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerThursday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerFriday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerSaturday",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dinnerSunday",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/menus/new",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"menus",
+								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/LogIn Copy",
+			"item": [
+				{
+					"name": "LogOut",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/logout",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user0\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/login",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogIn Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/login",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/refresh",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/diets Copy",
+			"item": [
+				{
+					"name": "Add menu to diets (first)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/diets/menus/28",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"diets",
+								"menus",
+								"28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create diets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Ayuno",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/diets/new",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"diets",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get died by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/diets/34",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"diets",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get died by id recently created",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/diets/45",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"diets",
+								"45"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all diets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/diets/",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"diets",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

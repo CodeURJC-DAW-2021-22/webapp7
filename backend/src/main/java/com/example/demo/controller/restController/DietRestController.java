@@ -48,7 +48,7 @@ public class DietRestController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Page<Diet>> getMenu_All(HttpServletRequest request, Pageable page){
+    public ResponseEntity<Page<Diet>> getDiet_All(HttpServletRequest request, Pageable page){
         Principal principal = request.getUserPrincipal();
         if (principal != null){
             Page<Diet> dietPage = dietService.findAllDiet(page);
@@ -57,8 +57,7 @@ public class DietRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Menu> processRemoveDiet(@PathVariable long id){return null;}
+
 
     @PostMapping("/new")
     public ResponseEntity<Diet> processFormDiet(HttpServletRequest request,@RequestParam String name){
