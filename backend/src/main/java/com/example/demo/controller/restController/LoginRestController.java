@@ -19,8 +19,8 @@ public class LoginRestController {
 
     @PostMapping("/LogIn")
     public ResponseEntity<AuthResponse> processForm(
-            @CookieValue(name = "accessToken", required = false) String accessToken,
-            @CookieValue(name = "refreshToken", required = false) String refreshToken,
+            @CookieValue(name = "AuthToken", required = false) String accessToken,
+            @CookieValue(name = "RefreshToken", required = false) String refreshToken,
             @RequestBody LoginRequest loginRequest){
         return userLoginService.login(loginRequest, accessToken, refreshToken);
 
@@ -28,7 +28,7 @@ public class LoginRestController {
 
     @PostMapping("/Refresh")
     public ResponseEntity<AuthResponse> refreshToken(
-            @CookieValue(name = "refreshToken", required = false) String refreshToken) {
+            @CookieValue(name = "RefreshToken", required = false) String refreshToken) {
 
         return userLoginService.refresh(refreshToken);
     }
