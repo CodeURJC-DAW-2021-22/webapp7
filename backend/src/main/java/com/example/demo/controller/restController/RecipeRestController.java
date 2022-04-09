@@ -9,6 +9,9 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,10 +58,13 @@ public class RecipeRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    
     @GetMapping("/")
-    public Collection<Recipe> getAllRecipes(HttpServletRequest request) {
-        return recipeService.findAll();
+    public ResponseEntity<Page<Recipe>> getRecipes(HttpServletRequest request, @RequestParam int page) {
+            if (page <= (int) Math.ceil(recipeService.count() / 12))
+                return new ResponseEntity<>(recipeService.findPage(PageRequest.of(page, 12, Sort.by("id").descending()), page), HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
