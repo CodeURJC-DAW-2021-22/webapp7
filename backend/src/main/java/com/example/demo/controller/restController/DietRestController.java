@@ -48,10 +48,11 @@ public class DietRestController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Page<Diet>> getDiet_All(HttpServletRequest request, Pageable page){
+    public ResponseEntity<List<Diet>> getDiet_All(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         if (principal != null){
-            Page<Diet> dietPage = dietService.findAllDiet(page);
+            Optional<User> user = userService.findByName(principal.getName());
+            List<Diet> dietPage = user.get().getStoredDiets();
             return new ResponseEntity<>(dietPage, HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

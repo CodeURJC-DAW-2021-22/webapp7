@@ -60,11 +60,28 @@ public class RecipeRestController {
     }
     
     @GetMapping("/")
+<<<<<<< Updated upstream
     public ResponseEntity<Page<Recipe>> getRecipes(HttpServletRequest request, @RequestParam int page) {
             if (page <= (int) Math.ceil(recipeService.count() / 12))
                 return new ResponseEntity<>(recipeService.findPage(PageRequest.of(page, 12, Sort.by("id").descending()), page), HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+=======
+    public List<Recipe> getAllRecipes() {
+        return recipeService.findAll();
+>>>>>>> Stashed changes
+    }
+
+    @GetMapping("/page/{page}")
+    public Page<Recipe> getRecipes(@PathVariable int page) {
+        if (page <= (int) Math.ceil(recipeService.count()/12)) {
+            return recipeService.findAll(PageRequest.of(page,12));
+        } else if ((int) (recipeService.count() % (12 * page)) > 0){
+            int resto = (int) (recipeService.count() % (12 * page));
+            return recipeService.findAll(PageRequest.of(page,resto));
+        } else {
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
