@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "609608e6-15da-45f1-a18f-ee8e2ddb14e0",
+		"_postman_id": "ca6e87fb-c699-4b63-acf7-31a29b2059cc",
 		"name": "API REST HEROKU",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -177,13 +177,37 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "page",
-									"value": "0",
-									"type": "text"
-								}
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/page/0",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"page",
+								"0"
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Recipes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
 						},
 						"url": {
 							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/",
@@ -470,7 +494,7 @@
 								{
 									"key": "imageRecipe",
 									"type": "file",
-									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
+									"src": "/C:/Users/Rodrigo/Desktop/webapp7/webapp7/Postman/Bacalao"
 								},
 								{
 									"key": "id",
@@ -660,7 +684,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/logout",
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/auth/logout",
 							"protocol": "https",
 							"host": [
 								"codeurjc-daw-webapp07",
@@ -669,6 +693,7 @@
 							],
 							"path": [
 								"api",
+								"auth",
 								"logout"
 							]
 						}
@@ -690,7 +715,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/login",
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/auth/login",
 							"protocol": "https",
 							"host": [
 								"codeurjc-daw-webapp07",
@@ -699,6 +724,7 @@
 							],
 							"path": [
 								"api",
+								"auth",
 								"login"
 							]
 						}
@@ -720,7 +746,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/login",
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/auth/login",
 							"protocol": "https",
 							"host": [
 								"codeurjc-daw-webapp07",
@@ -729,6 +755,7 @@
 							],
 							"path": [
 								"api",
+								"auth",
 								"login"
 							]
 						}
@@ -741,7 +768,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/refresh",
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/auth/refresh",
 							"protocol": "https",
 							"host": [
 								"codeurjc-daw-webapp07",
@@ -750,6 +777,7 @@
 							],
 							"path": [
 								"api",
+								"auth",
 								"refresh"
 							]
 						}
@@ -844,7 +872,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/diets/45",
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/diets/49",
 							"protocol": "https",
 							"host": [
 								"codeurjc-daw-webapp07",
@@ -854,7 +882,7 @@
 							"path": [
 								"api",
 								"diets",
-								"45"
+								"49"
 							]
 						}
 					},

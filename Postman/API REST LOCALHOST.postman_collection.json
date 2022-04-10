@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a360d54a-519b-41b7-b689-9b50d6092984",
+		"_postman_id": "21ffbbce-4eac-4b99-bb20-aeb52dbe0591",
 		"name": "API REST LOCALHOST",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -661,6 +661,7 @@
 							"port": "8443",
 							"path": [
 								"api",
+								"auth",
 								"logout"
 							]
 						}
@@ -690,6 +691,7 @@
 							"port": "8443",
 							"path": [
 								"api",
+								"auth",
 								"login"
 							]
 						}
@@ -719,6 +721,7 @@
 							"port": "8443",
 							"path": [
 								"api",
+								"auth",
 								"login"
 							]
 						}
@@ -739,6 +742,7 @@
 							"port": "8443",
 							"path": [
 								"api",
+								"auth",
 								"refresh"
 							]
 						}
