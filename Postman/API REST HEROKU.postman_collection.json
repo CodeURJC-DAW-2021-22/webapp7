@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "/users Copy",
+			"name": "/users",
 			"item": [
 				{
 					"name": "Get Users Profile",
@@ -165,8 +165,43 @@
 			]
 		},
 		{
-			"name": "/recipes Copy",
+			"name": "/recipes",
 			"item": [
+				{
+					"name": "Get Page Recipes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "page",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/",
+							"protocol": "https",
+							"host": [
+								"codeurjc-daw-webapp07",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"recipes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Get Recipe by ID",
 					"request": {
@@ -288,12 +323,6 @@
 									"key": "booleanos",
 									"value": "protein",
 									"type": "text"
-								},
-								{
-									"key": "imageRecipe",
-									"type": "file",
-									"src": [],
-									"disabled": true
 								}
 							]
 						},
@@ -408,28 +437,6 @@
 					"response": []
 				},
 				{
-					"name": "Get All Recipes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://codeurjc-daw-webapp07.herokuapp.com/api/recipes/",
-							"protocol": "https",
-							"host": [
-								"codeurjc-daw-webapp07",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"api",
-								"recipes",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Download Image",
 					"request": {
 						"method": "GET",
@@ -494,7 +501,7 @@
 			]
 		},
 		{
-			"name": "/menus Copy",
+			"name": "/menus",
 			"item": [
 				{
 					"name": "Get All Menus",
@@ -645,7 +652,7 @@
 			]
 		},
 		{
-			"name": "/LogIn Copy",
+			"name": "/LogIn",
 			"item": [
 				{
 					"name": "LogOut",
@@ -752,7 +759,7 @@
 			]
 		},
 		{
-			"name": "/diets Copy",
+			"name": "/diets",
 			"item": [
 				{
 					"name": "Add menu to diets (first)",

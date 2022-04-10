@@ -392,10 +392,23 @@
 					"response": []
 				},
 				{
-					"name": "Get All Recipes",
+					"name": "Get Page Recipes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "page",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "https://localhost:8443/api/recipes/",
 							"protocol": "https",
@@ -456,7 +469,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/recipes/4/image",
+							"raw": "https://localhost:8443/api/recipes/46/image",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -465,7 +478,7 @@
 							"path": [
 								"api",
 								"recipes",
-								"4",
+								"46",
 								"image"
 							]
 						}

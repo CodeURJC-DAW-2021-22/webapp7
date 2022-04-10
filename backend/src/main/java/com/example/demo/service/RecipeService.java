@@ -35,6 +35,10 @@ public class RecipeService {
 
     public Page<Recipe> findAll012(PageRequest pageRequest){return repository.findAll(pageRequest.of(0,12, Sort.by("id").descending()));}
 
+    public Page<Recipe> findPage(PageRequest pageRequest,int page){return repository.findAll(pageRequest.of(page,12, Sort.by("id").descending()));}
+
+    public long count(){return repository.count();}
+
     public Page<Recipe> findAll(Pageable page){return repository.findAll(page);}
 
     public boolean exist(long id) {
@@ -43,6 +47,8 @@ public class RecipeService {
     public void save(Recipe recipe){
         repository.save(recipe);
     }
+
+
 
     public void delete(long id) {
         repository.deleteById(id);
