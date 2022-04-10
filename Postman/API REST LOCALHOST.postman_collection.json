@@ -393,22 +393,31 @@
 				},
 				{
 					"name": "Get Page Recipes",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "page",
-									"value": "0",
-									"type": "text"
-								}
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/page/0",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"page",
+								"0"
 							]
-						},
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
 						"url": {
 							"raw": "https://localhost:8443/api/recipes/",
 							"protocol": "https",
