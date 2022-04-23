@@ -14,6 +14,7 @@ import { MenuactiveComponent } from './Templates/Menu/menuactive/menuactive.comp
 import { MenuallComponent } from './Templates/Menu/menuall/menuall.component';
 import { MenuloaderComponent } from './Templates/Menu/menuloader/menuloader.component';
 import { MenumakerComponent } from './Templates/Menu/menumaker/menumaker.component';
+import { HomeComponent } from './Templates/Home/home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MenumakerComponent } from './Templates/Menu/menumaker/menumaker.compone
     MenuactiveComponent,
     MenuallComponent,
     MenuloaderComponent,
-    MenumakerComponent
+    MenumakerComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
