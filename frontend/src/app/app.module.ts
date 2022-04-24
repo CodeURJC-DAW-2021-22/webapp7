@@ -14,7 +14,10 @@ import { MenuactiveComponent } from './Templates/Menu/menuactive/menuactive.comp
 import { MenuallComponent } from './Templates/Menu/menuall/menuall.component';
 import { MenuloaderComponent } from './Templates/Menu/menuloader/menuloader.component';
 import { MenumakerComponent } from './Templates/Menu/menumaker/menumaker.component';
+import { DietmakerComponent } from './Templates/Diet/dietmaker/dietmaker/dietmaker.component';
+import { DietstoredComponent } from './Templates/Diet/dietstored/dietstored/dietstored.component';
 import { HomeComponent } from './Templates/Home/home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { HomeComponent } from './Templates/Home/home/home.component';
     MenuallComponent,
     MenuloaderComponent,
     MenumakerComponent,
+    DietmakerComponent,
+    DietstoredComponent,
     HomeComponent
   ],
   imports: [
