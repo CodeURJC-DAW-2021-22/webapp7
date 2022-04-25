@@ -504,7 +504,7 @@ margin-bottom:20px;
 
 /********************* center ****************/
 #center{
-   background: url("../img/banner1.jpg");
+   background: url("../../frontend/src/assets/Images/banner1.jpg");
    background-size: cover;
 }
 .center_m{
@@ -1614,8 +1614,8 @@ border-radius:4px;
 padding:0;
 margin:0;
 padding-bottom:30px;
-background: url(../img/37.jpg);
-   }
+}
+
 .organic_1 h3{
 padding-top:20px;
 padding-bottom:10px;
