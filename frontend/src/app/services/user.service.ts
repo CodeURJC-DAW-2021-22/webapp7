@@ -12,10 +12,9 @@ const BASE_URL = '/api/auth/';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService{
-    
-	logged: boolean;
 
-    user: User;
+	logged: any ;
+  user: any ;
 	httpClient: any;
 
     constructor(private http: HttpClient) {
@@ -72,7 +71,7 @@ export class UsersService{
     }
 
 	getStoredRecipes(): Observable<Recipe[]> {
-        
+
 		return this.httpClient.get(BASE_URL).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Recipe[]>;
@@ -102,7 +101,7 @@ export class UsersService{
 				catchError(error => this.handleError(error))
 			);
 		}
-		
+
 	}
 
 	getActiveMenu(): Observable<Menu> {

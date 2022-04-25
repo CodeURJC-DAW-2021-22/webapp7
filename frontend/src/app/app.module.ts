@@ -17,6 +17,8 @@ import { MenumakerComponent } from './Templates/Menu/menumaker/menumaker.compone
 import { DietmakerComponent } from './Templates/Diet/dietmaker/dietmaker/dietmaker.component';
 import { DietstoredComponent } from './Templates/Diet/dietstored/dietstored/dietstored.component';
 import { HomeComponent } from './Templates/Home/home/home.component';
+import { HeaderComponent } from './Templates/Header/header/header.component';
+import { FooterComponent } from './Templates/Footer/footer/footer.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { HomeComponent } from './Templates/Home/home/home.component';
     MenumakerComponent,
     DietmakerComponent,
     DietstoredComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
