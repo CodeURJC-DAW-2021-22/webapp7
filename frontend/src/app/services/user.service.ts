@@ -13,8 +13,8 @@ const BASE_URL = '/api/auth/';
 @Injectable({ providedIn: 'root' })
 export class UsersService{
 
-	logged: any ;
-  user: any ;
+	logged: boolean;
+  user: User ;
 	httpClient: any;
 
     constructor(private http: HttpClient) {
@@ -53,7 +53,7 @@ export class UsersService{
             .subscribe((resp: any) => {
                 console.log("LOGOUT: Successfully");
                 this.logged = false;
-                this.user = undefined;
+                this.user = <User>{};
             });
 
     }

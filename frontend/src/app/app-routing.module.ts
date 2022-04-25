@@ -16,6 +16,8 @@ import { DietmakerComponent } from './Templates/Diet/dietmaker/dietmaker/dietmak
 import { DietstoredComponent } from './Templates/Diet/dietstored/dietstored/dietstored.component';
 import { HomeComponent } from './Templates/Home/home/home.component';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './Templates/Header/header/header.component';
+import { FooterComponent } from './Templates/Footer/footer/footer.component';
 
 const routes: Routes = [
   {path:'admin',component: AdminComponent},
@@ -33,6 +35,9 @@ const routes: Routes = [
   {path:'dietmaker',component: DietmakerComponent},
   {path:'dietstored',component: DietstoredComponent},
   {path:'home',component: HomeComponent},
+  {path:'header', component: HeaderComponent},
+  {path:'footer', component: FooterComponent},
+
   {path:'index',component: AppComponent}
 ];
 

@@ -19,6 +19,8 @@ import { DietstoredComponent } from './Templates/Diet/dietstored/dietstored/diet
 import { HomeComponent } from './Templates/Home/home/home.component';
 import { HeaderComponent } from './Templates/Header/header/header.component';
 import { FooterComponent } from './Templates/Footer/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -41,10 +43,11 @@ import { FooterComponent } from './Templates/Footer/footer/footer.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent
-  ],
+    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
