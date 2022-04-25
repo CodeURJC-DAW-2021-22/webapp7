@@ -37,7 +37,6 @@ const routes: Routes = [
   {path:'home',component: HomeComponent},
   {path:'header', component: HeaderComponent},
   {path:'footer', component: FooterComponent},
-
   {path:'index',component: AppComponent}
 ];
 

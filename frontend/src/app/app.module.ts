@@ -20,6 +20,7 @@ import { HomeComponent } from './Templates/Home/home/home.component';
 import { HeaderComponent } from './Templates/Header/header/header.component';
 import { FooterComponent } from './Templates/Footer/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './Templates/Login/login/login.component';
 
 
 
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     DietstoredComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
     ],
   imports: [
     BrowserModule,
