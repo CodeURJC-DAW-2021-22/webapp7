@@ -1,14 +1,15 @@
-/*import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
 
-@NgModule({
+NgModule({
   declarations: [],
   imports: [
     CommonModule
   ]
-})*/
+})
+
 export interface Recipe {
   id?: number;
   name: string;

@@ -14,7 +14,7 @@ const BASE_URL = 'https://127.0.0.1:8443/api/';
 })
 export class RecipespecificComponent implements OnInit {
 
-  recipe: Recipe;
+  recipe: Recipe | undefined;
 
   constructor(private httpClient: HttpClient, private router: Router, activatedRoute: ActivatedRoute,private service: RecipesService) {
 
