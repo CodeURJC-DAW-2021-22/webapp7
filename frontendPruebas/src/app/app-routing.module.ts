@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { RecipespecificComponent } from './Templates/Recipe/recipespecific/recipespecific.component';
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+const appRoutes = [
+    { path: 'recipe/:id', component: RecipespecificComponent }
+]
+
+export const routing = RouterModule.forRoot(appRoutes);

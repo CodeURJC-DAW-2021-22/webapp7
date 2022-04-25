@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 /*import { AdminComponent } from './Templates/Admin/admin/admin.component';
 import { UserComponent } from './Templates/User/user/user.component';
 import { AboutusComponent } from './Templates/AboutUs/aboutus/aboutus.component';*/
@@ -29,8 +30,8 @@ import { HomeComponent } from './Templates/Home/home/home.component';*/
     RecipestoredComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
