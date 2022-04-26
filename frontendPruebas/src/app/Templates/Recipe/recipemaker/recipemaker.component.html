@@ -1,0 +1,71 @@
+<div *ngIf="recipe">
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="recipe.name" placeholder="name" />
+    </div>
+
+	<div>
+        <label>Cook Time: </label>
+        <input type="number" [(ngModel)]="recipe.cookTime" placeholder="00" />
+    </div>
+
+	<div>
+        <label>	Difficulty: </label>
+        <select [(ngModel)]="recipe.difficulty">
+			<option [ngValue]="null" disabled>Select Difficulty</option>
+			<option *ngFor="let difficulty of difficulties" [ngValue]="difficulty.id">{{difficulty.name}}</option>
+		</select>
+    </div>
+
+	<div>
+        <label>Ingredients: </label>
+        <textarea [(ngModel)]="recipe.ingredients" placeholder="ingredients"></textarea>
+    </div>
+
+    <div>
+        <label>Preparation: </label>
+        <textarea [(ngModel)]="recipe.preparation" placeholder="preparation"></textarea>
+    </div>
+
+	<div>
+        <label>Vegetables: </label>
+        <input type="checkbox" [(ngModel)]="recipe.vegetables" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+
+	<div>
+        <label>Protein: </label>
+        <input type="checkbox" [(ngModel)]="recipe.protein" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+
+	<div>
+        <label>Hydrates: </label>
+        <input type="checkbox" [(ngModel)]="recipe.hydrates" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+
+	<div>
+        <label>Carbohydrates: </label>
+        <input type="checkbox" [(ngModel)]="recipe.carbohydrates" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+
+	<div>
+        <label>High in fat: </label>
+        <input type="checkbox" [(ngModel)]="recipe.highinfat" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+	
+
+    <p>Image: </p>
+    <img [src]="recipeImage()"><br>
+
+    <ng-template [ngIf]="book.id">
+        <br><input type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
+
+        <label>Upload image: </label><br>  
+    </ng-template>
+
+    <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />
+
+    <p>
+        <button (click)="cancel()">Cancel</button>
+        <button (click)="save()">Save</button>
+    </p>
+</div>
