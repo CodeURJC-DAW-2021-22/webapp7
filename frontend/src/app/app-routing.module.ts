@@ -1,3 +1,4 @@
+import { LoginComponent } from './Templates/Login/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './Templates/Admin/admin/admin.component';
@@ -21,6 +22,7 @@ import { FooterComponent } from './Templates/Footer/footer/footer.component';
 
 const routes: Routes = [
   {path:'admin',component: AdminComponent},
+  {path:'login',component: LoginComponent},
   {path:'user',component: UserComponent},
   {path:'aboutus',component: AboutusComponent},
   {path:'recipeall',component: RecipeallComponent},

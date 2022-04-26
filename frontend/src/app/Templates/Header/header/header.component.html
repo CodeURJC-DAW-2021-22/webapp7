@@ -29,8 +29,8 @@
                   </div>
                   <div class="col-sm-3 header_right">
                       <ul>
-                          <li *ngIf="!usersService.isLogged()"><a><!-- <button (click)="goToLogin()">Login/SignIn</button> -->Login/SignIn</a></li>
-                          <li *ngIf="usersService.isLogged()"><a><!-- <button (click)="goToLogout()">Logout</button> -->Logout</a></li>
+                          <li *ngIf="!usersService.isLogged()"><a (click)="goToLogin()">Login/SignIn</a></li>
+                          <li *ngIf="usersService.isLogged()"><a (click)="goToLogout()">Logout</a></li>
                       </ul>
                   </div>
               </div>

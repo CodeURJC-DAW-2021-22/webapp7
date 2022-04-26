@@ -26,12 +26,12 @@ export class HeaderComponent implements OnInit {
   goToAdmin(){
     this.router.navigate(['/admin'])
   }
-  /*goToLogin(){
-    this.router.navigate(['/admin'])
+  goToLogin(){
+    this.router.navigate(['/login'])
   }
   goToLogout(){
-    this.router.navigate(['/admin'])
-  }*/
+    this.router.navigate(['/home'])
+  }
 
   ngOnInit(): void {
   }
