@@ -9,18 +9,18 @@
    </div>
    <div class="bp_2 clearfix">
      <div class="col-sm-3 space_all prueba" *ngFor="let recipe of recipes">
-	  <div class="bp_2m clearfix">
-      <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
-              <img style="height:250px;width: 300px;"src="https://localhost:8443/api/recipe/{{recipe.id}}/image" class="fotoReceta" alt="abc">
-              <div class="caption">
-                <div class="blur"></div>
-                <div class="caption-text">
-                  <h3 style="border-top:2px solid white; padding-top:20px;"><a href="#">{{recipe.name}}</a></h3>
-                  <!--<p style="margin-top:50px;"><a href="/Recipe/{{{id}}}">Show Recipe</a></p>-->
-                </div>
-              </div>
+      <div class="bp_2m clearfix">
+          <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
+                  <img style="height:250px;width: 300px;"src="https://localhost:8443/api/recipe/{{recipe.id}}/image" class="fotoReceta" alt="abc">
+                  <div class="caption">
+                    <div class="blur"></div>
+                      <div class="caption-text">
+                        <h3 style="border-top:2px solid white; padding-top:20px;"><a href="#">{{recipe?.name}}</a></h3>
+                        <!--<p style="margin-top:50px;"><a href="/Recipe/{{{id}}}">Show Recipe</a></p>-->
+                      </div>
+                  </div>
+          </div>
       </div>
-	  </div>
 	 </div>
 	<div class="impresionRecipes"></div>
    </div>

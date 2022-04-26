@@ -23,6 +23,7 @@ export class RecipeallComponent implements OnInit {
       response => {
         this.recipes = response;
         this.copy = response;
+        console.log(this.recipes)
       },
       error => console.error(error)
     );
