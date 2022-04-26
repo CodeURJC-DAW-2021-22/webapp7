@@ -1,5 +1,5 @@
 export class Recipes {
-  id: number;
+  id?: number;
   name: string;
   cookTime: number;
   difficulty: string;

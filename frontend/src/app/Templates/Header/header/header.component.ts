@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+
   constructor(private router: Router, activatedRoute: ActivatedRoute,public usersService : UsersService) { }
 
   goToHome(){
@@ -26,12 +27,12 @@ export class HeaderComponent implements OnInit {
   goToAdmin(){
     this.router.navigate(['/admin'])
   }
-  /*goToLogin(){
-    this.router.navigate(['/admin'])
+  goToLogin(){
+    this.router.navigate(['/login'])
   }
   goToLogout(){
-    this.router.navigate(['/admin'])
-  }*/
+    this.router.navigate(['/home'])
+  }
 
   ngOnInit(): void {
   }

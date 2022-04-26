@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Recipes } from 'src/app/Class/Recipes/recipes';
+import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 
 @Component({
   selector: 'app-recipeall',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeallComponent implements OnInit {
 
-  constructor() { }
+
+  recipes: Recipes[];
+  copy: Recipes[];
+  page: Number = 0;
+
+  constructor(private router:Router, private recipeservice:RecipesService) { }
 
   ngOnInit(): void {
+    this.page = 0;
+    this.recipeservice.getRecipes(this.page).subscribe(
+      response => {
+        this.recipes = response;
+        this.copy = response;
+        console.log(this.recipes)
+      },
+      error => console.error(error)
+    );
   }
 
-}
+  recipeID(): void{
+      this.router.navigate(['/']);
+    }
+
+  }
+
