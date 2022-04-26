@@ -6,7 +6,7 @@ body{
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
-    background-image: url("../img/login_background.jpg");
+    background-image: url("/frontend/src/assets/Images/login_background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -92,7 +92,7 @@ button:hover{
 	transform: translateY(-500px);
 }
 #chk:checked ~ .login label{
-	transform: scale(1);	
+	transform: scale(1);
 }
 #chk:checked ~ .signup label{
 	transform: scale(.6);

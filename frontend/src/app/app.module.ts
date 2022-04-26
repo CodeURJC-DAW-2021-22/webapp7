@@ -21,6 +21,7 @@ import { HeaderComponent } from './Templates/Header/header/header.component';
 import { FooterComponent } from './Templates/Footer/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './Templates/Login/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -49,7 +50,8 @@ import { LoginComponent } from './Templates/Login/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
