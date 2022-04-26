@@ -11,17 +11,22 @@ import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 export class RecipeallComponent implements OnInit {
 
 
-  recipes:Recipes[];
+  recipes: Recipes[];
+  copy: Recipes[];
+  page: Number = 0;
 
-  constructor(private router:Router, private service:RecipesService) {
-    this.service.getAllRecipes().subscribe(
-      recipes => this.recipes = recipes,
-      error => console.log(error)
-    );
-  }
+  constructor(private router:Router, private recipeservice:RecipesService) { }
 
   ngOnInit(): void {
-    }
+    this.page = 0;
+    this.recipeservice.getRecipes(this.page).subscribe(
+      response => {
+        this.recipes = response;
+        this.copy = response;
+      },
+      error => console.error(error)
+    );
+  }
 
   recipeID(): void{
       this.router.navigate(['/']);

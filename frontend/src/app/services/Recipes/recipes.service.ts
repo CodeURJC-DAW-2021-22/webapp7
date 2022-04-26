@@ -21,7 +21,7 @@ export class RecipesService {
   }
 
   getRecipes(page: Number){
-    return this.http.get("/api/recipes/page" + page)
+    return this.http.get<Recipes[]>("/api/recipes?page=" + page)
   }
 
   deleteRecipe(id: Number){
