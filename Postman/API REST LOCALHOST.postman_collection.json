@@ -396,8 +396,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://localhost:8443/api/recipes/page/0",
+							"raw": "https://localhost:8443/api/recipes/",
 							"protocol": "https",
 							"host": [
 								"localhost"

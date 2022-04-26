@@ -60,12 +60,13 @@ public class RecipeRestController {
     }
 
     @GetMapping("/")
+
     public List<Recipe> getAllRecipes() {
         return recipeService.findAll();
     }
 
-    @GetMapping("/page/{page}")
-    public Page<Recipe> getRecipes(@PathVariable int page) {
+    @GetMapping("/")
+    public Page<Recipe> getRecipes(@RequestParam int page) {
         if (page <= (int) Math.ceil(recipeService.count()/12)) {
             return recipeService.findAll(PageRequest.of(page,12));
         } else if ((int) (recipeService.count() % (12 * page)) > 0){
