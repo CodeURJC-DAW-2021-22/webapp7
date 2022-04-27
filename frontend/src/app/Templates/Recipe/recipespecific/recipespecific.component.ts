@@ -18,13 +18,13 @@ export class RecipespecificComponent{
 
   constructor(private router:Router,activatedRoute: ActivatedRoute, private service:RecipesService, public loginService: LoginService, private userService: UsersService) {
     const id = activatedRoute.snapshot.params['id'];
+    this.user = loginService.currentUser();
     service.getRecipe(id).subscribe(
       response => {
         this.recipe = response;
       },
         error => console.error(error)
     );
-    this.user = loginService.currentUser();
 
    }
    recipeIsStored(){
