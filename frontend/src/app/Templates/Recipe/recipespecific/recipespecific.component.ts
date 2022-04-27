@@ -19,6 +19,15 @@ export class RecipespecificComponent{
   constructor(private router:Router,activatedRoute: ActivatedRoute, private service:RecipesService, public loginService: LoginService, private userService: UsersService) {
     const id = activatedRoute.snapshot.params['id'];
     this.user = loginService.currentUser();
+    //hasta que no esté hecho el login no va a funcionar
+    userService.getUserRecipes().subscribe(
+      response => {
+        this.user.storedRecipes = response;
+      },
+      error => console.error(error)
+    );
+
+
     service.getRecipe(id).subscribe(
       response => {
         this.recipe = response;

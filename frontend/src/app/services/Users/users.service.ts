@@ -25,7 +25,6 @@ export class UsersService {
   getUserRecipes(){
     return this.http.get<Recipes[]>("api/users/recipes")
   }
-
   getUserMenu(){
     return this.http.get("api/users/menu")
   }
