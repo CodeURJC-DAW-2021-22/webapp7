@@ -92,21 +92,4 @@ isAdmin() {
 currentUser() {
   return this.user;
 }
-recipeIsStored(id:number){
-  this.userService.getUserRecipes().subscribe(
-    response => {
-      this.recipes = response;
-      console.log(this.recipes)
-    },
-    error => console.error(error)
-  );
-  this.recipeService.getRecipe(id).subscribe(
-    response => {
-      this.recipe = response;
-      console.log(this.recipe)
-    },
-    error => console.error(error)
-  );
-  return this.recipes.indexOf(this.recipe) > -1
-  }
 }

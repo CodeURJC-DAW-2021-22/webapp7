@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Recipes } from 'src/app/Class/Recipes/recipes';
+import { Users } from 'src/app/Class/Users/users';
 import { LoginService } from 'src/app/services/Login/login.service';
 import { RecipesService } from 'src/app/services/Recipes/recipes.service';
+import { UsersService } from 'src/app/services/Users/users.service';
 
 @Component({
   selector: 'app-recipespecific',
@@ -12,8 +14,9 @@ import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 export class RecipespecificComponent{
 
   recipe: Recipes;
+  user: Users;
 
-  constructor(private router:Router,activatedRoute: ActivatedRoute, private service:RecipesService, public loginService: LoginService) {
+  constructor(private router:Router,activatedRoute: ActivatedRoute, private service:RecipesService, public loginService: LoginService, private userService: UsersService) {
     const id = activatedRoute.snapshot.params['id'];
     service.getRecipe(id).subscribe(
       response => {
@@ -21,7 +24,26 @@ export class RecipespecificComponent{
       },
         error => console.error(error)
     );
+    this.user = loginService.currentUser();
 
+   }
+   recipeIsStored(){
+     return this.user.storedRecipes.indexOf(this.recipe);
+   }
+   hasVegetables(){
+     return this.recipe.vegetbales;
+   }
+   hasProteyn(){
+     return this.recipe.protein;
+   }
+   hasCarboHydrates(){
+     return this.recipe.carbohydrates;
+   }
+   isHighInFat(){
+     return this.recipe.highinfat;
+   }
+   hasHydrates(){
+     return this.recipe.hydrates;
    }
 
 }
