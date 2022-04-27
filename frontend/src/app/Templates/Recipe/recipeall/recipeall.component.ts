@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipes } from 'src/app/Class/Recipes/recipes';
 import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 
@@ -19,7 +19,7 @@ export class RecipeallComponent implements OnInit {
 
   ngOnInit(): void {
     this.page = 0;
-    this.recipeservice.getRecipes(this.page).subscribe(
+    this.recipeservice.getAllRecipes().subscribe(
       response => {
         this.recipes = response;
         this.copy = response;
@@ -29,9 +29,11 @@ export class RecipeallComponent implements OnInit {
     );
   }
 
-  recipeID(): void{
-      this.router.navigate(['/']);
+  recipeID(id:number): void{
+      this.router.navigate(['/recipespecific/:id']);
     }
-
+  recipeImage(id:number){
+      return this.recipes[id].recipeImage? '/api/recipes/'+id+'/image' : '/api/recipes/'+id+'/image';
+  }
   }
 
