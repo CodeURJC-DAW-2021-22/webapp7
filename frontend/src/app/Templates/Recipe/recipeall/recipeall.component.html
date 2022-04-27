@@ -3,7 +3,7 @@
  <div class="container">
   <div class="row">
    <div class="bp_1 clearfix" style="margin-top:40px;">
-     
+
 	 <h1><i class='fas fa-sliders-h'></i> Recipe Search<br></h1>
      <p>Build your own search by selecting your specific meal, dietary requirements, meat, desired method, or season!</p>
    </div>
@@ -11,7 +11,7 @@
      <div class="col-sm-3 space_all prueba" *ngFor="let recipe of recipes">
       <div class="bp_2m clearfix">
           <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
-                  <img style="height:250px;width: 300px;"src="https://localhost:8443/api/recipe/{{recipe.id}}/image" class="fotoReceta" alt="abc">
+                  <img style="height:250px;width: 300px;" src="https://localhost:8443/api/recipes/{{recipe.id}}/image" class="fotoReceta" alt="abc">
                   <div class="caption">
                     <div class="blur"></div>
                       <div class="caption-text">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipes } from 'src/app/Class/Recipes/recipes';
 import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 
@@ -32,6 +32,8 @@ export class RecipeallComponent implements OnInit {
   recipeID(): void{
       this.router.navigate(['/']);
     }
-
+  recipeImage(id:number){
+      return this.recipes[id].recipeImage? '/api/recipes/'+id+'/image' : '/api/recipes/'+id+'/image';
+  }
   }
 
