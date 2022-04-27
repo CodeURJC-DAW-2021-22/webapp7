@@ -19,7 +19,7 @@ export class RecipeallComponent implements OnInit {
 
   ngOnInit(): void {
     this.page = 0;
-    this.recipeservice.getRecipes(this.page).subscribe(
+    this.recipeservice.getAllRecipes().subscribe(
       response => {
         this.recipes = response;
         this.copy = response;
