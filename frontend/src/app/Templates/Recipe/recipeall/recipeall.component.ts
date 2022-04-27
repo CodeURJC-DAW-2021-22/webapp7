@@ -29,8 +29,8 @@ export class RecipeallComponent implements OnInit {
     );
   }
 
-  recipeID(): void{
-      this.router.navigate(['/']);
+  recipeID(id:number): void{
+      this.router.navigate(['/recipespecific/:id']);
     }
   recipeImage(id:number){
       return this.recipes[id].recipeImage? '/api/recipes/'+id+'/image' : '/api/recipes/'+id+'/image';

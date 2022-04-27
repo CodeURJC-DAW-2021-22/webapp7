@@ -3,9 +3,10 @@ export class Recipes {
   name: string;
   cookTime: number;
   difficulty: string;
-  uploadDate: Date; 
+  uploadDate: Date;
   ingredients: string;
   creator: string;
+  preparation:string;
 
   hasPhoto: boolean;
   recipeImage: Blob;

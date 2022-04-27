@@ -15,8 +15,8 @@
                   <div class="caption">
                     <div class="blur"></div>
                       <div class="caption-text">
-                        <h3 style="border-top:2px solid white; padding-top:20px;"><a href="#">{{recipe?.name}}</a></h3>
-                        <!--<p style="margin-top:50px;"><a href="/Recipe/{{{id}}}">Show Recipe</a></p>-->
+                        <h3 style="border-top:2px solid white; padding-top:20px;"><a [routerLink]="['/recipespecific', recipe.id]">{{recipe?.name}}</a></h3>
+                        <p style="margin-top:50px;"><a [routerLink]="['/recipespecific', recipe.id]">Show Recipe</a></p>
                       </div>
                   </div>
           </div>

@@ -26,7 +26,7 @@ const routes: Routes = [
   {path:'user',component: UserComponent},
   {path:'aboutus',component: AboutusComponent},
   {path:'recipeall',component: RecipeallComponent},
-  {path:'recipespecific',component: RecipespecificComponent},
+  {path:'recipespecific/:id',component: RecipespecificComponent},
   {path:'recipemaker',component: RecipemakerComponent},
   {path:'recipeupdater',component: RecipeupdaterComponent},
   {path:'recipestored',component: RecipestoredComponent},

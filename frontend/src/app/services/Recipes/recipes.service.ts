@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipes } from 'src/app/Class/Recipes/recipes';
-import { Recipe } from 'src/app/models/recipe.models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class RecipesService {
   }
 
   getRecipe(id: Number){
-    return this.http.get("/api/recipes/" + id)
+    return this.http.get<Recipes>("/api/recipes/" + id)
   }
 
   getRecipes(page: Number){

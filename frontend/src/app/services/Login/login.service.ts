@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Recipes } from 'src/app/Class/Recipes/recipes';
 import { Users } from 'src/app/Class/Users/users';
+import { UsersService } from '../Users/users.service';
 
 const BASE_URL = '/api/auth/';
 
@@ -13,7 +15,7 @@ export class LoginService {
 
 
   logged: boolean;
-  users: Users ;
+  user: Users ;
 	httpClient: any;
 
   /*logIn(user: Users){
@@ -29,7 +31,7 @@ export class LoginService {
     return this.http.post<Users>("api/users/new", user)
   }*/
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UsersService) {
     this.reqIsLogged();
 }
 
@@ -37,7 +39,7 @@ reqIsLogged() {
 
     this.http.get('/api/users/me', { withCredentials: true }).subscribe(
         response => {
-            this.users = response as Users;
+            this.user = response as Users;
             this.logged = true;
         },
         error => {
@@ -65,7 +67,7 @@ logOut() {
         .subscribe((resp: any) => {
             console.log("LOGOUT: Successfully");
             this.logged = false;
-            this.users = <Users>{};
+            this.user = <Users>{};
         });
 
 }
@@ -76,5 +78,18 @@ register(name: string, mail: string, pass: string){
     (error) =>alert("Could not create a user")
   );
 }
+isLogged() {
+  return this.logged;
+}
 
+isAdmin() {
+  return this.user && this.user.admin;
+}
+
+currentUser() {
+  return this.user;
+}
+recipeIsStored(id:number){
+  recipes : Recipes[]= this.userService.getUserRecipes
+}
 }

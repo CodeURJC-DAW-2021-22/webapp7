@@ -17,6 +17,7 @@ export interface Recipe {
   uploadDate: Date; //habrá que mirar como de bien está
   ingredients: string;
   creator: string;
+  preparation: string;
 
   hasPhoto: boolean;
   recipeImage: Blob;
