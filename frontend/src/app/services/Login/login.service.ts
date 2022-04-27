@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipes } from 'src/app/Class/Recipes/recipes';
 import { Users } from 'src/app/Class/Users/users';
+import { RecipesService } from '../Recipes/recipes.service';
 import { UsersService } from '../Users/users.service';
 
 const BASE_URL = '/api/auth/';
@@ -17,6 +18,8 @@ export class LoginService {
   logged: boolean;
   user: Users ;
 	httpClient: any;
+  recipes: Recipes[];
+  recipe: Recipes;
 
   /*logIn(user: Users){
     return this.http.post<Users>("/api/auth/login", user)
@@ -31,7 +34,7 @@ export class LoginService {
     return this.http.post<Users>("api/users/new", user)
   }*/
 
-  constructor(private http: HttpClient, private userService: UsersService) {
+  constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
     this.reqIsLogged();
 }
 
@@ -90,6 +93,20 @@ currentUser() {
   return this.user;
 }
 recipeIsStored(id:number){
-  recipes : Recipes[]= this.userService.getUserRecipes
-}
+  this.userService.getUserRecipes().subscribe(
+    response => {
+      this.recipes = response;
+      console.log(this.recipes)
+    },
+    error => console.error(error)
+  );
+  this.recipeService.getRecipe(id).subscribe(
+    response => {
+      this.recipe = response;
+      console.log(this.recipe)
+    },
+    error => console.error(error)
+  );
+  return this.recipes.indexOf(this.recipe) > -1
+  }
 }
