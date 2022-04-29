@@ -1,3 +1,224 @@
 <app-header></app-header>
-<p>Esto es la página principal</p>
+<section id="mini">
+  <div class="container">
+   <div class="row">
+      <div class="col-sm-12 top">
+     <nav class="navbar">
+     <div class="navbar-header page-scroll">
+                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".js-navbar-collapse_1">
+                     <span class="sr-only">Toggle navigation</span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                 </button>
+                 <a class="navbar-brand" [routerLink]="['/home']"> Food & U<span class="header_center_1"></span></a>
+             </div>
+   </nav>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section id="center">
+  <div class="center_m clearfix">
+   <div class="container">
+   <div class="row">
+    <div class="col-sm-12 center">
+   <div class="col-sm-6 center_right">
+   <h2>Food & U<span class="animal_1">Meals for U</span></h2>
+    <ul>
+     <li><a [routerLink]="['/aboutus']">About Us</a></li>
+    </ul>
+   </div>
+   <div class="col-sm-6"></div>
+    </div>
+   </div>
+  </div>
+  </div>
+ </section>
+ <section id="middle">
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-12 middle">
+   <h2>Outstanding Recipes</h2>
+   <hr class="hr_1">
+    </div>
+    <div class="col-sm-12 middle_1">
+     <div class="col-sm-1"></div>
+   <div class="col-sm-6 middle_1_left">
+         <div class="[ info-card ]">
+           <img style="height:300px;width: 550px;"src="https://localhost:8443/api/recipes/{{recipe1.id}}/image" class="fotoReceta" alt="abc">
+           <div class="[ info-card-details ] animate">
+             <div class="[ info-card-header ]">
+               <h4>{{recipe1.name}}</h4>
+             </div>
+             <div class="[ info-card-detail ]">
+               <p><a [routerLink]="['/recipespecific', recipe1.id]">Learn More</a></p>
+             </div>
+           </div>
+         </div>
+   </div>
+   <div class="col-sm-4 middle_1_left">
+    <div class="[ info-card ]">
+      <img style="height:400px;width: 400px;"src="https://localhost:8443/api/recipes/{{recipe2.id}}/image" class="fotoReceta" alt="abc">
+           <div class="[ info-card-details ] animate">
+             <div class="[ info-card-header ]">
+               <h4>{{recipe2.name}}</h4>
+             </div>
+             <div class="[ info-card-detail ]">
+               <p><a [routerLink]="['/recipespecific', recipe2.id]">Learn More</a></p>
+             </div>
+           </div>
+         </div>
+   </div>
+   <div class="col-sm-1"></div>
+    </div>
+    <div class="col-sm-12 middle">
+   <h2>Weekly Suggestion</h2>
+   <hr class="hr_1">
+    </div>
+    <div class="col-sm-12 middle_1">
+     <div class="col-sm-1"></div>
+   <div class="col-sm-10 middle_1_left">
+         <div class="[ info-card ]">
+           <img style="height:350px;width: 950px;"src="https://localhost:8443/api/recipes/{{recipeWeekly.id}}/image" class="fotoReceta" alt="abc">
+           <div class="[ info-card-details ] animate">
+             <div class="[ info-card-header ]">
+               <h4> {{recipeWeekly.name}} </h4>
+             </div>
+             <div class="[ info-card-detail ]">
+               <p><a [routerLink]="['/recipespecific', recipe2.id]">Learn More</a></p>
+             </div>
+           </div>
+         </div>
+   </div>
+   <div class="col-sm-1"></div>
+    </div>
+   </div>
+  </div>
+ </section>
+ <!--<section id="dish">
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-12 dish">
+   <h4>Are you looking for different meals?</h4>
+   <div class="row">
+         <div class="row">
+             <div class="col-sm-12 dish_1">
+                 <div class="controls pull-right">
+                     <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example" data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-success" href="#carousel-example" data-slide="next"></a>
+                 </div>
+             </div>
+         </div>
+         <div id="carousel-example" class="carousel slide" data-ride="carousel">
+             Wrapper for slides
+             <div class="carousel-inner">
+                 <div class="item">
+                     <div class="row">
+             {{#recipeCarrousel1}}
+                         <div class="col-sm-4">
+                             <div class="col-item">
+                 <div class="cuadro_intro_hover " style="background-color:#cccccc;">
+                     <p style="text-align:center;">
+                       <img style="height:250px;width: 370px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
+                     </p>
+                     <div class="caption">
+                       <div class="blur"></div>
+                       <div class="caption-text" style="margin-top:90px;">
+                         <p><a href="/Recipe/{{{id}}}">Show Recipe</a></p>
+                       </div>
+                     </div>
+                 </div>
+                                 <div class="info">
+                                     <div class="row">
+                     <div class="price_1 col-sm-12">
+                                             <h4><a href="/Recipe/{{{id}}}">{{name}}</a></h4>
+                                         </div>
+                                     </div>
+                                     <div class="clearfix">
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+             {{/recipeCarrousel1}}
+                     </div>
+                 </div>
+                 <div class="item active">
+           <div class="row">
+             {{#recipeCarrousel2}}
+             <div class="col-sm-4">
+               <div class="col-item">
+                 <div class="cuadro_intro_hover " style="background-color:#cccccc;">
+                   <p style="text-align:center;">
+                     <img style="height:250px;width: 370px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
+                   </p>
+                   <div class="caption">
+                     <div class="blur"></div>
+                     <div class="caption-text" style="margin-top:90px;">
+                       <p><a href="/Recipe/{{{id}}}">Show Recipe</a></p>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="info">
+                   <div class="row">
+                     <div class="price_1 col-sm-12">
+                       <h4><a href="/Recipe/{{{id}}}">{{name}}</a></h4>
+                     </div>
+                   </div>
+                   <div class="clearfix">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             {{/recipeCarrousel2}}
+                 </div>
+             </div>
+         </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  </div>
+ </section>-->
+ <section id="delicious">
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-12 delicious">
+   <h2>Did not find anything interesting? Try something different!</h2>
+   <div class="col-sm-1"></div>
+   <div class="col-sm-5 delicious_left">
+    <div class="cuadro_intro_hover " style="background-color:#cccccc;">
+             <p style="text-align:center;">
+               <img style="height:282px;width: 464px;"src="https://localhost:8443/api/recipes/{{tryRecipe1.id}}/image"  class="fotoReceta" alt="abc">
+             </p>
+             <div class="caption">
+               <div class="blur"></div>
+               <div class="caption-text">
+                 <h3 style="border-top:2px solid white; padding-top:20px;"><a href="#">{{tryRecipe1.name}}</a></h3>
+                 <p><a [routerLink]="['/recipespecific', tryRecipe1.id]">Show Recipe</a></p>
+               </div>
+             </div>
+           </div>
+   </div>
+   <div class="col-sm-5 delicious_left">
+    <div class="cuadro_intro_hover " style="background-color:#cccccc;">
+             <p style="text-align:center;">
+               <img style="height:282px;width: 464px;"src="https://localhost:8443/api/recipes/{{tryRecipe2.id}}/image"  class="fotoReceta" alt="abc">
+             </p>
+             <div class="caption">
+               <div class="blur"></div>
+               <div class="caption-text">
+                 <h3 style="border-top:2px solid white; padding-top:20px;"><a href="#">{{tryRecipe2.name}}</a></h3>
+                 <p><a [routerLink]="['/recipespecific', tryRecipe2.id]">Show Recipe</a></p>
+               </div>
+             </div>
+           </div>
+   </div>
+   <div class="col-sm-1"></div>
+    </div>
+    <div class="col-sm-12 dalicious_2">
+     <p>You could find more info in the header of the page</p>
+    </div>
+   </div>
+  </div>
+ </section>-->
 <app-footer></app-footer>
