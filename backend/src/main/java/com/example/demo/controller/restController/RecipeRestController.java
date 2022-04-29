@@ -60,15 +60,15 @@ public class RecipeRestController {
     }
 
     @GetMapping("/")
-    public List<Recipe> getRecipes(@RequestParam(required = false) Integer page) {
+    public List<Recipe> getRecipes(@RequestParam(required = false) String page) {
         if(page == null) {
             return recipeService.findAll();
         }else{
-            return getRecipesPage(page.intValue()).toList();
+            int pageInt = Integer.parseInt(page);
+            return getRecipesPage(pageInt).toList();
         }
     }
 
-    @GetMapping("?page={page}")
     public Page<Recipe> getRecipesPage(int page) {
         if (page <= (int) Math.ceil(recipeService.count()/12)) {
             return recipeService.findAll(PageRequest.of(page,12));
