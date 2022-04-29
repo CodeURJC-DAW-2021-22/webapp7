@@ -14,26 +14,25 @@ export class LoginComponent implements OnInit {
 
   constructor(public loginService : LoginService, public usersService : UsersService) { }
 
-  logIn(event: any, name: string, pass: string) {
+  logIn(event: any, name: String, pass: String) {
+
 
     event.preventDefault();
 
-    /*name= this.user.name;
-    pass= this.user.password;*/
+    this.loginService.logIn(name,pass);
+    //this.loginService.logIn(name, pass);
 
-    this.loginService.logIn(name, pass);
-    //this.loginService.logIn(this.user);
   }
-  register(event: any, name: string, mail: string, pass: string){
+  register(event: any, name: String, mail: String, pass: String){
+
     event.preventDefault();
 
+    /*name = this.user.name;
+    mail = this.user.mail;
+    pass = this.user.password;*/
 
-    /*name= this.user.name;
-    mail= this.user.mail;
-    pass= this.user.password;*/
-
-    this.loginService.register(name, mail, pass);
     //this.loginService.register(this.user);
+    this.loginService.register(name, mail, pass);
   }
 
 
