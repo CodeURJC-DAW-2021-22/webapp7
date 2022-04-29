@@ -19,8 +19,9 @@ export class RecipesService {
     return this.http.get<Recipes>("/api/recipes/" + id)
   }
 
-  getRecipes(page: Number){
-    return this.http.get<Recipes[]>("/api/recipes?page=" + page)
+  getRecipes(pageInt: number){
+    let data = {page: pageInt};
+    return this.http.get<Recipes[]>("/api/recipes/", {params: data})
   }
 
   deleteRecipe(id: Number){

@@ -68,7 +68,6 @@ public class RecipeRestController {
         }
     }
 
-    @GetMapping("?page={page}")
     public Page<Recipe> getRecipesPage(int page) {
         if (page <= (int) Math.ceil(recipeService.count()/12)) {
             return recipeService.findAll(PageRequest.of(page,12));
