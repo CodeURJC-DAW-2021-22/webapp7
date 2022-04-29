@@ -1,6 +1,7 @@
 import { UsersService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/Login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute,public usersService : UsersService) { }
-
+  constructor(private router: Router, activatedRoute: ActivatedRoute,public usersService : UsersService, private loginService:LoginService) { }
+  isLogged(){
+    return this.loginService.isLogged();
+  }
+  isAdmin(){
+    return this.loginService.isAdmin();
+  }
   goToHome(){
     this.router.navigate(['/home'])
   }

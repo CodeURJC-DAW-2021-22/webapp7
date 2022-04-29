@@ -20,8 +20,8 @@
                   </div>
                   <div class="col-sm-3 header_right">
                       <ul>
-                          <li *ngIf="!usersService.isLogged()"><a (click)="goToLogin()">Login/SignIn</a></li>
-                          <li *ngIf="usersService.isLogged()"><a (click)="goToLogout()">Logout</a></li>
+                          <li *ngIf="!isLogged()"><a (click)="goToLogin()">Login/Sign In</a></li>
+                          <li *ngIf="isLogged()"><a (click)="goToLogout()">Log Out</a></li>
                       </ul>
                   </div>
               </div>
@@ -46,8 +46,8 @@
                               <li><a (click)="goToHome()"> Home</a></li>
                               <li><a (click)="goToRecipes()"> Recipes</a></li>
                               <li><a (click)="goToAboutUs()"> About Us</a></li>
-                              <li *ngIf="usersService.isLogged()"><a><button (click)="goToHome()"> User</button></a></li>
-                              <li *ngIf="usersService.isAdmin()"><a><button (click)="goToHome()"> Admin</button></a></li>
+                              <li *ngIf="isLogged()"><a (click)="goToHome()"> User</a></li>
+                              <li *ngIf="isAdmin()"> <a (click)="goToHome()"> Admin</a></li>
                           </ul>
                       </div>
                   </nav>

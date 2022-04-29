@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipes } from 'src/app/Class/Recipes/recipes';
+import { Users } from 'src/app/Class/Users/users';
+import { LoginService } from 'src/app/services/Login/login.service';
 import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 
 @Component({
@@ -14,7 +16,9 @@ export class HomeComponent implements OnInit {
   rnd: number;
   tryRecipe1: Recipes;
   tryRecipe2: Recipes;
-  constructor(private service:RecipesService) {
+  user: Users;
+  constructor(private service:RecipesService,loginService: LoginService) {
+    this.user = loginService.currentUser();
     service.getRecipe(20).subscribe(
       response => {
         this.recipe1 = response;

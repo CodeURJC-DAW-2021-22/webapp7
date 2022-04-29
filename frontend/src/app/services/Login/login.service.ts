@@ -21,24 +21,14 @@ export class LoginService {
   recipes: Recipes[];
   recipe: Recipes;
 
-  logIn(name : String, password: String){
-    return this.http.post<Users>("/api/auth/login",  /*accessToken, refreshToken,*/ {name, password});
+  logIn(username : String, password: String){
+    //return this.http.post<Users>("/api/auth/login",  /*accessToken, refreshToken,*/ {name, password},{withCredentials:true});
+    this.http.post("/api/auth/login", {username,password},{withCredentials:true}).subscribe(
+      (response) => this.reqIsLogged(),
+      (error) => alert("Wrong credentials")
+    );
   }
-  logOut(){
-    return this.http.get("/api/auth/logout")
-  }
-  refresh(user: Users){
-    return this.http.post<Users>("/api/auth/refresh", user)
-  }
-  register(name : String, mail : String ,password: String){
-    return this.http.post<Users>("api/users/new", {name, password, mail})
-  }
-
-  /*constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
-    this.reqIsLogged();
-}
-
-reqIsLogged() {
+  reqIsLogged() {
 
     this.http.get('/api/users/me', { withCredentials: true }).subscribe(
         response => {
@@ -53,6 +43,21 @@ reqIsLogged() {
     );
 
 }
+  logOut(){
+    return this.http.get("/api/auth/logout")
+  }
+  refresh(user: Users){
+    return this.http.post<Users>("/api/auth/refresh", user)
+  }
+  register(name : String, mail : String ,password: String){
+    return this.http.post<Users>("api/users/new", {name, password, mail})
+  }
+
+  /*constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
+    this.reqIsLogged();
+}
+
+
 
 logIn(name: string, pass: string) {
 

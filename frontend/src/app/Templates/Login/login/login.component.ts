@@ -2,6 +2,7 @@ import { Users } from 'src/app/Class/Users/users';
 import { LoginService } from './../../../services/Login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/Users/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
 
   user: Users;
 
-  constructor(public loginService : LoginService, public usersService : UsersService) { }
+  constructor(private router:Router,public loginService : LoginService, public usersService : UsersService) {
+    this.user = loginService.currentUser();
+  }
 
   logIn(event: any, name: String, pass: String) {
 
@@ -20,18 +23,17 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
 
     this.loginService.logIn(name,pass);
-    //this.loginService.logIn(name, pass);
-
+      if (this.loginService.isLogged()){
+        this.router.navigate(['/home']);
+      }
+      else{
+        this.router.navigate(['/login']);
+      }
   }
+
   register(event: any, name: String, mail: String, pass: String){
 
     event.preventDefault();
-
-    /*name = this.user.name;
-    mail = this.user.mail;
-    pass = this.user.password;*/
-
-    //this.loginService.register(this.user);
     this.loginService.register(name, mail, pass);
   }
 

@@ -20,7 +20,6 @@ export class UsersService{
     constructor(private http: HttpClient) {
         this.reqIsLogged();
     }
-
     reqIsLogged() {
 
         this.http.get('/api/users/me', { withCredentials: true }).subscribe(
@@ -56,14 +55,6 @@ export class UsersService{
                 this.user = <User>{};
             });
 
-    }
-
-    isLogged() {
-        return this.logged;
-    }
-
-    isAdmin() {
-        return this.user && this.user.admin;
     }
 
     currentUser() {
