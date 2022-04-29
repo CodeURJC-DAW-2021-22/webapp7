@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipes } from 'src/app/Class/Recipes/recipes';
+import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +8,51 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  recipe1: Recipes;
+  recipe2: Recipes;
+  recipeWeekly: Recipes;
+  rnd: number;
+  tryRecipe1: Recipes;
+  tryRecipe2: Recipes;
+  constructor(private service:RecipesService) {
+    service.getRecipe(20).subscribe(
+      response => {
+        this.recipe1 = response;
+      },
+        error => console.error(error)
+    );
 
-  constructor() { }
+    this.rnd = Math.random() * (23 - 1) + 1;
+    this.rnd = Math.ceil(this.rnd);
+    service.getRecipe(this.rnd).subscribe(
+      response => {
+        this.recipeWeekly = response;
+      },
+        error => console.error(error)
+    );
+    service.getRecipe(22).subscribe(
+      response => {
+        this.recipe2 = response;
+      },
+        error => console.error(error)
+    );
+    this.rnd = Math.random() * (23 - 1) + 1;
+    this.rnd = Math.ceil(this.rnd);
+    service.getRecipe(this.rnd).subscribe(
+      response => {
+        this.tryRecipe1 = response;
+      },
+        error => console.error(error)
+    );
+    this.rnd = Math.random() * (23 - 1) + 1;
+    this.rnd = Math.ceil(this.rnd);
+    service.getRecipe(this.rnd).subscribe(
+      response => {
+        this.tryRecipe2 = response;
+      },
+        error => console.error(error)
+    );
+  }
 
   ngOnInit(): void {
   }
