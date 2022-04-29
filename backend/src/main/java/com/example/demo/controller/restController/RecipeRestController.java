@@ -60,12 +60,11 @@ public class RecipeRestController {
     }
 
     @GetMapping("/")
-    public List<Recipe> getRecipes(@RequestParam(required = false) String page) {
+    public List<Recipe> getRecipes(@RequestParam(required = false) Integer page) {
         if(page == null) {
             return recipeService.findAll();
         }else{
-            int pageInt = Integer.parseInt(page);
-            return getRecipesPage(pageInt).toList();
+            return getRecipesPage(page.intValue()).toList();
         }
     }
 

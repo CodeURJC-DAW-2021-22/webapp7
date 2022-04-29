@@ -19,8 +19,8 @@ export class RecipesService {
     return this.http.get<Recipes>("/api/recipes/" + id)
   }
 
-  getRecipes(page: Number){
-    let data = {page: "0"};
+  getRecipes(pageInt: number){
+    let data = {page: pageInt};
     return this.http.get<Recipes[]>("/api/recipes/", {params: data})
   }
 
