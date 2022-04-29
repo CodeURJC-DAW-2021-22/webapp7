@@ -1,18 +1,18 @@
+import { User } from './../../models/user.models';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Recipes } from 'src/app/Class/Recipes/recipes';
-import { Users } from 'src/app/Class/Users/users';
+import { pipe } from 'rxjs';
+import { Recipes } from './../../Class/Recipes/recipes';
+import { Users } from './../../Class/Users/users';
 import { RecipesService } from '../Recipes/recipes.service';
 import { UsersService } from '../Users/users.service';
-
-const BASE_URL = '/api/auth/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  //constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
   logged: boolean;
@@ -21,8 +21,8 @@ export class LoginService {
   recipes: Recipes[];
   recipe: Recipes;
 
-  /*logIn(user: Users){
-    return this.http.post<Users>("/api/auth/login", user)
+  logIn(name : String, password: String){
+    return this.http.post<Users>("/api/auth/login",  /*accessToken, refreshToken,*/ {name, password});
   }
   logOut(){
     return this.http.get("/api/auth/logout")
@@ -30,11 +30,11 @@ export class LoginService {
   refresh(user: Users){
     return this.http.post<Users>("/api/auth/refresh", user)
   }
-  register(user: Users){
-    return this.http.post<Users>("api/users/new", user)
-  }*/
+  register(name : String, mail : String ,password: String){
+    return this.http.post<Users>("api/users/new", {name, password, mail})
+  }
 
-  constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
+  /*constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
     this.reqIsLogged();
 }
 
@@ -80,7 +80,7 @@ register(name: string, mail: string, pass: string){
     (response) => this.reqIsLogged(),
     (error) =>alert("Could not create a user")
   );
-}
+}*/
 isLogged() {
   return this.logged;
 }
