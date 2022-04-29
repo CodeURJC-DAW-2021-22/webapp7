@@ -13,29 +13,21 @@ export class RecipesService {
 	constructor(private httpClient: HttpClient) { }
 
 	getRecipes(): Observable<Recipe[]> {
-		return this.httpClient.get(BASE_URL).pipe(
+		return this.httpClient.get<Recipe[]>(BASE_URL).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Recipe[]>;
 	}
 
 	getRecipe(id: number | string): Observable<Recipe> {
-		return this.httpClient.get(BASE_URL + id).pipe(
+		return this.httpClient.get<Recipe>(BASE_URL + id).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Recipe>;
 	}
 
-	addRecipe(recipe: Recipe) {
-
-		if (!recipe.id) {
-			return this.httpClient.post(BASE_URL, recipe)
-				.pipe(
-					catchError(error => this.handleError(error))
-				);
-		} else {
-			return this.httpClient.put(BASE_URL + recipe.id, recipe).pipe(
-				catchError(error => this.handleError(error))
-			);
-		}
+	addRecipe(formData: FormData) {
+		return this.httpClient.post(BASE_URL + 'new', formData, { withCredentials: true }).pipe(
+            catchError(error => this.handleError(error))
+        );
 	}
 
 	setRecipeImage(recipe: Recipe, formData: FormData) {
