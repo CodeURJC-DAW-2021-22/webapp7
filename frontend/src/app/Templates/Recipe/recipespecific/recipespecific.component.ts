@@ -27,7 +27,6 @@ export class RecipespecificComponent{
       error => console.error(error)
     );
 
-
     service.getRecipe(id).subscribe(
       response => {
         this.recipe = response;
@@ -36,8 +35,12 @@ export class RecipespecificComponent{
     );
 
    }
+   storeRecipe(id:number){
+     this.user.storedRecipes.push(this.recipe);
+   }
+
    recipeIsStored(){
-     return this.user.storedRecipes.indexOf(this.recipe);
+     return this.user.storedRecipes.indexOf(this.recipe) != -1;
    }
    hasVegetables(){
      return this.recipe.vegetbales;
