@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecipesService } from 'src/app/services/recipe.service';
+import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 
 @Component({
   selector: 'app-recipemaker',
@@ -36,7 +36,6 @@ export class RecipemakerComponent{
   }
 
   save() {
-    const cookTimeString = this.cookTime.toString();
 
     if(this.vegetables){
       this.boolean.push("vegetables");
@@ -54,17 +53,17 @@ export class RecipemakerComponent{
       this.boolean.push("highinfat");
     }
 
-    const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('time', cookTimeString);
-    formData.append('difficulty', this.difficulty);
-    formData.append('preparation', this.preparation);
-    formData.append('ingredients', this.ingredients);
-    formData.append('booleanos', this.boolean.toString());
+    if(this.difficulty == "1"){
+      this.difficulty = "Easy";
+    }else if(this.difficulty == "2"){
+      this.difficulty = "Medium";
+    }else{
+      this.difficulty = "Hard";
+    }
 
-    this.service.addRecipe(formData).subscribe(
-      response => this.router.navigate(['/']),
-      error => alert("Something gone wrong")
+    this.service.createRecipe(this.name, this.cookTime, this.difficulty, this.preparation, this.ingredients, this.boolean).subscribe(
+      (response: any) => this.router.navigate(['/recipeall']),
+      (error: any) => alert("Something gone wrong")
   );
   }
 

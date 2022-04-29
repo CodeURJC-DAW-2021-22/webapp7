@@ -28,8 +28,9 @@ export class RecipesService {
     return this.http.delete("/api/recipes/" + id)
   }
 
-  createRecipe(){
-    return this.http.post("/api/recipes/new", {})
+  createRecipe(name: string, time: number, difficulty: string, preparation: string, ingredients: string, booleanos: string[]){
+    let data ={"name": name, time: time, difficulty: difficulty, preparation: preparation, ingredients: ingredients, booleanos: booleanos};
+    return this.http.post("/api/recipes/new", {},{params: data})
   }
 
   updateRecipe(id: Number, recipe: Recipes){
