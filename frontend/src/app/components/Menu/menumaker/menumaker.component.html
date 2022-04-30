@@ -1,3 +1,103 @@
 <app-header></app-header>
-<p>Esto es la página de creación de menús</p>
+                <div class="col-sm-11">
+                    <h2>Menu</h2>
+                    <label>Name: </label>
+                    <input [(ngModel)]="name" type="text" placeholder="name" required>
+                </div>
+
+                <table class="table-fill">
+                    <thead>
+                    <tr>
+                        <th class="maker">Monday</th>
+                        <th class="maker">Tuesday</th>
+                        <th class="maker">Wednesday</th>
+                        <th class="maker">Thursday</th>
+                        <th class="maker">Friday</th>
+                        <th class="maker">Saturday</th>
+                        <th class="maker">Sunday</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                    <tr>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="lunchMonday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="lunchTuesday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="lunchWednesday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="lunchThursday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="lunchFriday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="lunchSaturday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="lunchSunday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="dinnerMonday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="dinnerTuesday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="dinnerWednesday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="dinnerThursday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="dinnerFriday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="dinnerSaturday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                        <td class="text-left-maker">
+                            <select [(ngModel)]="dinnerSunday">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{recipe?.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            <br><br><br>
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-11">
+                <button (click)="save()">Save</button>
+            </div>
 <app-footer></app-footer>

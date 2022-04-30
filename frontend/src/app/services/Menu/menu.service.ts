@@ -10,14 +10,15 @@ export class MenuService {
   constructor(private http: HttpClient) { }
 
   getAllMenus(){
-    return this.http.get("/api/menus/")
+    return this.http.get<Menu[]>("/api/menus/")
   }
 
   getMenu(id: Number){
     return this.http.get("/api/menus" + id)
   }
 
-  menuMaker(menu: Menu){
-    return this.http.post("/api/menus/new", menu)
+  menuMaker(name: string, lunchMonday: number, lunchTuesday: number, lunchWednesday: number, lunchThursday: number, lunchFriday: number, lunchSaturday: number, lunchSunday: number, dinnerMonday: number, dinnerTuesday: number, dinnerWednesday: number, dinnerThursday: number, dinnerFriday: number, dinnerSaturday: number, dinnerSunday: number){
+    let data ={name: name, lunchMonday: lunchMonday, lunchTuesday: lunchTuesday, lunchWednesday: lunchWednesday, lunchThursday: lunchThursday, lunchFriday: lunchFriday, lunchSaturday: lunchSaturday, lunchSunday: lunchSunday, dinnerMonday: dinnerMonday, dinnerTuesday: dinnerTuesday, dinnerWednesday:dinnerWednesday, dinnerThursday: dinnerThursday, dinnerFriday: dinnerFriday, dinnerSaturday: dinnerSaturday, dinnerSunday: dinnerSunday};
+    return this.http.post("/api/menus/new", {}, {params: data})
   }
 }

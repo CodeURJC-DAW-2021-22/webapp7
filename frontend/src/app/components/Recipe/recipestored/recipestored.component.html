@@ -1,3 +1,18 @@
 <app-header></app-header>
-<p>Esto es la página de recetas guardadas</p>
+<div class="bp_2 clearfix">
+    <div class="col-sm-3 space_all prueba" *ngFor="let recipe of recipes">
+     <div class="bp_2m clearfix">
+         <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
+                 <img style="height:250px;width: 300px;" src="https://localhost:8443/api/recipes/{{recipe.id}}/image" class="fotoReceta" alt="abc">
+                 <div class="caption">
+                   <div class="blur"></div>
+                     <div class="caption-text">
+                       <h3 style="border-top:2px solid white; padding-top:20px;"><a [routerLink]="['/recipespecific', recipe.id]">{{recipe?.name}}</a></h3>
+                       <p style="margin-top:50px;"><a [routerLink]="['/recipespecific', recipe.id]">Show Recipe</a></p>
+                     </div>
+                 </div>
+         </div>
+     </div>
+    </div>
+</div>
 <app-footer></app-footer>
