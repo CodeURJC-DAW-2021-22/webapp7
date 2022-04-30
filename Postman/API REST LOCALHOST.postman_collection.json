@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "21ffbbce-4eac-4b99-bb20-aeb52dbe0591",
+		"_postman_id": "842706da-5c32-4e84-961f-567a4c412a3f",
 		"name": "API REST LOCALHOST",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -47,24 +47,13 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "newUser",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "mail",
-									"value": "newUser@gmail.com",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"userNew\",\r\n    \"mail\": \"userNew@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "https://localhost:8443/api/users/new",
@@ -152,6 +141,27 @@
 								"api",
 								"users",
 								"diets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/users/all",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"all"
 							]
 						}
 					},
@@ -376,7 +386,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/recipes/3",
+							"raw": "https://localhost:8443/api/recipes/45",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -385,7 +395,7 @@
 							"path": [
 								"api",
 								"recipes",
-								"3"
+								"45"
 							]
 						}
 					},
@@ -393,23 +403,23 @@
 				},
 				{
 					"name": "Get Page Recipes",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "page",
-									"value": "0",
-									"type": "text"
-								}
+						"url": {
+							"raw": "https://localhost:8443/api/recipes/page/0",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"page",
+								"0"
 							]
-						},
-						"url": "https://localhost:8443/api/recipes/"
+						}
 					},
 					"response": []
 				},
@@ -467,7 +477,7 @@
 								{
 									"key": "imageRecipe",
 									"type": "file",
-									"src": "/C:/Users/Rodri/Desktop/DAW/webapp7/Postman/Bacalao"
+									"src": "/C:/Users/Rodrigo/Desktop/webapp7-Fase_3/Postman/Bacalao"
 								},
 								{
 									"key": "id",
@@ -478,7 +488,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/recipes/46/image",
+							"raw": "https://localhost:8443/api/recipes/4/image",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -487,7 +497,7 @@
 							"path": [
 								"api",
 								"recipes",
-								"46",
+								"4",
 								"image"
 							]
 						}
