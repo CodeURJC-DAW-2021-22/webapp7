@@ -52,6 +52,12 @@ public class UserRestController {
         }
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Collection<User>> getProfiles(HttpServletRequest request){
+        List<User> users = userService.findAll();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail) {

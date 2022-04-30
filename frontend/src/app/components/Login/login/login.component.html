@@ -8,14 +8,13 @@
 	<div class="main">
 		<input type="checkbox" id="chk" aria-hidden="true">
 			<div class="signup">
-				<form action="/processFormSignUp" method="post">
+				<form role="search" method="post">
 					<button class="goback_button" value="Return" onClick="history.go(-1);">Go Back</button>
 					<label for="chk" aria-hidden="true">Sign up</label>
-					<!--<input type="hidden" name="_csrf" value="{{token}}"/>-->
-					<input #username type="username" name="name" placeholder="User name" required="">
+					<input #name type="name" name="name" placeholder="User name" required="">
 					<input #mail type="email" name="mail" placeholder="Email" required="">
-					<input #password type="password" name="password" placeholder="Password" required="">
-					<input type="submit" placeholder="Sign up" (click)="register($event, username.value, mail.value, password.value)" >
+					<input #pass type="password" name="password" placeholder="Password" required="">
+					<input type="submit" (click)="register($event, name.value, mail.value, pass.value)" >
 				</form>
 			</div>
 
@@ -25,7 +24,6 @@
 					<input #username1 type="username" name="username" placeholder="User name" required="">
 					<input #password1 type="password" name="password" placeholder="Password" required="">
 					<input type="submit" value="Log In" (click)="logIn($event, username1.value, password1.value)" >
-					<!--<input type="hidden" name="_csrf" value="{{token}}"/>-->
 				</form>
 			</div>
 	</div>

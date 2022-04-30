@@ -5,23 +5,31 @@ import { pipe } from 'rxjs';
 import { Recipes } from '../../models/Recipes/recipes';
 import { RecipesService } from '../Recipes/recipes.service';
 import { UsersService } from '../Users/users.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private router:Router,private http: HttpClient) { }
 
 
   logged: boolean;
-  user: Users ;
+  user: Users;
 	httpClient: any;
   recipes: Recipes[];
   recipe: Recipes;
 
+  register(name : String, mail : String ,password: String){
+    this.http.post("api/users/new", {name, password, mail},{withCredentials:true}).subscribe(
+      (response) => this.router.navigate(['/home']),
+      (error) => alert("Wrong Credentials")
+    );
+  }
+
+
   logIn(username : String, password: String){
-    //return this.http.post<Users>("/api/auth/login",  /*accessToken, refreshToken,*/ {name, password},{withCredentials:true});
     this.http.post("/api/auth/login", {username,password},{withCredentials:true}).subscribe(
       (response) => this.reqIsLogged(),
       (error) => alert("Wrong credentials")
@@ -42,14 +50,12 @@ export class LoginService {
     );
 
 }
+
   logOut(){
     return this.http.get("/api/auth/logout")
   }
   refresh(user: Users){
     return this.http.post<Users>("/api/auth/refresh", user)
-  }
-  register(name : String, mail : String ,password: String){
-    return this.http.post<Users>("api/users/new", {name, password, mail})
   }
 
   /*constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
