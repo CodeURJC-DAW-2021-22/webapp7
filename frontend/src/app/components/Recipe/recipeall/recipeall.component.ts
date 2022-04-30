@@ -13,12 +13,13 @@ export class RecipeallComponent implements OnInit {
 
   recipes: Recipes[];
   copy: Recipes[];
-  page: Number = 0;
+  page: number = 0;
 
   constructor(private router:Router, private recipeservice:RecipesService) { }
 
   ngOnInit(): void {
-    this.recipeservice.getRecipes(0).subscribe(
+    this.page = 0
+    this.recipeservice.getRecipes(this.page).subscribe(
       response => {
         this.recipes = response;
         this.copy = response;
@@ -26,6 +27,18 @@ export class RecipeallComponent implements OnInit {
       },
       error => console.error(error)
     );
+  }
+
+  load(){
+    this.page++
+    this.recipeservice.getRecipes(this.page).subscribe(
+      response => {
+        response.forEach(element =>{
+          this.recipes.push(element);
+        });
+      },
+      error => console.error(error)
+    ); 
   }
 
   recipeID(id:number): void{
