@@ -22,9 +22,9 @@
 			<div class="login">
 				<form role="search" method="post">
 					<label for="chk" aria-hidden="true">Login</label>
-					<input #username type="username" name="username" placeholder="User name" required="">
-					<input #password type="password" name="password" placeholder="Password" required="">
-					<input type="submit" value="Log In" (click)="logIn($event, username.value, password.value)" >
+					<input #username1 type="username" name="username" placeholder="User name" required="">
+					<input #password1 type="password" name="password" placeholder="Password" required="">
+					<input type="submit" value="Log In" (click)="logIn($event, username1.value, password1.value)" >
 					<!--<input type="hidden" name="_csrf" value="{{token}}"/>-->
 				</form>
 			</div>
