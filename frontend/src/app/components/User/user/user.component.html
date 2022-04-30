@@ -1,3 +1,19 @@
 <app-header></app-header>
-<p>Esto es la página de usuario</p>
+<h1 style= "text-align: center;">USER: </h1>
+	   <div>
+		<p>e-mail: </p>
+		<ul class= "User Links" style= "text-align: center; list-style-type: none;">
+			<li><a (click)="goToActiveMenu()"><h4>Active Menu</h4></a></li>
+			<li><a (click)="goToDietMaker()"><h4>Diet Maker</h4></a></li>
+			<li><a (click)="goToStoredDiets()"><h4>Stored Diets</h4></a></li>
+			<li><a (click)="goToMenuMaker()"><h4>Menu Maker</h4></a></li>
+			<li><a (click)="goToMenuAll()"><h4>Menu All</h4></a></li>
+			<li><a (click)="goToStoredRecipes()"><h4>Stored Recipes</h4></a></li>
+		</ul>
+		<div class="btn-group-lg">
+            <ul class= "User Links">
+                <button><a (click)="logOut()"><h4>Log Out</h4></a></button>
+            </ul>
+			 </div>
+        </div>
 <app-footer></app-footer>
