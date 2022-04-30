@@ -21,9 +21,9 @@ export class LoginService {
   recipes: Recipes[];
   recipe: Recipes;
 
-  register(name : String, mail : String ,password: String){
-    this.http.post("api/users/new", {name, password, mail},{withCredentials:true}).subscribe(
-      (response) => this.router.navigate(['/home']),
+  register(username : String, mail : String ,password: String){
+    this.http.post("api/users/new",{username, password, mail} , {withCredentials:true}).subscribe(
+      (response) => this.router.navigate(['/login']),
       (error) => alert("Wrong Credentials")
     );
   }

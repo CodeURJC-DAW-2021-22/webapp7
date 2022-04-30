@@ -5,8 +5,8 @@ import com.example.demo.model.Menu;
 import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.security.RepositoryUserDetailsService;
+import com.example.demo.security.jwt.RegisterRequest;
 import com.example.demo.service.MenuService;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,10 +60,14 @@ public class UserRestController {
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<User> processRegister(@RequestParam String name, @RequestParam String password, @RequestParam String mail) {
+    public ResponseEntity<User> processRegister(@RequestBody RegisterRequest registerRequest){
         Menu menu = menuService.findAll().get(1);
         List<Diet> dietas = new ArrayList<>();
         List<Recipe> recipes = new ArrayList<Recipe>();
+
+        String name = registerRequest.getUsername();
+        String mail = registerRequest.getMail();
+        String password = registerRequest.getPassword();
 
         User user = new User(mail, name, passwordEncoder.encode(password), recipes, menu, dietas, false);
 
