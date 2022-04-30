@@ -22,7 +22,7 @@ export class RecipespecificComponent{
     //hasta que no esté hecho el login no va a funcionar
     userService.getUserRecipes().subscribe(
       response => {
-        this.user.storedRecipes = response;
+        loginService.user.storedRecipes.push(this.recipe)
       },
       error => console.error(error)
     );
@@ -35,12 +35,18 @@ export class RecipespecificComponent{
     );
 
    }
-   storeRecipe(id:number){
-     this.user.storedRecipes.push(this.recipe);
+
+
+
+
+
+
+   storeRecipe(){
+     this.loginService.user.storedRecipes.push(this.recipe);
    }
 
    recipeIsStored(){
-     return this.user.storedRecipes.indexOf(this.recipe) != -1;
+     return this.user.storedRecipes.indexOf(this.recipe) > -1;
    }
    hasVegetables(){
      return this.recipe.vegetbales;

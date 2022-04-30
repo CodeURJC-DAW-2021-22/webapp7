@@ -16,13 +16,12 @@
      <p>Cook Time: {{recipe.cookTime}}</p>
      <p>Dificulty: {{recipe.difficulty}}</p>
      <h5>{{recipe.uploadDate}} | {{recipe.creator}}</h5>
-     <!-- los form puede que esté mal linkeado en la accion, hay que revisarlo-->
-       <form *ngIf="loginService.isLogged() && !recipeIsStored()" action="/processAddRecipe" method="post">
+       <form *ngIf="loginService.isLogged() && recipeIsStored()==false" method="post">
           <input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}}>
-          <input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Save Recipe"/>
+          <input type="submit" class="btn btn-danger" id="btnSaveRecipe" (click)="storeRecipe()" value="Save Recipe"/>
        </form>
-       <form *ngIf="loginService.isLogged() && recipeIsStored()">
-        <input *ngIf="recipeIsStored()" type="submit" class="btn btn-danger" id="btnDisable" value="Already Saved" disabled/>
+       <form *ngIf="loginService.isLogged() && recipeIsStored()==true">
+        <input type="submit" class="btn btn-danger" id="btnDisable" value="Already Saved" disabled/>
        </form>
 
        <form *ngIf="loginService.isAdmin()" action="/processDeleteRecipe" method="post">
