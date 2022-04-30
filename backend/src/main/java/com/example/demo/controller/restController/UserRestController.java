@@ -6,6 +6,7 @@ import com.example.demo.model.Recipe;
 import com.example.demo.model.User;
 import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.service.MenuService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,19 @@ public class UserRestController {
     @Autowired
     private RepositoryUserDetailsService userService;
 
+
+    private User user;
+
     @GetMapping("/me")
     public ResponseEntity<User> getProfile(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         Optional<User> userPrincipal = userService.findByName(principal.getName());
 
         if(userPrincipal.isPresent()) {
-            User user = userPrincipal.get();
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            this.user = userPrincipal.get();
+            long id = this.user.getActiveMenu().getId();
+            this.user.setActiveMenu(menuService.findById(id).get());
+            return new ResponseEntity<>(this.user, HttpStatus.OK);
 
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
