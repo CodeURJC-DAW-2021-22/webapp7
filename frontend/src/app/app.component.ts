@@ -7,15 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = "Food & U"
-  logged = true;
-  admin = true;
-
-
-  isLogged(logged:boolean){
-    this.logged=logged;
-  }
-
-  isAdmin(admin:boolean){
-    this.admin=admin
-  }
 }

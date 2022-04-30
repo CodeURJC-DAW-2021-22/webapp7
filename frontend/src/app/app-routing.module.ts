@@ -1,24 +1,24 @@
-import { LoginComponent } from './Templates/Login/login/login.component';
+import { LoginComponent } from './components/Login/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './Templates/Admin/admin/admin.component';
-import { UserComponent } from './Templates/User/user/user.component';
-import { AboutusComponent } from './Templates/AboutUs/aboutus/aboutus.component';
-import { RecipeallComponent } from './Templates/Recipe/recipeall/recipeall.component';
-import { RecipespecificComponent } from './Templates/Recipe/recipespecific/recipespecific.component';
-import { RecipemakerComponent } from './Templates/Recipe/recipemaker/recipemaker.component';
-import { RecipeupdaterComponent } from './Templates/Recipe/recipeupdater/recipeupdater.component';
-import { RecipestoredComponent } from './Templates/Recipe/recipestored/recipestored.component';
-import { MenuactiveComponent } from './Templates/Menu/menuactive/menuactive.component';
-import { MenuallComponent } from './Templates/Menu/menuall/menuall.component';
-import { MenuloaderComponent } from './Templates/Menu/menuloader/menuloader.component';
-import { MenumakerComponent } from './Templates/Menu/menumaker/menumaker.component';
-import { DietmakerComponent } from './Templates/Diet/dietmaker/dietmaker/dietmaker.component';
-import { DietstoredComponent } from './Templates/Diet/dietstored/dietstored/dietstored.component';
-import { HomeComponent } from './Templates/Home/home/home.component';
+import { AdminComponent } from './components/Admin/admin/admin.component';
+import { UserComponent } from './components/User/user/user.component';
+import { AboutusComponent } from './components/AboutUs/aboutus/aboutus.component';
+import { RecipeallComponent } from './components/Recipe/recipeall/recipeall.component';
+import { RecipespecificComponent } from './components/Recipe/recipespecific/recipespecific.component';
+import { RecipemakerComponent } from './components/Recipe/recipemaker/recipemaker.component';
+import { RecipeupdaterComponent } from './components/Recipe/recipeupdater/recipeupdater.component';
+import { RecipestoredComponent } from './components/Recipe/recipestored/recipestored.component';
+import { MenuactiveComponent } from './components/Menu/menuactive/menuactive.component';
+import { MenuallComponent } from './components/Menu/menuall/menuall.component';
+import { MenuloaderComponent } from './components/Menu/menuloader/menuloader.component';
+import { MenumakerComponent } from './components/Menu/menumaker/menumaker.component';
+import { DietmakerComponent } from './components/Diet/dietmaker/dietmaker/dietmaker.component';
+import { DietstoredComponent } from './components/Diet/dietstored/dietstored/dietstored.component';
+import { HomeComponent } from './components/Home/home/home.component';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './Templates/Header/header/header.component';
-import { FooterComponent } from './Templates/Footer/footer/footer.component';
+import { HeaderComponent } from './components/Header/header/header.component';
+import { FooterComponent } from './components/Footer/footer/footer.component';
 
 const routes: Routes = [
   {path:'admin',component: AdminComponent},

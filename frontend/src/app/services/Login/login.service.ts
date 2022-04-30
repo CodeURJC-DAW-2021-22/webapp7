@@ -1,9 +1,8 @@
-import { User } from './../../models/user.models';
+import { Users } from '../../models/Users/users';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { pipe } from 'rxjs';
-import { Recipes } from './../../Class/Recipes/recipes';
-import { Users } from './../../Class/Users/users';
+import { Recipes } from '../../models/Recipes/recipes';
 import { RecipesService } from '../Recipes/recipes.service';
 import { UsersService } from '../Users/users.service';
 
