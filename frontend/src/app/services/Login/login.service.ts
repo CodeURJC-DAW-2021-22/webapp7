@@ -23,7 +23,7 @@ export class LoginService {
 
   register(username : String, mail : String ,password: String){
     this.http.post("api/users/new",{username, password, mail} , {withCredentials:true}).subscribe(
-      (response) => this.router.navigate(['/home']),
+      (response) => this.router.navigate(['/login']),
       (error) => alert("Wrong Credentials")
     );
   }
