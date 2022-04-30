@@ -12,4 +12,14 @@ export class Users {
     activeMenu: Menu;
     storedRecipes: Recipes[];
     soredDiets: Diet[];
+
+    isHealthy(){
+      var score = this.activeMenu.getScore();
+      if (score<5){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
 }

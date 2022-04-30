@@ -13,22 +13,21 @@ export class UsersService {
   getMyProfile(){
     return this.http.get<Users>("api/users/me")
   }
-
   getUser(id: Number){
     return this.http.get<Users>("api/users/" + id)
   }
-
   register(user: Users){
     return this.http.post<Users>("api/users/new", user)
   }
-
+  getNumberOfUser(){
+    return this.http.get<Users[]>("api/users/all")
+  }
   getUserRecipes(){
     return this.http.get<Recipes[]>("api/users/recipes")
   }
   getUserMenu(){
     return this.http.get("api/users/menu")
   }
-
   getUserDiets(){
     return this.http.get("api/users/diets")
   }

@@ -47,7 +47,7 @@
                               <li><a (click)="goToRecipes()"> Recipes</a></li>
                               <li><a (click)="goToAboutUs()"> About Us</a></li>
                               <li *ngIf="isLogged()"><a (click)="goToHome()"> User</a></li>
-                              <li *ngIf="isAdmin()"> <a (click)="goToHome()"> Admin</a></li>
+                              <li *ngIf="isAdmin()"> <a (click)="goToAdmin()"> Admin</a></li>
                           </ul>
                       </div>
                   </nav>
