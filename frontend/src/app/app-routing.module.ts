@@ -32,7 +32,7 @@ const routes: Routes = [
   {path:'recipestored',component: RecipestoredComponent},
   {path:'menuactive',component: MenuactiveComponent},
   {path:'menuall',component: MenuallComponent},
-  {path:'menuloader',component: MenuloaderComponent},
+  {path:'menuloader/:id',component: MenuloaderComponent},
   {path:'menumaker',component: MenumakerComponent},
   {path:'dietmaker',component: DietmakerComponent},
   {path:'dietstored',component: DietstoredComponent},
