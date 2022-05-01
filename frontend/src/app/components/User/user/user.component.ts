@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/models/Users/users';
@@ -13,7 +14,7 @@ export class UserComponent{
 
   user: Users;
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute,public usersService : UsersService, private loginService:LoginService) {
+  constructor(private router: Router, private http: HttpClient, activatedRoute: ActivatedRoute,public usersService : UsersService, private loginService:LoginService) {
     this.user = loginService.currentUser();
 
 
@@ -43,7 +44,14 @@ export class UserComponent{
     this.router.navigate(['/recipestored'])
   }
 
-  logOut(){
-
+  logout(){
+    this.loginService.logOut().subscribe(
+      response =>{
+        console.log(response);
+        this.loginService.logged = false;
+        this.router.navigate(["/home"]);
+      },
+      error => console.log(error)
+    );
   }
 }

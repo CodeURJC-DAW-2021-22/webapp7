@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Users } from 'src/app/models/Users/users';
 import { LoginService } from 'src/app/services/Login/login.service';
 import { UsersService } from 'src/app/services/Users/users.service';
@@ -13,7 +15,7 @@ export class AdminComponent {
   Users: Users[];
   healthyUsers: number;
   unhealthyUsers: number;
-  constructor(private loginService: LoginService, private userService:UsersService) {
+  constructor(private router: Router, private http: HttpClient, private loginService: LoginService, private userService:UsersService) {
 
     this.admin = loginService.currentUser();
 
@@ -37,8 +39,13 @@ export class AdminComponent {
     }
 
   logOut(){
-    this.loginService.logOut();
+    this.loginService.logOut().subscribe(
+      response => {
+        console.log(response);
+        this.loginService.logged = false;
+        this.router.navigate(["/home"]);
+      },
+      error => console.log(error)
+    );
   }
-
-
 }

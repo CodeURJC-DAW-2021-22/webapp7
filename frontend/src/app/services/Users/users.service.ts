@@ -10,7 +10,9 @@ import { RecipesService } from '../Recipes/recipes.service';
   providedIn: 'root'
 })
 export class UsersService {
-  menu : Menu;
+
+  private menu : Menu;
+
   constructor(private http: HttpClient, private recipeService:RecipesService) { }
 
   getMyProfile(){
