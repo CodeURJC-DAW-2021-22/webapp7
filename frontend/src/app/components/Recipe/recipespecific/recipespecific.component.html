@@ -16,11 +16,12 @@
      <p>Cook Time: {{recipe.cookTime}}</p>
      <p>Dificulty: {{recipe.difficulty}}</p>
      <h5>{{recipe.uploadDate}} | {{recipe.creator}}</h5>
-       <form *ngIf="loginService.isLogged() && recipeIsStored()==false" method="post">
+     <div *ngIf="loginService.isLogged()">
+       <form  *ngIf="!stored">
           <input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}}>
           <input type="submit" class="btn btn-danger" id="btnSaveRecipe" (click)="storeRecipe()" value="Save Recipe"/>
        </form>
-       <form *ngIf="loginService.isLogged() && recipeIsStored()==true">
+       <form *ngIf="stored">
         <input type="submit" class="btn btn-danger" id="btnDisable" value="Already Saved" disabled/>
        </form>
 
@@ -29,6 +30,7 @@
           <input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
        </form>
        <button *ngIf="loginService.isAdmin()" class="btn btn-danger"><a [routerLink]="['/home']">Update Recipe</a></button>
+     </div>
      </div>
    </div>
     </div>
