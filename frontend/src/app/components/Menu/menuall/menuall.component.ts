@@ -26,4 +26,8 @@ export class MenuallComponent implements OnInit {
     );
   }
 
+  menuID(id:number): void{
+    this.router.navigate(['/menuloader/:id']);
+  }
+
 }

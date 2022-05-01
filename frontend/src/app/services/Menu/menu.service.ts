@@ -14,7 +14,7 @@ export class MenuService {
   }
 
   getMenu(id: Number){
-    return this.http.get("/api/menus" + id)
+    return this.http.get<Menu>("/api/menus/" + id)
   }
 
   menuMaker(name: string, lunchMonday: number, lunchTuesday: number, lunchWednesday: number, lunchThursday: number, lunchFriday: number, lunchSaturday: number, lunchSunday: number, dinnerMonday: number, dinnerTuesday: number, dinnerWednesday: number, dinnerThursday: number, dinnerFriday: number, dinnerSaturday: number, dinnerSunday: number){

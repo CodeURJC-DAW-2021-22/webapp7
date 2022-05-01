@@ -29,10 +29,10 @@ public class MenuRestController {
 
 
     @GetMapping("/")
-    public ResponseEntity<Page<Menu>> getMenu_All(HttpServletRequest request, Pageable page){
+    public ResponseEntity<List<Menu>> getMenu_All(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         if (principal != null){
-            Page<Menu> menuPage = menuService.findAllMenu(page);
+            List<Menu> menuPage = menuService.findAll();
             return new ResponseEntity<>(menuPage, HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
