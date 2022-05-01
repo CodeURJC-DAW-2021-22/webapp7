@@ -1,8 +1,8 @@
 import { Recipes } from "../Recipes/recipes";
 
 export class Menu {
-    id: Number;
-    name: String;
+    id: number;
+    name: string;
     weeklyPlan: Recipes[];
     //scoreArray: number[]= [0,0,0,0,0];
     healthy: boolean;
