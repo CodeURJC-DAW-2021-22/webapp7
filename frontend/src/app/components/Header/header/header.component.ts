@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   goToLogout(){
-    this.router.navigate(['/home'])
+    this.router.navigate(['/user'])
   }
 
   ngOnInit(): void {

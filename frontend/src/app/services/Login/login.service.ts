@@ -1,7 +1,6 @@
 import { Users } from '../../models/Users/users';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pipe } from 'rxjs';
 import { Recipes } from '../../models/Recipes/recipes';
 import { RecipesService } from '../Recipes/recipes.service';
 import { UsersService } from '../Users/users.service';
