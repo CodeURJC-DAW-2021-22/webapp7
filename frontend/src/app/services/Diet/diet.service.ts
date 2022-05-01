@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Diet } from 'src/app/models/Diet/diet';
+import { Menu } from 'src/app/models/Menu/menu';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,10 @@ export class DietService {
     return this.http.get<Diet>("/api/diets/" + id)
   }
 
-  dietMaker(){
-    return this.http.get("/api/diets/new")
+  dietMaker(name: string, menuList: number[]){
+    let data ={name: name, menuList: menuList};
+    return this.http.post("/api/diets/new", {}, {params: data})
+
   }
 
   dietEditor(id: Number){

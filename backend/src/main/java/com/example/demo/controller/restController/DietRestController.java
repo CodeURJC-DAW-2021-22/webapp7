@@ -61,11 +61,17 @@ public class DietRestController {
 
 
     @PostMapping("/new")
-    public ResponseEntity<Diet> processFormDiet(HttpServletRequest request,@RequestParam String name){
+    public ResponseEntity<Diet> processFormDiet(HttpServletRequest request,@RequestParam String name, @RequestParam (required = false) List<Long> menuList){
         Principal principal = request.getUserPrincipal();
         if (principal != null) {
             User currentUser = userService.findByName(principal.getName()).orElseThrow();
             Diet dietNew = new Diet(name, dietCreate);
+            if(menuList != null){
+                for (long menuId: menuList) {
+                    Optional<Menu> menu = menuService.findById(menuId);
+                    dietNew.addtoDiet(menu.get());
+                }
+            }
             currentUser.addStoredDiets(dietNew);
             dietService.save(dietNew);
             userService.save(currentUser);
