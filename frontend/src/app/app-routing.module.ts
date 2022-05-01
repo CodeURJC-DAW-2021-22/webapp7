@@ -19,6 +19,7 @@ import { HomeComponent } from './components/Home/home/home.component';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/Header/header/header.component';
 import { FooterComponent } from './components/Footer/footer/footer.component';
+import { DietloaderComponent } from './components/Diet/dietloader/dietloader.component';
 
 const routes: Routes = [
   {path:'admin',component: AdminComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path:'menuloader/:id',component: MenuloaderComponent},
   {path:'menumaker',component: MenumakerComponent},
   {path:'dietmaker',component: DietmakerComponent},
+  {path:'dietloader/:id',component: DietloaderComponent},
   {path:'dietstored',component: DietstoredComponent},
   {path:'home',component: HomeComponent},
   {path:'header', component: HeaderComponent},

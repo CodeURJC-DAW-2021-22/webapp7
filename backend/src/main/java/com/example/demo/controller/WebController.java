@@ -214,11 +214,11 @@ public class WebController {
         Optional<Diet> d = dietService.findById(id);
         List<Menu> menuList = new ArrayList<>();
         if (d.isPresent())
-            for (Menu m : d.get().getDieta()){
+            for (Menu m : d.get().getMenus()){
                 if (!menuList.contains(m))
                     menuList.add(m);
             }
-            model.addAttribute("DietName",d.get().getNombre());
+            model.addAttribute("DietName",d.get().getName());
             model.addAttribute("menuList",menuList);
         return "diet";
     }

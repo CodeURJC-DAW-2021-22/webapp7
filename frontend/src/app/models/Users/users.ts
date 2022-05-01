@@ -11,7 +11,7 @@ export class Users {
 
     activeMenu: Menu;
     storedRecipes: Recipes[];
-    soredDiets: Diet[];
+    storedDiets: Diet[];
 
     isHealthy(){
       var score = this.activeMenu.getScore();

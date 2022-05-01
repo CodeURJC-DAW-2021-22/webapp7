@@ -1,0 +1,17 @@
+<app-header></app-header>
+<div class="bp_2 clearfix">
+    <div class="col-sm-3 space_all prueba" *ngFor="let menu of menus">
+     <div class="bp_2m clearfix">
+         <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
+                 <div class="caption">
+                   <div class="blur"></div>
+                     <div class="caption-text">
+                       <h3 style="border-top:2px solid white; padding-top:20px;"><a [routerLink]="['/menuloader', menu.id]">{{menu?.name}}</a></h3>
+                       <p style="margin-top:50px;"><a [routerLink]="['/menuloader', menu.id]">Show Recipe</a></p>
+                     </div>
+                 </div>
+         </div>
+     </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -12,35 +12,35 @@ public class Diet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nombre;
+    private String name;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Menu> dieta;
+    private List<Menu> menus;
 
 
     public Diet() {
-        this.dieta=new ArrayList<Menu>();
+        this.menus=new ArrayList<Menu>();
     }
-    public Diet(String nombre, List<Menu> listaMenus){
-        this.dieta=listaMenus;
-        this.nombre=nombre;
-    }
-
-    public List<Menu> getDieta() {
-        return dieta;
+    public Diet(String name, List<Menu> listaMenus){
+        this.menus=listaMenus;
+        this.name=name;
     }
 
-    public void setDieta(ArrayList<Menu> dieta) {
-        this.dieta = dieta;
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(ArrayList<Menu> menus) {
+        this.menus = menus;
     }
 
     public void addtoDiet(Menu newMenu){
-        dieta.add(newMenu);
+        menus.add(newMenu);
     }
 
     public void removeMenuFromDiet(Menu m){
-        dieta.remove(m);
+        menus.remove(m);
     }
 
     public Long getId() {
@@ -51,15 +51,15 @@ public class Diet {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setDieta(List<Menu> dieta) {
-        this.dieta = dieta;
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 }

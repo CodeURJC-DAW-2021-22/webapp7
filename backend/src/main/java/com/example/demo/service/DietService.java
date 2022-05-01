@@ -20,7 +20,7 @@ public class DietService {
     }
 
     public Optional<Diet> findById(long id) {
-        return repository.findById(id);
+        return repository.findDietById(id);
     }
 
     public boolean exist(long id) {

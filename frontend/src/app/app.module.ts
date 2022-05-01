@@ -22,6 +22,7 @@ import { FooterComponent } from './components/Footer/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/Login/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { DietloaderComponent } from './components/Diet/dietloader/dietloader.component';
 
 
 
@@ -42,6 +43,7 @@ import { FormsModule } from '@angular/forms';
     MenumakerComponent,
     DietmakerComponent,
     DietstoredComponent,
+    DietloaderComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
