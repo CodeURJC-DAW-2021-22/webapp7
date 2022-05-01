@@ -1,7 +1,7 @@
 <app-header></app-header>
-<h1 style= "text-align: center;">USER: </h1>
+<h1 style= "text-align: center;">USER: {{user.name}} </h1>
 	   <div>
-		<p>e-mail: </p>
+		<p style="text-align: left">e-mail: {{user.mail}} </p>
 		<ul class= "User Links" style= "text-align: center; list-style-type: none;">
 			<li><a (click)="goToActiveMenu()"><h4>Active Menu</h4></a></li>
 			<li><a (click)="goToDietMaker()"><h4>Diet Maker</h4></a></li>

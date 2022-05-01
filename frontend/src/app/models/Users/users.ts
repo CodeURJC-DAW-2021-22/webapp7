@@ -14,7 +14,7 @@ export class Users {
     soredDiets: Diet[];
 
     isHealthy(){
-      var score = this.activeMenu.getScore();
+      var score = this.activeMenu.score;
       if (score<5){
         return false;
       }
