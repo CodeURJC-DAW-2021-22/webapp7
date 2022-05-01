@@ -4,10 +4,12 @@ export class Menu {
     id: Number;
     name: String;
     weeklyPlan: Recipes[];
-    score: number[]= [0,0,0,0,0];
+    //scoreArray: number[]= [0,0,0,0,0];
+    healthy: boolean;
+    score: number;
 
 
-    getScore(){
+    /*getScore(){
       var total = this.weeklyPlan.length;
       for(let i = 0; i < total;i++){
         if(this.weeklyPlan[i].vegetbales){
@@ -32,5 +34,5 @@ export class Menu {
 
 
 
-    }
+    }*/
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Users } from 'src/app/models/Users/users';
 import { LoginService } from 'src/app/services/Login/login.service';
 import { UsersService } from 'src/app/services/Users/users.service';
 
@@ -10,7 +11,13 @@ import { UsersService } from 'src/app/services/Users/users.service';
 })
 export class UserComponent{
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute,public usersService : UsersService, private loginService:LoginService) { }
+  user: Users;
+
+  constructor(private router: Router, activatedRoute: ActivatedRoute,public usersService : UsersService, private loginService:LoginService) {
+    this.user = loginService.currentUser();
+
+
+   }
 
   goToActiveMenu(){
     this.router.navigate(['/menuactive'])

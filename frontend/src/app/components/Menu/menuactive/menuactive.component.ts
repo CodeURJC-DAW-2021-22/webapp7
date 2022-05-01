@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Menu } from 'src/app/models/Menu/menu';
 import { Recipes } from 'src/app/models/Recipes/recipes';
 import { Users } from 'src/app/models/Users/users';
 import { LoginService } from 'src/app/services/Login/login.service';
+import { MenuService } from 'src/app/services/Menu/menu.service';
+import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 import { UsersService } from 'src/app/services/Users/users.service';
 
 @Component({
@@ -11,49 +12,41 @@ import { UsersService } from 'src/app/services/Users/users.service';
   templateUrl: './menuactive.component.html',
   styleUrls: ['./menuactive.component.css']
 })
-export class MenuactiveComponent{
-
-  
-  menu: Menu;
+export class MenuactiveComponent implements OnInit {
   user: Users;
+  menu : Menu;
+  recipeAux : Recipes;
+  lunchs : Recipes[] = [];
+  dinners: Recipes[]= [];
 
-  lunches: Recipes[];
-  dinners: Recipes[];
-
-  constructor(private router:Router,activatedRoute: ActivatedRoute, public loginService: LoginService, private userService: UsersService) {
-    const id = activatedRoute.snapshot.params['id'];
+  constructor(loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.user = loginService.currentUser();
-    
-    userService.getUserMenu().subscribe(
-      response => {
-        this.menu = response;
-        this.lunches = this.getLunch(this.menu);
-        this.dinners = this.getDinner(this.menu);
-      },
-        error => console.error(error)
-    );
-  }
+    this.menu = this.user.activeMenu;
 
-  getLunch(menu: Menu){
-    var lunch: Recipes[] = [];
-    var n = menu.weeklyPlan.length - 1;
-    var i = 0;
-    while(i<n){
-        lunch.push(menu.weeklyPlan[i]);
-        i=i+2;
-    }
-    return lunch;
-  }
+    this.lunchs.push(this.menu.weeklyPlan[0]);
+    this.lunchs.push(this.menu.weeklyPlan[2]);
+    this.lunchs.push(this.menu.weeklyPlan[4]);
+    this.lunchs.push(this.menu.weeklyPlan[6]);
+    this.lunchs.push(this.menu.weeklyPlan[8]);
+    this.lunchs.push(this.menu.weeklyPlan[10]);
+    this.lunchs.push(this.menu.weeklyPlan[12]);
 
-  getDinner(menu: Menu){
-      var dinner: Recipes[] = [];
-      var n = menu.weeklyPlan.length - 1;
-      var i = 1;
-      while(i<=n){
-          dinner.push(menu.weeklyPlan[i]);
-          i=i+2;
-      }
-      return dinner;
-  }
+    this.dinners.push(this.menu.weeklyPlan[1]);
+    this.dinners.push(this.menu.weeklyPlan[3]);
+    this.dinners.push(this.menu.weeklyPlan[5]);
+    this.dinners.push(this.menu.weeklyPlan[7]);
+    this.dinners.push(this.menu.weeklyPlan[9]);
+    this.dinners.push(this.menu.weeklyPlan[11]);
+    this.dinners.push(this.menu.weeklyPlan[13]);
 
+   }
+
+  ngOnInit(): void {
+  }
+  isHealthy(){
+    return this.menu.healthy;
+  }
+  isActive(){
+    return this.user.activeMenu.id== this.menu.id;
+  }
 }

@@ -1,5 +1,5 @@
 export class Recipes {
-  id?: number;
+  id: number;
   preparation:string;
   name: string;
   cookTime: number;
