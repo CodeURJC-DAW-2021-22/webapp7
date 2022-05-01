@@ -18,7 +18,7 @@
        <h1 style= "text-align: center;">ADMIN: {{admin.name}}</h1>
       </div>
      <ul class= "User Links" style= "text-align: center; list-style-type: none;">
-       <li><a href="/RecipeMaker"><h4>Make Recipe</h4></a></li>
+       <li><a [routerLink]="['/recipemaker']"><h4>Make Recipe</h4></a></li>
              <li> <p>Users data:</p>
                          <p>Total Users: {{Users.length}}  </p>
                          <p>Healthy Users: {{healthyUsers}} </p>

@@ -7,6 +7,8 @@ import com.example.demo.model.User;
 import com.example.demo.security.RepositoryUserDetailsService;
 import com.example.demo.security.jwt.RegisterRequest;
 import com.example.demo.service.MenuService;
+import com.example.demo.service.RecipeService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,8 @@ public class UserRestController {
     @Autowired
     private RepositoryUserDetailsService userService;
 
+    @Autowired
+    private RecipeService recipeService;
 
     private User user;
 
@@ -87,6 +91,21 @@ public class UserRestController {
         if (userPrincipal.isPresent()) {
             User user = userPrincipal.get();
             return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/recipe/{id}")
+    public ResponseEntity<Recipe> addRecipe(HttpServletRequest request, @PathVariable long id) {
+        Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            User user = userService.findByName(principal.getName()).orElseThrow();
+            Optional<Recipe> recipe = recipeService.findById(id);
+
+            user.addStoredRecipes(recipe.get());
+            userService.save(user);
+            return new ResponseEntity<>(recipe.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

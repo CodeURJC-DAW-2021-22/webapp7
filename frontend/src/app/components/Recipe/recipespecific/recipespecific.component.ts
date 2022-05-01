@@ -15,6 +15,7 @@ export class RecipespecificComponent{
 
   recipe: Recipes;
   user: Users;
+  stored: boolean;
 
   constructor(private router:Router,activatedRoute: ActivatedRoute, private service:RecipesService, public loginService: LoginService, private userService: UsersService) {
     const id = activatedRoute.snapshot.params['id'];
@@ -30,10 +31,10 @@ export class RecipespecificComponent{
     service.getRecipe(id).subscribe(
       response => {
         this.recipe = response;
+        this.recipeIsStored();
       },
         error => console.error(error)
     );
-
    }
 
 
@@ -42,11 +43,18 @@ export class RecipespecificComponent{
 
 
    storeRecipe(){
-     this.loginService.user.storedRecipes.push(this.recipe);
+    this.userService.addRecipe(this.recipe.id);
+    this.stored = true;
    }
 
    recipeIsStored(){
-     return this.user.storedRecipes.indexOf(this.recipe) > -1;
+    var storeRecipes = this.user.storedRecipes;
+    this.stored = false;
+    for(let index of storeRecipes){
+      if(index.id == this.recipe.id){
+        this.stored = true;
+      }
+    }
    }
    hasVegetables(){
      return this.recipe.vegetbales;
@@ -63,5 +71,7 @@ export class RecipespecificComponent{
    hasHydrates(){
      return this.recipe.hydrates;
    }
+
+
 
 }
