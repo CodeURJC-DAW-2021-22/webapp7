@@ -22,6 +22,11 @@ export class UsersService {
   register(user: Users){
     return this.http.post<Users>("api/users/new", user)
   }
+
+  addRecipe(id: number| undefined) {
+    return this.http.put("api/users/recipe/" + id, {}, {}).subscribe(console.log)
+  }
+
   getNumberOfUser(){
     return this.http.get<Users[]>("api/users/all")
   }
