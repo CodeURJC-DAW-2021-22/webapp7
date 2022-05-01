@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Menu } from 'src/app/models/Menu/menu';
 import { Recipes } from 'src/app/models/Recipes/recipes';
 import { Users } from 'src/app/models/Users/users';
 
@@ -26,7 +27,7 @@ export class UsersService {
     return this.http.get<Recipes[]>("api/users/recipes")
   }
   getUserMenu(){
-    return this.http.get("api/users/menu")
+    return this.http.get<Menu>("api/users/menu")
   }
   getUserDiets(){
     return this.http.get("api/users/diets")

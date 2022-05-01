@@ -1,3 +1,28 @@
 <app-header></app-header>
-<p>Esto es la página de menú activo</p>
+<div class="detail_nr clearfix">
+    <h1>{{menu.name}}</h1>
+</div>
+<div>
+    <table class="table-fill">
+        <thead>
+        <tr>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        <tr>
+            <td class="text-left" *ngFor="let lunch of lunches"><a [routerLink]="['/recipespecific', lunch.id]">{{lunch?.name}}</a></td>
+        </tr>
+        <tr>
+            <td class="text-left" *ngFor="let dinner of dinners"><a [routerLink]="['/recipespecific', dinner.id]">{{dinner?.name}}</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <app-footer></app-footer>
