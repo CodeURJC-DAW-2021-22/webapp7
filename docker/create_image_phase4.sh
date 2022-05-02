@@ -11,7 +11,7 @@
 echo "Compiling Angular frontend"
 cd ../frontend
 sudo docker run --rm -v "$PWD":/usr/src/app -w /usr/src/app node:16.0.0 /bin/bash -c "npm install && npm run build --prod --base-href='/new/'"
-mkdir ../backend/src/main/resources/static
+mkdir ../backend/src/main/resources/static/new
 cd ../backend/src/main/resources/static
 rm -rf new
 mkdir new

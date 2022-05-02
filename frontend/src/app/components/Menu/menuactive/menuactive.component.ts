@@ -102,7 +102,7 @@ export class MenuactiveComponent implements OnInit {
         this.barChartData = [
           {
             data: [ this.vegetablesMenu, this.vegetablesStandard, this.proteinMenu, this.proteinStandard, this.hydratesMenu, this.hydratesStandard, this.carboHydratesMenu, this.carboHydratesStandard, this.highInFatMenu, this.highInFatStandard],
-            label: 'Score',
+            label: 'How healthy is your menu?',
             backgroundColor: ["red", "red", "blue", "blue", "brown", "brown", "yellow", "yellow", "green", "green"]
           }
         ];

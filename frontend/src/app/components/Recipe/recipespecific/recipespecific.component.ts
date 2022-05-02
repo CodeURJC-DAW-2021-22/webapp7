@@ -80,4 +80,8 @@ export class RecipespecificComponent{
     this.router.navigate(['/recipeupdater/:id']);
   }
 
+   downloadImage(){
+    return  this.recipeService.downloadImage(this.recipe);
+   }
+
 }
