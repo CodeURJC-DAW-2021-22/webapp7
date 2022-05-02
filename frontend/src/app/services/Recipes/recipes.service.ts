@@ -38,8 +38,8 @@ export class RecipesService {
     return this.http.put("/api/recipes/" + id, {},{params: data})
   }
 
-  uploadImage(id: Number, image: FormData){
-    return this.http.post("/api/recipes/" + id + "/image", image)
+  uploadImage(id: Number, imageRecipe: FormData){
+    return this.http.post("/api/recipes/" + id + "/image", imageRecipe)
   }
 
   downloadImage(id: Number){

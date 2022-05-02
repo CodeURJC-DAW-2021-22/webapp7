@@ -29,7 +29,7 @@
 
           <p>Preparation: </p>
           <textarea [(ngModel)]="preparation" placeholder={{oldRecipe.preparation}}  name="preparation"></textarea>
-         
+
           <p>Vegetables: <input type="checkbox" [(ngModel)]="vegetables" name="vagetables"></p>
 
           <p>Protein: <input type="checkbox" [(ngModel)]="protein" name="protein"></p>
@@ -40,9 +40,14 @@
 
           <p>High in fat: <input type="checkbox" [(ngModel)]="highinfat"name="highinfat"></p>
 
+          <p>Image:</p>
+          <img src="https://localhost:8443/api/recipes/{{oldRecipe.id}}/image" class="fotoReceta" alt="abc">
+          <input  name= "recipeImage" type="file" accept="image/*" (change)="onFileSelected($event)">
+
           <p>
             <button (click)="cancel()">Cancel</button>
             <button (click)="save()">Save</button>
+            <button (click)="uploadImage()">Upload Image</button>
           </p>
         </div>
     </form>
