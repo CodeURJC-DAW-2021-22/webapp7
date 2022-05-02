@@ -53,8 +53,8 @@ export class LoginService {
   logOut(){
     return this.http.get("/api/auth/logout")
   }
-  refresh(user: Users){
-    return this.http.post<Users>("/api/auth/refresh", user)
+  refresh(){
+    return this.http.post<Users>("/api/auth/refresh",{withCredentials:true})
   }
 
   /*constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
