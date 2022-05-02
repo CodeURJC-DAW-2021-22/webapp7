@@ -338,15 +338,15 @@ You can check the API REST documentation in the next links:
   **Phase 4:**
 
 
-  - **Rodrigo Marqués Buil**:
+- **Rodrigo Marqués Buil**:
 
 
-  - **Hugo Coto González**:
+- **Hugo Coto González**:
 
 
-  - **Carlos Alejandro Álvarez**:
+- **Carlos Alejandro Álvarez**:
 
 
-  - **Carlos Rodríguez Gómez**:
+- **Carlos Rodríguez Gómez**:
 
   
