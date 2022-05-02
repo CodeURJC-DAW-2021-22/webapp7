@@ -16,9 +16,10 @@ export class RecipespecificComponent{
   recipe: Recipes;
   user: Users;
   stored: boolean;
+  id: number;
 
-  constructor(private router:Router,activatedRoute: ActivatedRoute, private service:RecipesService, public loginService: LoginService, private userService: UsersService) {
-    const id = activatedRoute.snapshot.params['id'];
+  constructor(private router:Router,activatedRoute: ActivatedRoute, private recipeService:RecipesService, public loginService: LoginService, private userService: UsersService) {
+    this.id = activatedRoute.snapshot.params['id'];
     this.user = loginService.currentUser();
     //hasta que no esté hecho el login no va a funcionar
     userService.getUserRecipes().subscribe(
@@ -28,7 +29,7 @@ export class RecipespecificComponent{
       error => console.error(error)
     );
 
-    service.getRecipe(id).subscribe(
+    recipeService.getRecipe(this.id).subscribe(
       response => {
         this.recipe = response;
         this.recipeIsStored();
@@ -38,9 +39,12 @@ export class RecipespecificComponent{
    }
 
 
-
-
-
+   deleteRecipe(){
+    this.recipeService.deleteRecipe(this.id).subscribe(
+      (response: any) => this.router.navigate(['/recipeall']),
+      (error: any) => alert("Something gone wrong")
+    );
+   }
 
    storeRecipe(){
     this.userService.addRecipe(this.recipe.id);

@@ -26,8 +26,8 @@
        </form>
 
        <form *ngIf="loginService.isAdmin()" action="/processDeleteRecipe" method="post">
-          <input type="hidden" id="id_RecipeDelete" name="id_RecipeDelete" value={{recipe.id}} >
-          <input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
+        <input type="hidden" id="id_Recipe" name="id_Recipe" value={{recipe.id}}>
+          <input type="submit" class="btn btn-danger" id="btnSaveRecipe" (click)="deleteRecipe()" value="Delete Recipe"/>
        </form>
        <button *ngIf="loginService.isAdmin()" class="btn btn-danger"><a [routerLink]="['/recipeupdater', recipe.id]">Update Recipe</a></button>
      </div>
