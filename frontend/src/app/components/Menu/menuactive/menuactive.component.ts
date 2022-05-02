@@ -21,10 +21,7 @@ export class MenuactiveComponent implements OnInit {
 
   constructor(private loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.user = loginService.currentUser();
-    userService.getUserMenu().subscribe(
-      response => {
-        this.menu = response;
-
+    this.menu = loginService.currentUser().activeMenu;
         this.lunchs.push(this.menu.weeklyPlan[0]);
         this.lunchs.push(this.menu.weeklyPlan[2]);
         this.lunchs.push(this.menu.weeklyPlan[4]);
@@ -40,9 +37,6 @@ export class MenuactiveComponent implements OnInit {
         this.dinners.push(this.menu.weeklyPlan[9]);
         this.dinners.push(this.menu.weeklyPlan[11]);
         this.dinners.push(this.menu.weeklyPlan[13]);
-      },
-      error => console.error(error)
-    );
   }
 
   ngOnInit(): void {

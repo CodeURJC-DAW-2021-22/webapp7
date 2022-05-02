@@ -17,13 +17,8 @@ export class DietstoredComponent {
   user: Users;
 
   constructor(private router:Router,activatedRoute: ActivatedRoute, private usersService: UsersService,private loginService: LoginService) {
-    usersService.getUserDiets().subscribe(
-      response => {
-        this.diets = response;
-        this.copyDiets(this.diets);
-      },
-        error => console.error(error)
-    );
+
+    this.diets = loginService.currentUser().storedDiets;
   }
 
   copyDiets(diet: Diet[]){
