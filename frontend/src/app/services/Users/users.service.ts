@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Diet } from 'src/app/models/Diet/diet';
-import { Menu } from 'src/app/models/Menu/menu';
-import { Recipes } from 'src/app/models/Recipes/recipes';
-import { Users } from 'src/app/models/Users/users';
+import { Diet } from '../../models/Diet/diet';
+import { Menu } from '../../models/Menu/menu';
+import { Recipes } from '../../models/Recipes/recipes';
+import { Users } from '../../models/Users/users';
 import { RecipesService } from '../Recipes/recipes.service';
 
 @Injectable({
