@@ -24,6 +24,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/Login/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { DietloaderComponent } from './components/Diet/dietloader/dietloader.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -55,7 +56,8 @@ import { DietloaderComponent } from './components/Diet/dietloader/dietloader.com
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule, 
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
