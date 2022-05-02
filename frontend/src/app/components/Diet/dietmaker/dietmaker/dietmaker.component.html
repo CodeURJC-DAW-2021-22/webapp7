@@ -1,11 +1,11 @@
-<app-header></app-header>
-<div class="col-sm-11">
+<app-header *ngIf="isLogged()"></app-header>
+<div *ngIf="isLogged()" class="col-sm-11">
     <h2>Diet</h2>
     <label>Name: </label>
     <input [(ngModel)]="name" type="text" placeholder="name" required>
 </div>
 
-<div class="bp_2 clearfix">
+<div *ngIf="isLogged()" class="bp_2 clearfix">
     <div class="col-sm-3 space_all prueba" *ngFor="let menu of menusActive">
      <div id= menu.name>
          <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
@@ -17,7 +17,7 @@
      </div>
     </div>
 </div>
-<div class="bp_2 clearfix">
+<div *ngIf="isLogged()" class="bp_2 clearfix">
     <div class="col-sm-3 space_all prueba" *ngFor="let menu of menusDesactive">
      <div id= menu.name>
          <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
@@ -29,7 +29,8 @@
      </div>
     </div>
 </div>
-<div class="col-sm-11">
+<div *ngIf="isLogged()" class="col-sm-11">
     <button (click)="save()">Save</button>
 </div>
-<app-footer></app-footer>
+<app-footer *ngIf="isLogged()"></app-footer>
+<app-error *ngIf="isLogged()==false"></app-error>

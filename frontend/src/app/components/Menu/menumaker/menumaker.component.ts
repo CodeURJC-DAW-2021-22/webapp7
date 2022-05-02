@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipes } from 'src/app/models/Recipes/recipes';
+import { LoginService } from 'src/app/services/Login/login.service';
 import { MenuService } from 'src/app/services/Menu/menu.service';
 import { UsersService } from 'src/app/services/Users/users.service';
 
@@ -32,7 +33,7 @@ export class MenumakerComponent implements OnInit{
   dinnerSaturday: number;
   dinnerSunday: number;
 
-  constructor(private router:Router,public usersService : UsersService, private menuService:MenuService) { }
+  constructor(private loginService:LoginService ,private router:Router,public usersService : UsersService, private menuService:MenuService) { }
 
   ngOnInit(): void {
     this.usersService.getUserRecipes().subscribe(
@@ -50,5 +51,8 @@ export class MenumakerComponent implements OnInit{
       (response: any) => this.router.navigate(['/user']),
       (error: any) => alert("Something gone wrong")
     );
+  }
+  isLogged(){
+    return this.loginService.isLogged();
   }
 }

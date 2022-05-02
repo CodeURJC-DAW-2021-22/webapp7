@@ -17,7 +17,7 @@ export class DietstoredComponent {
   copy: Diet[];
   user: Users;
 
-  constructor(private router:Router,activatedRoute: ActivatedRoute, private usersService: UsersService) {
+  constructor(private router:Router,activatedRoute: ActivatedRoute, private usersService: UsersService,private loginService: LoginService) {
     usersService.getUserDiets().subscribe(
       response => {
         this.diets = response;
@@ -33,6 +33,9 @@ export class DietstoredComponent {
 
   dietID(id:number): void{
     this.router.navigate(['/dietloader/:id']);
+  }
+  isLogged(){
+    return this.loginService.isLogged();
   }
 
 

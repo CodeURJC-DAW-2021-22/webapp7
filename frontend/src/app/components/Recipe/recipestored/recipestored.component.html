@@ -1,5 +1,5 @@
-<app-header></app-header>
-<div class="bp_2 clearfix">
+<app-header *ngIf="isLogged()"></app-header>
+<div *ngIf="isLogged()" class="bp_2 clearfix">
     <div class="col-sm-3 space_all prueba" *ngFor="let recipe of recipes">
      <div class="bp_2m clearfix">
          <div class="cuadro_intro_hover" style="background-color:#cccccc; height:250px;">
@@ -15,4 +15,5 @@
      </div>
     </div>
 </div>
-<app-footer></app-footer>
+<app-footer *ngIf="isLogged()"></app-footer>
+<app-error *ngIf="isLogged()==false"></app-error>
