@@ -1,6 +1,7 @@
-<app-header></app-header>
+<app-header *ngIf="isLogged()"></app-header>
 
-        <ul class= "User Links" style= "text-align: center; list-style-type: none;">
+        <ul *ngIf="isLogged()" class= "User Links" style= "text-align: center; list-style-type: none;">
             <li *ngFor="let diet of diets"><a [routerLink]="['/dietloader', diet.id]"><h4>{{diet?.name}}</h4></a></li>
         </ul>
-<app-footer></app-footer>
+<app-footer *ngIf="isLogged()"></app-footer>
+<app-error *ngIf="isLogged()==false"></app-error>

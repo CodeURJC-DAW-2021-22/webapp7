@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu } from 'src/app/models/Menu/menu';
+import { LoginService } from 'src/app/services/Login/login.service';
 import { MenuService } from 'src/app/services/Menu/menu.service';
 
 @Component({
@@ -12,8 +13,8 @@ export class MenuallComponent implements OnInit {
 
   menus: Menu[];
   copy: Menu[];
-  
-  constructor(private router:Router, private menuservice:MenuService) { }
+
+  constructor(private router:Router, private menuservice:MenuService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.menuservice.getAllMenus().subscribe(
@@ -28,6 +29,9 @@ export class MenuallComponent implements OnInit {
 
   menuID(id:number): void{
     this.router.navigate(['/menuloader/:id']);
+  }
+  isLogged(){
+    return this.loginService.isLogged();
   }
 
 }

@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header *ngIf="isLogged()"></app-header>
 
-<section id="blog" class="clearfix">
+<section *ngIf="isLogged()" id="blog" class="clearfix">
   <ul class="User Links" style= "text-align: center;">
       <h1>Your active menu: {{menu.name}}</h1>
   </ul>
@@ -69,4 +69,5 @@
       </div>
   </div>
 </section>
-<app-footer></app-footer>
+<app-footer *ngIf="isLogged()"></app-footer>
+<app-error *ngIf="isLogged()==false"></app-error>

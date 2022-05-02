@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/Login/login.service';
-import { RecipesService } from 'src/app/services/Recipes/recipes.service';
+import { RecipesService } from './../../../services/Recipes/recipes.service';
 
 @Component({
   selector: 'app-recipemaker',

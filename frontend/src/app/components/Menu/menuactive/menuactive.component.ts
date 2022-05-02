@@ -19,7 +19,7 @@ export class MenuactiveComponent implements OnInit {
   lunchs : Recipes[] = [];
   dinners: Recipes[]= [];
 
-  constructor(loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
+  constructor(private loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.user = loginService.currentUser();
     userService.getUserMenu().subscribe(
       response => {
@@ -41,8 +41,8 @@ export class MenuactiveComponent implements OnInit {
         this.dinners.push(this.menu.weeklyPlan[11]);
         this.dinners.push(this.menu.weeklyPlan[13]);
       },
-      error => console.error(error) 
-    );  
+      error => console.error(error)
+    );
   }
 
   ngOnInit(): void {
@@ -52,5 +52,8 @@ export class MenuactiveComponent implements OnInit {
   }
   isActive(){
     return this.user.activeMenu.id== this.menu.id;
+  }
+  isLogged(){
+    return this.loginService.isLogged();
   }
 }

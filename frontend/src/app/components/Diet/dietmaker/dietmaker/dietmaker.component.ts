@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu } from 'src/app/models/Menu/menu';
 import { DietService } from 'src/app/services/Diet/diet.service';
+import { LoginService } from 'src/app/services/Login/login.service';
 import { MenuService } from 'src/app/services/Menu/menu.service';
 import { UsersService } from 'src/app/services/Users/users.service';
 
@@ -17,8 +18,8 @@ export class DietmakerComponent implements OnInit {
   menusActive: Menu[] = [];
   menusDesactive: Menu[];
   menu: Menu;
-  
-  constructor(private router:Router, private menuservice:MenuService, private dietService: DietService) { }
+
+  constructor(private loginService:LoginService ,private router:Router, private menuservice:MenuService, private dietService: DietService) { }
 
   ngOnInit(): void {
     this.menuservice.getAllMenus().subscribe(
@@ -69,5 +70,9 @@ export class DietmakerComponent implements OnInit {
       (response: any) => this.router.navigate(['/user']),
       (error: any) => alert("Something gone wrong")
     );
+  }
+
+  isLogged(){
+    return this.loginService.isLogged();
   }
 }
