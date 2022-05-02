@@ -14,6 +14,7 @@ export class AdminComponent {
   admin: Users;
   Users: Users[];
   healthyUsers: number;
+  total: number;
   unhealthyUsers: number;
   constructor(private router: Router, private http: HttpClient, private loginService: LoginService, private userService:UsersService) {
 
@@ -25,11 +26,10 @@ export class AdminComponent {
       },
         error => console.error(error)
     );
-      var total = Users.length;
-      console.log(total);
       this.unhealthyUsers=0;
       this.healthyUsers=0;
-      for(var i = 0; i < total; i++){
+      this.total = this.Users.length;
+      for(var i = 0; i < this.total; i++){
         if (this.Users[i].isHealthy()==true){
           this.increaseHealthy();
         }
