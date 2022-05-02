@@ -101,22 +101,30 @@ export class MenuactiveComponent implements OnInit {
         this.highInFatMenu = scoreMenu[4];
 
         this.barChartData = [
-          { data: [ this.vegetablesMenu, this.vegetablesStandard, this.proteinMenu, this.proteinStandard, this.hydratesMenu, this.hydratesStandard, this.carboHydratesMenu, this.carboHydratesStandard, this.highInFatMenu, this.highInFatStandard], label: 'Score' }
+          { 
+            data: [ this.vegetablesMenu, this.vegetablesStandard, this.proteinMenu, this.proteinStandard, this.hydratesMenu, this.hydratesStandard, this.carboHydratesMenu, this.carboHydratesStandard, this.highInFatMenu, this.highInFatStandard], 
+            label: 'Score',
+            backgroundColor: ["red", "red", "blue", "blue", "brown", "brown", "yellow", "yellow", "green", "green"]
+          }
         ];
 
-      }
+      },
+      error => console.error(error) 
+    );  
+  }
 
   ngOnInit(): void {
   }
 
+  
   isHealthy(){
     return this.menu.healthy;
   }
 
   receiptPDF(id: number){
-        this.doc.save('Receipt.pdf');
+        this.doc.save('Receipt.pdf'); 
   }
-
+  
   isLogged(){
     return this.loginService.isLogged();
   }
