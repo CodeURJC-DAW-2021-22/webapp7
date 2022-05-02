@@ -16,16 +16,10 @@ export class AdminComponent {
   healthyUsers: number=0;
   total: number;
   unhealthyUsers: number=0;
-  constructor(private router: Router, private http: HttpClient, private loginService: LoginService, private userService:UsersService) {
-
+  constructor(private router: Router, private http: HttpClient, private loginService: LoginService, private userService:UsersService){
     this.admin = loginService.currentUser();
-
     this.userList = this.userService.getUsers();
-
     this.total = this.userList.length;
-
-    console.log(this.total);
-
     for(var i = 0; i< this.total; i++){
         if(this.userList[i].activeMenu.healthy==true){
           this.increaseHealthy();
@@ -54,5 +48,13 @@ export class AdminComponent {
       },
       error => console.log(error)
     );
+    }
+    isAdmin(){
+      if (this.loginService.isLogged()==true){
+        if (this.admin.admin==true){
+          return true;
+        }
+      }
+      return false;
     }
 }

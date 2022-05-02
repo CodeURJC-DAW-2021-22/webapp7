@@ -1,5 +1,5 @@
 <app-header></app-header>
-<section id="mini">
+<section *ngIf="isAdmin()" id="mini">
   <div class="container">
    <div class="row">
       <div class="col-sm-12 top">
@@ -7,7 +7,7 @@
    </div>
   </div>
  </section>
- <section id="details_top">
+ <section *ngIf="isAdmin()" id="details_top">
   <div class="container">
    <div class="row">
     <div class="col-sm-12 details_top_1">
@@ -35,4 +35,5 @@
     </div>
    </div>
  </section>
+ <app-error *ngIf="isAdmin()==false"></app-error>
 <app-footer></app-footer>
