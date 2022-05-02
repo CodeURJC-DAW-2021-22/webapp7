@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipes } from './../../../models/Recipes/recipes';
 import { LoginService } from './../../../services/Login/login.service';
 import { RecipesService } from './../../../services/Recipes/recipes.service';
+
 
 @Component({
   selector: 'app-recipeupdater',
@@ -11,12 +13,13 @@ import { RecipesService } from './../../../services/Recipes/recipes.service';
 })
 export class RecipeupdaterComponent{
 
-
   difficulties = [
     { id: 1, name: "Easy" },
     { id: 2, name: "Medium" },
     { id: 3, name: "Hard" }
   ];
+
+  selectedFile: File;
 
   oldRecipe: Recipes;
 
@@ -33,9 +36,11 @@ export class RecipeupdaterComponent{
   carbohydrates: boolean;
   highinfat: boolean;
 
+  recipeImage: Blob;
+
   boolean: string[] = [];
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute, private recipeService: RecipesService,private loginService: LoginService) {
+  constructor(private http :HttpClient, private router: Router, activatedRoute: ActivatedRoute, private recipeService: RecipesService,private loginService: LoginService) {
     this.id = activatedRoute.snapshot.params['id'];
     recipeService.getRecipe(this.id).subscribe(
       response => {
@@ -46,6 +51,7 @@ export class RecipeupdaterComponent{
         this.hydrates = this.oldRecipe.hydrates;
         this.carbohydrates = this.oldRecipe.carbohydrates;
         this.highinfat = this.oldRecipe.highinfat;
+        this.recipeImage = this.oldRecipe.recipeImage;
 
 
         if(this.oldRecipe.difficulty.match("Fácil") || this.oldRecipe.difficulty.match("Easy")){
@@ -66,6 +72,7 @@ export class RecipeupdaterComponent{
         error => console.error(error)
     );
   }
+
 
 
   cancel() {
@@ -113,7 +120,21 @@ export class RecipeupdaterComponent{
       (response: any) => this.router.navigate(['/recipeall']),
       (error: any) => alert("Something gone wrong")
   );
+
   }
+  onFileSelected(event : any){
+    console.log(event);
+    this.selectedFile = <File>event.target.files[0];
+    }
+    uploadImage(){
+      const fd = new FormData();
+      fd.append('imageRecipe',this.selectedFile)
+      return this.recipeService.uploadImage(this.id, fd).subscribe(
+        (response: any) => this.router.navigate(['/recipeall']),
+        (error: any) => alert("Something gone wrong")
+        );
+    }
+
     isAdmin(){
       return this.loginService.isAdmin();
     }

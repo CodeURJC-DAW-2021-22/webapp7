@@ -6,7 +6,7 @@ import { LoginService } from './../../../services/Login/login.service';
 import { MenuService } from './../../../services/Menu/menu.service';
 import { RecipesService } from './../../../services/Recipes/recipes.service';
 import { UsersService } from './../../../services/Users/users.service';
-import { jsPDF } from 'jspdf';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-menuactive',
@@ -41,23 +41,20 @@ export class MenuactiveComponent implements OnInit {
   barChartPlugins = [];
   barChartData: ChartDataset[];
 
-  constructor(loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
+
+  constructor(private loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.doc.setFontSize(30);
     this.doc.text('Receipt', 20, 20);
     this.doc.setFontSize(9);
     this.doc.text('Bill To:', 20, 30);
     this.user = loginService.currentUser();
+    this.menu = loginService.currentUser().activeMenu;
     this.doc.setFontSize(12);
     this.doc.text('Company Name: ' + this.user.name, 20, 37);
     this.doc.text('Email: ' + this.user.mail, 20, 43);
-    userService.getUserMenu().subscribe(
-      response => {
-        this.menu = response;
-
         this.doc.setFontSize(13);
         this.doc.text('Ingredients: ', 20, 55);
         this.doc.setFontSize(8);
-
         this.lunchs.push(this.menu.weeklyPlan[0]);
         this.lunchs.push(this.menu.weeklyPlan[2]);
         this.lunchs.push(this.menu.weeklyPlan[4]);
@@ -73,7 +70,6 @@ export class MenuactiveComponent implements OnInit {
         this.dinners.push(this.menu.weeklyPlan[9]);
         this.dinners.push(this.menu.weeklyPlan[11]);
         this.dinners.push(this.menu.weeklyPlan[13]);
-
         var espacio = 0;
         for (let index = 0; index < 14; index++) {
           this.doc.text(this.menu.weeklyPlan[index].name, 20, 60 + espacio);
@@ -115,13 +111,12 @@ export class MenuactiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
   isHealthy(){
     return this.menu.healthy;
   }
 
   receiptPDF(id: number){
-        this.doc.save('Receipt.pdf'); 
+        this.doc.save('Receipt.pdf');
   }
 
   isLogged(){

@@ -18,14 +18,8 @@ export class RecipestoredComponent implements OnInit {
   constructor(private router:Router,public usersService : UsersService, private recipeservice:RecipesService, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.usersService.getUserRecipes().subscribe(
-      response => {
-        this.recipes = response;
-        this.copy = response;
-        console.log(this.recipes)
-      },
-      error => console.error(error)
-    );
+    this.recipes = this.loginService.currentUser().storedRecipes;
+    this.copy = this.loginService.currentUser().storedRecipes;
   }
 
   recipeID(id:number): void{
