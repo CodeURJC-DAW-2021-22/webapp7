@@ -7,6 +7,7 @@ import { MenuService } from './../../../services/Menu/menu.service';
 import { RecipesService } from './../../../services/Recipes/recipes.service';
 import { UsersService } from './../../../services/Users/users.service';
 import jsPDF from 'jspdf';
+import { ChartOptions, ChartType, ChartDataset } from 'chart.js';
 
 @Component({
   selector: 'app-menuactive',
