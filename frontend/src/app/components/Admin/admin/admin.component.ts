@@ -26,18 +26,24 @@ export class AdminComponent {
         error => console.error(error)
     );
       var total = Users.length;
-      this.healthyUsers = 0;
-      this.unhealthyUsers = 0;
-      for(let i = 0; i < total;i++){
-        if (this.Users[i].isHealthy()){
-          this.healthyUsers = this.healthyUsers + 1;
+      console.log(total);
+      this.unhealthyUsers=0;
+      this.healthyUsers=0;
+      for(var i = 0; i < total; i++){
+        if (this.Users[i].isHealthy()==true){
+          this.increaseHealthy();
         }
         else{
-          this.unhealthyUsers = this.unhealthyUsers + 1;
+          this.increaseUnhealthy();
         }
       }
     }
-
+  increaseHealthy(){
+    this.healthyUsers = this.healthyUsers + 1;
+  }
+  increaseUnhealthy(){
+    this.unhealthyUsers = this.unhealthyUsers + 1;
+  }
   logOut(){
     this.loginService.logOut().subscribe(
       response => {

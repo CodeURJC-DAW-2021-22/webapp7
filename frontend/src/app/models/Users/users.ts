@@ -14,12 +14,6 @@ export class Users {
     storedDiets: Diet[];
 
     isHealthy(){
-      var score = this.activeMenu.score;
-      if (score<5){
-        return false;
-      }
-      else{
-        return true;
-      }
+      return this.activeMenu.healthy
     }
 }

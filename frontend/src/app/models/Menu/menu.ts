@@ -4,7 +4,6 @@ export class Menu {
     id: number;
     name: string;
     weeklyPlan: Recipes[];
-    //scoreArray: number[]= [0,0,0,0,0];
     healthy: boolean;
     score: number;
 
