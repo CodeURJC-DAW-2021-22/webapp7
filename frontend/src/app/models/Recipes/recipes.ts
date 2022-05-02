@@ -10,7 +10,7 @@ export class Recipes {
 
   hasPhoto: boolean;
 
-  vegetbales: boolean;
+  vegetables: boolean;
   protein: boolean;
   hydrates: boolean;
   carbohydrates: boolean;

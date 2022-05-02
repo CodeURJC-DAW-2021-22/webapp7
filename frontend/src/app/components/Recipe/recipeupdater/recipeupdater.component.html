@@ -1,3 +1,54 @@
-<app-header></app-header>
-<p>Esto es la página del editor de recetas</p>
+<app-header *ngIf="isAdmin()"></app-header>
+<section *ngIf="isAdmin()" id="mini">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 top">
+      </div>
+    </div>
+  </div>
+</section>
+<section *ngIf="isAdmin()" id="blog" class="clearfix">
+  <div class="blog_center_1 clearfix">
+    <form action="/processFormRecipe" method="post" enctype="multipart/form-data">
+      <div class="col-sm-8">
+
+          <p>Name:</p>
+          <input [(ngModel)]="name" type="text" placeholder= {{oldRecipe.name}} name="name">
+
+          <p>Cook Time:</p>
+          <input type="number" [(ngModel)]="cookTime" placeholder={{oldRecipe.cookTime}} name="cook time"required>
+
+          <p> Difficulty: </p>
+          <select [(ngModel)]="difficulty" name="difficulty" >
+            <option [value]="oldRecipe.difficulty" selected>{{oldRecipe.difficulty}}</option>
+            <option *ngFor="let difficulty of difficulties" [value]="difficulty.name">{{difficulty.name}}</option>
+          </select>
+
+          <p>Ingredients: </p>
+          <textarea [(ngModel)]="ingredients" placeholder={{oldRecipe.ingredients}} name="ingredients"></textarea>
+
+          <p>Preparation: </p>
+          <textarea [(ngModel)]="preparation" placeholder={{oldRecipe.preparation}}  name="preparation"></textarea>
+         
+          <p>Vegetables: <input type="checkbox" [(ngModel)]="vegetables" name="vagetables"></p>
+
+          <p>Protein: <input type="checkbox" [(ngModel)]="protein" name="protein"></p>
+
+          <p>Hydrates: <input type="checkbox" [(ngModel)]="hydrates" name="hydrates"></p>
+
+          <p>Carbohydrates: <input type="checkbox" [(ngModel)]="carbohydrates" name="carbohydrates"></p>
+
+          <p>High in fat: <input type="checkbox" [(ngModel)]="highinfat"name="highinfat"></p>
+
+          <p>
+            <button (click)="cancel()">Cancel</button>
+            <button (click)="save()">Save</button>
+          </p>
+        </div>
+    </form>
+  </div>
+</section>
+<app-error *ngIf="isAdmin()==false"></app-error>
+<app-footer *ngIf="isAdmin()"></app-footer>
+
 <app-footer></app-footer>

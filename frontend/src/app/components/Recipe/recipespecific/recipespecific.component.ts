@@ -57,7 +57,7 @@ export class RecipespecificComponent{
     }
    }
    hasVegetables(){
-     return this.recipe.vegetbales;
+     return this.recipe.vegetables;
    }
    hasProteyn(){
      return this.recipe.protein;
@@ -72,6 +72,8 @@ export class RecipespecificComponent{
      return this.recipe.hydrates;
    }
 
-
+   recipeID(id:number): void{
+    this.router.navigate(['/recipeupdater/:id']);
+  }
 
 }

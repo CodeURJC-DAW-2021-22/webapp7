@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'recipeall',component: RecipeallComponent},
   {path:'recipespecific/:id',component: RecipespecificComponent},
   {path:'recipemaker',component: RecipemakerComponent},
-  {path:'recipeupdater',component: RecipeupdaterComponent},
+  {path:'recipeupdater/:id',component: RecipeupdaterComponent},
   {path:'recipestored',component: RecipestoredComponent},
   {path:'menuactive',component: MenuactiveComponent},
   {path:'menuall',component: MenuallComponent},
