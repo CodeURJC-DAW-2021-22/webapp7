@@ -33,14 +33,6 @@
         </tr>
         </tbody>
     </table>
-
-    <form  *ngIf="!isActive">
-        <input type="hidden" id="id_Recipe" name="id_Recipe" value={{menu.id}}>
-        <input type="submit" class="btn btn-danger" id="btnSaveRecipe" (click)="activeMenu()" value="Active Menu"/>
-     </form>
-     <form *ngIf="isActive">
-      <input type="submit" class="btn btn-danger" id="btnDisable" value="Already Active" disabled/>
-     </form>
 </div>
 <br><br><br>
         <form *ngIf="isActive()==false" method="post">
