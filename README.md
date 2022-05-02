@@ -210,10 +210,17 @@ You can check the API REST documentation in the next links:
 
 ## **How to transfer Food & U to a SPA**
 **Pre-requeriments**:
- - [Install Angular CLI](https://angular.io/cli)
+ - [Install Angular CLI](https://angular.io/cli). In this case we will have to open the terminal and type the following code on the keyboard, this will depend on the operating system you have, you can check it in the previous link: npm install -g @angular/cli
+ - [Download node](https://nodejs.org/es/download/)
  - We highly recommend using two IDE or framework so that we can run the application locally in one of them, while in the other we will take care of the frontend. As for example [IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/download/#section=mac) for local and [Visual Studio Code](https://code.visualstudio.com/download) for fronted.
-After fulfilling the following requirements, we will dedicate ourselves to installing plugins in our IDE or framework. For the use of Visaul Studio Code, for example, it will be necessary to install the [Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template) and we also recommend other extensions such as this [Pack](https://marketplace.visualstudio.com/items?itemName=loiane.angular-extension-pack).Once we have configured our IDE or framework we can start to mount the fronted.
 
+After fulfilling the following requirements, we will dedicate ourselves to installing plugins in our IDE or framework. For the use of Visaul Studio Code, for example, it will be necessary to install the [Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template) and we also recommend other extensions such as this [Pack](https://marketplace.visualstudio.com/items?itemName=loiane.angular-extension-pack). Once we have configured our IDE or framework we can start to mount the fronted.
+
+The next step will be to do npm install so that the node modules folder is installed, which has the necessary dependencies for our SPA application to work correctly. We will have to do this command in our frontend folder, which we will have to create before.
+
+Next, we will create a folder called proxy.conf.json, which will allow access to our backend from the frontend to get the data. We must configure it properly with the IP address and the port that is configured in the backend.
+
+Finally, as we previously recommended, we will run the application in the backend with one of our IDE or framework, and then we will launch the ng serve command from the terminal of the other IDE or framework. With this we would have our application running in the fronted and backend at the same time.
 
 ## **Developing Part by every member**
 
@@ -358,6 +365,18 @@ After fulfilling the following requirements, we will dedicate ourselves to insta
 - **Carlos Alejandro Álvarez**:
 
 
-- **Carlos Rodríguez Gómez**:
+- **Carlos Rodríguez Gómez**: During this phase I have been working mainly on the creation and implementation of fronted components. My biggest contributions are in the header, login and image uploads. In addition, I have helped with the creation of services and other small contributions to the rest of the components. Then I leave my 5 most important commits:
+    - [Register created](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/faca37734dad01f0b1df7e61ffe2b5162acb28bd)
+    - [Update Image created](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/02cb55084b23df8b845fe7b15b99c0e41fc7ff91)
+    - [Login contributions and Login service](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/15c7d3c58a7ab8b8424392a0b9815ab5ee2b1df5)
+    - [Header and some Components](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/9f4915be3676029254849d87361ee421b23d2dbb)
+    - [Fronted CLass Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/c20e2d1fc5db5b34fa731d085efe9f4388942fa3)
+    
+  The 5 file that I consider I worked in the most part of my time in this phase:
+    - [Login Component](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/frontend/src/app/components/Login/login)
+    - [Service in general](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/frontend/src/app/services)
+    - [RecipeUpdater Component](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/frontend/src/app/components/Recipe/recipeupdater)
+    - [Header Component](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/frontend/src/app/components/Header/header)
+    - [RecipeMaker Component](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/frontend/src/app/components/Recipe/recipemaker)
 
   
