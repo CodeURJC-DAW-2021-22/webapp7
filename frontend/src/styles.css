@@ -507,6 +507,10 @@ margin-bottom:20px;
    background: url("../../frontend/src/assets/Images/banner1.jpg");
    background-size: cover;
 }
+#logo{
+  background: url("../../frontend/src/assets/Images/logo_1.jpg");
+  background-size:auto;
+}
 .center_m{
  background:#00000052;
  padding-bottom:100px;

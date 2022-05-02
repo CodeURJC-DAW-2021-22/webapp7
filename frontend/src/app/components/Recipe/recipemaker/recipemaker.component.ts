@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/Login/login.service';
+import { LoginService } from './../../../services/Login/login.service';
 import { RecipesService } from './../../../services/Recipes/recipes.service';
 
 @Component({

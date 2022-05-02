@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Menu } from 'src/app/models/Menu/menu';
-import { DietService } from 'src/app/services/Diet/diet.service';
-import { LoginService } from 'src/app/services/Login/login.service';
-import { MenuService } from 'src/app/services/Menu/menu.service';
-import { UsersService } from 'src/app/services/Users/users.service';
+import { Menu } from './../../../../models/Menu/menu';
+import { DietService } from './../../../../services/Diet/diet.service';
+import { LoginService } from './../../../../services/Login/login.service';
+import { MenuService } from './../../../../services/Menu/menu.service';
 
 @Component({
   selector: 'app-dietmaker',
