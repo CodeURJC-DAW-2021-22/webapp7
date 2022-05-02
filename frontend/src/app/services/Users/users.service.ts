@@ -47,6 +47,9 @@ export class UsersService {
   );
     return this.users;
   }
+  activateMenu(id: number){
+    return this.http.put("api/users/menu/" + id, {}, {}).subscribe(console.log)
+  }
   getNumberOfUser(){
     return this.users.length;
   }
