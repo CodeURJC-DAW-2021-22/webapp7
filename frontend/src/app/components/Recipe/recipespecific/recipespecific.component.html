@@ -29,7 +29,7 @@
           <input type="hidden" id="id_RecipeDelete" name="id_RecipeDelete" value={{recipe.id}} >
           <input type="submit" class="btn btn-danger" id="btnDeleteRecipe" value="Delete Recipe"/>
        </form>
-       <button *ngIf="loginService.isAdmin()" class="btn btn-danger"><a [routerLink]="['/home']">Update Recipe</a></button>
+       <button *ngIf="loginService.isAdmin()" class="btn btn-danger"><a [routerLink]="['/recipeupdater', recipe.id]">Update Recipe</a></button>
      </div>
      </div>
    </div>
@@ -49,7 +49,7 @@
      <div class="salad_5">
      <div class="col-sm-12">
      <h3>Categories</h3>
-       <h4 *ngIf="hasHydrates()"> "Vegetables"</h4><h4 *ngIf="hasProteyn()"> "Protein"</h4><h4 *ngIf="hasHydrates()"> "Hydrates" </h4><h4 *ngIf="hasCarboHydrates()"> "Carbohydrates"</h4><h4 *ngIf="isHighInFat()"> "High in fat"</h4>
+       <h4 *ngIf="hasVegetables()"> "Vegetables"</h4><h4 *ngIf="hasProteyn()"> "Protein"</h4><h4 *ngIf="hasHydrates()"> "Hydrates" </h4><h4 *ngIf="hasCarboHydrates()"> "Carbohydrates"</h4><h4 *ngIf="isHighInFat()"> "High in fat"</h4>
      </div>
     </div>
    </div>
