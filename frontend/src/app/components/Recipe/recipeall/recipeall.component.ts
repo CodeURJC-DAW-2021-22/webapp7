@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Recipes } from 'src/app/models/Recipes/recipes';
-import { RecipesService } from 'src/app/services/Recipes/recipes.service';
+import { Recipes } from './../../../models/Recipes/recipes';
+import { RecipesService } from './../../../services/Recipes/recipes.service';
 
 @Component({
   selector: 'app-recipeall',
@@ -38,7 +38,7 @@ export class RecipeallComponent implements OnInit {
         });
       },
       error => console.error(error)
-    ); 
+    );
   }
 
   recipeID(id:number): void{

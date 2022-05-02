@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Menu } from 'src/app/models/Menu/menu';
-import { Recipes } from 'src/app/models/Recipes/recipes';
-import { Users } from 'src/app/models/Users/users';
-import { LoginService } from 'src/app/services/Login/login.service';
-import { MenuService } from 'src/app/services/Menu/menu.service';
-import { UsersService } from 'src/app/services/Users/users.service';
+import { Menu } from './../../../models/Menu/menu';
+import { Recipes } from './../../../models/Recipes/recipes';
+import { Users } from './../../../models/Users/users';
+import { LoginService } from './../../../services/Login/login.service';
+import { MenuService } from './../../../services/Menu/menu.service';
+import { UsersService } from './../../../services/Users/users.service';
 
 @Component({
   selector: 'app-menuloader',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Recipes } from 'src/app/models/Recipes/recipes';
-import { LoginService } from 'src/app/services/Login/login.service';
-import { RecipesService } from 'src/app/services/Recipes/recipes.service';
-import { UsersService } from 'src/app/services/Users/users.service';
+import { Recipes } from './../../../models/Recipes/recipes';
+import { LoginService } from './../../../services/Login/login.service';
+import { RecipesService } from './../../../services/Recipes/recipes.service';
+import { UsersService } from './../../../services/Users/users.service';
 
 @Component({
   selector: 'app-recipestored',

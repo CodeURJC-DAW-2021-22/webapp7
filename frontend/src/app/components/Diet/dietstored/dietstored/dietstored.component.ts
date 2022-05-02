@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Diet } from 'src/app/models/Diet/diet';
-import { Users } from 'src/app/models/Users/users';
-import { DietService } from 'src/app/services/Diet/diet.service';
-import { LoginService } from 'src/app/services/Login/login.service';
-import { UsersService } from 'src/app/services/Users/users.service';
+import { Diet } from './../../../../models/Diet/diet';
+import { Users } from './../../../../models/Users/users';
+import { LoginService } from './../../../../services/Login/login.service';
+import { UsersService } from './../../../../services/Users/users.service';
 
 @Component({
   selector: 'app-dietstored',

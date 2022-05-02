@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Diet } from 'src/app/models/Diet/diet';
-import { Menu } from 'src/app/models/Menu/menu';
-import { DietService } from 'src/app/services/Diet/diet.service';
-import { LoginService } from 'src/app/services/Login/login.service';
+import { Diet } from './../../../models/Diet/diet';
+import { Menu } from './../../../models/Menu/menu';
+import { DietService } from './../../../services/Diet/diet.service';
+import { LoginService } from './../../../services/Login/login.service';
 
 
 @Component({

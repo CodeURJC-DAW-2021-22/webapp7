@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Recipes } from 'src/app/models/Recipes/recipes';
-import { LoginService } from 'src/app/services/Login/login.service';
-import { RecipesService } from 'src/app/services/Recipes/recipes.service';
+import { Recipes } from './../../../models/Recipes/recipes';
+import { LoginService } from './../../../services/Login/login.service';
+import { RecipesService } from './../../../services/Recipes/recipes.service';
 
 @Component({
   selector: 'app-recipeupdater',
@@ -11,7 +11,7 @@ import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 })
 export class RecipeupdaterComponent{
 
-  
+
   difficulties = [
     { id: 1, name: "Easy" },
     { id: 2, name: "Medium" },
@@ -47,7 +47,7 @@ export class RecipeupdaterComponent{
         this.carbohydrates = this.oldRecipe.carbohydrates;
         this.highinfat = this.oldRecipe.highinfat;
 
-        
+
         if(this.oldRecipe.difficulty.match("Fácil") || this.oldRecipe.difficulty.match("Easy")){
           this.difficulties.forEach((element,index)=>{
             if(element.id == 1) this.difficulties.splice(index,1);

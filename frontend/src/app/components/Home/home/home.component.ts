@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipes } from 'src/app/models/Recipes/recipes';
-import { Users } from 'src/app/models/Users/users';
-import { LoginService } from 'src/app/services/Login/login.service';
-import { RecipesService } from 'src/app/services/Recipes/recipes.service';
+import { Recipes } from './../../../models/Recipes/recipes';
+import { Users } from './../../../models/Users/users';
+import { LoginService } from './../../../services/Login/login.service';
+import { RecipesService } from './../../../services/Recipes/recipes.service';
 
 @Component({
   selector: 'app-home',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Menu } from 'src/app/models/Menu/menu';
-import { LoginService } from 'src/app/services/Login/login.service';
-import { MenuService } from 'src/app/services/Menu/menu.service';
+import { Menu } from './../../../models/Menu/menu';
+import { LoginService } from './../../../services/Login/login.service';
+import { MenuService } from './../../../services/Menu/menu.service';
 
 @Component({
   selector: 'app-menuall',
