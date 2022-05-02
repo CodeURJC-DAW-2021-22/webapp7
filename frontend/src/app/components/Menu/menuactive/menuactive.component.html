@@ -34,13 +34,6 @@
               </table>
           </div>
           <br><br><br>
-        <form *ngIf="isActive()==false" method="post">
-                  <input type="hidden" id="id_Menu" name="id_Menu" value={{menu.id}} >
-                  <input type="submit" class="btn btn-danger" id="btnSaveRecipe" value="Active Menu"/>
-        </form>
-        <input *ngIf="isActive()==true" type="submit" class="btn btn-danger" id="btnDisable" value="Already Active" disabled/>
-          <br><br><br><br><br>
-          <div class="col-sm-8 blog_center_2_main_top_2">
 
               <!--
               <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -73,6 +66,5 @@
           </div>
       </div>
   </div>
-</div>
 </section>
 <app-footer></app-footer>

@@ -21,25 +21,29 @@ export class MenuactiveComponent implements OnInit {
 
   constructor(loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.user = loginService.currentUser();
-    this.menu = this.user.activeMenu;
+    userService.getUserMenu().subscribe(
+      response => {
+        this.menu = response;
 
-    this.lunchs.push(this.menu.weeklyPlan[0]);
-    this.lunchs.push(this.menu.weeklyPlan[2]);
-    this.lunchs.push(this.menu.weeklyPlan[4]);
-    this.lunchs.push(this.menu.weeklyPlan[6]);
-    this.lunchs.push(this.menu.weeklyPlan[8]);
-    this.lunchs.push(this.menu.weeklyPlan[10]);
-    this.lunchs.push(this.menu.weeklyPlan[12]);
+        this.lunchs.push(this.menu.weeklyPlan[0]);
+        this.lunchs.push(this.menu.weeklyPlan[2]);
+        this.lunchs.push(this.menu.weeklyPlan[4]);
+        this.lunchs.push(this.menu.weeklyPlan[6]);
+        this.lunchs.push(this.menu.weeklyPlan[8]);
+        this.lunchs.push(this.menu.weeklyPlan[10]);
+        this.lunchs.push(this.menu.weeklyPlan[12]);
 
-    this.dinners.push(this.menu.weeklyPlan[1]);
-    this.dinners.push(this.menu.weeklyPlan[3]);
-    this.dinners.push(this.menu.weeklyPlan[5]);
-    this.dinners.push(this.menu.weeklyPlan[7]);
-    this.dinners.push(this.menu.weeklyPlan[9]);
-    this.dinners.push(this.menu.weeklyPlan[11]);
-    this.dinners.push(this.menu.weeklyPlan[13]);
-
-   }
+        this.dinners.push(this.menu.weeklyPlan[1]);
+        this.dinners.push(this.menu.weeklyPlan[3]);
+        this.dinners.push(this.menu.weeklyPlan[5]);
+        this.dinners.push(this.menu.weeklyPlan[7]);
+        this.dinners.push(this.menu.weeklyPlan[9]);
+        this.dinners.push(this.menu.weeklyPlan[11]);
+        this.dinners.push(this.menu.weeklyPlan[13]);
+      },
+      error => console.error(error) 
+    );  
+  }
 
   ngOnInit(): void {
   }
