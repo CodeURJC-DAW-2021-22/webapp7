@@ -36,32 +36,18 @@
               </table>
           </div>
           <br><br><br>
-
-              <!--
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-              <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-              <script>
-                  var xValues = ["Your vegetables", "Usual Vegetables", "Your Proteins", "Usual Protein", "Your Hydrates", "Usual Hydrates", "Your c.Hydrates", "Usual c.Hydrates", "Your Fat", "Usual Fat"];
-                  var yValues = [{{vegetablesMenu}}, {{vegetablesStandard}}, {{proteinMenu}}, {{proteinStandard}},{{hydratesMenu}},{{hydratesStandard}},{{carboHydratesMenu}},{{carboHydratesStandard}},{{highInFatMenu}},{{highInFatStandard}}];
-                  var barColors = ["red", "red","blue","blue","brown","brown","yellow","yellow","green","green"];
-                  new Chart("myChart", {
-                      type: "bar",
-                      data: {
-                          labels: xValues,
-                          datasets: [{
-                              backgroundColor: barColors,
-                              data: yValues
-                          }]
-                      },
-                      options: {
-                          legend: {display: false},
-                          title: {
-                              display: true,
-                              text: "How healthy is your menu?"
-                          }
-                      }
-                  });
-              </script>-->
+          <input type="submit" class="btn btn-danger" id="btnSaveRecipe" (click)="receiptPDF(menu.id)" value="Download Receipt"/>
+          <br><br><br>
+          <div class="chart-wrapper">
+                <canvas baseChart 
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend">
+                </canvas>
+          </div>
+              <br><br><br>
               <p>The score we consider for this menu is {{menu.score}} / 10</p>
               <p *ngIf="isHealthy()==true"> so, it seems helathy!</p>
               <p *ngIf="isHealthy()==false"> we strongly believe you should try something more healthy</p>

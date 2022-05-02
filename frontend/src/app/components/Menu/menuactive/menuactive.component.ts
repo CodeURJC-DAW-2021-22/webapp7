@@ -21,6 +21,26 @@ export class MenuactiveComponent implements OnInit {
   dinners: Recipes[]= [];
   doc = new jsPDF();
 
+  vegetablesMenu: number;
+  vegetablesStandard: number = 8;
+  proteinMenu: number;
+  proteinStandard: number = 5;
+  hydratesMenu: number;
+  hydratesStandard: number = 3;
+  carboHydratesMenu: number;
+  carboHydratesStandard: number = 2;
+  highInFatMenu: number;
+  highInFatStandard: number = 1;
+  
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: string[] = ['Your vegetables', 'Usual Vegetables', 'Your Proteins', 'Usual Protein', 'Your Hydrates', 'Usual Hydrates', 'Your c.Hydrates', 'Usual c.Hydrates', 'Your Fat', 'Usual Fat'];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+  barChartData: ChartDataset[];
+
 
   constructor(private loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.doc.setFontSize(30);
@@ -56,6 +76,36 @@ export class MenuactiveComponent implements OnInit {
           this.doc.text(this.menu.weeklyPlan[index].ingredients, 80, 60 + espacio);
           espacio += 5;
         }
+
+        var scoreMenu = [0, 0, 0, 0, 0];
+        var total = this.menu.weeklyPlan.length;
+        for(let i = 0; i < total;i++){
+        if(this.menu.weeklyPlan[i].vegetables){
+          scoreMenu[0]=scoreMenu[0]+1;
+        }
+        if(this.menu.weeklyPlan[i].protein)
+                scoreMenu[1]=scoreMenu[1]+1;
+        if(this.menu.weeklyPlan[i].hydrates)
+                scoreMenu[2]=scoreMenu[2]+1;
+        if(this.menu.weeklyPlan[i].carbohydrates)
+                scoreMenu[3]=scoreMenu[3]+1;
+        if(this.menu.weeklyPlan[i].highinfat)
+                scoreMenu[4]=scoreMenu[4]+1;
+        }
+
+        this.vegetablesMenu = scoreMenu[0];
+        this.proteinMenu = scoreMenu[1];
+        this.hydratesMenu = scoreMenu[2];
+        this.carboHydratesMenu = scoreMenu[3];
+        this.highInFatMenu = scoreMenu[4];
+
+        this.barChartData = [
+          { data: [ this.vegetablesMenu, this.vegetablesStandard, this.proteinMenu, this.proteinStandard, this.hydratesMenu, this.hydratesStandard, this.carboHydratesMenu, this.carboHydratesStandard, this.highInFatMenu, this.highInFatStandard], label: 'Score' }
+        ];
+
+      },
+      error => console.error(error) 
+    );  
   }
 
   ngOnInit(): void {
