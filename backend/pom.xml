@@ -13,8 +13,8 @@
     <groupId>com.example</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
-    <name>backend</name>
+    <packaging>jar</packaging>
+    <name>FoodU</name>
     <description>Backend webapp7</description>
     <properties>
         <java.version>11</java.version>
