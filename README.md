@@ -208,14 +208,21 @@ You can check the API REST documentation in the next links:
   - [HTML format](https://raw.githack.com/CodeURJC-DAW-2021-22/webapp7/main/backend/api-docs/api-docs.html)
   - [YAML format](https://raw.githack.com/CodeURJC-DAW-2021-22/webapp7/main/backend/api-docs/api-docs.yaml)
 
+## **How to transfer Food & U to a SPA**
+**Pre-requeriments**:
+ - [Install Angular CLI](https://angular.io/cli)
+ - We highly recommend using two IDE or framework so that we can run the application locally in one of them, while in the other we will take care of the frontend. As for example [IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/download/#section=mac) for local and [Visual Studio Code](https://code.visualstudio.com/download) for fronted.
+After fulfilling the following requirements, we will dedicate ourselves to installing plugins in our IDE or framework. For the use of Visaul Studio Code, for example, it will be necessary to install the [Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template) and we also recommend other extensions such as this [Pack](https://marketplace.visualstudio.com/items?itemName=loiane.angular-extension-pack).Once we have configured our IDE or framework we can start to mount the fronted.
+
+
 ## **Developing Part by every member**
 
 
 | Name    | Mail | Github User    |
 |---------|--------|----------------|
-| Rodrigo Marqués Buil|r.marques.2018@alumnos.urjc.es| Larrivey       |
-| Hugo Coto González|h.coto.2018@alumnos.urjc.es| hugocg6        |
-| Carlos Rodríguez Gómez|c.roriguezgo.2018@alumnos.urjc.es| carlitosrogo   |
+| Rodrigo Marqués Buil|r.marques.2018@alumnos.urjc.es| Larrivey |
+| Hugo Coto González|h.coto.2018@alumnos.urjc.es| hugocg6 |
+| Carlos Rodríguez Gómez|c.roriguezgo.2018@alumnos.urjc.es| carlitosrogo |
 | Carlos Alejandro Álvarez|c.alejandro.2019@alumnos.urjc.es| CalejandroURJC |
 
 **Phase 2:**
