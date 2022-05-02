@@ -6,7 +6,7 @@ import { LoginService } from './../../../services/Login/login.service';
 import { MenuService } from './../../../services/Menu/menu.service';
 import { RecipesService } from './../../../services/Recipes/recipes.service';
 import { UsersService } from './../../../services/Users/users.service';
-import { jsPDF } from 'jspdf';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-menuactive',
@@ -20,7 +20,7 @@ export class MenuactiveComponent implements OnInit {
   lunchs : Recipes[] = [];
   dinners: Recipes[]= [];
   doc = new jsPDF();
-  
+
 
   constructor(private loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.doc.setFontSize(30);
@@ -60,13 +60,13 @@ export class MenuactiveComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   isHealthy(){
     return this.menu.healthy;
   }
 
   receiptPDF(id: number){
-        this.doc.save('Receipt.pdf'); 
+        this.doc.save('Receipt.pdf');
   }
 
   isLogged(){
