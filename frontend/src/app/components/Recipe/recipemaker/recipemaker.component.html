@@ -1,5 +1,5 @@
-<app-header></app-header>
-<section id="mini">
+<app-header *ngIf="isAdmin()"></app-header>
+<section *ngIf="isAdmin()" id="mini">
   <div class="container">
     <div class="row">
       <div class="col-sm-12 top">
@@ -7,7 +7,7 @@
     </div>
   </div>
 </section>
-<section id="blog" class="clearfix">
+<section *ngIf="isAdmin()" id="blog" class="clearfix">
   <div class="blog_center_1 clearfix">
     <form action="/processFormRecipe" method="post" enctype="multipart/form-data">
       <div class="col-sm-8">
@@ -47,4 +47,5 @@
     </form>
   </div>
 </section>
-<app-footer></app-footer>
+<app-error *ngIf="isAdmin()==false"></app-error>
+<app-footer *ngIf="isAdmin()"></app-footer>

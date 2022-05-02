@@ -94,8 +94,13 @@ isLogged() {
   return this.logged;
 }
 
-isAdmin() {
-  return this.user && this.user.admin;
+isAdmin(){
+if (this.isLogged()==true){
+  if (this.user.admin==true){
+    return true;
+  }
+}
+return false;
 }
 
 currentUser() {

@@ -50,11 +50,6 @@ export class AdminComponent {
     );
     }
     isAdmin(){
-      if (this.loginService.isLogged()==true){
-        if (this.admin.admin==true){
-          return true;
-        }
-      }
-      return false;
+      return this.loginService.isAdmin();
     }
 }
