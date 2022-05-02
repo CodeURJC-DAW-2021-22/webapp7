@@ -29,10 +29,6 @@ export class AdminComponent {
         }
     }
     }
-
-
-
-
   increaseHealthy(){
     this.healthyUsers = this.healthyUsers + 1;
   }

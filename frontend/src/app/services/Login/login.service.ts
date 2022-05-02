@@ -11,14 +11,22 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  constructor(private router:Router,private http: HttpClient) { }
-
-
-  logged: boolean;
+  logged: boolean = false;
   user: Users;
 	httpClient: any;
   recipes: Recipes[];
   recipe: Recipes;
+
+  constructor(private router:Router,private http: HttpClient,private userService: UsersService) {
+    this.refresh();
+    this.userService.getMyProfile().subscribe(
+      response=>{
+        this.user = response as Users;
+        this.logged = true;
+      }
+    );
+
+  }
 
   register(username : String, mail : String ,password: String){
     this.http.post("api/users/new",{username, password, mail} , {withCredentials:true}).subscribe(
