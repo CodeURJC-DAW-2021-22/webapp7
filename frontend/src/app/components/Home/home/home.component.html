@@ -96,7 +96,7 @@
    </div>
   </div>
  </section>
- <!--<section id="dish">
+ <section id="dish">
   <div class="container">
    <div class="row">
     <div class="col-sm-12 dish">
@@ -110,28 +110,26 @@
              </div>
          </div>
          <div id="carousel-example" class="carousel slide" data-ride="carousel">
-             Wrapper for slides
              <div class="carousel-inner">
                  <div class="item">
                      <div class="row">
-             {{#recipeCarrousel1}}
-                         <div class="col-sm-4">
+                         <div *ngFor="let recipe of carrouselRecipes2" class="col-sm-4">
                              <div class="col-item">
                  <div class="cuadro_intro_hover " style="background-color:#cccccc;">
                      <p style="text-align:center;">
-                       <img style="height:250px;width: 370px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
+                       <img style="height:250px;width: 370px;" src="https://localhost:8443/api/recipes/{{recipe.id}}/image" class="fotoReceta" alt="abc">
                      </p>
                      <div class="caption">
                        <div class="blur"></div>
                        <div class="caption-text" style="margin-top:90px;">
-                         <p><a href="/Recipe/{{{id}}}">Show Recipe</a></p>
+                         <p><a [routerLink]="['/recipespecific', recipe.id]">Show Recipe</a></p>
                        </div>
                      </div>
                  </div>
                                  <div class="info">
                                      <div class="row">
                      <div class="price_1 col-sm-12">
-                                             <h4><a href="/Recipe/{{{id}}}">{{name}}</a></h4>
+                                             <h4><a [routerLink]="['/recipespecific', recipe.id]">{{recipe.name}}</a></h4>
                                          </div>
                                      </div>
                                      <div class="clearfix">
@@ -139,29 +137,27 @@
                                  </div>
                              </div>
                          </div>
-             {{/recipeCarrousel1}}
                      </div>
                  </div>
                  <div class="item active">
            <div class="row">
-             {{#recipeCarrousel2}}
-             <div class="col-sm-4">
+             <div  *ngFor="let recipe of carrouselRecipes1" class="col-sm-4">
                <div class="col-item">
                  <div class="cuadro_intro_hover " style="background-color:#cccccc;">
                    <p style="text-align:center;">
-                     <img style="height:250px;width: 370px;"src="/recipe/{{id}}/image" class="fotoReceta" alt="abc">
+                     <img style="height:250px;width: 370px;" src="https://localhost:8443/api/recipes/{{recipe.id}}/image" class="fotoReceta" alt="abc">
                    </p>
                    <div class="caption">
                      <div class="blur"></div>
                      <div class="caption-text" style="margin-top:90px;">
-                       <p><a href="/Recipe/{{{id}}}">Show Recipe</a></p>
+                       <p><a [routerLink]="['/recipespecific', recipe.id]">Show Recipe</a></p>
                      </div>
                    </div>
                  </div>
                  <div class="info">
                    <div class="row">
                      <div class="price_1 col-sm-12">
-                       <h4><a href="/Recipe/{{{id}}}">{{name}}</a></h4>
+                       <h4><a [routerLink]="['/recipespecific', recipe.id]">{{recipe.name}}</a></h4>
                      </div>
                    </div>
                    <div class="clearfix">
@@ -169,7 +165,6 @@
                  </div>
                </div>
              </div>
-             {{/recipeCarrousel2}}
                  </div>
              </div>
          </div>
@@ -178,7 +173,7 @@
    </div>
   </div>
   </div>
- </section>-->
+ </section>
  <section id="delicious">
   <div class="container">
    <div class="row">

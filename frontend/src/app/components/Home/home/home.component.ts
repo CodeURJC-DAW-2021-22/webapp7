@@ -16,6 +16,10 @@ export class HomeComponent implements OnInit {
   rnd: number;
   tryRecipe1: Recipes;
   tryRecipe2: Recipes;
+  carrouselRecipes1: Recipes[];
+  copy1 : Recipes[];
+  carrouselRecipes2: Recipes[];
+  copy2: Recipes[];
   user: Users;
   constructor(private service:RecipesService,loginService: LoginService) {
     this.user = loginService.currentUser();
@@ -55,6 +59,29 @@ export class HomeComponent implements OnInit {
         this.tryRecipe2 = response;
       },
         error => console.error(error)
+    );
+
+
+    this.service.getRecipes(0).subscribe(
+      response => {
+        this.carrouselRecipes1 = response;
+        this.copy1 = response;
+        for (var i=0;i<=8;i++){
+          this.carrouselRecipes1.pop();
+        }
+      },
+      error => console.error(error)
+    );
+
+    this.service.getRecipes(1).subscribe(
+      response => {
+        this.carrouselRecipes2 = response;
+        this.copy1 = response;
+        for (var i=0;i<=8;i++){
+          this.carrouselRecipes2.pop();
+        }
+      },
+      error => console.error(error)
     );
   }
 
