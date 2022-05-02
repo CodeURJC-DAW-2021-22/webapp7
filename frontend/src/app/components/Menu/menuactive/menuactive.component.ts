@@ -32,7 +32,7 @@ export class MenuactiveComponent implements OnInit {
   carboHydratesStandard: number = 2;
   highInFatMenu: number;
   highInFatStandard: number = 1;
-  
+
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -104,10 +104,7 @@ export class MenuactiveComponent implements OnInit {
           { data: [ this.vegetablesMenu, this.vegetablesStandard, this.proteinMenu, this.proteinStandard, this.hydratesMenu, this.hydratesStandard, this.carboHydratesMenu, this.carboHydratesStandard, this.highInFatMenu, this.highInFatStandard], label: 'Score' }
         ];
 
-      },
-      error => console.error(error) 
-    );  
-  }
+      }
 
   ngOnInit(): void {
   }
