@@ -23,7 +23,7 @@ export class MenuloaderComponent{
   constructor(private router:Router,activatedRoute: ActivatedRoute, private service:MenuService, public loginService: LoginService, private userService: UsersService) {
     const id = activatedRoute.snapshot.params['id'];
     this.user = loginService.currentUser();
-    
+
     service.getMenu(id).subscribe(
       response => {
         this.menu = response;
@@ -54,5 +54,14 @@ export class MenuloaderComponent{
           i=i+2;
       }
       return dinner;
+  }
+  isActive(){
+    return this.user.activeMenu.id== this.menu.id;
+  }
+  isHealthy(){
+    return this.menu.healthy;
+  }
+  isLogged(){
+    return this.loginService.isLogged();
   }
 }
