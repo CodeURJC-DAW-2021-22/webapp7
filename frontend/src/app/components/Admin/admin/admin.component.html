@@ -1,5 +1,5 @@
-<app-header *ngIf="isAdmin()"></app-header>
-<section *ngIf="isAdmin()" id="mini">
+<app-header></app-header>
+<section id="mini">
   <div class="container">
    <div class="row">
       <div class="col-sm-12 top">
@@ -7,7 +7,7 @@
    </div>
   </div>
  </section>
- <section *ngIf="isAdmin()" id="details_top">
+ <section id="details_top">
   <div class="container">
    <div class="row">
     <div class="col-sm-12 details_top_1">
@@ -20,20 +20,19 @@
      <ul class= "User Links" style= "text-align: center; list-style-type: none;">
        <li><a [routerLink]="['/recipemaker']"><h4>Make Recipe</h4></a></li>
              <li> <p>Users data:</p>
-                         <p>Total Users: {{userList.length}}  </p>
+                         <p>Total Users: {{Users.length}}  </p>
                          <p>Healthy Users: {{healthyUsers}} </p>
                          <p>UnHealthy Users: {{unhealthyUsers}} </p>
              </li>
      </ul>
           <div class="btn-group-lg">
               <ul class= "User Links">
-                <button><a (click)="logout()"><h4>Log Out</h4></a></button>
+                  <!--<button (click)="logOut()"> <a [routerLink]="['/home']"><h4>Log Out</h4></a></button>-->
               </ul>
           </div>
       </div>
     </div>
-    </div>
+   </div>
    </div>
  </section>
- <app-error *ngIf="isAdmin()==false"></app-error>
-<app-footer *ngIf="isAdmin()"></app-footer>
+<app-footer></app-footer>

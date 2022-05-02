@@ -12,17 +12,8 @@ import { RecipesService } from '../Recipes/recipes.service';
 export class UsersService {
 
   private menu : Menu;
-  private users: Users[] = [];
 
-  constructor(private http: HttpClient, private recipeService:RecipesService) {
-    this.http.get<Users[]>("api/users/all").subscribe(
-      response => {
-      this.users = response;
-    },
-      error => console.error(error)
-  );
-
-  }
+  constructor(private http: HttpClient, private recipeService:RecipesService) { }
 
   getMyProfile(){
     return this.http.get<Users>("api/users/me")
@@ -38,17 +29,12 @@ export class UsersService {
     return this.http.put("api/users/recipe/" + id, {}, {}).subscribe(console.log)
   }
 
-  getUsers(){
-    this.http.get<Users[]>("api/users/all").subscribe(
-      response => {
-      this.users = response;
-    },
-      error => console.error(error)
-  );
-    return this.users;
+  activateMenu(id: number){
+    return this.http.put("api/users/menu/" + id, {}, {}).subscribe(console.log)
   }
+
   getNumberOfUser(){
-    return this.users.length;
+    return this.http.get<Users[]>("api/users/all")
   }
   getUserRecipes(){
     return this.http.get<Recipes[]>("api/users/recipes")

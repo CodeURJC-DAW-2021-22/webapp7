@@ -54,7 +54,4 @@ export class UserComponent{
       error => console.log(error)
     );
   }
-  isLogged(){
-    return this.loginService.isLogged();
-  }
 }

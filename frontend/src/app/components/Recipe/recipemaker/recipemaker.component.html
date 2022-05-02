@@ -1,51 +1,58 @@
-<app-header *ngIf="isAdmin()"></app-header>
-<section *ngIf="isAdmin()" id="mini">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 top">
-      </div>
+<app-header></app-header>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="name" type="text" placeholder="name" required>
     </div>
-  </div>
-</section>
-<section *ngIf="isAdmin()" id="blog" class="clearfix">
-  <div class="blog_center_1 clearfix">
-    <form action="/processFormRecipe" method="post" enctype="multipart/form-data">
-      <div class="col-sm-8">
 
-          <p>Name:</p>
-          <input [(ngModel)]="name" type="text" placeholder="name" name="name"required>
+	<div>
+        <label>Cook Time: </label>
+        <input type="number" [(ngModel)]="cookTime" placeholder="00" required>
+    </div>
 
-          <p>Cook Time:</p>
-          <input type="number" [(ngModel)]="cookTime" placeholder="00" name="cook time"required>
+	<div>
+        <label>	Difficulty: </label>
+        <select [(ngModel)]="difficulty">
+			<option [ngValue]="null" disabled>Select Difficulty</option>
+			<option *ngFor="let difficulty of difficulties" [ngValue]="difficulty.id">{{difficulty.name}}</option>
+		</select>
+    </div>
 
-          <p> Difficulty: </p>
-          <select [(ngModel)]="difficulty" name="difficulty">
-            <option [ngValue]="null" disabled>Select Difficulty</option>
-            <option *ngFor="let difficulty of difficulties" [ngValue]="difficulty.id">{{difficulty.name}}</option>
-          </select>
+	<div>
+        <label>Ingredients: </label>
+        <textarea [(ngModel)]="ingredients" placeholder="ingredients"></textarea>
+    </div>
 
-          <p>Ingredients: </p>
-          <textarea [(ngModel)]="ingredients" placeholder="ingredients" name="ingredients"></textarea>
+    <div>
+        <label>Preparation: </label>
+        <textarea [(ngModel)]="preparation" placeholder="preparation"></textarea>
+    </div>
 
-          <p>Preparation: </p>
-          <textarea [(ngModel)]="preparation" placeholder="preparation" name="preparation"></textarea>
-          <p>Vegetables: <input type="checkbox" [(ngModel)]="vegetables" [ngModelOptions]="{standalone: true}"></p>
+	<div>
+        <label>Vegetables: </label>
+        <input type="checkbox" [(ngModel)]="vegetables" [ngModelOptions]="{standalone: true}">
+    </div>
 
-          <p>Protein: <input type="checkbox" [(ngModel)]="protein" [ngModelOptions]="{standalone: true}"></p>
+	<div>
+        <label>Protein: </label>
+        <input type="checkbox" [(ngModel)]="protein"  [ngModelOptions]="{standalone: true}">
+    </div>
 
-          <p>Hydrates: <input type="checkbox" [(ngModel)]="hydrates" [ngModelOptions]="{standalone: true}"></p>
+	<div>
+        <label>Hydrates: </label>
+        <input type="checkbox" [(ngModel)]="hydrates"  [ngModelOptions]="{standalone: true}">
+    </div>
 
-          <p>Carbohydrates: <input type="checkbox" [(ngModel)]="carbohydrates" [ngModelOptions]="{standalone: true}"></p>
+	<div>
+        <label>Carbohydrates: </label>
+        <input type="checkbox" [(ngModel)]="carbohydrates"  [ngModelOptions]="{standalone: true}">
 
-          <p>High in fat: <input type="checkbox" [(ngModel)]="highinfat" [ngModelOptions]="{standalone: true}"></p>
+	<div>
+        <label>High in fat: </label>
+        <input type="checkbox" [(ngModel)]="highinfat"  [ngModelOptions]="{standalone: true}">
+    </div>
 
-          <p>
-            <button (click)="cancel()">Cancel</button>
-            <button (click)="save()">Save</button>
-          </p>
-        </div>
-    </form>
-  </div>
-</section>
-<app-error *ngIf="isAdmin()==false"></app-error>
-<app-footer *ngIf="isAdmin()"></app-footer>
+    <p>
+        <button (click)="cancel()">Cancel</button>
+        <button (click)="save()">Save</button>
+    </p>
+<app-footer></app-footer>

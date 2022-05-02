@@ -12,40 +12,40 @@ import { UsersService } from 'src/app/services/Users/users.service';
 })
 export class AdminComponent {
   admin: Users;
-  userList: Users[] = [];
-  healthyUsers: number=0;
-  total: number;
-  unhealthyUsers: number=0;
-  constructor(private router: Router, private http: HttpClient, private loginService: LoginService, private userService:UsersService){
+  Users: Users[];
+  healthyUsers: number;
+  unhealthyUsers: number;
+  constructor(private router: Router, private http: HttpClient, private loginService: LoginService, private userService:UsersService) {
+
     this.admin = loginService.currentUser();
-    this.userList = this.userService.getUsers();
-    this.total = this.userList.length;
-    for(var i = 0; i< this.total; i++){
-        if(this.userList[i].activeMenu.healthy==true){
-          this.increaseHealthy();
+
+    this.userService.getNumberOfUser().subscribe(
+      response => {
+        this.Users = response;
+      },
+        error => console.error(error)
+    );
+      var total = Users.length;
+      this.healthyUsers = 0;
+      this.unhealthyUsers = 0;
+      for(let i = 0; i < total;i++){
+        if (this.Users[i].isHealthy()){
+          this.healthyUsers = this.healthyUsers + 1;
         }
         else{
-          this.increaseUnhealthy();
+          this.unhealthyUsers = this.unhealthyUsers + 1;
         }
+      }
     }
-    }
-  increaseHealthy(){
-    this.healthyUsers = this.healthyUsers + 1;
-  }
-  increaseUnhealthy(){
-    this.unhealthyUsers = this.unhealthyUsers + 1;
-  }
-  logout(){
+
+  logOut(){
     this.loginService.logOut().subscribe(
-      response =>{
+      response => {
         console.log(response);
         this.loginService.logged = false;
         this.router.navigate(["/home"]);
       },
       error => console.log(error)
     );
-    }
-    isAdmin(){
-      return this.loginService.isAdmin();
-    }
+  }
 }

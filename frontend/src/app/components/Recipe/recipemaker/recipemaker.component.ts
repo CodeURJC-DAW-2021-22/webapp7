@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/Login/login.service';
 import { RecipesService } from 'src/app/services/Recipes/recipes.service';
 
 @Component({
@@ -29,7 +28,7 @@ export class RecipemakerComponent{
 
   boolean: string[] = [];
 
-  constructor(private router: Router, private service: RecipesService,private loginService: LoginService) {}
+  constructor(private router: Router, private service: RecipesService) {}
 
 
   cancel() {
@@ -67,8 +66,5 @@ export class RecipemakerComponent{
       (error: any) => alert("Something gone wrong")
   );
   }
-    isAdmin(){
-      return this.loginService.isAdmin();
-    }
 
 }

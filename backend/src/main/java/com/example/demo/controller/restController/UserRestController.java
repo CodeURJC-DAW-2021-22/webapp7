@@ -139,6 +139,26 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/menu/{id}")
+    public ResponseEntity<Menu> ActivateMenu(HttpServletRequest request, @PathVariable long id) {
+        Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            User user = userService.findByName(principal.getName()).orElseThrow();
+            Optional<Menu> tryMenu = menuService.findById(id);
+            if (tryMenu.isPresent()) {
+                Menu menu = tryMenu.get();
+                user.setActiveMenu(menu);
+                userService.save(user);
+                return new ResponseEntity<>(menu, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/diets")
     public ResponseEntity<Collection<Diet>> getStoredDiets(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();

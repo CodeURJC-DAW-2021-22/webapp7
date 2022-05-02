@@ -2,7 +2,6 @@ import { LoginComponent } from './components/Login/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/Admin/admin/admin.component';
-import { ErrorComponent } from './components/error/error.component';
 import { UserComponent } from './components/User/user/user.component';
 import { AboutusComponent } from './components/AboutUs/aboutus/aboutus.component';
 import { RecipeallComponent } from './components/Recipe/recipeall/recipeall.component';
@@ -24,7 +23,6 @@ import { DietloaderComponent } from './components/Diet/dietloader/dietloader.com
 
 const routes: Routes = [
   {path:'admin',component: AdminComponent},
-  {path:'error',component: ErrorComponent},
   {path:'login',component: LoginComponent},
   {path:'user',component: UserComponent},
   {path:'aboutus',component: AboutusComponent},
@@ -43,8 +41,7 @@ const routes: Routes = [
   {path:'home',component: HomeComponent},
   {path:'header', component: HeaderComponent},
   {path:'footer', component: FooterComponent},
-  {path:'index',component: AppComponent},
-  {path: '', component: HomeComponent}
+  {path:'index',component: AppComponent}
 ];
 
 @NgModule({
