@@ -20,19 +20,19 @@
      <ul class= "User Links" style= "text-align: center; list-style-type: none;">
        <li><a [routerLink]="['/recipemaker']"><h4>Make Recipe</h4></a></li>
              <li> <p>Users data:</p>
-                         <p>Total Users: {{Users.length}}  </p>
+                         <p>Total Users: {{userList.length}}  </p>
                          <p>Healthy Users: {{healthyUsers}} </p>
                          <p>UnHealthy Users: {{unhealthyUsers}} </p>
              </li>
      </ul>
           <div class="btn-group-lg">
               <ul class= "User Links">
-                  <!--<button (click)="logOut()"> <a [routerLink]="['/home']"><h4>Log Out</h4></a></button>-->
+                <button><a (click)="logout()"><h4>Log Out</h4></a></button>
               </ul>
           </div>
       </div>
     </div>
-   </div>
+    </div>
    </div>
  </section>
 <app-footer></app-footer>

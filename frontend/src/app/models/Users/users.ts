@@ -14,6 +14,6 @@ export class Users {
     storedDiets: Diet[];
 
     isHealthy(){
-      return this.activeMenu.healthy
+      return this.activeMenu.healthy;
     }
 }
