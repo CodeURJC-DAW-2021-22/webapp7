@@ -101,6 +101,10 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 ![DataBase Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/DataBase%20Diagram.png)
 
+**Fronted Class Diagram**
+
+![Fronted Class Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Fronted%20Class%20Diagram.png)
+
  ## **Algorithms**
 
 Food & U will include an algorithm that recommend you recipes that is nutritionally similar to the ones you have chosed previously. We want to implement this to add variety to our users' menus. It will be based, of course, in the nutritional score of the previous meals used in the past week. In addition, we will be proud if the final version of the project is capable of making automatically a new diet based on the desires and goals of our users, but this would be included if time allows us to do so.
