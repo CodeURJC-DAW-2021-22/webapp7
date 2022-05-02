@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
         <module name="backend" />
-        <module name="webapp7" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
