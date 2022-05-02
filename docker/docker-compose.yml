@@ -19,7 +19,7 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/DBDaw"
       SPRING_DATASOURCE_PASSWORD: "1234"
       SPRING_JPA_HIBERNATE_DDL-AUTO: create-drop
-    image: '943a58a2732b'
+    image: 'registry.heroku.com/codeurjc-daw-webapp07/web'
     restart: always
     depends_on:
       - db

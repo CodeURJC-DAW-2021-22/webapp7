@@ -38,8 +38,9 @@
           <br><br><br>
           <input type="submit" class="btn btn-danger" id="btnSaveRecipe" (click)="receiptPDF(menu.id)" value="Download Receipt"/>
           <br><br><br>
+
           <div class="chart-wrapper">
-                <canvas baseChart 
+                <canvas baseChart style="width:100%;max-width:600px"
                     [datasets]="barChartData"
                     [labels]="barChartLabels"
                     [options]="barChartOptions"

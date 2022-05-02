@@ -34,14 +34,13 @@ export class MenuactiveComponent implements OnInit {
   highInFatStandard: number = 1;
 
   barChartOptions: ChartOptions = {
-    responsive: true,
+    responsive: false,
   };
   barChartLabels: string[] = ['Your vegetables', 'Usual Vegetables', 'Your Proteins', 'Usual Protein', 'Your Hydrates', 'Usual Hydrates', 'Your c.Hydrates', 'Usual c.Hydrates', 'Your Fat', 'Usual Fat'];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];
   barChartData: ChartDataset[];
-
 
   constructor(private loginService: LoginService, userService:UsersService,recipeService:RecipesService, menuService: MenuService) {
     this.doc.setFontSize(30);

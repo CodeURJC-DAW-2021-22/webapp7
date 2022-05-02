@@ -101,6 +101,10 @@ Down Below you will find some of the HTML pages that you may use in the final ve
 
 ![DataBase Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/DataBase%20Diagram.png)
 
+**Fronted Class Diagram**
+
+![Fronted Class Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/Imagenes_README/Fronted%20Class%20Diagram.png)
+
  ## **Algorithms**
 
 Food & U will include an algorithm that recommend you recipes that is nutritionally similar to the ones you have chosed previously. We want to implement this to add variety to our users' menus. It will be based, of course, in the nutritional score of the previous meals used in the past week. In addition, we will be proud if the final version of the project is capable of making automatically a new diet based on the desires and goals of our users, but this would be included if time allows us to do so.
@@ -320,33 +324,33 @@ You can check the API REST documentation in the next links:
     - [recipeLoaded](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates/recipeLoaded.html)
     - [MenuService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/MenuService.java)
 <<<<<<< HEAD
-    - **Carlos Rodríguez Gómez**: Throughout this phase I have been working on the development of the API REST controllers, I have also updated the class diagrams, below I leave the 5 most important commits:
+
+- **Carlos Rodríguez Gómez**: Throughout this phase I have been working on the development of the API REST controllers, I have also updated the class diagrams, below I leave the 5 most important commits:
+
     - [Some methods of Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/0f7a73e87b9d3f5116df439c9f1bddbecb012ca4)
     - [More methods Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/4b029f4dc07b5789de7a5c659d3ad494b9803004)
     - [User method on RestController](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/3f89564e641303c92e93dab04ddd5afa8925e780)
     - [Update of Class Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/52be3e6b415f096c67029fc984dd04266327f9b0)
     - [First thoughts of Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/8c20285b950e7cb47f96b957975dffcaf2822d93)
-  
-  Now attached the files i mostly work in:
+
+  Now attached the files I mostly work in:
 
     - [RestController](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/RestController.java)
     - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
     - [Image_README](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/Imagenes_README)
-=======
 
-- **Carlos Rodríguez Gómez**: Throughout this phase I have been working on the development of the API REST controllers, I have also updated the class diagrams, below I leave the 5 most important commits:
-
-  - [Some methods of Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/0f7a73e87b9d3f5116df439c9f1bddbecb012ca4)
-  - [More methods Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/4b029f4dc07b5789de7a5c659d3ad494b9803004)
-  - [User method on RestController](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/3f89564e641303c92e93dab04ddd5afa8925e780)
-  - [Update of Class Diagram](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/52be3e6b415f096c67029fc984dd04266327f9b0)
-  - [First thoughts of Api Rest](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/8c20285b950e7cb47f96b957975dffcaf2822d93)
-
-  Now attached the files I mostly work in:
-
-  - [RestController](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/RestController.java)
-  - [Web Controller](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/controller/WebController.java)
-  - [Image_README](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/Imagenes_README)
->>>>>>> main
+  **Phase 4:**
 
 
+- **Rodrigo Marqués Buil**:
+
+
+- **Hugo Coto González**:
+
+
+- **Carlos Alejandro Álvarez**:
+
+
+- **Carlos Rodríguez Gómez**:
+
+  
