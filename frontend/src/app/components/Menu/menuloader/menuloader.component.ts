@@ -16,6 +16,7 @@ export class MenuloaderComponent{
 
   menu: Menu;
   user: Users;
+  isActive: boolean;
 
   lunches: Recipes[];
   dinners: Recipes[];
@@ -29,9 +30,28 @@ export class MenuloaderComponent{
         this.menu = response;
         this.lunches = this.getLunch(this.menu);
         this.dinners = this.getDinner(this.menu);
+        this.menuIsActive();
       },
         error => console.error(error)
     );
+  }
+
+  menuIsActive(){
+    this.userService.getUserMenu().subscribe(
+      response => {
+        var menuActive = response;
+        this.isActive = false;
+        if(menuActive.id == this.menu.id){
+          this.isActive = true;
+        }
+      },
+        error => console.error(error)
+    );
+  }
+
+  activeMenu(){
+    this.userService.activateMenu(this.menu.id);
+    this.isActive = true;
   }
 
   getLunch(menu: Menu){

@@ -29,6 +29,10 @@ export class UsersService {
     return this.http.put("api/users/recipe/" + id, {}, {}).subscribe(console.log)
   }
 
+  activateMenu(id: number){
+    return this.http.put("api/users/menu/" + id, {}, {}).subscribe(console.log)
+  }
+
   getNumberOfUser(){
     return this.http.get<Users[]>("api/users/all")
   }
