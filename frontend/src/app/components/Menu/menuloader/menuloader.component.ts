@@ -16,7 +16,6 @@ export class MenuloaderComponent{
 
   menu: Menu;
   user: Users;
-  isActive: boolean;
 
   lunches: Recipes[];
   dinners: Recipes[];
@@ -24,34 +23,15 @@ export class MenuloaderComponent{
   constructor(private router:Router,activatedRoute: ActivatedRoute, private service:MenuService, public loginService: LoginService, private userService: UsersService) {
     const id = activatedRoute.snapshot.params['id'];
     this.user = loginService.currentUser();
-    
+
     service.getMenu(id).subscribe(
       response => {
         this.menu = response;
         this.lunches = this.getLunch(this.menu);
         this.dinners = this.getDinner(this.menu);
-        this.menuIsActive();
       },
         error => console.error(error)
     );
-  }
-
-  menuIsActive(){
-    this.userService.getUserMenu().subscribe(
-      response => {
-        var menuActive = response;
-        this.isActive = false;
-        if(menuActive.id == this.menu.id){
-          this.isActive = true;
-        }
-      },
-        error => console.error(error)
-    );
-  }
-
-  activeMenu(){
-    this.userService.activateMenu(this.menu.id);
-    this.isActive = true;
   }
 
   getLunch(menu: Menu){
@@ -74,5 +54,14 @@ export class MenuloaderComponent{
           i=i+2;
       }
       return dinner;
+  }
+  isActive(){
+    return this.user.activeMenu.id== this.menu.id;
+  }
+  isHealthy(){
+    return this.menu.healthy;
+  }
+  isLogged(){
+    return this.loginService.isLogged();
   }
 }

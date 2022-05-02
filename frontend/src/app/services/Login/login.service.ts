@@ -11,14 +11,22 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  constructor(private router:Router,private http: HttpClient) { }
-
-
-  logged: boolean;
+  logged: boolean = false;
   user: Users;
 	httpClient: any;
   recipes: Recipes[];
   recipe: Recipes;
+
+  constructor(private router:Router,private http: HttpClient,private userService: UsersService) {
+    this.refresh();
+    this.userService.getMyProfile().subscribe(
+      response=>{
+        this.user = response as Users;
+        this.logged = true;
+      }
+    );
+
+  }
 
   register(username : String, mail : String ,password: String){
     this.http.post("api/users/new",{username, password, mail} , {withCredentials:true}).subscribe(
@@ -53,8 +61,8 @@ export class LoginService {
   logOut(){
     return this.http.get("/api/auth/logout")
   }
-  refresh(user: Users){
-    return this.http.post<Users>("/api/auth/refresh", user)
+  refresh(){
+    return this.http.post<Users>("/api/auth/refresh",{withCredentials:true})
   }
 
   /*constructor(private http: HttpClient, private userService: UsersService, private recipeService:RecipesService) {
@@ -94,8 +102,13 @@ isLogged() {
   return this.logged;
 }
 
-isAdmin() {
-  return this.user && this.user.admin;
+isAdmin(){
+if (this.isLogged()==true){
+  if (this.user.admin==true){
+    return true;
+  }
+}
+return false;
 }
 
 currentUser() {

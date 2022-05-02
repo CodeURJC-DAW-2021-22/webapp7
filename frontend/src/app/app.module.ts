@@ -20,6 +20,7 @@ import { HomeComponent } from './components/Home/home/home.component';
 import { HeaderComponent } from './components/Header/header/header.component';
 import { FooterComponent } from './components/Footer/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/Login/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { DietloaderComponent } from './components/Diet/dietloader/dietloader.component';
@@ -29,6 +30,7 @@ import { DietloaderComponent } from './components/Diet/dietloader/dietloader.com
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorComponent,
     AdminComponent,
     UserComponent,
     AboutusComponent,
