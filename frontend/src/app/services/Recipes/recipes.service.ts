@@ -42,7 +42,7 @@ export class RecipesService {
     return this.http.post("/api/recipes/" + id + "/image", imageRecipe)
   }
 
-  downloadImage(id: Number){
-    return this.http.get("/api/recipes/" + id + "/image")
+  downloadImage(recipeParam : Recipes){
+    return recipeParam.recipeImage ? '/api/recipes/' + recipeParam.id + '/image' : "";
   }
 }
