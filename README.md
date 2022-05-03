@@ -5,6 +5,8 @@
 This is a project where we are going to develop a new web application about the relationship beetween the food and our users. The main idea is that you will find recipes uploaded by other users, and you would save them to build your semanal food plan. In addition, you will have the opportunity to generate your own shopping list automatically, using the different elements that your daily food has. Let's take a deeper look about what are we planning to develop:
 
 
+You will fin here a [video](https://www.youtube.com/watch?v=hfaoKZv3zUs) where we explain how our application works in the frontend part of the project.
+
  ## **Food & U features**
 
 Which features will Food & U have? Our development team has planned to include:
