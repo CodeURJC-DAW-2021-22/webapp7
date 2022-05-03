@@ -208,6 +208,7 @@ Right now you should understand the next problem: Heroku close the app if finds 
 
 You can check the API REST documentation in the next links: 
   - [HTML format](https://raw.githack.com/CodeURJC-DAW-2021-22/webapp7/main/backend/api-docs/api-docs.html)
+
   - [YAML format](https://raw.githack.com/CodeURJC-DAW-2021-22/webapp7/main/backend/api-docs/api-docs.yaml)
 
 ## **How to transfer Food & U to a SPA**
