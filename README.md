@@ -374,7 +374,20 @@ Finally, as we previously recommended, we will run the application in the backen
   - [Header](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/components/Header/header/header.component.html)
 
 
-- **Hugo Coto González**:
+- **Hugo Coto González**: During this phase my work has consisted in the structuration of the frontend and adding and modifying all the parameters required for itS correct performance. Also I develop some methods and components using Angular. Most of my work has been dockerize the whole app and automate that proccess by writhing a bash script that does it without any previous installation beyond node.
+Down below you can check my most important commits during this last phase:
+  - [Image creation script](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/e6723c52fec1a915401d4eb2209edf55570b1bad)
+  - [Logout](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/ac995dcf96f217347f4e9186ba8f31203e32d5ae)
+  - [Recipes page](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/d3abd0cedc0c7d4f29ada798c27d960a8abd950e)
+  - [Load more recipes](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/680cddbd5c2da7c18a8044fdf570f1b2e66cfed5)
+  - [Services and classes](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/9fb6e657e289c9e8c810a2f1f243ac98233bf306)
+  
+  This are the files I mostly worked on:
+  - [Script](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/create_image_phase4.sh)
+  - [Dockerfile](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/Dockerfile)
+  - [Recipe Service](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/services/Recipes/recipes.service.ts)
+  - [RecipeAll Component](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/components/Recipe/recipeall/recipeall.component.ts)
+  - [User service](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/services/Users/users.service.ts)
 
 
 - **Carlos Alejandro Álvarez**: During this phase I tried to develop as much as possible of the components I worked in. I focus my time in algorithms and connecting components with the backend api rest. Now you could find my most important five commits I made:
