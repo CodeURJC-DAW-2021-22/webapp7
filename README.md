@@ -339,7 +339,6 @@ Finally, as we previously recommended, we will run the application in the backen
     - [RecipeUpdater](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates/RecipeUpdater.html)
     - [recipeLoaded](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/resources/templates/recipeLoaded.html)
     - [MenuService](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/backend/src/main/java/com/example/demo/service/MenuService.java)
-<<<<<<< HEAD
 
 - **Carlos Rodríguez Gómez**: Throughout this phase I have been working on the development of the API REST controllers, I have also updated the class diagrams, below I leave the 5 most important commits:
 
@@ -358,13 +357,39 @@ Finally, as we previously recommended, we will run the application in the backen
   **Phase 4:**
 
 
-- **Rodrigo Marqués Buil**:
+- **Rodrigo Marqués Buil**: During this phase I tried to develop each part as I could of frontend, because the volumen of components must be sorted by every developer. Also, I co-worked redesigning the api rest to fit better with the frontend, and finished dockerizing the ultimate version of itself. Now you can see the most important commits I did during this part of the develop:
+
+  - [New version of Docker File and Docker Compose](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/2692c9c96f95499f7305bf109e5d617fe029f169)
+  - [Data persistence in local after refreshing](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/71bcee24e4138c2ba97e81567ef403771de3c7bb)
+  - [Change to relative paths that works in Heroku](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/9e2213a468cdc5db46cd62202a87ed77e8280a35)
+  - [Control of access to determinated pages depending of the kind of user trying to do so](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/9d0a55bfc1195b53345ab01acddcdb3e52461ad2)
+  - [Active Menu page finished](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/43802546ee41e5d762546837082acb5497903366)
+
+  And now you can check the five most representativas files where I worked:
+  - [Login Service](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/services/Login/login.service.ts)
+  - [User Service](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/services/Users/users.service.ts)
+  - [Home Component](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/components/Home/home/home.component.ts)
+  - [Dockerfile](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/docker/Dockerfile)
+  - [Header](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/components/Header/header/header.component.html)
 
 
 - **Hugo Coto González**:
 
 
-- **Carlos Alejandro Álvarez**:
+- **Carlos Alejandro Álvarez**: During this phase I tried to develop as much as possible of the components I worked in. I focus my time in algorithms and connecting components with the backend api rest. Now you could find my most important five commits I made:
+  
+  - [Chart created](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/c1ec63c4c0ce14bb4b8dba32fbd61c0acd6db62d)
+  - [Receipt to download](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/efbec72d8af89dd82eac40d4c81745f678992a1b)
+  - [Recipe Updater Page](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/6af6815b9fc0458b9e8ed8dfc9af4057094d65c2)
+  - [Saving recipes](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/5e800ac1c44abda483bfcb938cac9e002e8c05fa)
+  - [Paginated searchs](https://github.com/CodeURJC-DAW-2021-22/webapp7/commit/fe3d254929b2109ddfab7716b0fea420bbacb8f9)
+  
+  And now, a list with the five files where I most worked in:
+  - [Specific recipe](https://github.com/CodeURJC-DAW-2021-22/webapp7/tree/main/frontend/src/app/components/Recipe/recipespecific)
+  - [Menu Active](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/components/Menu/menuactive/menuactive.component.ts)
+  - [Diet Maker](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/components/Diet/dietmaker/dietmaker/dietmaker.component.ts)
+  - [Recipe Service](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/services/Recipes/recipes.service.ts)
+  - [Menu Service](https://github.com/CodeURJC-DAW-2021-22/webapp7/blob/main/frontend/src/app/services/Menu/menu.service.ts)
 
 
 - **Carlos Rodríguez Gómez**: During this phase I have been working mainly on the creation and implementation of fronted components. My biggest contributions are in the header, login and image uploads. In addition, I have helped with the creation of services and other small contributions to the rest of the components. Then I leave my 5 most important commits:
